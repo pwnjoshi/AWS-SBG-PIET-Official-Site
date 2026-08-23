@@ -142,10 +142,107 @@ export async function POST(req: Request) {
       </html>
     `;
 
-    // Send email via Resend API
+    // HTML for Submitter Confirmation Email
+    const userConfirmationHtml = `
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>We Received Your Inquiry</title>
+      </head>
+      <body style="margin: 0; padding: 32px 16px; background-color: #05070E; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #ffffff;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 620px; margin: 0 auto; background-color: #0A0F24; border: 1px solid rgba(173, 92, 255, 0.25); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+          
+          <!-- Header Banner -->
+          <tr>
+            <td style="padding: 32px 28px; background: linear-gradient(135deg, #180B38 0%, #2A0E5C 50%, #150930 100%); border-bottom: 1px solid rgba(173, 92, 255, 0.2); text-align: center;">
+              <div style="display: inline-block; padding: 4px 14px; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); border-radius: 9999px; margin-bottom: 12px;">
+                <span style="font-family: monospace; font-size: 11px; font-weight: 700; color: #34D399; letter-spacing: 1.5px; text-transform: uppercase;">
+                  ✓ INQUIRY RECEIVED
+                </span>
+              </div>
+              <h1 style="margin: 0; font-size: 24px; font-weight: 900; color: #ffffff; letter-spacing: -0.5px;">
+                Thank You for Reaching Out!
+              </h1>
+              <p style="margin: 8px 0 0 0; font-size: 13px; color: #94A3B8; font-family: monospace;">
+                AWS Student Community Day Panipat 2026
+              </p>
+            </td>
+          </tr>
+
+          <!-- Main Content -->
+          <tr>
+            <td style="padding: 32px 28px; font-size: 14px; line-height: 1.6; color: #CBD5E1;">
+              
+              <p style="font-size: 15px; color: #ffffff; font-weight: 600; margin-top: 0;">
+                Hello ${contactPerson},
+              </p>
+
+              <p>
+                We have successfully received your inquiry regarding <strong>${companyName}</strong> for <strong>AWS Student Community Day Panipat 2026</strong>.
+              </p>
+
+              <!-- Summary of Submitted Details -->
+              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 20px; margin: 24px 0;">
+                <span style="font-size: 11px; font-family: monospace; color: #BE7BFF; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 12px;">
+                  📋 Summary of Your Submission:
+                </span>
+                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse: collapse; font-size: 13px;">
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                    <td style="padding: 8px 0; color: #94A3B8; width: 35%;">Category / Tier:</td>
+                    <td style="padding: 8px 0; color: #10B981; font-weight: 700;">${tier || "General Inquiry"}</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                    <td style="padding: 8px 0; color: #94A3B8;">Work Email:</td>
+                    <td style="padding: 8px 0; color: #ffffff; font-weight: 600;">${email}</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
+                    <td style="padding: 8px 0; color: #94A3B8;">Phone / WhatsApp:</td>
+                    <td style="padding: 8px 0; color: #ffffff;">${phone || "Not provided"}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0 0 0; color: #94A3B8; vertical-align: top;">Your Message:</td>
+                    <td style="padding: 8px 0 0 0; color: #E2E8F0; white-space: pre-wrap;">${customGoals || "None provided"}</td>
+                  </tr>
+                </table>
+              </div>
+
+              <!-- Next Steps Notice -->
+              <div style="background-color: rgba(173, 92, 255, 0.08); border: 1px solid rgba(173, 92, 255, 0.25); border-radius: 12px; padding: 16px; margin: 20px 0;">
+                <h4 style="margin: 0 0 6px 0; font-size: 13px; color: #BE7BFF; font-weight: 700;">⚡ What happens next?</h4>
+                <p style="margin: 0; font-size: 12px; color: #E2E8F0; line-height: 1.5;">
+                  Our sponsorship and organizing coordinators are reviewing your submission and will follow up with you directly at this email address from <strong style="color: #ffffff;">aws-sbg@piet.co.in</strong>.
+                </p>
+              </div>
+
+              <!-- Event Reminder -->
+              <div style="text-align: center; margin-top: 28px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.06); font-size: 12px; color: #94A3B8;">
+                📅 <strong>Friday, 11 September 2026</strong> &bull; 📍 <strong>PIET Campus, Panipat, Haryana</strong>
+              </div>
+
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 20px 28px; background-color: rgba(0, 0, 0, 0.25); border-top: 1px solid rgba(255, 255, 255, 0.06); text-align: center;">
+              <p style="margin: 0; font-size: 11px; color: #64748B; font-family: monospace;">
+                AWS Student Builder Group at PIET &bull; <a href="mailto:aws-sbg@piet.co.in" style="color: #94A3B8; text-decoration: none;">aws-sbg@piet.co.in</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </body>
+      </html>
+    `;
+
+    // Send emails via Resend API
     if (resendApiKey) {
+      // 1. Notify Admin Team
       try {
-        const response = await fetch("https://api.resend.com/emails", {
+        await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -159,13 +256,28 @@ export async function POST(req: Request) {
             html: inquiryDetailsHtml,
           }),
         });
-
-        if (!response.ok) {
-          const resendError = await response.json().catch(() => ({}));
-          console.error("Resend API Error:", resendError);
-        }
       } catch (err) {
-        console.error("Resend dispatch failed:", err);
+        console.error("Admin notification dispatch failed:", err);
+      }
+
+      // 2. Dispatch Confirmation to Submitter with reply_to as aws-sbg@piet.co.in
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            from: senderEmail,
+            to: [email],
+            reply_to: "aws-sbg@piet.co.in",
+            subject: `⚡ Inquiry Received: AWS Student Community Day Panipat 2026 (${companyName})`,
+            html: userConfirmationHtml,
+          }),
+        });
+      } catch (err) {
+        console.error("User confirmation dispatch failed:", err);
       }
     } else {
       console.log("No RESEND_API_KEY configured. Sponsorship inquiry logged:", {
