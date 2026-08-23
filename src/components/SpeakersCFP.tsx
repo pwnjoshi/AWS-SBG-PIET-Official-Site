@@ -50,7 +50,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
       role: "Founder, Altiora French Academy | French Language Trainer | DELF • TEF Exam Coach | Career Mentor",
       track: "Track C • Career & Mentorship",
       linkedin: "https://www.linkedin.com/in/shivani-singh-vimal-438449267/",
-      image: "/images/shivani-singh-vimal.png",
+      image: "/images/shivani-singh-vimal.jpg",
       initials: "SV",
       accent: "#10B981",
     },
