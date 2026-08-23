@@ -24,10 +24,11 @@ export default function CelebrationAmbienceEffects() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animFrameIdRef = useRef<number | null>(null);
+  const cursorPointerRef = useRef<HTMLDivElement | null>(null);
+  const cursorRingRef = useRef<HTMLDivElement | null>(null);
   const mousePosRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
   const smoothMouseRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
   const isHoveringInteractiveRef = useRef<boolean>(false);
-  const [cursorVisible, setCursorVisible] = useState(false);
 
   const colors = [
     "#FF9900", // AWS Orange
@@ -83,6 +84,8 @@ export default function CelebrationAmbienceEffects() {
       document.body.classList.remove("ambience-mode-active");
       particlesRef.current = [];
       trailRef.current = [];
+      if (cursorPointerRef.current) cursorPointerRef.current.style.opacity = "0";
+      if (cursorRingRef.current) cursorRingRef.current.style.opacity = "0";
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
         animFrameIdRef.current = null;
@@ -142,10 +145,15 @@ export default function CelebrationAmbienceEffects() {
       const isInteractive = !!target?.closest('button, a, input, [role="button"], .interactive-hover');
       isHoveringInteractiveRef.current = isInteractive;
 
+      // Update Custom Pointer DOM directly (0 latency, 0 React re-renders)
+      if (cursorPointerRef.current) {
+        cursorPointerRef.current.style.opacity = "1";
+        cursorPointerRef.current.style.transform = `translate3d(${e.clientX - 3}px, ${e.clientY - 3}px, 0)`;
+      }
+
       trailRef.current.push({ x: e.clientX, y: e.clientY, alpha: 1 });
       if (trailRef.current.length > 16) trailRef.current.shift();
 
-      setCursorVisible(true);
       spawnParticles(e.clientX, e.clientY, isInteractive ? 3 : 2, false);
     };
 
@@ -159,11 +167,11 @@ export default function CelebrationAmbienceEffects() {
       lastScrollYRef.current = currentScrollY;
 
       // Spawn celebratory particles across the viewport on scroll (desktop and mobile)
-      const count = Math.min(5, Math.max(2, Math.floor(scrollDiff / 20)));
+      const count = Math.min(6, Math.max(3, Math.floor(scrollDiff / 15)));
       for (let k = 0; k < count; k++) {
         spawnParticles(
           Math.random() * window.innerWidth,
-          window.innerHeight - Math.random() * 120,
+          window.innerHeight - Math.random() * 140,
           1,
           false
         );
@@ -179,7 +187,7 @@ export default function CelebrationAmbienceEffects() {
         trailRef.current.push({ x: t.clientX, y: t.clientY, alpha: 1 });
         if (trailRef.current.length > 16) trailRef.current.shift();
 
-        spawnParticles(t.clientX, t.clientY, 5, false);
+        spawnParticles(t.clientX, t.clientY, 4, false);
       }
     };
 
@@ -227,7 +235,7 @@ export default function CelebrationAmbienceEffects() {
         }
       }
 
-      // Smooth interpolation for magic cursor wand follower
+      // Smooth interpolation for magic cursor wand follower ring
       if (mousePosRef.current.x > 0 && mousePosRef.current.y > 0) {
         if (smoothMouseRef.current.x < 0) {
           smoothMouseRef.current = { ...mousePosRef.current };
@@ -238,24 +246,24 @@ export default function CelebrationAmbienceEffects() {
 
         const mx = smoothMouseRef.current.x;
         const my = smoothMouseRef.current.y;
-        const isHovering = isHoveringInteractiveRef.current;
+        const isHoveringNow = isHoveringInteractiveRef.current;
 
         ctx.save();
         // Inner core star spark
-        ctx.shadowColor = isHovering ? "#FF9900" : "#AD5CFF";
-        ctx.shadowBlur = isHovering ? 20 : 14;
-        ctx.fillStyle = isHovering ? "#FF9900" : "#AD5CFF";
+        ctx.shadowColor = isHoveringNow ? "#FF9900" : "#AD5CFF";
+        ctx.shadowBlur = isHoveringNow ? 20 : 14;
+        ctx.fillStyle = isHoveringNow ? "#FF9900" : "#AD5CFF";
         ctx.beginPath();
-        ctx.arc(mx, my, isHovering ? 6 : 4.5, 0, Math.PI * 2);
+        ctx.arc(mx, my, isHoveringNow ? 6 : 4.5, 0, Math.PI * 2);
         ctx.fill();
 
         // Outer rotating planetary celebration ring
-        ctx.strokeStyle = isHovering ? "#AD5CFF" : "#FF9900";
-        ctx.lineWidth = isHovering ? 2 : 1.5;
-        ctx.shadowColor = isHovering ? "#AD5CFF" : "#FF9900";
-        ctx.shadowBlur = isHovering ? 15 : 10;
+        ctx.strokeStyle = isHoveringNow ? "#AD5CFF" : "#FF9900";
+        ctx.lineWidth = isHoveringNow ? 2 : 1.5;
+        ctx.shadowColor = isHoveringNow ? "#AD5CFF" : "#FF9900";
+        ctx.shadowBlur = isHoveringNow ? 15 : 10;
         ctx.beginPath();
-        const ringRadius = (isHovering ? 18 : 13) + Math.sin(timer * 0.12) * 3;
+        const ringRadius = (isHoveringNow ? 18 : 13) + Math.sin(timer * 0.12) * 3;
         ctx.arc(mx, my, ringRadius, 0, Math.PI * 2);
         ctx.stroke();
 
@@ -264,7 +272,7 @@ export default function CelebrationAmbienceEffects() {
           const orbitAngle = timer * 0.06 + (k * Math.PI) / 2;
           const ox = mx + Math.cos(orbitAngle) * ringRadius;
           const oy = my + Math.sin(orbitAngle) * ringRadius;
-          ctx.fillStyle = isHovering ? "#FFFFFF" : "#38BDF8";
+          ctx.fillStyle = isHoveringNow ? "#FFFFFF" : "#38BDF8";
           ctx.shadowColor = "#FFFFFF";
           ctx.shadowBlur = 6;
           ctx.beginPath();
@@ -349,6 +357,41 @@ export default function CelebrationAmbienceEffects() {
         className="fixed inset-0 pointer-events-none z-[99999] select-none"
         aria-hidden="true"
       />
+
+      {/* Real-time Celebratory Magic Pointer (Desktop only, follows mouse at 0 delay) */}
+      <div
+        ref={cursorPointerRef}
+        className="fixed top-0 left-0 pointer-events-none z-[999999] select-none hidden md:block opacity-0 will-change-transform"
+      >
+        {/* Glowing Diamond Star Tip */}
+        <div className="relative">
+          <svg
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            className="transition-transform duration-150"
+            style={{
+              filter: "drop-shadow(0 0 8px #AD5CFF) drop-shadow(0 0 3px #FFFFFF)",
+            }}
+          >
+            <path
+              d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
+              fill="url(#wand-grad)"
+              stroke="#FFFFFF"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            <defs>
+              <linearGradient id="wand-grad" x1="3" y1="3" x2="20" y2="20" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#FF9900" />
+                <stop offset="0.5" stopColor="#AD5CFF" />
+                <stop offset="1" stopColor="#38BDF8" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
 
       {/* Atmospheric Celebratory Beam & Aurora Waves Layer */}
       <div
