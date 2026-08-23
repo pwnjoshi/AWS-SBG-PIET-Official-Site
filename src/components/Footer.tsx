@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { EVENT_DETAILS } from "@/lib/data";
 
@@ -10,7 +11,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 pb-10 border-b border-slate-200 dark:border-white/[0.06]">
           {/* Brand Col */}
           <div className="lg:col-span-5 flex flex-col gap-3">
-            <div className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5">
               <div className="relative h-8 w-8 rounded-lg bg-[#AD5CFF]/15 dark:bg-[#AD5CFF]/20 border border-[#AD5CFF]/30 p-1 flex items-center justify-center overflow-hidden shrink-0">
                 <Image
                   src="/images/sbg-logo.png"
@@ -26,13 +27,13 @@ export default function Footer() {
                   AWS Student Builder Group at PIET
                 </span>
                 <span className="text-[10px] font-mono text-[#8E35EA] dark:text-[#BE7BFF] font-semibold">
-                  Community Day Panipat 2026
+                  Panipat Institute of Engineering & Technology
                 </span>
               </div>
-            </div>
+            </Link>
 
             <p className="text-xs text-slate-600 dark:text-slate-400 max-w-sm leading-relaxed mt-1">
-              {EVENT_DETAILS.tagline} Hosted at PIET Campus, Samalkha, Panipat (NH-44), Haryana – 132102.
+              Empowering 500+ student developers across Haryana and NCR with hands-on AWS cloud computing, Generative AI, and career mentorship.
             </p>
 
             <div className="text-xs text-slate-600 dark:text-slate-400 mt-1">
@@ -43,45 +44,45 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Navigation Links */}
           <div className="lg:col-span-3 flex flex-col gap-2">
             <h4 className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-              Quick Navigation
+              Navigation
             </h4>
             <ul className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400">
               <li>
-                <a href="#overview" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                  Overview
-                </a>
+                <Link href="/" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  SBG PIET Homepage
+                </Link>
               </li>
               <li>
-                <a href="#tracks" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                <Link href="/scd-panipat-2026" className="text-[#8E35EA] dark:text-[#AD5CFF] font-semibold hover:underline">
+                  ★ AWS SCD Summit 2026
+                </Link>
+              </li>
+              <li>
+                <Link href="/scd-panipat-2026/badge" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  &ldquo;I&apos;m Attending&rdquo; Badge Maker
+                </Link>
+              </li>
+              <li>
+                <Link href="/scd-panipat-2026#tracks" className="hover:text-slate-900 dark:hover:text-white transition-colors">
                   6 Technical Tracks
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#agenda" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                  Schedule
-                </a>
+                <Link href="/scd-panipat-2026#agenda" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Summit Day Schedule
+                </Link>
               </li>
               <li>
-                <a href="#speakers" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                  Call for Speakers
-                </a>
-              </li>
-              <li>
-                <a href="#tickets" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                  Claim Passes
-                </a>
-              </li>
-              <li>
-                <a href="#sponsors" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                  Sponsors
-                </a>
-              </li>
-              <li>
-                <a href="#venue" className="hover:text-slate-900 dark:hover:text-white transition-colors">
-                  Venue & Transit
+                <a
+                  href={EVENT_DETAILS.commudleUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-slate-900 dark:hover:text-white transition-colors"
+                >
+                  Official Commudle Chapter
                 </a>
               </li>
             </ul>
@@ -90,13 +91,13 @@ export default function Footer() {
           {/* Community & Legal */}
           <div className="lg:col-span-4 flex flex-col gap-2">
             <h4 className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-              Organizing Club
+              About the Organization
             </h4>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Organized by <span className="text-slate-900 dark:text-white font-semibold">AWS Student Builder Group at PIET</span> in collaboration with regional cloud community leaders, AWS Heroes, and Community Builders.
+              Organized by <span className="text-slate-900 dark:text-white font-semibold">AWS Student Builder Group at PIET</span> under the global AWS Student Builder Group & Cloud Club initiatives.
             </p>
             <p className="text-[11px] text-slate-500 mt-1">
-              Committed to an inclusive and respectful learning environment for all attendees.
+              Venue: 70 Milestone, G.T. Road, Pattikalyana, Samalkha, Panipat, Haryana – 132102.
             </p>
           </div>
         </div>

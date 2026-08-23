@@ -6,7 +6,9 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowUpRight01Icon,
   Tick02Icon,
+  Globe02Icon,
 } from "@hugeicons/core-free-icons";
+import { PREVIOUS_SCDS } from "@/lib/data";
 
 interface WhyAttendProps {
   onOpenTickets: () => void;
@@ -24,19 +26,19 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
       borderColor: "hover:border-[#AD5CFF]/60",
       glowColor: "group-hover:bg-[#AD5CFF]/5",
       badgeColor: "text-[#8E35EA] dark:text-[#AD5CFF] bg-[#AD5CFF]/10 border-[#AD5CFF]/25",
-      highlights: ["6+ SBG Chapters", "Peer Collabs", "Dev Hackathons"],
+      highlights: ["6+ SBG Chapters", "Peer Collabs", "Developer Network"],
     },
     {
       num: "02",
-      tag: "Curriculum",
-      title: "6 Technical Learning Tracks",
-      desc: "From Cloud Foundations to Generative AI with Amazon Bedrock, DevOps automation, and serverless architectures.",
+      tag: "Keynotes",
+      title: "Praful Bagai & Industry Leaders",
+      desc: "Gain vision-shaping insights from technical leaders, AWS Heroes, and cloud architects on production systems and Generative AI.",
       accent: "#0EA5E9",
       accentBg: "rgba(14, 165, 233, 0.12)",
       borderColor: "hover:border-sky-500/60",
       glowColor: "group-hover:bg-sky-500/5",
       badgeColor: "text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/25",
-      highlights: ["Amazon Bedrock", "AWS CDK & IaC", "Serverless Arch"],
+      highlights: ["Technical Keynotes", "AWS Heroes", "1-on-1 AMAs"],
     },
     {
       num: "03",
@@ -52,21 +54,21 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
     },
     {
       num: "04",
-      tag: "Mentorship",
-      title: "AWS Heroes & Industry Mentors",
-      desc: "Learn directly from distinguished global AWS Heroes, Community Builders, and tech leads sharing real production insights.",
+      tag: "Competitions",
+      title: "KIRO Buildathon & Ideathon",
+      desc: "Participate in intense rapid-prototyping competitions and startup architecture pitches to win prestigious awards and cash pool prizes.",
       accent: "#F59E0B",
       accentBg: "rgba(245, 158, 11, 0.12)",
       borderColor: "hover:border-amber-500/60",
       glowColor: "group-hover:bg-amber-500/5",
       badgeColor: "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/25",
-      highlights: ["Global AWS Heroes", "Community Builders", "1-on-1 AMAs"],
+      highlights: ["Live Hackathon", "Startup Pitches", "Jury Awards"],
     },
     {
       num: "05",
       tag: "Career",
-      title: "Career & Recruiter Hub",
-      desc: "Get 1-on-1 resume reviews, certification roadmap guidance, and direct interaction with hiring managers in the tech expo.",
+      title: "Career & Tech Recruiter Hub",
+      desc: "Get 1-on-1 resume reviews, certification roadmap guidance, and direct interaction with hiring managers during the Tech Expo.",
       accent: "#F43F5E",
       accentBg: "rgba(244, 63, 94, 0.12)",
       borderColor: "hover:border-rose-500/60",
@@ -76,15 +78,15 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
     },
     {
       num: "06",
-      tag: "Access",
-      title: "Free Passes for All Students",
-      desc: "Full-day summit access including keynotes, technical tracks, labs, networking sessions, and commemorative event kit.",
+      tag: "All-Inclusive",
+      title: "Official Passes with Full Perks",
+      desc: "Full-day summit access including keynotes, technical tracks, labs, networking sessions, complimentary lunch, and event kits.",
       accent: "#8B5CF6",
       accentBg: "rgba(139, 92, 246, 0.12)",
       borderColor: "hover:border-purple-500/60",
       glowColor: "group-hover:bg-purple-500/5",
       badgeColor: "text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/25",
-      highlights: ["100% Free Entry", "Swag Kits Included", "Verified Certificate"],
+      highlights: ["Lunch Included", "Official Swag Kit", "Credly Badge"],
     },
   ];
 
@@ -127,11 +129,11 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
           Built by student leaders, designed for real cloud mastery
         </h2>
         <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          AWS Student Community Day Panipat is Haryana’s focal gathering for student developers to transition from classroom theory to building production cloud systems.
+          Marking a historic milestone for Haryana&apos;s tech ecosystem, PIET is proud to host the state&apos;s first-ever AWS Student Community Day (SCD).
         </p>
       </motion.div>
 
-      {/* Redesigned Premium Bento Grid */}
+      {/* Bento Grid */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -151,7 +153,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             <div
               className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${item.glowColor}`}
             />
-            
+
             {/* Top Accent Gradient Line */}
             <div
               className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -210,7 +212,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-[#070B1A] dark:to-[#0B1024] border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm overflow-hidden"
+        className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-[#070B1A] dark:to-[#0B1024] border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm overflow-hidden mb-16"
       >
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-[#AD5CFF]/[0.06] dark:bg-[#AD5CFF]/[0.08] blur-[80px] rounded-full pointer-events-none" />
@@ -236,12 +238,12 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             </span>
             <span className="flex items-center gap-1">
               <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-emerald-500" />
-              Included with Free Pass
+              Included with Builder & Black Passes
             </span>
           </div>
         </div>
 
-        {/* Static Credly Badge Display - No Hover Scaling */}
+        {/* Static Credly Badge Display */}
         <div className="relative z-10 shrink-0 flex flex-col items-center">
           <div className="w-56 rounded-2xl bg-white dark:bg-[#0B1024] border border-[#AD5CFF]/35 p-5 flex flex-col items-center text-center shadow-xl shadow-[#AD5CFF]/10 backdrop-blur-sm">
             <div className="relative h-24 w-24 mb-2 drop-shadow-md">
@@ -271,6 +273,52 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             <span>Register to claim badge</span>
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
           </button>
+        </div>
+      </motion.div>
+
+      {/* Global AWS Student Community Days Benchmark Grid */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="rounded-2xl bg-white dark:bg-[#080D1E] border border-slate-200/90 dark:border-white/[0.08] p-6 sm:p-8 shadow-sm"
+      >
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-white/[0.06]">
+          <div>
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
+              GLOBAL COMMUNITY ECOSYSTEM
+            </span>
+            <h3 className="text-xl font-extrabold text-slate-950 dark:text-white">
+              Previous AWS Student Community Days
+            </h3>
+          </div>
+          <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+            <HugeiconsIcon icon={Globe02Icon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF]" />
+            Global Student Builder Network
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {PREVIOUS_SCDS.map((scd) => (
+            <div
+              key={scd.name}
+              className="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
+                  <span className="font-semibold text-[#8E35EA] dark:text-[#BE7BFF]">{scd.organizer}</span>
+                  <span>{scd.date}</span>
+                </div>
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-2">
+                  {scd.name}
+                </h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  {scd.highlights}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </motion.div>
     </section>

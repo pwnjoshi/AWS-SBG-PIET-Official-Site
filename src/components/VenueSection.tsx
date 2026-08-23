@@ -26,19 +26,19 @@ export default function VenueSection() {
       title: "From Delhi / NCR & Airport",
       distance: "Approx. 65 km via NH-44 (GT Road)",
       time: "60–75 min drive",
-      desc: "Drive North on NH-44 through Sonipat. PIET Campus is located directly on the main highway at Samalkha before Panipat toll plaza.",
+      desc: "Drive North on NH-44 through Sonipat. PIET Campus is located directly at 70 Milestone, Pattikalyana, Samalkha on the main highway.",
     },
     chandigarh: {
       title: "From Chandigarh / North Haryana",
       distance: "Approx. 160 km via NH-44",
       time: "2.5 hours drive",
-      desc: "Head South on NH-44 past Karnal. Continue past Panipat city for 15 km towards Samalkha. Campus entrance has dedicated highway access.",
+      desc: "Head South on NH-44 past Karnal. Continue past Panipat city for 15 km towards Samalkha. Campus entrance has direct highway access.",
     },
     train: {
       title: "By Train / Public Transit",
       distance: "Samalkha Station (3 km) / Panipat Junction (18 km)",
       time: "Frequent local trains",
-      desc: "Regular trains from New Delhi and Old Delhi stop directly at Samalkha railway station. Auto-rickshaws are available directly to campus gates.",
+      desc: "Regular trains from New Delhi and Old Delhi stop directly at Samalkha railway station. Auto-rickshaws and shuttles are available directly to campus gates.",
     },
   };
 
@@ -59,7 +59,7 @@ export default function VenueSection() {
           Panipat Institute of Engineering & Technology (PIET)
         </h2>
         <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          NH-44, Samalkha, Panipat, Haryana – 132102. State-of-the-art auditorium, Gigabit fiber labs, and sprawling tech expo arenas.
+          {EVENT_DETAILS.venueFull}
         </p>
       </motion.div>
 
@@ -91,7 +91,7 @@ export default function VenueSection() {
             </h3>
           </div>
           <span className="text-xs font-mono text-slate-200 bg-black/60 px-3 py-1 rounded-lg border border-white/10 backdrop-blur-md self-start sm:self-auto">
-            NH-44 SAMALKHA, PANIPAT
+            70 MILESTONE, GT ROAD, SAMALKHA
           </span>
         </div>
       </motion.div>
@@ -114,7 +114,7 @@ export default function VenueSection() {
               {[
                 "1,000+ Seater Central Auditorium",
                 "High-Speed Cloud Computing Labs",
-                "Innovation Expo Arena & Lawns",
+                "KIRO Buildathon Innovation Arena",
                 "Dedicated Dining & Food Court",
               ].map((fac) => (
                 <div
@@ -185,15 +185,15 @@ export default function VenueSection() {
           <div className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/80 dark:border-white/[0.08] overflow-hidden h-[400px] flex flex-col shadow-sm">
             <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-white/[0.06] flex items-center justify-between">
               <span className="text-xs font-mono text-slate-600 dark:text-slate-300">
-                PIET Panipat • NH-44 Samalkha
+                PIET Panipat • 70 Milestone Samalkha
               </span>
               <a
-                href="https://maps.google.com/?q=Panipat+Institute+of+Engineering+and+Technology+PIET+Samalkha+Panipat+Haryana"
+                href={EVENT_DETAILS.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[11px] font-semibold text-[#8E35EA] dark:text-[#BE7BFF] hover:underline flex items-center gap-1"
               >
-                <span>Google Maps</span>
+                <span>Open in Google Maps</span>
                 <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3" />
               </a>
             </div>

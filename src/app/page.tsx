@@ -1,37 +1,23 @@
 "use client";
 
-import { useState } from "react";
 import { ThemeProvider } from "@/context/ThemeContext";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ParticleNetworkCanvas from "@/components/ParticleNetworkCanvas";
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import WhyAttend from "@/components/WhyAttend";
-import LearningTracks from "@/components/LearningTracks";
-import Agenda from "@/components/Agenda";
-import SpeakersCFP from "@/components/SpeakersCFP";
-import TicketsSection from "@/components/TicketsSection";
-import SponsorsSection from "@/components/SponsorsSection";
-import VenueSection from "@/components/VenueSection";
-import FAQSection from "@/components/FAQSection";
-import CommunitySocials from "@/components/CommunitySocials";
 import Footer from "@/components/Footer";
-import CFPModal from "@/components/CFPModal";
-import SponsorModal from "@/components/SponsorModal";
-import TicketModal from "@/components/TicketModal";
+import FloatingActions from "@/components/FloatingActions";
 
-export default function Home() {
-  const [cfpModalOpen, setCfpModalOpen] = useState(false);
-  const [sponsorModalOpen, setSponsorModalOpen] = useState(false);
-  const [ticketModalOpen, setTicketModalOpen] = useState(false);
-  const [selectedTicketTier, setSelectedTicketTier] = useState<string | undefined>(undefined);
+// SBG Homepage Specific Components
+import SBGHero from "@/components/sbg/SBGHero";
+import SBGFlagshipBanner from "@/components/sbg/SBGFlagshipBanner";
+import SBGAbout from "@/components/sbg/SBGAbout";
+import SBGProjects from "@/components/sbg/SBGProjects";
+import SBGDomains from "@/components/sbg/SBGDomains";
+import SBGLeadership from "@/components/sbg/SBGLeadership";
+import SBGJoinCommunity from "@/components/sbg/SBGJoinCommunity";
 
-  const handleOpenTickets = (tierId?: string) => {
-    setSelectedTicketTier(tierId);
-    setTicketModalOpen(true);
-  };
-
+export default function SBGHomePage() {
   return (
     <ThemeProvider>
       <SmoothScroll>
@@ -43,66 +29,37 @@ export default function Home() {
           <ParticleNetworkCanvas />
 
           {/* Floating Pill Navigation Bar */}
-          <Navbar
-            onOpenCFP={() => setCfpModalOpen(true)}
-            onOpenTickets={() => handleOpenTickets("student-pass")}
-          />
+          <Navbar onOpenCFP={() => {}} onOpenTickets={() => {}} />
 
-          {/* Main Content Layout */}
-          <main className="relative z-10 flex flex-col gap-8 sm:gap-16">
-            {/* Cinematic Monumental Hero Section with Scroll Parallax */}
-            <Hero
-              onOpenCFP={() => setCfpModalOpen(true)}
-              onOpenTickets={() => handleOpenTickets("student-pass")}
-            />
+          {/* Main Homepage Layout */}
+          <main className="relative z-10 flex flex-col gap-12 sm:gap-20">
+            {/* Club Hero */}
+            <SBGHero />
 
-            {/* Why Attend & Credly Badge Spotlight */}
-            <WhyAttend onOpenTickets={() => handleOpenTickets("student-pass")} />
+            {/* Featured Flagship Summit 2026 Spotlight Banner */}
+            <SBGFlagshipBanner />
 
-            {/* 6 Technical Learning Tracks with Visual Architecture Cards */}
-            <LearningTracks onOpenTickets={() => handleOpenTickets("student-pass")} />
+            {/* About the Chapter & University Credentials */}
+            <SBGAbout />
 
-            {/* Full-Day Schedule Timeline */}
-            <Agenda />
+            {/* Flagship Student Projects & Architectures */}
+            <SBGProjects />
 
-            {/* Speakers Lineup & Call for Proposals (CFP) */}
-            <SpeakersCFP onOpenCFP={() => setCfpModalOpen(true)} />
+            {/* Technical Domains & Focus Areas */}
+            <SBGDomains />
 
-            {/* Passes, Pricing & Live Holographic Pass Generator */}
-            <TicketsSection onOpenTicketsModal={(tierId) => handleOpenTickets(tierId)} />
+            {/* Leadership & Faculty Mentorship */}
+            <SBGLeadership />
 
-            {/* Sponsorship Tiers & ROI Deck */}
-            <SponsorsSection onOpenSponsorModal={() => setSponsorModalOpen(true)} />
-
-            {/* PIET Panipat Venue, Transit & Photo Parallax */}
-            <VenueSection />
-
-            {/* Frequently Asked Questions */}
-            <FAQSection />
-
-            {/* Community Channels & Alert Subscriptions */}
-            <CommunitySocials />
+            {/* Join Community Channels & Commudle Hub */}
+            <SBGJoinCommunity />
           </main>
+
+          {/* Sticky Bottom Right Actions: Scroll To Top & Brevo Live Chat */}
+          <FloatingActions />
 
           {/* Global Footer */}
           <Footer />
-
-          {/* Interactive Modals */}
-          <CFPModal
-            isOpen={cfpModalOpen}
-            onClose={() => setCfpModalOpen(false)}
-          />
-
-          <SponsorModal
-            isOpen={sponsorModalOpen}
-            onClose={() => setSponsorModalOpen(false)}
-          />
-
-          <TicketModal
-            isOpen={ticketModalOpen}
-            onClose={() => setTicketModalOpen(false)}
-            selectedTierId={selectedTicketTier}
-          />
         </div>
       </SmoothScroll>
     </ThemeProvider>

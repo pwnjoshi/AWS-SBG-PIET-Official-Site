@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "AWS Student Community Day Panipat 2026 | Largest Student Cloud Event in Haryana",
   description:
-    "Join 500+ student builders, AWS Heroes, and cloud architects on 14 September 2026 at PIET Campus, Panipat. Powering the next generation of cloud innovators across Haryana & NCR.",
+    "Join 500+ student builders, AWS Heroes, and cloud architects on 11 September 2026 at PIET Campus, Panipat. Haryana's first-ever AWS Student Community Day.",
   keywords: [
     "AWS Student Community Day",
     "AWS SCD Panipat 2026",
@@ -38,10 +38,10 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "AWS Student Builder Group PIET" }],
   openGraph: {
-    title: "AWS Student Community Day Panipat 2026 — 14 Sept 2026",
+    title: "AWS Student Community Day Panipat 2026 — 11 Sept 2026",
     description:
-      "Largest student-led cloud event in Haryana. 6 tracks, 100% hands-on labs, AWS Heroes, Credly Badges & Free Student Passes.",
-    url: "https://aws-sbg-piet.org",
+      "Haryana's first-ever AWS Student Community Day. 6 tracks, KIRO Buildathon, Ideathon, AWS Heroes, Credly Badges & Builder Passes.",
+    url: "https://www.commudle.com/communities/aws-student-builder-group-piet/events/aws-student-community-day-panipat",
     siteName: "AWS Student Community Day Panipat 2026",
     locale: "en_IN",
     type: "website",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AWS Student Community Day Panipat 2026",
-    description: "Powering the next generation of cloud innovators. 14 Sept 2026 at PIET Panipat.",
+    description: "Powering the next generation of cloud innovators. 11 Sept 2026 at PIET Panipat.",
   },
 };
 

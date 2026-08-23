@@ -45,7 +45,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-09-14T09:00:00+05:30").getTime();
+    const targetDate = new Date("2026-09-11T09:00:00+05:30").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -123,21 +123,34 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
 
   return (
     <section
+      id="overview"
       ref={containerRef}
       className="relative min-h-[92vh] w-full flex flex-col justify-between pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Full-Height PIET Campus Architectural Silhouette extending behind header */}
+      {/* Full-Height PIET Campus Video Background extending behind header with Fallback Poster */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-        {/* Real Campus Image spanning top-to-bottom behind header and hero */}
+        {/* Campus Video Background with Parallax and Fallback Poster Image */}
         <motion.div
           style={{ y: campusY, scale: campusScale }}
-          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30 sm:opacity-38 dark:opacity-22 dark:sm:opacity-28 filter grayscale contrast-105 brightness-95 dark:contrast-125 dark:mix-blend-luminosity transform will-change-transform transition-opacity duration-300"
-          ref={(node) => {
-            if (node) {
-              node.style.backgroundImage = "url('/images/piet-campus.png')";
-            }
-          }}
-        />
+          className="absolute inset-0 w-full h-full transform will-change-transform opacity-30 sm:opacity-40 dark:opacity-22 dark:sm:opacity-28 filter grayscale contrast-105 brightness-95 dark:contrast-125 dark:mix-blend-luminosity transition-opacity duration-500 overflow-hidden"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/piet-campus.png"
+            className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+          >
+            <source src="/videos/piet.mp4" type="video/mp4" />
+            {/* Fallback image if video is not supported */}
+            <img
+              src="/images/piet-campus.png"
+              alt="PIET Panipat Campus"
+              className="w-full h-full object-cover object-center"
+            />
+          </video>
+        </motion.div>
 
         {/* Seamless atmospheric masks for optimal typography and header transparency */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC]/75 via-[#F8FAFC]/50 to-[#F8FAFC] dark:from-[#05070E]/80 dark:via-[#05070E]/70 dark:to-[#05070E]" />
@@ -170,18 +183,18 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative inline-flex p-[1.5px] rounded-full overflow-hidden shadow-md shadow-[#AD5CFF]/15 group mb-6 cursor-default"
+          className="relative inline-flex p-[1.5px] rounded-full overflow-hidden shadow-md shadow-[#AD5CFF]/15 group mb-5 sm:mb-6 cursor-default"
         >
           {/* Rotating Conic Electric Violet Lightning Beam */}
           <div className="absolute -inset-[150%] animate-[spin_3.5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,transparent_70%,#AD5CFF_85%,#FFFFFF_94%,#BE7BFF_100%)] opacity-90" />
 
           {/* Inner Pill Content */}
-          <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 dark:bg-[#080D1E]/95 backdrop-blur-xl text-xs font-mono text-slate-700 dark:text-slate-300">
-            <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold">AWS Student Community Day 2026</span>
+          <div className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/95 dark:bg-[#080D1E]/95 backdrop-blur-xl text-[10px] sm:text-xs font-mono text-slate-700 dark:text-slate-300">
+            <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold">AWS SCD 2026</span>
             <span className="text-slate-400 dark:text-slate-600">/</span>
             <span>PIET Panipat</span>
             <span className="text-slate-400 dark:text-slate-600">/</span>
-            <span className="text-slate-500 dark:text-slate-400">14 September</span>
+            <span className="text-slate-500 dark:text-slate-400">11 Sept</span>
           </div>
         </motion.div>
 
@@ -189,7 +202,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-950 dark:text-white max-w-4xl leading-[1.1] mb-6 drop-shadow-sm"
+          className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-slate-950 dark:text-white max-w-4xl leading-[1.15] mb-4 sm:mb-6 drop-shadow-sm px-1"
         >
           Powering the Next Generation of{" "}
           <span className="text-[#8E35EA] dark:text-[#AD5CFF]">
@@ -201,32 +214,32 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-6"
+          className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-6 sm:mb-8 px-2"
         >
-          Haryana’s premier student-led cloud summit organized by AWS Student Builder Group at PIET. 500+ builders, 6 technical tracks, hands-on AWS labs, and direct mentorship from AWS Heroes and community leaders.
+          Haryana’s first-ever AWS Student Community Day organized by AWS Student Builder Group at PIET. 500+ builders, 6 technical tracks, hands-on AWS labs, KIRO Buildathon, and direct mentorship from AWS Heroes and community leaders.
         </motion.p>
 
-        {/* Action Buttons */}
+        {/* Action Buttons: Full-width on mobile */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap items-center justify-center gap-3 mb-10"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-8 sm:mb-10 px-2"
         >
           <button
             onClick={onOpenTickets}
-            className="group px-6 py-3 rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-sm transition-all flex items-center gap-2 shadow-lg shadow-[#AD5CFF]/25 hover:scale-[1.02] cursor-pointer"
+            className="w-full sm:w-auto group px-6 py-3.5 rounded-2xl sm:rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#AD5CFF]/25 active:scale-[0.98] cursor-pointer"
           >
-            <span>Claim Free Student Pass</span>
+            <span>Register on Commudle</span>
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
 
-          <button
-            onClick={onOpenCFP}
-            className="px-5 py-3 rounded-full bg-white dark:bg-white/[0.06] hover:bg-slate-100 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-medium text-sm transition-all shadow-sm cursor-pointer"
+          <a
+            href="#agenda"
+            className="w-full sm:w-auto px-5 py-3.5 rounded-2xl sm:rounded-full bg-white dark:bg-white/[0.06] hover:bg-slate-100 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-medium text-sm transition-all shadow-sm active:scale-[0.98] flex items-center justify-center cursor-pointer"
           >
-            Call for Speakers
-          </button>
+            View Schedule
+          </a>
         </motion.div>
 
         {/* Minimalist Countdown */}
@@ -234,7 +247,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2 sm:gap-3 mb-6"
+          className="flex items-center gap-1.5 sm:gap-3 mb-6"
         >
           {[
             { val: timeLeft.days, label: "Days" },
@@ -242,16 +255,16 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
             { val: timeLeft.minutes, label: "Mins" },
             { val: timeLeft.seconds, label: "Secs" },
           ].map((unit, idx) => (
-            <div key={unit.label} className="flex items-center gap-2 sm:gap-3">
-              <div className="flex flex-col items-center justify-center min-w-[56px] sm:min-w-[64px] h-[54px] sm:h-[60px] rounded-xl bg-white/90 dark:bg-[#080D1E]/80 border border-slate-200 dark:border-white/[0.08] backdrop-blur-md shadow-sm">
-                <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-mono">
+            <div key={unit.label} className="flex items-center gap-1.5 sm:gap-3">
+              <div className="flex flex-col items-center justify-center min-w-[50px] sm:min-w-[64px] h-[52px] sm:h-[60px] rounded-2xl sm:rounded-xl bg-white/90 dark:bg-[#080D1E]/80 border border-slate-200 dark:border-white/[0.08] backdrop-blur-md shadow-sm">
+                <span className="text-base sm:text-xl font-bold text-slate-900 dark:text-white font-mono">
                   {String(unit.val).padStart(2, "0")}
                 </span>
-                <span className="text-[9px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+                <span className="text-[8px] sm:text-[9px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
                   {unit.label}
                 </span>
               </div>
-              {idx < 3 && <span className="text-slate-400 dark:text-slate-600 font-mono text-sm">:</span>}
+              {idx < 3 && <span className="text-slate-400 dark:text-slate-600 font-mono text-xs sm:text-sm">:</span>}
             </div>
           ))}
         </motion.div>
