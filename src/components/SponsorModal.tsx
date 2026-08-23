@@ -91,82 +91,86 @@ export default function SponsorModal({ isOpen, onClose, selectedTier }: SponsorM
   };
 
   return (
-    <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg max-h-[92vh] sm:max-h-[90vh] flex flex-col rounded-t-[32px] sm:rounded-3xl bg-white dark:bg-[#080D1E] border-t sm:border border-slate-200 dark:border-white/15 p-5 sm:p-8 shadow-2xl overflow-y-auto animate-in slide-in-from-bottom-6 sm:slide-in-from-bottom-0 duration-200">
-        {/* Mobile Pull Handle Indicator */}
-        <div className="w-12 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 mx-auto -mt-1 mb-3 sm:hidden shrink-0" />
-
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.12] transition-colors cursor-pointer"
-        >
-          <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" />
-        </button>
-
-        {submitted ? (
-          <div className="text-center py-6 flex flex-col items-center gap-3">
-            <div className="h-12 w-12 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/30">
-              <HugeiconsIcon icon={Tick02Icon} className="h-6 w-6" />
-            </div>
-
-            <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
-              EMAIL DISPATCHED TO AWS SBG TEAM
-            </span>
-
-            <h3 className="text-xl font-bold text-slate-950 dark:text-white">
-              Sponsorship Inquiry Received!
-            </h3>
-
-            <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm mx-auto leading-relaxed">
-              Thank you, <span className="text-slate-900 dark:text-white font-semibold">{formData.contactPerson}</span> from <span className="text-slate-900 dark:text-white font-semibold">{formData.companyName}</span>.
-            </p>
-
-            <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 w-full text-left text-xs text-slate-700 dark:text-slate-300 space-y-1.5 my-2">
-              <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Target Tier:</span>
-                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{formData.tier}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Work Email:</span>
-                <span className="font-semibold text-slate-900 dark:text-white">{formData.email}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Phone / WhatsApp:</span>
-                <span className="font-semibold text-slate-900 dark:text-white">{formData.phone}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Sent To:</span>
-                <span className="font-semibold text-[#8E35EA] dark:text-[#BE7BFF]">info@awssbgpiet.in</span>
-              </div>
-            </div>
-
-            <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              Our sponsorship lead will review your objectives and email you the official brochure & deck shortly.
-            </p>
-
-            <button
-              onClick={() => {
-                setSubmitted(false);
-                onClose();
-              }}
-              className="mt-3 px-6 py-2.5 rounded-xl bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white text-xs font-bold transition-all shadow-md shadow-[#AD5CFF]/25 cursor-pointer"
-            >
-              Done
-            </button>
-          </div>
-        ) : (
+    <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/75 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg max-h-[85dvh] sm:max-h-[90vh] flex flex-col rounded-t-[28px] sm:rounded-3xl bg-white dark:bg-[#080D1E] border-t sm:border border-slate-200 dark:border-white/15 shadow-2xl overflow-hidden animate-in slide-in-from-bottom-6 sm:slide-in-from-bottom-0 sm:zoom-in-95 duration-200">
+        {/* Modal Top Bar (Always Visible & Pinned) */}
+        <div className="flex items-center justify-between px-5 sm:px-7 pt-4 sm:pt-6 pb-3 border-b border-slate-100 dark:border-white/[0.08] bg-white dark:bg-[#080D1E] z-30 shrink-0">
           <div>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
-              PARTNERSHIP & SPONSORSHIP INQUIRY
+            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block">
+              PARTNERSHIP & SPONSORSHIP
             </span>
-
-            <h3 className="text-2xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-1">
-              Request Sponsorship Deck
+            <h3 className="text-lg sm:text-xl font-black text-slate-950 dark:text-white tracking-tight">
+              Request Sponsor Deck
             </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 mb-5 leading-relaxed">
-              Connect with 500+ student engineers across regional SBGs, AWS Heroes & NCR tech leaders.
-            </p>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.08] dark:hover:bg-white/[0.16] text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer shadow-sm"
+            aria-label="Close dialog"
+          >
+            <HugeiconsIcon icon={Cancel01Icon} className="h-4.5 w-4.5" />
+          </button>
+        </div>
+
+        {/* Scrollable Body */}
+        <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-4 space-y-4 overscroll-contain">
+          {submitted ? (
+            <div className="text-center py-6 flex flex-col items-center gap-3">
+              <div className="h-12 w-12 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                <HugeiconsIcon icon={Tick02Icon} className="h-6 w-6" />
+              </div>
+
+              <span className="text-[10px] font-mono font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
+                EMAIL DISPATCHED TO AWS SBG TEAM
+              </span>
+
+              <h3 className="text-xl font-bold text-slate-950 dark:text-white">
+                Sponsorship Inquiry Received!
+              </h3>
+
+              <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm mx-auto leading-relaxed">
+                Thank you, <span className="text-slate-900 dark:text-white font-semibold">{formData.contactPerson}</span> from <span className="text-slate-900 dark:text-white font-semibold">{formData.companyName}</span>.
+              </p>
+
+              <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 w-full text-left text-xs text-slate-700 dark:text-slate-300 space-y-1.5 my-2">
+                <div className="flex justify-between">
+                  <span className="text-slate-500 dark:text-slate-400">Target Tier:</span>
+                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">{formData.tier}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500 dark:text-slate-400">Work Email:</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">{formData.email}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500 dark:text-slate-400">Phone / WhatsApp:</span>
+                  <span className="font-semibold text-slate-900 dark:text-white">{formData.phone}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500 dark:text-slate-400">Sent To:</span>
+                  <span className="font-semibold text-[#8E35EA] dark:text-[#BE7BFF]">info@awssbgpiet.in</span>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                Our sponsorship lead will review your objectives and email you the official brochure & deck shortly.
+              </p>
+
+              <button
+                onClick={() => {
+                  setSubmitted(false);
+                  onClose();
+                }}
+                className="mt-3 px-6 py-2.5 rounded-xl bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white text-xs font-bold transition-all shadow-md shadow-[#AD5CFF]/25 cursor-pointer"
+              >
+                Done
+              </button>
+            </div>
+          ) : (
+            <div>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mb-4 leading-relaxed">
+                Connect with 500+ student engineers across regional SBGs, AWS Heroes & NCR tech leaders.
+              </p>
 
             {errorMessage && (
               <div className="mb-4 p-3 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-600 dark:text-rose-400 text-xs">
@@ -295,8 +299,9 @@ export default function SponsorModal({ isOpen, onClose, selectedTier }: SponsorM
                 </button>
               </div>
             </form>
-          </div>
-        )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

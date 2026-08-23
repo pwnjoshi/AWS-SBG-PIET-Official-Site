@@ -426,7 +426,7 @@ export const SPONSOR_TIERS = [
   {
     name: "Title Sponsor",
     tag: "FEATURED TIER",
-    price: "₹1,50,000",
+    price: "₹80,000",
     highlight: true,
     perks: [
       "Speaking / Keynote Slot",
@@ -441,7 +441,7 @@ export const SPONSOR_TIERS = [
   {
     name: "Platinum Sponsor",
     tag: "AVAILABLE TIER",
-    price: "₹80,000",
+    price: "₹50,000",
     highlight: false,
     perks: [
       "Logo on event website & materials",
@@ -455,7 +455,7 @@ export const SPONSOR_TIERS = [
   {
     name: "Gold Sponsor",
     tag: "AVAILABLE TIER",
-    price: "₹50,000",
+    price: "₹35,000",
     highlight: false,
     perks: [
       "Logo on event website & materials",
@@ -468,7 +468,7 @@ export const SPONSOR_TIERS = [
   {
     name: "Silver Sponsor",
     tag: "AVAILABLE TIER",
-    price: "₹30,000",
+    price: "₹25,000",
     highlight: false,
     perks: [
       "Logo on event website & materials",
