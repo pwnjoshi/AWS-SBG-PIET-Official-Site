@@ -25,6 +25,8 @@ export default function CelebrationAmbienceEffects() {
   const particlesRef = useRef<Particle[]>([]);
   const animFrameIdRef = useRef<number | null>(null);
   const mousePosRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
+  const smoothMouseRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
+  const isHoveringInteractiveRef = useRef<boolean>(false);
   const [cursorVisible, setCursorVisible] = useState(false);
 
   const colors = [
@@ -38,38 +40,38 @@ export default function CelebrationAmbienceEffects() {
     "#FFFFFF", // Sparkle White
   ];
 
-  const symbols = ["♪", "♫", "✦", "★", "✨", "◆", "♬"];
+  const symbols = ["♪", "♫", "✦", "★", "✨", "◆", "♬", "🎉"];
 
   useEffect(() => {
     if (isPlaying) {
       document.documentElement.classList.add("ambience-mode-active");
       document.body.classList.add("ambience-mode-active");
 
-      // Grand Opening Confetti Blast
+      // Grand Opening Multi-Stage Confetti Blast
       try {
         confetti({
-          particleCount: 100,
-          spread: 140,
+          particleCount: 120,
+          spread: 150,
           origin: { y: 0.5 },
           colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF", "#38BDF8", "#FFFFFF"],
         });
 
         setTimeout(() => {
           confetti({
-            particleCount: 60,
+            particleCount: 70,
             angle: 60,
-            spread: 80,
-            origin: { x: 0, y: 0.7 },
+            spread: 90,
+            origin: { x: 0, y: 0.65 },
             colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF"],
           });
           confetti({
-            particleCount: 60,
+            particleCount: 70,
             angle: 120,
-            spread: 80,
-            origin: { x: 1, y: 0.7 },
+            spread: 90,
+            origin: { x: 1, y: 0.65 },
             colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF"],
           });
-        }, 300);
+        }, 350);
       } catch (e) {
         console.warn("Confetti blast note:", e);
       }
@@ -105,38 +107,43 @@ export default function CelebrationAmbienceEffects() {
     const spawnParticles = (x: number, y: number, count = 3, burst = false) => {
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = burst ? Math.random() * 5 + 2 : Math.random() * 2 + 0.5;
-        const isNote = Math.random() > 0.65;
+        const speed = burst ? Math.random() * 5.5 + 2.5 : Math.random() * 2.2 + 0.6;
+        const isNote = Math.random() > 0.6;
         const isConfetti = !isNote && Math.random() > 0.5;
 
         particlesRef.current.push({
-          x: x + (Math.random() - 0.5) * 16,
-          y: y + (Math.random() - 0.5) * 16,
+          x: x + (Math.random() - 0.5) * 18,
+          y: y + (Math.random() - 0.5) * 18,
           vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - (burst ? 0.8 : 1.2), // float upward
-          size: isNote ? Math.random() * 8 + 12 : isConfetti ? Math.random() * 6 + 6 : Math.random() * 4 + 2,
+          vy: Math.sin(angle) * speed - (burst ? 1.0 : 1.4), // upward float
+          size: isNote ? Math.random() * 9 + 13 : isConfetti ? Math.random() * 7 + 6 : Math.random() * 4.5 + 2,
           color: colors[Math.floor(Math.random() * colors.length)],
           alpha: 1,
-          decay: burst ? Math.random() * 0.016 + 0.012 : Math.random() * 0.02 + 0.015,
+          decay: burst ? Math.random() * 0.015 + 0.01 : Math.random() * 0.018 + 0.012,
           rotation: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 0.12,
+          rotSpeed: (Math.random() - 0.5) * 0.14,
           type: isNote ? "note" : isConfetti ? "confetti" : "star",
           symbol: symbols[Math.floor(Math.random() * symbols.length)],
         });
       }
-      if (particlesRef.current.length > 250) {
-        particlesRef.current = particlesRef.current.slice(-250);
+      if (particlesRef.current.length > 280) {
+        particlesRef.current = particlesRef.current.slice(-280);
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       mousePosRef.current = { x: e.clientX, y: e.clientY };
+
+      const target = e.target as HTMLElement | null;
+      const isInteractive = !!target?.closest('button, a, input, [role="button"], .interactive-hover');
+      isHoveringInteractiveRef.current = isInteractive;
+
       setCursorVisible(true);
-      spawnParticles(e.clientX, e.clientY, 2, false);
+      spawnParticles(e.clientX, e.clientY, isInteractive ? 3 : 2, false);
     };
 
     const handleClick = (e: MouseEvent) => {
-      spawnParticles(e.clientX, e.clientY, 24, true);
+      spawnParticles(e.clientX, e.clientY, 30, true);
     };
 
     const handleScroll = () => {
@@ -149,7 +156,8 @@ export default function CelebrationAmbienceEffects() {
       if (e.touches.length > 0) {
         const t = e.touches[0];
         mousePosRef.current = { x: t.clientX, y: t.clientY };
-        spawnParticles(t.clientX, t.clientY, 5, false);
+        smoothMouseRef.current = { x: t.clientX, y: t.clientY };
+        spawnParticles(t.clientX, t.clientY, 6, false);
       }
     };
 
@@ -165,8 +173,8 @@ export default function CelebrationAmbienceEffects() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       timer++;
-      // Continuous celebratory drifting embers from bottom
-      if (timer % 8 === 0) {
+      // Continuous celebratory drifting embers & notes from bottom
+      if (timer % 7 === 0) {
         spawnParticles(
           Math.random() * canvas.width,
           canvas.height - Math.random() * 80,
@@ -175,27 +183,51 @@ export default function CelebrationAmbienceEffects() {
         );
       }
 
-      // Draw custom glowing cursor sparkler if mouse is inside window
+      // Smooth interpolation for magic cursor wand follower
       if (mousePosRef.current.x > 0 && mousePosRef.current.y > 0) {
-        const mx = mousePosRef.current.x;
-        const my = mousePosRef.current.y;
+        if (smoothMouseRef.current.x < 0) {
+          smoothMouseRef.current = { ...mousePosRef.current };
+        } else {
+          smoothMouseRef.current.x += (mousePosRef.current.x - smoothMouseRef.current.x) * 0.35;
+          smoothMouseRef.current.y += (mousePosRef.current.y - smoothMouseRef.current.y) * 0.35;
+        }
+
+        const mx = smoothMouseRef.current.x;
+        const my = smoothMouseRef.current.y;
+        const isHovering = isHoveringInteractiveRef.current;
 
         ctx.save();
-        ctx.shadowColor = "#AD5CFF";
-        ctx.shadowBlur = 15;
-        ctx.fillStyle = "#AD5CFF";
+        // Inner core star spark
+        ctx.shadowColor = isHovering ? "#FF9900" : "#AD5CFF";
+        ctx.shadowBlur = isHovering ? 20 : 14;
+        ctx.fillStyle = isHovering ? "#FF9900" : "#AD5CFF";
         ctx.beginPath();
-        ctx.arc(mx, my, 4, 0, Math.PI * 2);
+        ctx.arc(mx, my, isHovering ? 6 : 4.5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Outer rotating glowing star ring
-        ctx.strokeStyle = "#FF9900";
-        ctx.lineWidth = 1.5;
-        ctx.shadowColor = "#FF9900";
-        ctx.shadowBlur = 10;
+        // Outer rotating planetary celebration ring
+        ctx.strokeStyle = isHovering ? "#AD5CFF" : "#FF9900";
+        ctx.lineWidth = isHovering ? 2 : 1.5;
+        ctx.shadowColor = isHovering ? "#AD5CFF" : "#FF9900";
+        ctx.shadowBlur = isHovering ? 15 : 10;
         ctx.beginPath();
-        ctx.arc(mx, my, 12 + Math.sin(timer * 0.1) * 3, 0, Math.PI * 2);
+        const ringRadius = (isHovering ? 18 : 13) + Math.sin(timer * 0.12) * 3;
+        ctx.arc(mx, my, ringRadius, 0, Math.PI * 2);
         ctx.stroke();
+
+        // 4 small orbit dots around the wand
+        for (let k = 0; k < 4; k++) {
+          const orbitAngle = timer * 0.06 + (k * Math.PI) / 2;
+          const ox = mx + Math.cos(orbitAngle) * ringRadius;
+          const oy = my + Math.sin(orbitAngle) * ringRadius;
+          ctx.fillStyle = isHovering ? "#FFFFFF" : "#38BDF8";
+          ctx.shadowColor = "#FFFFFF";
+          ctx.shadowBlur = 6;
+          ctx.beginPath();
+          ctx.arc(ox, oy, 1.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
         ctx.restore();
       }
 
@@ -220,17 +252,17 @@ export default function CelebrationAmbienceEffects() {
           ctx.font = `bold ${Math.round(p.size)}px sans-serif`;
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 12;
           ctx.fillText(p.symbol, -p.size / 2, p.size / 2);
         } else if (p.type === "confetti") {
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 10;
           ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
         } else {
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 10;
           ctx.beginPath();
           const r = p.size;
           for (let j = 0; j < 4; j++) {
@@ -259,6 +291,8 @@ export default function CelebrationAmbienceEffects() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchstart", handleTouch);
+      window.removeEventListener("touchmove", handleTouch);
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
     };
   }, [isPlaying]);
@@ -277,13 +311,13 @@ export default function CelebrationAmbienceEffects() {
         className="fixed inset-0 pointer-events-none z-[4] select-none mix-blend-screen transition-all duration-1000"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.32) 0%, rgba(255, 153, 0, 0.18) 45%, rgba(14, 165, 233, 0.12) 75%, transparent 90%)",
+            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.35) 0%, rgba(255, 153, 0, 0.2) 45%, rgba(14, 165, 233, 0.14) 75%, transparent 90%)",
         }}
         aria-hidden="true"
       />
 
       {/* Floating Celebratory Animated Stardust Badges */}
-      <div className="fixed top-20 right-6 sm:right-10 z-[50] pointer-events-none select-none hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/80 backdrop-blur-xl border border-[#AD5CFF]/60 text-white shadow-2xl shadow-purple-500/40 animate-bounce">
+      <div className="fixed top-20 right-6 sm:right-10 z-[50] pointer-events-none select-none hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/85 backdrop-blur-xl border border-[#AD5CFF]/70 text-white shadow-2xl shadow-purple-500/50 animate-bounce">
         <span className="text-sm">🎵</span>
         <span className="text-xs font-mono font-bold bg-gradient-to-r from-[#FF9900] via-[#AD5CFF] to-[#38BDF8] bg-clip-text text-transparent">
           Celebration Ambience Active

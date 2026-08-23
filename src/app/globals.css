@@ -185,8 +185,24 @@ body {
 
 .ambience-mode-active button[class*="bg-[#8E35EA]"],
 .ambience-mode-active a[class*="bg-[#8E35EA]"] {
-  box-shadow: 0 0 25px rgba(173, 92, 255, 0.6), 0 0 10px rgba(255, 153, 0, 0.4) !important;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  box-shadow: 0 0 30px rgba(173, 92, 255, 0.65), 0 0 15px rgba(255, 153, 0, 0.45) !important;
+  background: linear-gradient(135deg, #8E35EA, #AD5CFF, #FF9900) !important;
+  background-size: 200% 200% !important;
+  animation: liquid-gradient 4s ease infinite !important;
+}
+
+@keyframes liquid-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.ambience-mode-active .rounded-3xl:hover,
+.ambience-mode-active .rounded-2xl:hover {
+  transform: translateY(-4px) scale(1.008);
+  box-shadow: 0 22px 60px -10px rgba(173, 92, 255, 0.45), 0 0 35px -5px rgba(255, 153, 0, 0.3) !important;
+  border-color: rgba(173, 92, 255, 0.8) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 
