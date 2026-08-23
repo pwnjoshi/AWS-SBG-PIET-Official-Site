@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Menu01Icon,
@@ -42,38 +43,44 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-4 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-4 py-3.5 transition-all duration-300">
       <div
-        className={`w-full max-w-6xl rounded-full px-5 py-2.5 transition-all duration-300 flex items-center justify-between ${
+        className={`w-full max-w-7xl rounded-full px-4 sm:px-5 py-2 transition-all duration-300 flex items-center justify-between ${
           scrolled
             ? "bg-white/90 dark:bg-[#060814]/90 backdrop-blur-xl border border-slate-200 dark:border-white/[0.1] shadow-xl shadow-slate-200/50 dark:shadow-black/80"
-            : "bg-white/70 dark:bg-[#080D1E]/60 backdrop-blur-lg border border-slate-200/80 dark:border-white/[0.08]"
+            : "bg-white/75 dark:bg-[#080D1E]/65 backdrop-blur-lg border border-slate-200/80 dark:border-white/[0.08]"
         }`}
       >
-        {/* Brand Typographic Wordmark */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        {/* Brand Logo & Professional Name (Clean, No Hover Animations) */}
+        <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <div className="relative h-8 w-8 rounded-lg bg-[#AD5CFF]/15 dark:bg-[#AD5CFF]/20 border border-[#AD5CFF]/30 p-1 flex items-center justify-center overflow-hidden">
+            <Image
+              src="/images/sbg-logo.png"
+              alt="AWS Student Builder Group Logo"
+              width={28}
+              height={28}
+              className="object-contain"
+              priority
+            />
+          </div>
+
           <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-black tracking-tight text-slate-900 dark:text-white group-hover:text-[#AD5CFF] transition-colors">
-                AWS SCD
-              </span>
-              <span className="text-[10px] font-mono font-semibold px-2 py-0.5 rounded-full bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] border border-[#AD5CFF]/30 tracking-wider">
-                PANIPAT 2026
-              </span>
-            </div>
-            <span className="text-[9px] font-medium text-slate-500 dark:text-slate-400 tracking-wider uppercase">
-              PIET Campus • 2 Sept 2026
+            <span className="text-xs sm:text-sm font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight">
+              AWS Student Builder Group
+            </span>
+            <span className="text-[9px] sm:text-[10px] font-semibold text-slate-600 dark:text-slate-300 tracking-wide uppercase">
+              PIET Panipat
             </span>
           </div>
         </Link>
 
-        {/* Center Pill Navigation (Desktop) */}
-        <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] rounded-full px-2.5 py-1">
+        {/* Center Navigation Links (Desktop) */}
+        <nav className="hidden lg:flex items-center gap-0.5 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] rounded-full px-2 py-0.5">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-full hover:bg-white dark:hover:bg-white/[0.06] transition-all"
+              className="px-2.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-full hover:bg-white dark:hover:bg-white/[0.06] transition-all"
             >
               {link.name}
             </a>
@@ -81,7 +88,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
         </nav>
 
         {/* Action Buttons & Theme Toggle */}
-        <div className="hidden sm:flex items-center gap-2">
+        <div className="hidden sm:flex items-center gap-2 shrink-0">
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -98,13 +105,13 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
 
           <button
             onClick={onOpenCFP}
-            className="px-3.5 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-full transition-all cursor-pointer"
+            className="px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-full transition-all cursor-pointer"
           >
             Submit CFP
           </button>
           <button
             onClick={onOpenTickets}
-            className="group px-4 py-1.5 text-xs font-bold text-white bg-[#AD5CFF] hover:bg-[#BE7BFF] rounded-full transition-all flex items-center gap-1.5 shadow-sm shadow-[#AD5CFF]/30 cursor-pointer"
+            className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#AD5CFF] hover:bg-[#BE7BFF] rounded-full transition-all flex items-center gap-1.5 shadow-sm shadow-[#AD5CFF]/30 cursor-pointer"
           >
             <span>Claim Free Pass</span>
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -143,6 +150,24 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
       {mobileMenuOpen && (
         <div className="lg:hidden fixed inset-x-4 top-20 z-50 rounded-2xl bg-white/95 dark:bg-[#080D1E]/95 backdrop-blur-2xl border border-slate-200 dark:border-white/15 p-5 shadow-2xl">
           <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-2.5 pb-3 mb-1 border-b border-slate-200 dark:border-white/10">
+              <Image
+                src="/images/sbg-logo.png"
+                alt="AWS SBG Logo"
+                width={26}
+                height={26}
+                className="object-contain"
+              />
+              <div className="flex flex-col">
+                <span className="text-xs font-bold text-slate-950 dark:text-white">
+                  AWS Student Builder Group
+                </span>
+                <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                  PIET Panipat
+                </span>
+              </div>
+            </div>
+
             {navLinks.map((link) => (
               <a
                 key={link.name}

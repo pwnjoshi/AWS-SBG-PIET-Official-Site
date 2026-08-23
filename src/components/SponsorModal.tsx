@@ -14,7 +14,6 @@ interface SponsorModalProps {
 }
 
 export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
@@ -22,6 +21,7 @@ export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
     tier: "Platinum Sponsor (₹50,000)",
     customGoals: "",
   });
+  const [submitted, setSubmitted] = useState(false);
 
   if (!isOpen) return null;
 
@@ -31,22 +31,24 @@ export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-in fade-in duration-150">
-      <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200 dark:border-white/15 p-6 sm:p-8 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 dark:bg-black/80 backdrop-blur-md animate-fade-in">
+      <div className="relative w-full max-w-lg rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200 dark:border-white/10 p-6 sm:p-8 shadow-2xl">
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-1.5 rounded-lg bg-slate-100 dark:bg-white/[0.04] hover:bg-slate-200 dark:hover:bg-white/[0.08] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+          className="absolute top-4 right-4 p-1.5 rounded-full text-slate-500 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-white/[0.04] transition-colors cursor-pointer"
         >
           <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" />
         </button>
 
         {submitted ? (
-          <div className="py-8 text-center flex flex-col items-center gap-3">
-            <div className="h-12 w-12 rounded-full bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+          <div className="text-center py-6">
+            <div className="h-12 w-12 rounded-full bg-emerald-500/20 text-emerald-500 flex items-center justify-center mx-auto mb-3">
               <HugeiconsIcon icon={Tick02Icon} className="h-6 w-6" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Inquiry Received</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm leading-relaxed">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">
+              Sponsorship Inquiry Received
+            </h3>
+            <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm mx-auto mb-4">
               Thank you, <span className="text-slate-900 dark:text-white font-semibold">{formData.contactPerson}</span> from <span className="text-slate-900 dark:text-white font-semibold">{formData.companyName}</span>. Our sponsorship lead will share the deck with you at <span className="text-[#8E35EA] dark:text-[#BE7BFF]">{formData.email}</span>.
             </p>
             <button
@@ -69,7 +71,7 @@ export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
               Request Sponsorship Deck
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mb-5">
-              Connect with 4,000+ student engineers across Haryana & Delhi-NCR
+              Connect with 500+ student engineers across regional SBGs & Haryana
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-3.5">

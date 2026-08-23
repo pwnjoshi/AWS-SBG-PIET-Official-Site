@@ -68,13 +68,13 @@ export default function TicketModal({ isOpen, onClose, selectedTierId }: TicketM
             </h3>
 
             <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm leading-relaxed">
-              Your <span className="text-slate-900 dark:text-white font-semibold">{currentTier.name}</span> has been confirmed for 2 September 2026 at PIET Panipat. Confirmation details sent to <span className="text-[#8E35EA] dark:text-[#BE7BFF] font-mono">{email}</span>.
+              Your <span className="text-slate-900 dark:text-white font-semibold">{currentTier.name}</span> has been confirmed for 14 September 2026 at PIET Panipat. Confirmation details sent to <span className="text-[#8E35EA] dark:text-[#BE7BFF] font-mono">{email}</span>.
             </p>
 
             <div className="p-3.5 rounded-lg bg-slate-50 dark:bg-[#04060E] border border-slate-200 dark:border-white/10 w-full text-left text-xs text-slate-700 dark:text-slate-300 space-y-1 my-2">
               <div className="flex justify-between">
                 <span className="text-slate-500 dark:text-slate-400">Date:</span>
-                <span className="font-semibold text-slate-900 dark:text-white">2 September 2026 (9:00 AM)</span>
+                <span className="font-semibold text-slate-900 dark:text-white">14 September 2026 (9:00 AM)</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500 dark:text-slate-400">Venue:</span>

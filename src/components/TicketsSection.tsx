@@ -213,7 +213,7 @@ export default function TicketsSection({ onOpenTicketsModal }: TicketsSectionPro
                     BUILDER PASS
                   </h4>
                   <span className="text-[10px] text-slate-400">
-                    PIET Panipat • 02 Sept 2026
+                    PIET Panipat • 14 Sept 2026
                   </span>
                 </div>
                 <div className="h-8 w-8 rounded-lg bg-[#AD5CFF]/15 text-[#BE7BFF] flex items-center justify-center">

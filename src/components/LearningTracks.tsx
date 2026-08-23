@@ -157,9 +157,6 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
                   <span className="text-[10px] font-mono font-bold text-[#BE7BFF] uppercase tracking-widest">
                     TRACK 0{selectedTrack.number.replace(/^0+/, "")} ARCHITECTURE
                   </span>
-                  <span className="text-[10px] font-mono text-slate-400 bg-white/[0.05] px-2 py-0.5 rounded border border-white/10">
-                    LIVE VISUAL
-                  </span>
                 </div>
 
                 {/* Graphic Visual Representation based on selected track */}

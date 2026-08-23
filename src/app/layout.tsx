@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "AWS Student Community Day Panipat 2026 | Largest Student Cloud Event in Haryana",
   description:
-    "Join 500+ student builders, AWS Heroes, and cloud architects on 2 September 2026 at PIET Campus, Panipat. Powering the next generation of cloud innovators across Haryana & NCR.",
+    "Join 500+ student builders, AWS Heroes, and cloud architects on 14 September 2026 at PIET Campus, Panipat. Powering the next generation of cloud innovators across Haryana & NCR.",
   keywords: [
     "AWS Student Community Day",
     "AWS SCD Panipat 2026",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "AWS Student Builder Group PIET" }],
   openGraph: {
-    title: "AWS Student Community Day Panipat 2026 — 2 Sept 2026",
+    title: "AWS Student Community Day Panipat 2026 — 14 Sept 2026",
     description:
       "Largest student-led cloud event in Haryana. 6 tracks, 100% hands-on labs, AWS Heroes, Credly Badges & Free Student Passes.",
     url: "https://aws-sbg-piet.org",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "AWS Student Community Day Panipat 2026",
-    description: "Powering the next generation of cloud innovators. 2 Sept 2026 at PIET Panipat.",
+    description: "Powering the next generation of cloud innovators. 14 Sept 2026 at PIET Panipat.",
   },
 };
 

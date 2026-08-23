@@ -1,17 +1,3 @@
-export interface Track {
-  id: string;
-  number: string;
-  title: string;
-  tagline: string;
-  iconName: string;
-  gradient: string;
-  topics: string[];
-  skillsGained: string[];
-  level: "Beginner" | "Intermediate" | "Advanced" | "All Levels";
-  color: string;
-  accentBg: string;
-}
-
 export interface AgendaItem {
   time: string;
   title: string;
@@ -23,13 +9,27 @@ export interface AgendaItem {
   highlight?: boolean;
 }
 
+export interface Track {
+  id: string;
+  number: string;
+  title: string;
+  tagline: string;
+  iconName: string;
+  gradient: string;
+  color: string;
+  accentBg: string;
+  level: string;
+  topics: string[];
+  skillsGained: string[];
+}
+
 export interface TicketTier {
   id: string;
   name: string;
   price: string;
   priceNum: number;
   period: string;
-  popular?: boolean;
+  popular: boolean;
   forWhom: string;
   description: string;
   features: string[];
@@ -41,23 +41,22 @@ export interface TicketTier {
 export const EVENT_DETAILS = {
   name: "AWS Student Community Day Panipat 2026",
   shortName: "AWS SCD Panipat 2026",
-  tagline: "Powering the next generation of cloud innovators.",
-  positioning: "Largest student-led cloud event in the Haryana region",
-  date: "2 September 2026",
-  time: "9:00 AM IST onwards",
-  isoDate: "2026-09-02T09:00:00+05:30",
-  venue: "PIET Campus, Panipat",
+  tagline: "Powering the Next Generation of Cloud Innovators",
+  date: "Monday, 14 September 2026",
+  dateShort: "14 Sept 2026",
+  time: "9:00 AM – 5:45 PM IST",
+  venue: "PIET Campus, Samalkha, Panipat, Haryana",
   venueFull: "Panipat Institute of Engineering & Technology (PIET), NH-44, Samalkha, Panipat, Haryana – 132102",
-  organizer: "AWS Student Builder Group / Student Community Leaders",
+  organizer: "AWS Student Builder Group at PIET",
   email: "aws-sbg@piet.co.in",
   registrationPlatform: "Commudle",
-  targetAudience: "500+ student target across 25+ colleges",
-  sponsorshipOutreach: "4,000+ students & 400+ expected builders",
+  targetAudience: "500+ student builders across regional SBG chapters",
+  sponsorshipOutreach: "Regional SBGs & 500+ student builders",
 };
 
 export const STATS = [
-  { value: "500+", label: "Builders & Students", desc: "Across 25+ top colleges in Haryana & NCR" },
-  { value: "25+", label: "Partner Colleges", desc: "Regional campus tech communities connected" },
+  { value: "500+", label: "Builders & Students", desc: "Passionate student cloud developers" },
+  { value: "6+", label: "Community Partners", desc: "Regional AWS Student Builder Groups" },
   { value: "6", label: "Technical Tracks", desc: "Foundations, GenAI, DevOps, Labs & Careers" },
   { value: "100%", label: "Hands-on Focus", desc: "Live code-alongs & guided cloud labs" },
 ];
@@ -157,7 +156,7 @@ export const TRACKS: Track[] = [
     id: "student-showcase",
     number: "06",
     title: "Student Showcase",
-    tagline: "Witness cutting-edge cloud applications built by Haryana student developers.",
+    tagline: "Witness cutting-edge cloud applications built by student developers.",
     iconName: "Rocket",
     gradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
     color: "#22D3EE",
@@ -193,11 +192,11 @@ export const AGENDA: AgendaItem[] = [
   },
   {
     time: "10:15 AM – 10:25 AM",
-    title: "Welcome Note — AWS Student Builder Group",
+    title: "Welcome Note — AWS Student Builder Group at PIET",
     track: "Main Auditorium",
     speaker: "AWS Student Builder Group PIET Team",
     location: "PIET Central Auditorium",
-    details: "Introduction to AWS Student Builder Group PIET, vision, milestones, and mission for Haryana tech.",
+    details: "Introduction to AWS Student Builder Group at PIET, vision, milestones, and mission for student builders.",
     badge: "Community Keynote",
   },
   {
@@ -326,7 +325,7 @@ export const WHY_ATTEND_HIGHLIGHTS = [
   {
     icon: "Users",
     title: "500+ Student Builders",
-    desc: "Collaborate with talented students, developers, and innovators across 25+ top colleges in Haryana & NCR.",
+    desc: "Collaborate with talented students, developers, and innovators across 6+ regional AWS Student Builder Groups.",
     tag: "Networking",
   },
   {
@@ -376,7 +375,7 @@ export const WHY_ATTEND_HIGHLIGHTS = [
 export const SPONSOR_BENEFITS = [
   {
     title: "Empower Regional Talent",
-    desc: "Support hands-on workshops, enable structured cloud learning paths, and foster student builders across Haryana.",
+    desc: "Support hands-on workshops, enable structured cloud learning paths, and foster student builders across regional SBGs.",
     icon: "Sparkles",
   },
   {

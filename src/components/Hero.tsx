@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -30,8 +31,8 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
   });
 
   const panipatY = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const campusY = useTransform(scrollYProgress, [0, 1], [0, 60]);
-  const campusScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.15]);
+  const campusY = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const campusScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.08]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0.2]);
   const heroContentY = useTransform(scrollYProgress, [0, 1], [0, -35]);
 
@@ -44,7 +45,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2026-09-02T09:00:00+05:30").getTime();
+    const targetDate = new Date("2026-09-14T09:00:00+05:30").getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -125,12 +126,12 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
       ref={containerRef}
       className="relative min-h-[92vh] w-full flex flex-col justify-between pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Clean PIET Campus Architectural Silhouette with Parallax */}
+      {/* Full-Height PIET Campus Architectural Silhouette extending behind header */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-        {/* Real Campus Image with parallax transform */}
+        {/* Real Campus Image spanning top-to-bottom behind header and hero */}
         <motion.div
           style={{ y: campusY, scale: campusScale }}
-          className="absolute inset-x-0 bottom-0 top-[18%] w-full bg-cover bg-bottom opacity-15 sm:opacity-20 dark:opacity-20 dark:sm:opacity-25 filter grayscale contrast-125 mix-blend-multiply dark:mix-blend-luminosity transform will-change-transform"
+          className="absolute inset-0 w-full h-full bg-cover bg-center opacity-30 sm:opacity-38 dark:opacity-22 dark:sm:opacity-28 filter grayscale contrast-105 brightness-95 dark:contrast-125 dark:mix-blend-luminosity transform will-change-transform transition-opacity duration-300"
           ref={(node) => {
             if (node) {
               node.style.backgroundImage = "url('/images/piet-campus.png')";
@@ -138,13 +139,12 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           }}
         />
 
-        {/* Seamless gradient mask overlays to guarantee 100% crisp typography */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC] via-[#F8FAFC]/75 to-[#F8FAFC] dark:from-[#05070E] dark:via-[#05070E]/75 dark:to-[#05070E]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#F8FAFC] dark:from-[#05070E] via-transparent to-transparent h-48 bottom-0" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#F8FAFC] dark:from-[#05070E] to-transparent" />
+        {/* Seamless atmospheric masks for optimal typography and header transparency */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC]/75 via-[#F8FAFC]/50 to-[#F8FAFC] dark:from-[#05070E]/80 dark:via-[#05070E]/70 dark:to-[#05070E]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F8FAFC] dark:from-[#05070E] to-transparent" />
 
         {/* Subtle focal glow at campus horizon in #AD5CFF */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-[#AD5CFF]/[0.08] dark:bg-[#AD5CFF]/[0.07] blur-[120px] rounded-full" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-[#AD5CFF]/[0.06] dark:bg-[#AD5CFF]/[0.07] blur-[120px] rounded-full" />
       </div>
 
       {/* Monumental Depth Background Typography with Parallax Drift */}
@@ -165,24 +165,31 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center mt-4 sm:mt-8 will-change-transform"
       >
+        {/* Animated Border Lightning Shimmer Event Pill Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/[0.08] backdrop-blur-md text-xs font-mono text-slate-700 dark:text-slate-300 shadow-sm mb-6"
+          className="relative inline-flex p-[1.5px] rounded-full overflow-hidden shadow-md shadow-[#AD5CFF]/15 group mb-6 cursor-default"
         >
-          <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold">AWS SCD 2026</span>
-          <span className="text-slate-400 dark:text-slate-600">/</span>
-          <span>PIET Panipat, Haryana</span>
-          <span className="text-slate-400 dark:text-slate-600">/</span>
-          <span className="text-slate-500 dark:text-slate-400">2 September</span>
+          {/* Rotating Conic Electric Violet Lightning Beam */}
+          <div className="absolute -inset-[150%] animate-[spin_3.5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,transparent_70%,#AD5CFF_85%,#FFFFFF_94%,#BE7BFF_100%)] opacity-90" />
+
+          {/* Inner Pill Content */}
+          <div className="relative inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/95 dark:bg-[#080D1E]/95 backdrop-blur-xl text-xs font-mono text-slate-700 dark:text-slate-300">
+            <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold">AWS Student Community Day 2026</span>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span>PIET Panipat</span>
+            <span className="text-slate-400 dark:text-slate-600">/</span>
+            <span className="text-slate-500 dark:text-slate-400">14 September</span>
+          </div>
         </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-950 dark:text-white max-w-4xl leading-[1.1] mb-6"
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-950 dark:text-white max-w-4xl leading-[1.1] mb-6 drop-shadow-sm"
         >
           Powering the Next Generation of{" "}
           <span className="text-[#8E35EA] dark:text-[#AD5CFF]">
@@ -196,7 +203,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-6"
         >
-          Haryana’s premier student-led cloud summit. 500+ builders, 6 technical tracks, hands-on AWS labs, and direct mentorship from AWS Heroes and community leaders.
+          Haryana’s premier student-led cloud summit organized by AWS Student Builder Group at PIET. 500+ builders, 6 technical tracks, hands-on AWS labs, and direct mentorship from AWS Heroes and community leaders.
         </motion.p>
 
         {/* Action Buttons */}
@@ -236,7 +243,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
             { val: timeLeft.seconds, label: "Secs" },
           ].map((unit, idx) => (
             <div key={unit.label} className="flex items-center gap-2 sm:gap-3">
-              <div className="flex flex-col items-center justify-center min-w-[56px] sm:min-w-[64px] h-[54px] sm:h-[60px] rounded-xl bg-white dark:bg-[#080D1E]/80 border border-slate-200 dark:border-white/[0.08] backdrop-blur-md shadow-sm">
+              <div className="flex flex-col items-center justify-center min-w-[56px] sm:min-w-[64px] h-[54px] sm:h-[60px] rounded-xl bg-white/90 dark:bg-[#080D1E]/80 border border-slate-200 dark:border-white/[0.08] backdrop-blur-md shadow-sm">
                 <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white font-mono">
                   {String(unit.val).padStart(2, "0")}
                 </span>
@@ -285,7 +292,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={toggleAmbientSound}
-                    className="p-1 rounded text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                    className="p-1 rounded text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
                     title={isPlayingAudio ? "Mute Ambiance" : "Play Ambiance"}
                   >
                     {isPlayingAudio ? (
@@ -323,7 +330,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
                     onClick={() =>
                       setActiveSlide((prev) => (prev === 0 ? TRACKS.length - 1 : prev - 1))
                     }
-                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer"
                   >
                     <HugeiconsIcon icon={ArrowLeft01Icon} className="h-3 w-3" />
                   </button>
@@ -331,7 +338,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
                     onClick={() =>
                       setActiveSlide((prev) => (prev + 1) % TRACKS.length)
                     }
-                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer"
                   >
                     <HugeiconsIcon icon={ArrowRight01Icon} className="h-3 w-3" />
                   </button>

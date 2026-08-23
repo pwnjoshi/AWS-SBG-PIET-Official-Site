@@ -30,15 +30,15 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
           Partner with Haryana’s largest cloud builder community
         </h2>
         <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Position your tech brand in front of 4,000+ ambitious student engineers and recruit pre-screened cloud and AI developers.
+          Position your tech brand in front of 500+ ambitious student engineers and recruit pre-screened cloud and AI developers.
         </p>
       </motion.div>
 
       {/* Metrics Row with Stagger */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
         {[
-          { label: "Student Outreach", val: "4,000+", sub: "25+ Regional Colleges" },
-          { label: "Summit Attendees", val: "500+", sub: "Screened Builders & Devs" },
+          { label: "Community Reach", val: "6+", sub: "Regional SBGs & Partners" },
+          { label: "Summit Attendees", val: "500+", sub: "Student Builders & Devs" },
           { label: "Core Skills", val: "Cloud & AI", sub: "AWS, DevOps, Bedrock" },
           { label: "Campus Venue", val: "PIET Panipat", sub: "1,000+ Seater Infra" },
         ].map((metric, idx) => (

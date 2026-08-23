@@ -72,7 +72,7 @@ export default function CFPModal({ isOpen, onClose }: CFPModalProps) {
               Submit Your Session Proposal
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 mb-5">
-              AWS Student Community Day Panipat 2026 • 2 September @ PIET
+              AWS Student Community Day Panipat 2026 • 14 September @ PIET
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-3.5">
