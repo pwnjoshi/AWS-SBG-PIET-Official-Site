@@ -24,30 +24,29 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://awssbgpiet.in"),
   title: {
-    default: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
+    default: "AWS Student Builder Group PIET | Cloud Community at PIET Panipat",
     template: "%s | AWS SBG PIET",
   },
   description:
-    "Official AWS Student Community Day in Haryana. Join 500+ builders on 11 Sept 2026 at PIET Panipat for keynotes, 6 cloud tracks, and KIRO Buildathon.",
+    "AWS Student Builder Group (SBG) at PIET Panipat — India's official AWS student community building the next generation of cloud builders through events, projects, and mentorship.",
   keywords: [
-    "AWS Student Community Day",
-    "AWS SCD Panipat 2026",
-    "PIET Panipat",
-    "AWS Student Builder Group",
+    "AWS Student Builder Group PIET",
+    "AWS SBG PIET",
+    "Cloud Community PIET Panipat",
+    "AWS Student Community",
     "Cloud Computing Haryana",
-    "Generative AI on AWS",
-    "DevOps",
-    "AWS Community Day India",
-    "Student Cloud Conference",
+    "AWS Community India",
+    "Student Cloud Community",
+    "PIET Panipat Tech Club",
   ],
   authors: [{ name: "AWS Student Builder Group PIET" }],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
+    title: "AWS Student Builder Group PIET | Cloud Community",
     description:
-      "Haryana's premier AWS Student Community Day. 6 tracks, KIRO Buildathon, AWS Heroes, Credly Badges & Builder Passes on 11 Sept 2026.",
+      "AWS Student Builder Group at PIET Panipat — building the next generation of cloud leaders through events, mentorship, and real-world projects.",
     url: "https://awssbgpiet.in",
     siteName: "AWS Student Community Day Panipat 2026",
     locale: "en_IN",
