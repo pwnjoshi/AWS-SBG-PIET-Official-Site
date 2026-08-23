@@ -13,7 +13,7 @@ export default function TawkChat() {
           (function(){
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
-            s1.src = 'https://embed.tawk.to/6a8a9a9fbf875a344567a650/1k0mmo1ls';
+            s1.src = 'https://embed.tawk.to/6a8aab3e32c63a3448b6184a/1k0mqprqi';
             s1.charset = 'UTF-8';
             s1.setAttribute('crossorigin','*');
             s0.parentNode.insertBefore(s1, s0);
