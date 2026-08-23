@@ -25,170 +25,53 @@ const RAAG_NOTES = [
 
 export function SoundtrackProvider({ children }: { children: React.ReactNode }) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const droneNodesRef = useRef<{ osc: OscillatorNode; gain: GainNode }[]>([]);
-  const masterGainRef = useRef<GainNode | null>(null);
-  const melodyIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Play a soft, soothing Indian flute / sitar chime note
-  const triggerSoothingNote = (ctx: AudioContext, destination: AudioNode) => {
-    try {
-      const now = ctx.currentTime;
-      const note = RAAG_NOTES[Math.floor(Math.random() * RAAG_NOTES.length)];
+  useEffect(() => {
+    // Initialize HTML5 audio element with rise_awssbg_geu.mp3
+    const audio = new Audio("/audio/rise_awssbg_geu.mp3");
+    audio.loop = true;
+    audio.volume = 0.45;
+    audioRef.current = audio;
 
-      const osc = ctx.createOscillator();
-      const noteGain = ctx.createGain();
-      const filter = ctx.createBiquadFilter();
+    audio.addEventListener("ended", () => {
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    });
 
-      // Warm triangle wave with lowpass filtering
-      osc.type = "triangle";
-      osc.frequency.setValueAtTime(note.freq, now);
+    return () => {
+      audio.pause();
+      audio.src = "";
+    };
+  }, []);
 
-      // Subtle Indian classical meend (micro-pitch inflection)
-      const pitchBend = note.freq * (Math.random() > 0.5 ? 1.015 : 0.985);
-      osc.frequency.exponentialRampToValueAtTime(pitchBend, now + 1.2);
-
-      filter.type = "lowpass";
-      filter.frequency.setValueAtTime(1200, now);
-
-      // Pleasant, audible, soothing envelope
-      noteGain.gain.setValueAtTime(0.0001, now);
-      noteGain.gain.exponentialRampToValueAtTime(0.18, now + 0.25);
-      noteGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.5);
-
-      osc.connect(filter);
-      filter.connect(noteGain);
-      noteGain.connect(destination);
-
-      osc.start(now);
-      osc.stop(now + 2.6);
-    } catch (e) {
-      console.error("Error playing note:", e);
+  const play = () => {
+    if (audioRef.current) {
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlaying(true);
+        })
+        .catch((err) => {
+          console.warn("Audio autoplay blocked or failed:", err);
+        });
     }
   };
 
-  const startSoundtrack = async () => {
-    try {
-      const AudioCtx =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-
-      if (!audioCtxRef.current) {
-        audioCtxRef.current = new AudioCtx();
-      }
-
-      const ctx = audioCtxRef.current;
-      if (ctx.state === "suspended") {
-        await ctx.resume();
-      }
-
-      const now = ctx.currentTime;
-
-      // Master Gain (Pleasantly audible, warm and soothing)
-      const master = ctx.createGain();
-      master.gain.setValueAtTime(0.001, now);
-      master.gain.exponentialRampToValueAtTime(0.20, now + 0.8);
-      master.connect(ctx.destination);
-      masterGainRef.current = master;
-
-      // 1. Tanpura Foundation Drone (Root Sa: 130.81Hz, Pa: 196Hz, C4: 261.63Hz)
-      const droneFreqs = [
-        { freq: 130.81, type: "sine" as OscillatorType, gain: 0.12 },
-        { freq: 196.00, type: "triangle" as OscillatorType, gain: 0.08 },
-        { freq: 261.63, type: "sine" as OscillatorType, gain: 0.06 },
-      ];
-
-      const droneNodes: { osc: OscillatorNode; gain: GainNode }[] = [];
-
-      droneFreqs.forEach((item, idx) => {
-        const osc = ctx.createOscillator();
-        const g = ctx.createGain();
-
-        osc.type = item.type;
-        osc.frequency.setValueAtTime(item.freq, now);
-        osc.detune.setValueAtTime((idx - 1) * 3, now);
-
-        g.gain.setValueAtTime(item.gain, now);
-
-        osc.connect(g);
-        g.connect(master);
-        osc.start(now);
-
-        droneNodes.push({ osc, gain: g });
-      });
-
-      droneNodesRef.current = droneNodes;
-
-      // 2. Play initial melodic note immediately
-      triggerSoothingNote(ctx, master);
-
-      // 3. Loop Indian Raag melody notes every 2 seconds
-      melodyIntervalRef.current = setInterval(() => {
-        if (ctx && ctx.state === "running" && masterGainRef.current) {
-          triggerSoothingNote(ctx, masterGainRef.current);
-        }
-      }, 2000);
-
-      setIsPlaying(true);
-    } catch (err) {
-      console.error("Failed to start Indian Raag ambiance:", err);
-    }
-  };
-
-  const stopSoundtrack = () => {
-    if (melodyIntervalRef.current) {
-      clearInterval(melodyIntervalRef.current);
-      melodyIntervalRef.current = null;
-    }
-
-    if (masterGainRef.current && audioCtxRef.current) {
-      const now = audioCtxRef.current.currentTime;
-      masterGainRef.current.gain.exponentialRampToValueAtTime(0.0001, now + 0.4);
-    }
-
-    setTimeout(() => {
-      droneNodesRef.current.forEach(({ osc, gain }) => {
-        try {
-          osc.stop();
-          osc.disconnect();
-          gain.disconnect();
-        } catch {
-          // ignore
-        }
-      });
-      droneNodesRef.current = [];
+  const pause = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
       setIsPlaying(false);
-    }, 450);
+    }
   };
 
   const toggleSoundtrack = () => {
     if (isPlaying) {
-      stopSoundtrack();
+      pause();
     } else {
-      startSoundtrack();
+      play();
     }
   };
-
-  const play = () => {
-    if (!isPlaying) startSoundtrack();
-  };
-
-  const pause = () => {
-    if (isPlaying) stopSoundtrack();
-  };
-
-  useEffect(() => {
-    return () => {
-      if (melodyIntervalRef.current) clearInterval(melodyIntervalRef.current);
-      droneNodesRef.current.forEach(({ osc }) => {
-        try {
-          osc.stop();
-        } catch {
-          // ignore
-        }
-      });
-    };
-  }, []);
 
   return (
     <SoundtrackContext.Provider
