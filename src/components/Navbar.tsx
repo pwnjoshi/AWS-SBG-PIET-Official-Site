@@ -14,6 +14,7 @@ import {
   SparklesIcon,
 } from "@hugeicons/core-free-icons";
 import { useTheme } from "@/context/ThemeContext";
+import { useSoundtrack } from "@/context/SoundtrackContext";
 import { EVENT_DETAILS } from "@/lib/data";
 
 interface NavbarProps {
@@ -25,6 +26,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { isPlaying, toggleSoundtrack } = useSoundtrack();
   const pathname = usePathname();
 
   useEffect(() => {

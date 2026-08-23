@@ -267,7 +267,7 @@ export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
                   ) : (
                     <>
                       <HugeiconsIcon icon={SparklesIcon} className="h-3.5 w-3.5" />
-                      <span>Send Inquiry to aws-sbg@piet.co.in</span>
+                      <span>Send Inquiry</span>
                     </>
                   )}
                 </button>

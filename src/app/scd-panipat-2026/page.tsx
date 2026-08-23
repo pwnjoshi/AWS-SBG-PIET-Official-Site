@@ -22,6 +22,7 @@ import MobileBottomDock from "@/components/MobileBottomDock";
 import CFPModal from "@/components/CFPModal";
 import SponsorModal from "@/components/SponsorModal";
 import TicketModal from "@/components/TicketModal";
+import SCDLoadingScreen from "@/components/SCDLoadingScreen";
 
 export default function SCDPanipatPage() {
   const [cfpModalOpen, setCfpModalOpen] = useState(false);
@@ -36,6 +37,9 @@ export default function SCDPanipatPage() {
 
   return (
     <ThemeProvider>
+      {/* Light Mode Terminal Auto-Correcting Loading Screen */}
+      <SCDLoadingScreen />
+
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
           {/* Top Violet Scroll Progress Indicator */}
