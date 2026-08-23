@@ -12,108 +12,77 @@ export async function POST(req: Request) {
       );
     }
 
-    const mailerliteApiKey = process.env.MAILERLITE_API_KEY;
-    const brevoApiKey = process.env.BREVO_API_KEY;
-    const receiverEmail = process.env.CFP_RECEIVER_EMAIL || process.env.BREVO_RECEIVER_EMAIL || "aws-sbg@piet.co.in";
-    const senderEmail = process.env.CFP_SENDER_EMAIL || process.env.BREVO_SENDER_EMAIL || "aws-sbg@piet.co.in";
-    const senderName = "AWS SBG PIET CFP Portal";
+    const resendApiKey = process.env.RESEND_API_KEY;
+    const receiverEmail = process.env.CFP_RECEIVER_EMAIL || "joshipawan2021@gmail.com";
+    const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <onboarding@resend.dev>";
 
     const cfpDetailsHtml = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background-color: #ffffff;">
-        <div style="background: linear-gradient(135deg, #8E35EA, #AD5CFF); padding: 20px; border-radius: 8px; color: #ffffff; text-align: center; margin-bottom: 20px;">
-          <h2 style="margin: 0; font-size: 22px;">New Speaker Session Proposal (CFP)</h2>
-          <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">AWS Student Community Day Panipat 2026</p>
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #ffffff; color: #1e293b;">
+        <div style="background: linear-gradient(135deg, #8E35EA, #AD5CFF); padding: 24px; border-radius: 12px; color: #ffffff; text-align: center; margin-bottom: 24px;">
+          <h2 style="margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;">New Speaker Session Proposal (CFP)</h2>
+          <p style="margin: 6px 0 0 0; font-size: 13px; opacity: 0.9; font-family: monospace;">AWS Student Community Day Panipat 2026</p>
         </div>
 
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
-          <tr style="border-bottom: 1px solid #edf2f7;">
-            <td style="padding: 10px; font-weight: bold; color: #4a5568; width: 35%;">Speaker Name:</td>
-            <td style="padding: 10px; color: #1a202c;">${name}</td>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 14px;">
+          <tr style="border-bottom: 1px solid #f1f5f9;">
+            <td style="padding: 12px 8px; font-weight: 700; color: #64748b; width: 35%;">Speaker Name:</td>
+            <td style="padding: 12px 8px; color: #0f172a; font-weight: 600;">${name}</td>
           </tr>
-          <tr style="border-bottom: 1px solid #edf2f7;">
-            <td style="padding: 10px; font-weight: bold; color: #4a5568;">Email Address:</td>
-            <td style="padding: 10px; color: #8E35EA;"><a href="mailto:${email}" style="color: #8E35EA; text-decoration: none;">${email}</a></td>
+          <tr style="border-bottom: 1px solid #f1f5f9;">
+            <td style="padding: 12px 8px; font-weight: 700; color: #64748b;">Email Address:</td>
+            <td style="padding: 12px 8px;"><a href="mailto:${email}" style="color: #8E35EA; font-weight: 700; text-decoration: none;">${email}</a></td>
           </tr>
-          <tr style="border-bottom: 1px solid #edf2f7;">
-            <td style="padding: 10px; font-weight: bold; color: #4a5568;">Organization / Role:</td>
-            <td style="padding: 10px; color: #1a202c;">${roleCompany || "Not specified"}</td>
+          <tr style="border-bottom: 1px solid #f1f5f9;">
+            <td style="padding: 12px 8px; font-weight: 700; color: #64748b;">Organization / Role:</td>
+            <td style="padding: 12px 8px; color: #0f172a;">${roleCompany || "Not specified"}</td>
           </tr>
-          <tr style="border-bottom: 1px solid #edf2f7;">
-            <td style="padding: 10px; font-weight: bold; color: #4a5568;">Target Track:</td>
-            <td style="padding: 10px; font-weight: bold; color: #10B981;">${track || "General"}</td>
+          <tr style="border-bottom: 1px solid #f1f5f9;">
+            <td style="padding: 12px 8px; font-weight: 700; color: #64748b;">Target Track:</td>
+            <td style="padding: 12px 8px; font-weight: 800; color: #10B981;">${track || "General"}</td>
           </tr>
-          <tr style="border-bottom: 1px solid #edf2f7;">
-            <td style="padding: 10px; font-weight: bold; color: #4a5568;">Talk Title:</td>
-            <td style="padding: 10px; font-weight: bold; color: #1a202c;">${title}</td>
+          <tr style="border-bottom: 1px solid #f1f5f9;">
+            <td style="padding: 12px 8px; font-weight: 700; color: #64748b;">Talk Title:</td>
+            <td style="padding: 12px 8px; font-weight: 700; color: #0f172a;">${title}</td>
           </tr>
           <tr>
-            <td style="padding: 10px; font-weight: bold; color: #4a5568; vertical-align: top;">Abstract:</td>
-            <td style="padding: 10px; color: #1a202c; white-space: pre-wrap;">${abstract}</td>
+            <td style="padding: 12px 8px; font-weight: 700; color: #64748b; vertical-align: top;">Abstract:</td>
+            <td style="padding: 12px 8px; color: #0f172a; white-space: pre-wrap; line-height: 1.5;">${abstract}</td>
           </tr>
         </table>
 
-        <div style="padding: 15px; background-color: #f7fafc; border-radius: 8px; border: 1px dashed #cbd5e0; font-size: 12px; color: #718096; text-align: center;">
-          Received via the official AWS Student Community Day Panipat 2026 website.
+        <div style="padding: 14px; background-color: #f8fafc; border-radius: 10px; border: 1px dashed #cbd5e1; font-size: 12px; color: #64748b; text-align: center;">
+          Received via the official AWS Student Community Day Panipat 2026 website portal.
         </div>
       </div>
     `;
 
-    // 1. MailerLite Integration: Subscribe speaker lead to MailerLite
-    if (mailerliteApiKey) {
+    // Send email via Resend API
+    if (resendApiKey) {
       try {
-        const mlResponse = await fetch("https://connect.mailerlite.com/api/subscribers", {
+        const response = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
-            Authorization: `Bearer ${mailerliteApiKey}`,
+            Authorization: `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            email,
-            fields: {
-              name,
-              company: roleCompany || "",
-              notes: `[CFP Proposal] Track: ${track || "General"} | Title: ${title}`,
-            },
-            status: "active",
+            from: senderEmail,
+            to: [receiverEmail],
+            reply_to: email,
+            subject: `[Speaker CFP] ${title} (${name} - ${roleCompany || "Speaker"})`,
+            html: cfpDetailsHtml,
           }),
         });
 
-        if (!mlResponse.ok) {
-          const mlError = await mlResponse.json().catch(() => ({}));
-          console.error("MailerLite CFP Error:", mlError);
+        if (!response.ok) {
+          const resendError = await response.json().catch(() => ({}));
+          console.error("Resend CFP Error:", resendError);
         }
       } catch (err) {
-        console.error("MailerLite CFP dispatch failed:", err);
+        console.error("Resend CFP dispatch failed:", err);
       }
-    }
-
-    // 2. Brevo Email Integration fallback
-    if (brevoApiKey) {
-      const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "api-key": brevoApiKey,
-          accept: "application/json",
-        },
-        body: JSON.stringify({
-          sender: { name: senderName, email: senderEmail },
-          to: [{ email: receiverEmail, name: "AWS SBG Review Committee" }],
-          replyTo: { email: email, name: name },
-          subject: `[Speaker CFP] ${title} (${name} - ${roleCompany || "Speaker"})`,
-          htmlContent: cfpDetailsHtml,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error("Brevo CFP Error:", errorData);
-      }
-    }
-
-    if (!mailerliteApiKey && !brevoApiKey) {
-      console.log("No MAILERLITE_API_KEY or BREVO_API_KEY configured. CFP Proposal logged:", {
+    } else {
+      console.log("No RESEND_API_KEY configured. CFP Proposal logged:", {
         name,
         email,
         roleCompany,

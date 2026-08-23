@@ -82,9 +82,18 @@ export default function FloatingActions() {
     "How can my company sponsor the summit?",
   ];
 
+  const handleToggleChat = () => {
+    const tawk = (window as unknown as { Tawk_API?: { toggle?: () => void; maximize?: () => void } }).Tawk_API;
+    if (tawk && typeof tawk.toggle === "function") {
+      tawk.toggle();
+    } else {
+      setChatOpen(!chatOpen);
+    }
+  };
+
   return (
     <aside aria-label="Floating Actions" className="hidden lg:flex fixed bottom-6 right-7 z-50 flex-col items-end gap-3 pointer-events-none">
-      {/* MailerLite Quick Support Modal / Drawer */}
+      {/* Quick Support Modal / Drawer */}
       <AnimatePresence>
         {chatOpen && (
           <motion.div
@@ -108,7 +117,7 @@ export default function FloatingActions() {
                   </h4>
                   <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block" />
-                    Online • MailerLite Connected
+                    Online • Live Chat Support
                   </span>
                 </div>
               </div>
@@ -205,13 +214,13 @@ export default function FloatingActions() {
 
       {/* Button Group (Live Chat + Scroll to Top) */}
       <div className="flex items-center gap-2.5 pointer-events-auto">
-        {/* Live Chat Launcher Button — clean, minimal, no hover scale */}
+        {/* Live Chat Launcher Button */}
         <motion.button
           whileTap={{ scale: 0.93 }}
-          onClick={() => setChatOpen(!chatOpen)}
+          onClick={handleToggleChat}
           className="relative p-3.5 rounded-full bg-slate-950 dark:bg-[#090E1E] text-white border border-[#AD5CFF]/60 shadow-lg flex items-center justify-center transition-all cursor-pointer"
           aria-label="Open Live Chat Support"
-          title="Live Chat Support"
+          title="Open Live Chat Support"
         >
           {/* Static green online dot — no blink */}
           <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-emerald-500 border-2 border-slate-950 dark:border-[#090E1E]" />
