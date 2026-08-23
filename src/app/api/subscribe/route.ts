@@ -14,8 +14,8 @@ export async function POST(req: Request) {
 
     const resendApiKey = process.env.RESEND_API_KEY;
     const audienceId = "2ece5e59-e02e-410f-9cbd-c38ee3ae5cd2";
-    const organizerEmail = process.env.SPONSOR_RECEIVER_EMAIL || "joshipawan2021@gmail.com";
-    const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <onboarding@resend.dev>";
+    const organizerEmail = process.env.SPONSOR_RECEIVER_EMAIL || "info@awssbgpiet.in";
+    const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <site@awssbgpiet.in>";
 
     // 1. Add Subscriber to Resend Contacts Audience (SUMMIT ALERTS)
     try {
