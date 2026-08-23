@@ -59,8 +59,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${inter.variable} ${jetbrainsMono.variable} dark scroll-smooth`}>
-      <body className="min-h-screen bg-[#05070E] text-slate-100 font-sans selection:bg-[#AD5CFF]/30 selection:text-white antialiased">
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${jakarta.variable} ${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('theme') || 'light';
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.style.colorScheme = 'dark';
+                } else {
+                  document.documentElement.classList.remove('dark');
+                  document.documentElement.style.colorScheme = 'light';
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 font-sans selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white antialiased transition-colors duration-300">
         {children}
       </body>
     </html>

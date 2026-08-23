@@ -44,13 +44,13 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-2xl mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#AD5CFF] block mb-2">
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
           SPEAKERS & CFP
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
           Learn from practitioners, or step up to the stage
         </h2>
-        <p className="mt-3 text-base text-slate-300 leading-relaxed">
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
           Hear directly from global AWS community leaders. Have an architecture pattern, AI project, or open-source tool to showcase? Call for Proposals is open.
         </p>
       </motion.div>
@@ -71,19 +71,19 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: idx * 0.08 }}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="rounded-xl bg-[#090E1E] border border-white/[0.08] hover:border-[#AD5CFF]/30 p-5 flex flex-col justify-between transition-colors"
+            className="rounded-xl bg-white dark:bg-[#090E1E] border border-slate-200/80 dark:border-white/[0.08] hover:border-[#AD5CFF]/40 dark:hover:border-[#AD5CFF]/30 p-5 flex flex-col justify-between transition-colors shadow-sm"
           >
             <div>
-              <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400 block mb-2">
+              <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-2">
                 {role.tag}
               </span>
-              <h4 className="text-sm font-bold text-white mb-2">{role.category}</h4>
-              <p className="text-xs text-slate-400 leading-relaxed">{role.desc}</p>
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-2">{role.category}</h4>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">{role.desc}</p>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
-              <span className="text-slate-500">Status</span>
-              <span className="text-[#BE7BFF] font-semibold">Lineup TBA</span>
+            <div className="mt-4 pt-3 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-[11px] font-mono">
+              <span className="text-slate-400 dark:text-slate-500">Status</span>
+              <span className="text-[#8E35EA] dark:text-[#BE7BFF] font-semibold">Lineup TBA</span>
             </div>
           </motion.div>
         ))}
@@ -95,16 +95,16 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-2xl bg-[#070B1A] border border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6"
+        className="rounded-2xl bg-slate-50 dark:bg-[#070B1A] border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm"
       >
         <div className="max-w-xl">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#AD5CFF] block mb-1">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
             CALL FOR PROPOSALS
           </span>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 dark:text-white">
             Submit a talk or workshop proposal
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
             We welcome talks on Cloud Foundations, Generative AI with Amazon Bedrock, DevOps automation, Serverless, and student project showcases.
           </p>
         </div>
@@ -112,7 +112,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         <div className="shrink-0 flex flex-col sm:flex-row items-center gap-3">
           <button
             onClick={onOpenCFP}
-            className="px-5 py-2.5 rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02]"
+            className="px-5 py-2.5 rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02] cursor-pointer"
           >
             <span>Submit Your Talk</span>
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
@@ -120,7 +120,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
 
           <a
             href="mailto:aws-sbg@piet.co.in"
-            className="px-4 py-2.5 rounded-full bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-medium text-slate-300 hover:text-white transition-all hover:scale-[1.02]"
+            className="px-4 py-2.5 rounded-full bg-white dark:bg-white/[0.05] hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all hover:scale-[1.02] shadow-sm"
           >
             Speaker Questions
           </a>

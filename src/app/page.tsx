@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ThemeProvider } from "@/context/ThemeContext";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ParticleNetworkCanvas from "@/components/ParticleNetworkCanvas";
@@ -32,76 +33,78 @@ export default function Home() {
   };
 
   return (
-    <SmoothScroll>
-      <div className="relative min-h-screen bg-[#05070E] text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-white overflow-x-hidden font-sans">
-        {/* Top Violet Scroll Progress Indicator */}
-        <ScrollProgressBar />
+    <ThemeProvider>
+      <SmoothScroll>
+        <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
+          {/* Top Violet Scroll Progress Indicator */}
+          <ScrollProgressBar />
 
-        {/* Background Interactive Ambient Canvas */}
-        <ParticleNetworkCanvas />
+          {/* Background Interactive Ambient Canvas */}
+          <ParticleNetworkCanvas />
 
-        {/* Floating Pill Navigation Bar */}
-        <Navbar
-          onOpenCFP={() => setCfpModalOpen(true)}
-          onOpenTickets={() => handleOpenTickets("student-pass")}
-        />
-
-        {/* Main Content Layout */}
-        <main className="relative z-10 flex flex-col gap-8 sm:gap-16">
-          {/* Cinematic Monumental Hero Section with Scroll Parallax */}
-          <Hero
+          {/* Floating Pill Navigation Bar */}
+          <Navbar
             onOpenCFP={() => setCfpModalOpen(true)}
             onOpenTickets={() => handleOpenTickets("student-pass")}
           />
 
-          {/* Why Attend & Credly Badge Spotlight */}
-          <WhyAttend onOpenTickets={() => handleOpenTickets("student-pass")} />
+          {/* Main Content Layout */}
+          <main className="relative z-10 flex flex-col gap-8 sm:gap-16">
+            {/* Cinematic Monumental Hero Section with Scroll Parallax */}
+            <Hero
+              onOpenCFP={() => setCfpModalOpen(true)}
+              onOpenTickets={() => handleOpenTickets("student-pass")}
+            />
 
-          {/* 6 Technical Learning Tracks with Visual Architecture Cards */}
-          <LearningTracks onOpenTickets={() => handleOpenTickets("student-pass")} />
+            {/* Why Attend & Credly Badge Spotlight */}
+            <WhyAttend onOpenTickets={() => handleOpenTickets("student-pass")} />
 
-          {/* Full-Day Schedule Timeline */}
-          <Agenda />
+            {/* 6 Technical Learning Tracks with Visual Architecture Cards */}
+            <LearningTracks onOpenTickets={() => handleOpenTickets("student-pass")} />
 
-          {/* Speakers Lineup & Call for Proposals (CFP) */}
-          <SpeakersCFP onOpenCFP={() => setCfpModalOpen(true)} />
+            {/* Full-Day Schedule Timeline */}
+            <Agenda />
 
-          {/* Passes, Pricing & Live Holographic Pass Generator */}
-          <TicketsSection onOpenTicketsModal={(tierId) => handleOpenTickets(tierId)} />
+            {/* Speakers Lineup & Call for Proposals (CFP) */}
+            <SpeakersCFP onOpenCFP={() => setCfpModalOpen(true)} />
 
-          {/* Sponsorship Tiers & ROI Deck */}
-          <SponsorsSection onOpenSponsorModal={() => setSponsorModalOpen(true)} />
+            {/* Passes, Pricing & Live Holographic Pass Generator */}
+            <TicketsSection onOpenTicketsModal={(tierId) => handleOpenTickets(tierId)} />
 
-          {/* PIET Panipat Venue, Transit & Photo Parallax */}
-          <VenueSection />
+            {/* Sponsorship Tiers & ROI Deck */}
+            <SponsorsSection onOpenSponsorModal={() => setSponsorModalOpen(true)} />
 
-          {/* Frequently Asked Questions */}
-          <FAQSection />
+            {/* PIET Panipat Venue, Transit & Photo Parallax */}
+            <VenueSection />
 
-          {/* Community Channels & Alert Subscriptions */}
-          <CommunitySocials />
-        </main>
+            {/* Frequently Asked Questions */}
+            <FAQSection />
 
-        {/* Global Footer */}
-        <Footer />
+            {/* Community Channels & Alert Subscriptions */}
+            <CommunitySocials />
+          </main>
 
-        {/* Interactive Modals */}
-        <CFPModal
-          isOpen={cfpModalOpen}
-          onClose={() => setCfpModalOpen(false)}
-        />
+          {/* Global Footer */}
+          <Footer />
 
-        <SponsorModal
-          isOpen={sponsorModalOpen}
-          onClose={() => setSponsorModalOpen(false)}
-        />
+          {/* Interactive Modals */}
+          <CFPModal
+            isOpen={cfpModalOpen}
+            onClose={() => setCfpModalOpen(false)}
+          />
 
-        <TicketModal
-          isOpen={ticketModalOpen}
-          onClose={() => setTicketModalOpen(false)}
-          selectedTierId={selectedTicketTier}
-        />
-      </div>
-    </SmoothScroll>
+          <SponsorModal
+            isOpen={sponsorModalOpen}
+            onClose={() => setSponsorModalOpen(false)}
+          />
+
+          <TicketModal
+            isOpen={ticketModalOpen}
+            onClose={() => setTicketModalOpen(false)}
+            selectedTierId={selectedTicketTier}
+          />
+        </div>
+      </SmoothScroll>
+    </ThemeProvider>
   );
 }

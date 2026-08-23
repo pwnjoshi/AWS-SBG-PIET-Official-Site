@@ -87,13 +87,13 @@ export default function Agenda() {
         className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12"
       >
         <div>
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#AD5CFF] block mb-2">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
             AGENDA
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
             Event Day Schedule
           </h2>
-          <p className="mt-2 text-sm text-slate-300">
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
             Wednesday, 2 September 2026 • 9:00 AM – 5:45 PM IST
           </p>
         </div>
@@ -104,16 +104,16 @@ export default function Agenda() {
             href={googleCalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-3.5 py-2 rounded-lg bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-medium text-slate-200 transition-all flex items-center gap-1.5 hover:scale-[1.02]"
+            className="px-3.5 py-2 rounded-lg bg-white dark:bg-white/[0.05] hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-200 transition-all flex items-center gap-1.5 hover:scale-[1.02] shadow-sm cursor-pointer"
           >
-            <HugeiconsIcon icon={Calendar03Icon} className="h-3.5 w-3.5 text-[#AD5CFF]" />
+            <HugeiconsIcon icon={Calendar03Icon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF]" />
             <span>Google Cal</span>
           </a>
           <button
             onClick={handleDownloadICS}
-            className="px-3.5 py-2 rounded-lg bg-white/[0.05] hover:bg-white/10 border border-white/10 text-xs font-medium text-slate-200 transition-all flex items-center gap-1.5 hover:scale-[1.02]"
+            className="px-3.5 py-2 rounded-lg bg-white dark:bg-white/[0.05] hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-200 transition-all flex items-center gap-1.5 hover:scale-[1.02] shadow-sm cursor-pointer"
           >
-            <HugeiconsIcon icon={Download01Icon} className="h-3.5 w-3.5 text-slate-400" />
+            <HugeiconsIcon icon={Download01Icon} className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400" />
             <span>.ics Export</span>
           </button>
         </div>
@@ -131,10 +131,10 @@ export default function Agenda() {
           <button
             key={tab.id}
             onClick={() => setActiveFilter(tab.id)}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
               activeFilter === tab.id
                 ? "bg-[#AD5CFF] text-white font-bold shadow-md shadow-[#AD5CFF]/25 scale-[1.02]"
-                : "bg-white/[0.04] text-slate-400 hover:text-white border border-white/[0.06]"
+                : "bg-white dark:bg-white/[0.04] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.06] shadow-sm"
             }`}
           >
             {tab.label}
@@ -164,35 +164,35 @@ export default function Agenda() {
                   whileHover={{ x: 4, transition: { duration: 0.15 } }}
                   className={`rounded-xl p-5 transition-colors border ${
                     item.highlight
-                      ? "bg-[#0E122A] border-[#AD5CFF]/40 shadow-lg shadow-[#AD5CFF]/5"
-                      : "bg-[#080D1E] border-white/[0.06] hover:border-white/15"
+                      ? "bg-purple-50/50 dark:bg-[#0E122A] border-[#AD5CFF]/40 shadow-lg shadow-purple-500/5 dark:shadow-[#AD5CFF]/5"
+                      : "bg-white dark:bg-[#080D1E] border-slate-200/80 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/15 shadow-sm"
                   }`}
                 >
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-1.5">
                     <div className="flex items-center gap-3">
-                      <span className="font-mono text-xs font-bold text-[#BE7BFF]">
+                      <span className="font-mono text-xs font-bold text-[#8E35EA] dark:text-[#BE7BFF]">
                         {item.time}
                       </span>
                       {item.badge && (
-                        <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-[#AD5CFF]/15 text-[#BE7BFF] border border-[#AD5CFF]/25">
+                        <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] border border-[#AD5CFF]/25">
                           {item.badge}
                         </span>
                       )}
                     </div>
-                    <span className="text-xs font-mono text-slate-400">
+                    <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
                       {item.location}
                     </span>
                   </div>
 
-                  <h4 className="text-base font-bold text-white">
+                  <h4 className="text-base font-bold text-slate-900 dark:text-white">
                     {item.title}
                   </h4>
                   {item.speaker && (
-                    <span className="text-xs font-medium text-[#BE7BFF] mt-0.5 block">
+                    <span className="text-xs font-medium text-[#8E35EA] dark:text-[#BE7BFF] mt-0.5 block">
                       {item.speaker}
                     </span>
                   )}
-                  <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
                     {item.details}
                   </p>
                 </motion.div>

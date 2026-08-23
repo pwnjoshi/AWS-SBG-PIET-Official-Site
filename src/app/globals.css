@@ -1,12 +1,21 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #05070E;
-  --foreground: #F3F4F6;
+  --background: #F8FAFC;
+  --foreground: #0F172A;
   --accent-purple: #AD5CFF;
   --accent-purple-light: #BE7BFF;
   --accent-purple-glow: rgba(173, 92, 255, 0.15);
-  --card-bg: rgba(9, 14, 28, 0.7);
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(0, 0, 0, 0.08);
+}
+
+.dark {
+  --background: #05070E;
+  --foreground: #F3F4F6;
+  --card-bg: rgba(9, 14, 30, 0.75);
   --card-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -20,14 +29,14 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: dark;
 }
 
 body {
-  background-color: #05070E;
-  color: #F3F4F6;
+  background-color: var(--background);
+  color: var(--foreground);
   overflow-x: hidden;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Scrollbar */
@@ -35,11 +44,17 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+.dark ::-webkit-scrollbar-track {
   background: #05070E;
 }
 ::-webkit-scrollbar-thumb {
-  background: #192238;
+  background: #CBD5E1;
   border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #192238;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #AD5CFF;
@@ -47,16 +62,26 @@ body {
 
 /* Glassmorphic Utilities */
 .glass-panel {
-  background: rgba(9, 14, 28, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-panel {
+  background: rgba(9, 14, 28, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-nav {
-  background: rgba(7, 11, 22, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .glass-nav {
+  background: rgba(7, 11, 22, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 

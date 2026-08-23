@@ -77,13 +77,13 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="max-w-2xl mb-14"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#AD5CFF] block mb-2">
+        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
           EVENT OVERVIEW
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
           Built by student leaders, designed for real cloud mastery
         </h2>
-        <p className="mt-3 text-base text-slate-300 leading-relaxed">
+        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
           AWS Student Community Day Panipat is Haryana’s focal gathering for student developers to transition from classroom theory to building production cloud systems.
         </p>
       </motion.div>
@@ -101,21 +101,21 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             key={item.title}
             variants={itemVariants}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="rounded-2xl bg-[#090E1E] border border-white/[0.08] hover:border-[#AD5CFF]/30 p-6 flex flex-col justify-between transition-colors duration-200"
+            className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/80 dark:border-white/[0.08] hover:border-[#AD5CFF]/40 dark:hover:border-[#AD5CFF]/30 p-6 flex flex-col justify-between transition-colors duration-200 shadow-sm"
           >
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400">
+                <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   {item.tag}
                 </span>
-                <span className="text-[11px] font-mono text-slate-500">
+                <span className="text-[11px] font-mono text-slate-400 dark:text-slate-500">
                   0{index + 1}
                 </span>
               </div>
-              <h3 className="text-base font-bold text-white mb-2">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">
                 {item.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -129,19 +129,19 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-2xl bg-[#070B1A] border border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-8"
+        className="rounded-2xl bg-slate-50 dark:bg-[#070B1A] border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm"
       >
         <div className="max-w-xl">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#AD5CFF] block mb-1">
+          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
             CREDENTIAL VERIFICATION
           </span>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-white">
+          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 dark:text-white">
             Official Credly Digital Badge & Certificate
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed mt-2">
+          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
             Every registered attendee receives an official, cryptographically verifiable Credly digital badge and participation certificate to showcase verified cloud skills on LinkedIn and GitHub.
           </p>
-          <div className="flex items-center gap-4 mt-4 text-xs font-mono text-slate-400">
+          <div className="flex items-center gap-4 mt-4 text-xs font-mono text-slate-500 dark:text-slate-400">
             <span>• Shareable on LinkedIn</span>
             <span>• Issued by AWS SBG</span>
             <span>• Included with Free Pass</span>
@@ -153,24 +153,24 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
           transition={{ duration: 0.25 }}
           className="shrink-0 flex flex-col items-center"
         >
-          <div className="w-48 rounded-xl bg-[#0B1024] border border-[#AD5CFF]/30 p-4 flex flex-col items-center text-center shadow-lg shadow-[#AD5CFF]/10">
-            <div className="h-10 w-10 rounded-lg bg-[#AD5CFF]/15 text-[#BE7BFF] flex items-center justify-center mb-2">
+          <div className="w-48 rounded-xl bg-white dark:bg-[#0B1024] border border-[#AD5CFF]/30 p-4 flex flex-col items-center text-center shadow-lg shadow-[#AD5CFF]/10">
+            <div className="h-10 w-10 rounded-lg bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] flex items-center justify-center mb-2">
               <HugeiconsIcon icon={Award02Icon} className="h-5 w-5" />
             </div>
-            <span className="text-[9px] font-mono font-bold text-[#AD5CFF] uppercase tracking-wider">
+            <span className="text-[9px] font-mono font-bold text-[#8E35EA] dark:text-[#AD5CFF] uppercase tracking-wider">
               Credly Verified
             </span>
-            <span className="text-xs font-bold text-white mt-0.5">
+            <span className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">
               AWS SCD Panipat 2026
             </span>
-            <span className="text-[10px] text-slate-400 mt-0.5">
+            <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-0.5">
               PIET Campus
             </span>
           </div>
 
           <button
             onClick={onOpenTickets}
-            className="mt-3 text-xs font-semibold text-[#AD5CFF] hover:underline flex items-center gap-1"
+            className="mt-3 text-xs font-semibold text-[#8E35EA] dark:text-[#AD5CFF] hover:underline flex items-center gap-1 cursor-pointer"
           >
             <span>Register to claim badge</span>
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3" />

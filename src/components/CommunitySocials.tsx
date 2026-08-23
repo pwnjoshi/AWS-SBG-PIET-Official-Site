@@ -28,26 +28,26 @@ export default function CommunitySocials() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-2xl bg-[#070B1A] border border-white/10 p-7 sm:p-10"
+        className="rounded-2xl bg-slate-50 dark:bg-[#070B1A] border border-slate-200 dark:border-white/10 p-7 sm:p-10 shadow-sm"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column */}
           <div className="lg:col-span-7 flex flex-col gap-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#AD5CFF]">
+            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF]">
               COMMUNITY & NETWORK
             </span>
 
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white">
               Stay connected with AWS Student Builder Group
             </h3>
 
-            <p className="text-xs sm:text-sm text-slate-300 max-w-lg leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-lg leading-relaxed">
               Connect with 500+ student peers, get immediate updates on speaker announcements, workshop repositories, and regional cloud hackathons.
             </p>
 
             {/* Social Channels */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
-              {SOCIAL_LINKS.map((channel, idx) => {
+              {SOCIAL_LINKS.map((channel) => {
                 return (
                   <motion.a
                     key={channel.name}
@@ -56,17 +56,17 @@ export default function CommunitySocials() {
                     rel="noopener noreferrer"
                     whileHover={{ y: -3, scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="p-3 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-[#AD5CFF]/30 transition-colors flex items-center justify-between group"
+                    className="p-3 rounded-xl bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/[0.06] hover:border-[#AD5CFF]/40 dark:hover:border-[#AD5CFF]/30 transition-colors flex items-center justify-between group shadow-sm"
                   >
                     <div>
-                      <span className="text-xs font-bold text-white block">
+                      <span className="text-xs font-bold text-slate-900 dark:text-white block">
                         {channel.name}
                       </span>
-                      <span className="text-[10px] text-slate-400 truncate block">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate block">
                         {channel.handle}
                       </span>
                     </div>
-                    <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 text-slate-500 group-hover:text-white transition-colors" />
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
                   </motion.a>
                 );
               })}
@@ -75,20 +75,20 @@ export default function CommunitySocials() {
 
           {/* Right Column: Newsletter */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <div className="rounded-xl bg-[#04060E] border border-white/[0.08] p-5">
-              <span className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider block mb-1">
+            <div className="rounded-xl bg-white dark:bg-[#04060E] border border-slate-200 dark:border-white/[0.08] p-5 shadow-sm">
+              <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-1">
                 SUMMIT ALERTS
               </span>
 
-              <h4 className="text-sm font-bold text-white mb-1">
+              <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-1">
                 Receive lab repositories & prerequisites
               </h4>
-              <p className="text-xs text-slate-400 mb-4 leading-relaxed">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
                 We will send you the official workshop GitHub repos and AWS Free Tier setup instructions 1 week before the summit.
               </p>
 
               {isSubscribed ? (
-                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center gap-2">
+                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300 text-xs flex items-center gap-2">
                   <HugeiconsIcon icon={Tick02Icon} className="h-4 w-4 shrink-0" />
                   <span>You are on the attendee notification list.</span>
                 </div>
@@ -100,11 +100,11 @@ export default function CommunitySocials() {
                     onChange={(e) => setSubscribedEmail(e.target.value)}
                     placeholder="Enter your student email"
                     required
-                    className="w-full px-3.5 py-2 rounded-lg bg-[#080D1E] border border-white/10 text-white text-xs placeholder:text-slate-500 focus:border-[#AD5CFF] focus:outline-none"
+                    className="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-[#080D1E] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#AD5CFF] focus:outline-none"
                   />
                   <button
                     type="submit"
-                    className="w-full py-2.5 rounded-lg bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white text-xs font-bold transition-all shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02]"
+                    className="w-full py-2.5 rounded-lg bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white text-xs font-bold transition-all shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02] cursor-pointer"
                   >
                     Subscribe for Updates
                   </button>

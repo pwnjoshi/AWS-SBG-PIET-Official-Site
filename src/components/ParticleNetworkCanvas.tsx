@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function ParticleNetworkCanvas() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,7 +28,9 @@ export default function ParticleNetworkCanvas() {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle ambient top focal glow in #AD5CFF violet
+      const isDark = document.documentElement.classList.contains("dark");
+
+      // Ambient top focal glow in #AD5CFF violet
       const radialGradient = ctx.createRadialGradient(
         width * 0.5,
         height * 0.12,
@@ -35,15 +39,22 @@ export default function ParticleNetworkCanvas() {
         height * 0.35,
         width * 0.6
       );
-      radialGradient.addColorStop(0, "rgba(173, 92, 255, 0.04)");
-      radialGradient.addColorStop(0.5, "rgba(142, 53, 234, 0.015)");
-      radialGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+
+      if (isDark) {
+        radialGradient.addColorStop(0, "rgba(173, 92, 255, 0.04)");
+        radialGradient.addColorStop(0.5, "rgba(142, 53, 234, 0.015)");
+        radialGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+      } else {
+        radialGradient.addColorStop(0, "rgba(173, 92, 255, 0.07)");
+        radialGradient.addColorStop(0.5, "rgba(142, 53, 234, 0.03)");
+        radialGradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+      }
 
       ctx.fillStyle = radialGradient;
       ctx.fillRect(0, 0, width, height);
 
       // Delicate subtle grid lines
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.018)";
+      ctx.strokeStyle = isDark ? "rgba(255, 255, 255, 0.018)" : "rgba(0, 0, 0, 0.03)";
       ctx.lineWidth = 1;
       const gridSize = 80;
 
@@ -70,7 +81,7 @@ export default function ParticleNetworkCanvas() {
       window.removeEventListener("resize", handleResize);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
