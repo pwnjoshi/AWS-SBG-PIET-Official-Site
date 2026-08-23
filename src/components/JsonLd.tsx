@@ -21,13 +21,13 @@ export default function JsonLd() {
       }
     },
     "image": [
-      "https://aws-sbg-piet.co.in/images/sbg-logo.png",
-      "https://aws-sbg-piet.co.in/images/piet-campus.png"
+      "https://awssbgpiet.in/images/sbg-logo.png",
+      "https://awssbgpiet.in/images/og-scd-panipat-2026.jpg"
     ],
     "organizer": {
       "@type": "Organization",
       "name": "AWS Student Builder Group at PIET",
-      "url": "https://aws-sbg-piet.co.in"
+      "url": "https://awssbgpiet.in"
     },
     "performer": [
       { "@type": "Person", "name": "Praful Bagai", "jobTitle": "AWS Community Leader and Speaker" },
@@ -62,8 +62,8 @@ export default function JsonLd() {
     "@type": "EducationalOrganization",
     "name": "AWS Student Builder Group at PIET",
     "alternateName": "AWS SBG PIET",
-    "url": "https://aws-sbg-piet.co.in",
-    "logo": "https://aws-sbg-piet.co.in/images/sbg-logo.png",
+    "url": "https://awssbgpiet.in",
+    "logo": "https://awssbgpiet.in/images/sbg-logo.png",
     "sameAs": [
       "https://www.linkedin.com/company/aws-student-builder-group-piet",
       "https://www.instagram.com/awssbg_piet",
@@ -76,7 +76,7 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "AWS Student Builder Group PIET",
-    "url": "https://aws-sbg-piet.co.in"
+    "url": "https://awssbgpiet.in"
   };
 
   return (

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Contact & Support | AWS SBG PIET",
     description:
       "Get in touch with the AWS Student Builder Group team at PIET for pass inquiries, sponsorship, CFP speaker submissions, and campus outreach.",
-    url: "https://aws-sbg-piet.co.in/contact",
+    url: "https://awssbgpiet.in/contact",
     type: "website",
   },
 };

@@ -22,7 +22,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aws-sbg-piet.co.in"),
+  metadataBase: new URL("https://awssbgpiet.in"),
   title: {
     default: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
     template: "%s | AWS SBG PIET",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     title: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
     description:
       "Haryana's premier AWS Student Community Day. 6 tracks, KIRO Buildathon, AWS Heroes, Credly Badges & Builder Passes on 11 Sept 2026.",
-    url: "https://aws-sbg-piet.co.in",
+    url: "https://awssbgpiet.in",
     siteName: "AWS Student Community Day Panipat 2026",
     locale: "en_IN",
     type: "website",

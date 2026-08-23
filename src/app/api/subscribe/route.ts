@@ -47,21 +47,11 @@ export async function POST(req: Request) {
         <div style="padding: 0 8px; font-size: 14px; line-height: 1.6; color: #cbd5e1;">
           <p style="font-size: 15px; color: #ffffff; font-weight: 600;">Hey Cloud Builder,</p>
           <p>
-            You are officially subscribed to <strong>Summit Alerts</strong> for Haryana's first-ever AWS Student Community Day hosted at PIET Panipat!
+            You are officially subscribed to <strong>Summit Alerts</strong> for Haryana's first-ever AWS Student Community Day hosted at PIET Panipat! We'll keep you updated with the latest keynote announcements, workshop details, and summit schedules.
           </p>
 
-          <div style="background-color: rgba(173, 92, 255, 0.1); border: 1px solid rgba(173, 92, 255, 0.25); border-radius: 12px; padding: 16px; margin: 20px 0;">
-            <h3 style="margin: 0 0 8px 0; font-size: 14px; color: #BE7BFF; font-weight: 800;">📦 What you'll receive 1 week before the summit:</h3>
-            <ul style="margin: 0; padding-left: 20px; font-size: 13px; color: #e2e8f0;">
-              <li style="margin-bottom: 6px;">Official hands-on lab GitHub repositories & Starter code</li>
-              <li style="margin-bottom: 6px;">AWS Free Tier & CloudShell setup prerequisites</li>
-              <li style="margin-bottom: 6px;">Amazon Bedrock & GenAI track installation guides</li>
-              <li>KIRO Buildathon hackathon problem statements & guidelines</li>
-            </ul>
-          </div>
-
-          <div style="text-align: center; margin: 28px 0 20px 0;">
-            <a href="https://aws-sbg-piet.co.in/scd-panipat-2026/badge" style="background: #AD5CFF; color: #ffffff; padding: 12px 24px; border-radius: 9999px; text-decoration: none; font-weight: 700; font-size: 13px; display: inline-block;">
+          <div style="text-align: center; margin: 32px 0 24px 0;">
+            <a href="https://awssbgpiet.in/scd-panipat-2026/badge" style="background: linear-gradient(135deg, #FF9900, #AD5CFF); color: #ffffff; padding: 14px 28px; border-radius: 9999px; text-decoration: none; font-weight: 800; font-size: 14px; display: inline-block; box-shadow: 0 4px 14px rgba(173, 92, 255, 0.4);">
               Create Your Delegate Badge »
             </a>
           </div>

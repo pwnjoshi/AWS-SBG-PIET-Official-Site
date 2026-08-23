@@ -132,7 +132,7 @@ export async function POST(req: Request) {
           <tr>
             <td style="padding: 20px 28px; background-color: rgba(0, 0, 0, 0.25); border-top: 1px solid rgba(255, 255, 255, 0.06); text-align: center;">
               <p style="margin: 0; font-size: 11px; color: #64748B; font-family: monospace;">
-                Delivered automatically from <a href="https://aws-sbg-piet.co.in" style="color: #94A3B8; text-decoration: none;">aws-sbg-piet.co.in</a> &bull; Recipient: ${receiverEmail}
+                Delivered automatically from <a href="https://awssbgpiet.in" style="color: #94A3B8; text-decoration: none;">awssbgpiet.in</a> &bull; Recipient: ${receiverEmail}
               </p>
             </td>
           </tr>
