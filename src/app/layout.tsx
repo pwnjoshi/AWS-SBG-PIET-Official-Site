@@ -67,6 +67,18 @@ export const metadata: Metadata = {
     description: "Powering the next generation of cloud innovators. 11 Sept 2026 at PIET Panipat.",
     images: ["/images/piet-campus.png"],
   },
+  icons: {
+    icon: [
+      { url: "/images/sbg-logo.png", sizes: "any" },
+      { url: "/images/sbg-logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/images/sbg-logo.png", type: "image/png", sizes: "192x192" },
+      { url: "/images/sbg-logo.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/images/sbg-logo.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/images/sbg-logo.png",
+  },
 };
 
 import TawkChat from "@/components/TawkChat";
@@ -86,6 +98,9 @@ export default function RootLayout({
       className={`${jakarta.variable} ${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <head>
+        <link rel="icon" href="/images/sbg-logo.png" type="image/png" />
+        <link rel="shortcut icon" href="/images/sbg-logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/sbg-logo.png" />
         <JsonLd />
         <script
           dangerouslySetInnerHTML={{
