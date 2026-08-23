@@ -72,7 +72,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
     <section
       id="overview"
       ref={containerRef}
-      className="relative min-h-[92vh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-8 sm:pb-10 px-3 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-0 lg:min-h-[88vh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-4 sm:pb-8 px-3 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* PIET Campus Video Background */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">

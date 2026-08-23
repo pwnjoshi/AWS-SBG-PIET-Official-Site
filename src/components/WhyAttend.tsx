@@ -113,7 +113,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
   };
 
   return (
-    <section id="why-attend" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="why-attend" className="relative pt-4 sm:pt-10 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header with Panipat Hindi Typography on the right */}
       <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 mb-14">
         <motion.div
