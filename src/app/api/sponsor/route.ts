@@ -14,8 +14,29 @@ export async function POST(req: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const receiverEmail = process.env.SPONSOR_RECEIVER_EMAIL || "joshipawan2021@gmail.com";
+    const receiverEmail = process.env.SPONSOR_RECEIVER_EMAIL || "info@awssbgpiet.in";
     const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <onboarding@resend.dev>";
+    const generalAudienceId = "7abce8e8-acf6-4f09-9700-a4cf979adf03";
+
+    // 1. Add Sponsor to Resend Contacts Audience
+    if (resendApiKey) {
+      try {
+        await fetch(`https://api.resend.com/audiences/${generalAudienceId}/contacts`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${resendApiKey}`,
+          },
+          body: JSON.stringify({
+            email: email.trim().toLowerCase(),
+            first_name: contactPerson,
+            unsubscribed: false,
+          }),
+        });
+      } catch (err) {
+        console.error("Resend sponsor audience contact error:", err);
+      }
+    }
 
     const inquiryDetailsHtml = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; border: 1px solid #e2e8f0; border-radius: 16px; background-color: #ffffff; color: #1e293b;">

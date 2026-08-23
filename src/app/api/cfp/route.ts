@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const receiverEmail = process.env.CFP_RECEIVER_EMAIL || "joshipawan2021@gmail.com";
+    const receiverEmail = process.env.CFP_RECEIVER_EMAIL || "info@awssbgpiet.in";
     const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <onboarding@resend.dev>";
 
     const cfpDetailsHtml = `
