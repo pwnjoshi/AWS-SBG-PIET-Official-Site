@@ -41,7 +41,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
       role: "Founder @ BharatXR & @ Arexa | Snapchat AR Partner | XR & AI Specialist",
       track: "Track B • Generative AI & ML",
       linkedin: "https://www.linkedin.com/in/chhavigg/",
-      image: "/images/chhavi-garg.png",
+      image: "/images/chhavi-garg.jpg",
       initials: "CG",
       accent: "#C084FC",
     },
