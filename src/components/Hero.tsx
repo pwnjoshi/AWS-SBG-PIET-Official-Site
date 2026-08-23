@@ -139,7 +139,15 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           className="text-[28px] sm:text-5xl md:text-6xl font-black tracking-tight text-slate-950 dark:text-white max-w-3xl leading-[1.1] mb-3 sm:mb-5 px-1"
         >
           Haryana&apos;s First{" "}
-          <span className="text-[#8E35EA] dark:text-[#AD5CFF]">AWS Student Community Day</span>
+          <span
+            className={
+              isPlayingAudio
+                ? "bg-gradient-to-r from-[#FF9900] via-[#FFB84D] via-[#AD5CFF] via-[#EC4899] to-[#38BDF8] bg-clip-text text-transparent font-black drop-shadow-[0_0_20px_rgba(173,92,255,0.4)]"
+                : "text-[#8E35EA] dark:text-[#AD5CFF]"
+            }
+          >
+            AWS Student Community Day
+          </span>
         </motion.h1>
 
         {/* Subtitle */}
@@ -192,7 +200,13 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
               { val: timeLeft.seconds, label: "Sec" },
             ].map((unit, idx) => (
               <div key={unit.label} className="flex items-center gap-2">
-                <div className="flex flex-col items-center justify-center w-[52px] h-[52px] rounded-2xl bg-white/95 dark:bg-[#080D1E]/90 border border-slate-200 dark:border-white/[0.08] shadow-sm">
+                <div
+                  className={`flex flex-col items-center justify-center w-[52px] h-[52px] rounded-2xl transition-all duration-300 ${
+                    isPlayingAudio
+                      ? "bg-white dark:bg-[#0E152E] border-2 border-[#AD5CFF] shadow-[0_0_18px_rgba(173,92,255,0.4)] scale-105"
+                      : "bg-white/95 dark:bg-[#080D1E]/90 border border-slate-200 dark:border-white/[0.08] shadow-sm"
+                  }`}
+                >
                   <span className="text-base font-black text-slate-900 dark:text-white font-mono leading-none">
                     {String(unit.val).padStart(2, "0")}
                   </span>
@@ -340,7 +354,11 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
                 ].map((unit) => (
                   <div
                     key={unit.label}
-                    className="p-2 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]"
+                    className={`p-2 rounded-xl transition-all duration-300 ${
+                      isPlayingAudio
+                        ? "bg-white dark:bg-[#0E152E] border-2 border-[#AD5CFF] shadow-[0_0_15px_rgba(173,92,255,0.35)] scale-105"
+                        : "bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]"
+                    }`}
                   >
                     <span className="text-lg font-black font-mono text-slate-900 dark:text-white block leading-none">
                       {String(unit.val).padStart(2, "0")}

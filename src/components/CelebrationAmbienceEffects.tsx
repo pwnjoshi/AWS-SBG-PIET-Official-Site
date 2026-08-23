@@ -145,9 +145,19 @@ export default function CelebrationAmbienceEffects() {
       }
     };
 
+    const handleTouch = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const t = e.touches[0];
+        mousePosRef.current = { x: t.clientX, y: t.clientY };
+        spawnParticles(t.clientX, t.clientY, 5, false);
+      }
+    };
+
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchstart", handleTouch, { passive: true });
+    window.addEventListener("touchmove", handleTouch, { passive: true });
 
     let timer = 0;
 
@@ -264,13 +274,21 @@ export default function CelebrationAmbienceEffects() {
 
       {/* Atmospheric Celebratory Beam & Aurora Waves Layer */}
       <div
-        className="fixed inset-0 pointer-events-none z-[3] select-none mix-blend-screen transition-all duration-1000"
+        className="fixed inset-0 pointer-events-none z-[4] select-none mix-blend-screen transition-all duration-1000"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.28) 0%, rgba(255, 153, 0, 0.16) 45%, rgba(14, 165, 233, 0.1) 75%, transparent 90%)",
+            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.32) 0%, rgba(255, 153, 0, 0.18) 45%, rgba(14, 165, 233, 0.12) 75%, transparent 90%)",
         }}
         aria-hidden="true"
       />
+
+      {/* Floating Celebratory Animated Stardust Badges */}
+      <div className="fixed top-20 right-6 sm:right-10 z-[50] pointer-events-none select-none hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/80 backdrop-blur-xl border border-[#AD5CFF]/60 text-white shadow-2xl shadow-purple-500/40 animate-bounce">
+        <span className="text-sm">🎵</span>
+        <span className="text-xs font-mono font-bold bg-gradient-to-r from-[#FF9900] via-[#AD5CFF] to-[#38BDF8] bg-clip-text text-transparent">
+          Celebration Ambience Active
+        </span>
+      </div>
     </div>
   );
 }
