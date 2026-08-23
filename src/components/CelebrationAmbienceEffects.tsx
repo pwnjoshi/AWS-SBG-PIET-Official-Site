@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import confetti from "canvas-confetti";
 import { useSoundtrack } from "@/context/SoundtrackContext";
 
-interface Sparkle {
+interface Particle {
   x: number;
   y: number;
   vx: number;
@@ -14,12 +15,14 @@ interface Sparkle {
   decay: number;
   rotation: number;
   rotSpeed: number;
+  type: "star" | "note" | "circle";
+  symbol?: string;
 }
 
 export default function CelebrationAmbienceEffects() {
   const { isPlaying } = useSoundtrack();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const sparklesRef = useRef<Sparkle[]>([]);
+  const particlesRef = useRef<Particle[]>([]);
   const animFrameIdRef = useRef<number | null>(null);
   const lastMousePosRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -27,14 +30,32 @@ export default function CelebrationAmbienceEffects() {
     "#FF9900", // AWS Orange
     "#FFB84D", // Gold
     "#AD5CFF", // Violet
-    "#C084FC", // Purple
-    "#38BDF8", // Cyan
+    "#BE7BFF", // Purple
+    "#38BDF8", // Sky Cyan
+    "#F43F5E", // Rose Coral
     "#FFFFFF", // Sparkle White
   ];
 
+  const symbols = ["♪", "♫", "✦", "★", "✨", "◆"];
+
   useEffect(() => {
-    if (!isPlaying) {
-      sparklesRef.current = [];
+    if (isPlaying) {
+      document.documentElement.classList.add("ambience-mode-active");
+
+      // Launch Celebratory Confetti Burst on Activation
+      try {
+        confetti({
+          particleCount: 90,
+          spread: 120,
+          origin: { y: 0.55 },
+          colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF", "#38BDF8", "#FFFFFF"],
+        });
+      } catch {
+        // ignore
+      }
+    } else {
+      document.documentElement.classList.remove("ambience-mode-active");
+      particlesRef.current = [];
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
         animFrameIdRef.current = null;
@@ -59,41 +80,44 @@ export default function CelebrationAmbienceEffects() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    const spawnSparkle = (x: number, y: number, count = 2, burst = false) => {
+    const spawnParticle = (x: number, y: number, count = 2, burst = false) => {
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = burst ? Math.random() * 4 + 1.5 : Math.random() * 1.5 + 0.3;
-        sparklesRef.current.push({
-          x: x + (Math.random() - 0.5) * 8,
-          y: y + (Math.random() - 0.5) * 8,
+        const speed = burst ? Math.random() * 4.5 + 2 : Math.random() * 1.8 + 0.4;
+        const isSymbol = Math.random() > 0.6;
+        particlesRef.current.push({
+          x: x + (Math.random() - 0.5) * 12,
+          y: y + (Math.random() - 0.5) * 12,
           vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - (burst ? 0.5 : 0.8), // gentle upward float
-          size: Math.random() * 3.5 + (burst ? 2 : 1),
+          vy: Math.sin(angle) * speed - (burst ? 0.6 : 0.9), // upward float
+          size: isSymbol ? Math.random() * 7 + 10 : Math.random() * 3.5 + (burst ? 2.5 : 1),
           color: colors[Math.floor(Math.random() * colors.length)],
           alpha: 1,
-          decay: burst ? Math.random() * 0.02 + 0.015 : Math.random() * 0.025 + 0.02,
+          decay: burst ? Math.random() * 0.018 + 0.012 : Math.random() * 0.022 + 0.016,
           rotation: Math.random() * Math.PI,
-          rotSpeed: (Math.random() - 0.5) * 0.1,
+          rotSpeed: (Math.random() - 0.5) * 0.08,
+          type: isSymbol ? "note" : Math.random() > 0.4 ? "star" : "circle",
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
         });
       }
-      if (sparklesRef.current.length > 250) {
-        sparklesRef.current = sparklesRef.current.slice(-250);
+      if (particlesRef.current.length > 220) {
+        particlesRef.current = particlesRef.current.slice(-220);
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX: x, clientY: y } = e;
-      spawnSparkle(x, y, 2, false);
+      spawnParticle(x, y, 2, false);
       lastMousePosRef.current = { x, y };
     };
 
     const handleClick = (e: MouseEvent) => {
-      spawnSparkle(e.clientX, e.clientY, 16, true);
+      spawnParticle(e.clientX, e.clientY, 18, true);
     };
 
     const handleScroll = () => {
       if (lastMousePosRef.current) {
-        spawnSparkle(lastMousePosRef.current.x, lastMousePosRef.current.y, 2, false);
+        spawnParticle(lastMousePosRef.current.x, lastMousePosRef.current.y, 2, false);
       }
     };
 
@@ -101,56 +125,69 @@ export default function CelebrationAmbienceEffects() {
     window.addEventListener("click", handleClick, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Ambient floating embers automatically drift up periodically
-    let ambientTimer = 0;
+    // Ambient floating celebratory stardust & notes periodically drift up
+    let timer = 0;
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ambientTimer++;
-      if (ambientTimer % 8 === 0) {
-        // Random gentle ambient ember from bottom of viewport
-        spawnSparkle(
+      timer++;
+      if (timer % 10 === 0) {
+        spawnParticle(
           Math.random() * canvas.width,
-          canvas.height - Math.random() * 100,
+          canvas.height - Math.random() * 60,
           1,
           false
         );
       }
 
-      for (let i = sparklesRef.current.length - 1; i >= 0; i--) {
-        const s = sparklesRef.current[i];
-        s.x += s.vx;
-        s.y += s.vy;
-        s.alpha -= s.decay;
-        s.rotation += s.rotSpeed;
+      for (let i = particlesRef.current.length - 1; i >= 0; i--) {
+        const p = particlesRef.current[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= p.decay;
+        p.rotation += p.rotSpeed;
 
-        if (s.alpha <= 0) {
-          sparklesRef.current.splice(i, 1);
+        if (p.alpha <= 0) {
+          particlesRef.current.splice(i, 1);
           continue;
         }
 
         ctx.save();
-        ctx.globalAlpha = s.alpha;
-        ctx.translate(s.x, s.y);
-        ctx.rotate(s.rotation);
+        ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
 
-        // Draw 4-point star sparkle
-        ctx.fillStyle = s.color;
-        ctx.shadowColor = s.color;
-        ctx.shadowBlur = 6;
-
-        ctx.beginPath();
-        const r = s.size;
-        for (let j = 0; j < 4; j++) {
-          ctx.lineTo(Math.cos((j * Math.PI) / 2) * r, Math.sin((j * Math.PI) / 2) * r);
-          ctx.lineTo(
-            Math.cos(((j + 0.5) * Math.PI) / 2) * (r * 0.35),
-            Math.sin(((j + 0.5) * Math.PI) / 2) * (r * 0.35)
-          );
+        if (p.type === "note" && p.symbol) {
+          ctx.font = `bold ${Math.round(p.size)}px sans-serif`;
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 8;
+          ctx.fillText(p.symbol, -p.size / 2, p.size / 2);
+        } else if (p.type === "star") {
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 6;
+          ctx.beginPath();
+          const r = p.size;
+          for (let j = 0; j < 4; j++) {
+            ctx.lineTo(Math.cos((j * Math.PI) / 2) * r, Math.sin((j * Math.PI) / 2) * r);
+            ctx.lineTo(
+              Math.cos(((j + 0.5) * Math.PI) / 2) * (r * 0.35),
+              Math.sin(((j + 0.5) * Math.PI) / 2) * (r * 0.35)
+            );
+          }
+          ctx.closePath();
+          ctx.fill();
+        } else {
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 5;
+          ctx.beginPath();
+          ctx.arc(0, 0, p.size, 0, Math.PI * 2);
+          ctx.fill();
         }
-        ctx.closePath();
-        ctx.fill();
+
         ctx.restore();
       }
 
@@ -160,6 +197,7 @@ export default function CelebrationAmbienceEffects() {
     render();
 
     return () => {
+      document.documentElement.classList.remove("ambience-mode-active");
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
@@ -172,19 +210,19 @@ export default function CelebrationAmbienceEffects() {
 
   return (
     <>
-      {/* Interactive Cursor & Particle Canvas */}
+      {/* Fullscreen Interactive Canvas for Cursor Sparks & Notes */}
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-[9998] select-none"
+        className="fixed inset-0 pointer-events-none z-[9999] select-none"
         aria-hidden="true"
       />
 
-      {/* Atmospheric Aurora Background Glow when Ambience is Active */}
+      {/* Atmospheric Celebratory Beam & Aura Layer */}
       <div
-        className="fixed inset-0 pointer-events-none z-[5] select-none opacity-40 dark:opacity-30 mix-blend-screen transition-opacity duration-1000 animate-pulse"
+        className="fixed inset-0 pointer-events-none z-[4] select-none opacity-50 mix-blend-screen transition-all duration-700 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 10%, rgba(173, 92, 255, 0.18) 0%, rgba(255, 153, 0, 0.10) 45%, transparent 70%)",
+            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.22) 0%, rgba(255, 153, 0, 0.12) 40%, rgba(14, 165, 233, 0.08) 65%, transparent 80%)",
         }}
         aria-hidden="true"
       />

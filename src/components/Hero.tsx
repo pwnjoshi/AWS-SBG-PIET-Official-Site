@@ -222,12 +222,12 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
                     <span className="w-0.5 h-3 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-bounce" />
                     <span className="w-0.5 h-1.5 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-pulse" />
                   </div>
-                  <span>✨ Ambience Active</span>
+                  <span>Ambience Active</span>
                 </>
               ) : (
                 <>
                   <HugeiconsIcon icon={VolumeMute01Icon} className="h-3 w-3 text-slate-500" />
-                  <span>✨ Ambience Mode</span>
+                  <span>Ambience Mode</span>
                 </>
               )}
             </button>
@@ -319,12 +319,12 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
                         <span className="w-0.5 h-3.5 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-bounce" />
                         <span className="w-0.5 h-2 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-pulse" />
                       </div>
-                      <span className="text-[#8E35EA] dark:text-[#BE7BFF]">✨ Ambience Active</span>
+                      <span className="text-[#8E35EA] dark:text-[#BE7BFF]">Ambience Active</span>
                     </>
                   ) : (
                     <>
                       <HugeiconsIcon icon={VolumeMute01Icon} className="h-3 w-3 text-slate-500" />
-                      <span>✨ Ambience Mode</span>
+                      <span>Ambience Mode</span>
                     </>
                   )}
                 </button>
