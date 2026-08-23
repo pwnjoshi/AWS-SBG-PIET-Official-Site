@@ -205,13 +205,38 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
             ))}
           </div>
 
-          {/* Info chips */}
-          <div className="flex items-center justify-center gap-2">
-            <span className="flex items-center gap-1 bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/[0.06]">
+          {/* Mobile Ambience Mode & Event Chips */}
+          <div className="flex flex-wrap items-center justify-center gap-2 px-2 mt-1">
+            <button
+              onClick={toggleSoundtrack}
+              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-mono font-bold active:scale-95 shadow-sm ${
+                isPlayingAudio
+                  ? "bg-gradient-to-r from-purple-500/25 via-orange-500/25 to-indigo-500/25 border border-[#AD5CFF]/60 text-[#8E35EA] dark:text-[#BE7BFF] shadow-purple-500/20"
+                  : "bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10"
+              }`}
+            >
+              {isPlayingAudio ? (
+                <>
+                  <div className="flex items-center gap-0.5 h-3">
+                    <span className="w-0.5 h-2 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-pulse" />
+                    <span className="w-0.5 h-3 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-bounce" />
+                    <span className="w-0.5 h-1.5 bg-gradient-to-t from-[#AD5CFF] to-[#FF9900] rounded-full animate-pulse" />
+                  </div>
+                  <span>✨ Ambience Active</span>
+                </>
+              ) : (
+                <>
+                  <HugeiconsIcon icon={VolumeMute01Icon} className="h-3 w-3 text-slate-500" />
+                  <span>✨ Ambience Mode</span>
+                </>
+              )}
+            </button>
+
+            <span className="flex items-center gap-1 bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/[0.06]">
               <HugeiconsIcon icon={Location01Icon} className="h-3 w-3 text-[#8E35EA] dark:text-[#AD5CFF]" />
               PIET Panipat
             </span>
-            <span className="flex items-center gap-1 bg-[#8E35EA]/10 dark:bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] px-3 py-1 rounded-full text-[11px] font-bold border border-[#8E35EA]/20 dark:border-[#AD5CFF]/30">
+            <span className="flex items-center gap-1 bg-[#8E35EA]/10 dark:bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] px-3 py-1.5 rounded-full text-[11px] font-bold border border-[#8E35EA]/20 dark:border-[#AD5CFF]/30">
               <HugeiconsIcon icon={Ticket01Icon} className="h-3 w-3" />
               From ₹399
             </span>
