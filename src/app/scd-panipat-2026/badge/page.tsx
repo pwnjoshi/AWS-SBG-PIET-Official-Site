@@ -10,6 +10,7 @@ import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import MobileBottomDock from "@/components/MobileBottomDock";
 import BadgeGenerator from "@/components/BadgeGenerator";
+import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
 import { EVENT_DETAILS } from "@/lib/data";
@@ -24,8 +25,13 @@ export default function BadgeStudioPage() {
           <Navbar onOpenCFP={() => {}} onOpenTickets={() => {}} />
 
           <main className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col gap-8">
-            {/* Breadcrumb / Back Link */}
-            <div className="flex items-center justify-between">
+            {/* Breadcrumb / Back Link with entrance animation */}
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="flex items-center justify-between"
+            >
               <Link
                 href="/scd-panipat-2026"
                 className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-[#AD5CFF] transition-colors"
@@ -43,7 +49,7 @@ export default function BadgeStudioPage() {
                 <span>Register on Commudle</span>
                 <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3" />
               </a>
-            </div>
+            </motion.div>
 
             {/* Badge Generator Component */}
             <BadgeGenerator />

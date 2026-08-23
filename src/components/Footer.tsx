@@ -76,6 +76,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/contact" className="hover:text-slate-900 dark:hover:text-white transition-colors">
+                  Contact &amp; Support
+                </Link>
+              </li>
+              <li>
                 <a
                   href={EVENT_DETAILS.commudleUrl}
                   target="_blank"

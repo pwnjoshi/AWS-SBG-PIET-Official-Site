@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Download01Icon,
@@ -410,8 +411,13 @@ export default function BadgeGenerator() {
       {/* Hidden Canvas for High-Resolution Export */}
       <canvas ref={canvasRef} className="hidden" />
 
-      {/* Header Banner */}
-      <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
+      {/* Header Banner with Entrance Animation */}
+      <motion.div
+        initial={{ opacity: 0, y: 25 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 px-2"
+      >
         <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           OFFICIAL ATTENDEE STUDIO
         </span>
@@ -421,12 +427,17 @@ export default function BadgeGenerator() {
         <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           Personalize your official AWS SCD 2026 delegate credential, download in HD, and share on LinkedIn to connect with 500+ builders and AWS leaders across Delhi-NCR & Haryana.
         </p>
-      </div>
+      </motion.div>
 
       {/* Main Studio Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-        {/* Left: Customization Controls */}
-        <div className="lg:col-span-6 rounded-3xl bg-white dark:bg-[#080D1E] border border-slate-200 dark:border-white/10 p-5 sm:p-7 shadow-sm">
+        {/* Left: Customization Controls with Slide-In Animation */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 rounded-3xl bg-white dark:bg-[#080D1E] border border-slate-200 dark:border-white/10 p-5 sm:p-7 shadow-sm"
+        >
           <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100 dark:border-white/[0.06]">
             <h3 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">
               Customize Your Pass
@@ -613,10 +624,15 @@ export default function BadgeGenerator() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Right: Real World-Class Conference Badge Preview */}
-        <div className="lg:col-span-6 flex flex-col items-center justify-center">
+        {/* Right: Real World-Class Conference Badge Preview with Entrance Animation */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-6 flex flex-col items-center justify-center"
+        >
           {/* Card Graphic: Authentic Conference Badge */}
           <div className="w-full max-w-md rounded-3xl bg-[#0A0D1E] border border-slate-700/80 dark:border-white/15 p-6 sm:p-7 shadow-xl text-white relative overflow-hidden">
             {/* Background Watermark: Monumental Hindi Devanagari "पानीपत" */}
@@ -624,8 +640,8 @@ export default function BadgeGenerator() {
               <span className="text-[120px] font-black text-white/[0.035] leading-none tracking-tight transform -rotate-12 translate-y-[-10px]">
                 पानीपत
               </span>
-              <span className="text-[10px] font-mono font-bold tracking-widest text-[#AD5CFF]/[0.05] uppercase mt-2">
-                AWS COMMUNITY DAY • PANIPAT
+              <span className="text-[10px] font-mono font-bold tracking-widest text-[#AD5CFF]/[0.06] uppercase mt-2">
+                AWS STUDENT COMMUNITY DAY • PANIPAT
               </span>
               {/* Subtle Tech Circuit Ring */}
               <div className="absolute h-64 w-64 rounded-full border border-dashed border-[#FF9900]/[0.06] pointer-events-none" />
@@ -739,7 +755,7 @@ export default function BadgeGenerator() {
               Post your badge on LinkedIn with <strong>#AWSSCDPanipat</strong> and tag <strong>AWS SBG PIET</strong>. AWS Heroes & mentors will select 10 builders for exclusive <strong>VIP Swag Packs</strong>!
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
