@@ -363,7 +363,7 @@ export default function BadgeGenerator() {
   };
 
   const getCustomShareText = () => {
-    return `🚀 I'm attending Haryana's first-ever AWS Student Community Day (SCD) at PIET Panipat on 11th September 2026!\n\n👤 Attendee: ${name || "Student Builder"}\n🏛️ Campus: ${college || "PIET Panipat"}\n🎯 Focus Track: ${currentTrack.label}\n\nExcited for technical keynotes by AWS Leaders, deep-dives on Generative AI with Amazon Bedrock, KIRO Buildathon, DevOps, and connecting with 500+ builders across Delhi-NCR.\n\nReserve your pass on Commudle: ${EVENT_DETAILS.commudleUrl}\n\n#AWSSCDPanipat #AWSSBGPIET #AWSCommunity #CloudBuilders #PIETPanipat #GenerativeAI #AWSCloud`;
+    return `🚀 I'm attending Haryana's first-ever AWS Student Community Day (SCD) organized by AWS Student Builder Group at PIET on 11th September 2026!\n\n👤 Attendee: ${name || "Student Builder"}\n🏛️ Campus: ${college || "PIET Panipat"}\n🎯 Focus Track: ${currentTrack.label}\n\nExcited for technical keynotes by AWS Leaders, deep-dives on Generative AI with Amazon Bedrock, KIRO Buildathon, DevOps, and connecting with 500+ builders across Delhi-NCR.\n\nConnect with AWS Student Builder Group at PIET: https://www.linkedin.com/company/aws-student-builder-group-piet\n\nReserve your pass on Commudle: ${EVENT_DETAILS.commudleUrl}\n\n#AWSSCDPanipat #AWSSBGPIET #AWSStudentBuilderGroup #AWSCommunity #CloudBuilders #PIETPanipat #GenerativeAI #AWSCloud`;
   };
 
   const handleCopyPostText = () => {

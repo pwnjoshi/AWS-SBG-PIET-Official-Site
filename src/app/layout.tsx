@@ -54,18 +54,18 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/piet-campus.png",
+        url: "/images/og-homepage.jpg",
         width: 1200,
         height: 630,
-        alt: "AWS Student Community Day Panipat 2026 at PIET Campus",
+        alt: "Where Student Builders Engineer the Future on AWS - AWS Student Builder Group at PIET",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AWS Student Community Day Panipat 2026",
-    description: "Powering the next generation of cloud innovators. 11 Sept 2026 at PIET Panipat.",
-    images: ["/images/piet-campus.png"],
+    title: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
+    description: "Where Student Builders Engineer the Future on AWS. AWS Student Builder Group at PIET.",
+    images: ["/images/og-homepage.jpg"],
   },
   icons: {
     icon: [
