@@ -233,34 +233,34 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
               <span className="text-3xl xl:text-4xl font-black text-slate-950 dark:text-white tracking-tight">
                 500+
               </span>
-              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-1">
                 Builders & Students
               </span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+              <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Regional SBG Community
               </span>
             </div>
 
             <div className="flex flex-col border-x border-slate-200/80 dark:border-white/[0.08] px-6">
-              <span className="text-3xl xl:text-4xl font-black text-[#8E35EA] dark:text-[#AD5CFF] tracking-tight">
+              <span className="text-3xl xl:text-4xl font-black text-slate-950 dark:text-white tracking-tight">
                 6 Tracks
               </span>
-              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-1">
                 Cloud Domains
               </span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+              <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 GenAI, DevOps, Labs
               </span>
             </div>
 
             <div className="flex flex-col">
-              <span className="text-3xl xl:text-4xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight">
+              <span className="text-3xl xl:text-4xl font-black text-slate-950 dark:text-white tracking-tight">
                 100%
               </span>
-              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-1">
                 Hands-on Focus
               </span>
-              <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+              <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
                 Live Labs & Buildathon
               </span>
             </div>
