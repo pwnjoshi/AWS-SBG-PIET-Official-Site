@@ -42,6 +42,9 @@ export default function CelebrationAmbienceEffects() {
 
   const symbols = ["♪", "♫", "✦", "★", "✨", "◆", "♬", "🎉"];
 
+  const trailRef = useRef<{ x: number; y: number; alpha: number }[]>([]);
+  const lastScrollYRef = useRef<number>(0);
+
   useEffect(() => {
     if (isPlaying) {
       document.documentElement.classList.add("ambience-mode-active");
@@ -79,6 +82,7 @@ export default function CelebrationAmbienceEffects() {
       document.documentElement.classList.remove("ambience-mode-active");
       document.body.classList.remove("ambience-mode-active");
       particlesRef.current = [];
+      trailRef.current = [];
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
         animFrameIdRef.current = null;
@@ -138,17 +142,31 @@ export default function CelebrationAmbienceEffects() {
       const isInteractive = !!target?.closest('button, a, input, [role="button"], .interactive-hover');
       isHoveringInteractiveRef.current = isInteractive;
 
+      trailRef.current.push({ x: e.clientX, y: e.clientY, alpha: 1 });
+      if (trailRef.current.length > 16) trailRef.current.shift();
+
       setCursorVisible(true);
       spawnParticles(e.clientX, e.clientY, isInteractive ? 3 : 2, false);
     };
 
     const handleClick = (e: MouseEvent) => {
-      spawnParticles(e.clientX, e.clientY, 30, true);
+      spawnParticles(e.clientX, e.clientY, 32, true);
     };
 
     const handleScroll = () => {
-      if (mousePosRef.current.x > 0) {
-        spawnParticles(mousePosRef.current.x, mousePosRef.current.y, 2, false);
+      const currentScrollY = window.scrollY;
+      const scrollDiff = Math.abs(currentScrollY - lastScrollYRef.current);
+      lastScrollYRef.current = currentScrollY;
+
+      // Spawn celebratory particles across the viewport on scroll (desktop and mobile)
+      const count = Math.min(5, Math.max(2, Math.floor(scrollDiff / 20)));
+      for (let k = 0; k < count; k++) {
+        spawnParticles(
+          Math.random() * window.innerWidth,
+          window.innerHeight - Math.random() * 120,
+          1,
+          false
+        );
       }
     };
 
@@ -157,7 +175,11 @@ export default function CelebrationAmbienceEffects() {
         const t = e.touches[0];
         mousePosRef.current = { x: t.clientX, y: t.clientY };
         smoothMouseRef.current = { x: t.clientX, y: t.clientY };
-        spawnParticles(t.clientX, t.clientY, 6, false);
+
+        trailRef.current.push({ x: t.clientX, y: t.clientY, alpha: 1 });
+        if (trailRef.current.length > 16) trailRef.current.shift();
+
+        spawnParticles(t.clientX, t.clientY, 5, false);
       }
     };
 
@@ -183,13 +205,35 @@ export default function CelebrationAmbienceEffects() {
         );
       }
 
+      // Draw Glowing Ribbon Trail connecting recent cursor coordinates
+      if (trailRef.current.length > 1) {
+        for (let i = 1; i < trailRef.current.length; i++) {
+          const pt1 = trailRef.current[i - 1];
+          const pt2 = trailRef.current[i];
+          pt1.alpha *= 0.92;
+
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(pt1.x, pt1.y);
+          ctx.lineTo(pt2.x, pt2.y);
+          ctx.strokeStyle = i % 2 === 0 ? "#AD5CFF" : "#FF9900";
+          ctx.lineWidth = (i / trailRef.current.length) * 4;
+          ctx.shadowColor = "#AD5CFF";
+          ctx.shadowBlur = 10;
+          ctx.globalAlpha = pt1.alpha * (i / trailRef.current.length) * 0.7;
+          ctx.lineCap = "round";
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
       // Smooth interpolation for magic cursor wand follower
       if (mousePosRef.current.x > 0 && mousePosRef.current.y > 0) {
         if (smoothMouseRef.current.x < 0) {
           smoothMouseRef.current = { ...mousePosRef.current };
         } else {
-          smoothMouseRef.current.x += (mousePosRef.current.x - smoothMouseRef.current.x) * 0.35;
-          smoothMouseRef.current.y += (mousePosRef.current.y - smoothMouseRef.current.y) * 0.35;
+          smoothMouseRef.current.x += (mousePosRef.current.x - smoothMouseRef.current.x) * 0.4;
+          smoothMouseRef.current.y += (mousePosRef.current.y - smoothMouseRef.current.y) * 0.4;
         }
 
         const mx = smoothMouseRef.current.x;
