@@ -71,6 +71,8 @@ export const metadata: Metadata = {
 
 import TawkChat from "@/components/TawkChat";
 import JsonLd from "@/components/JsonLd";
+import { SoundtrackProvider } from "@/context/SoundtrackContext";
+import CelebrationAmbienceEffects from "@/components/CelebrationAmbienceEffects";
 
 export default function RootLayout({
   children,
@@ -103,7 +105,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 font-sans selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white antialiased transition-colors duration-300">
-        {children}
+        <SoundtrackProvider>
+          <CelebrationAmbienceEffects />
+          {children}
+        </SoundtrackProvider>
         <TawkChat />
       </body>
     </html>
