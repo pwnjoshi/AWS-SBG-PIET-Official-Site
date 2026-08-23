@@ -1,46 +1,18 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Linkedin01Icon,
   SparklesIcon,
-  Award02Icon,
-  UserIcon,
-  Tick02Icon,
+  QuoteDownIcon,
+  ArrowUpRight01Icon,
+  CheckmarkCircle02Icon,
+  GithubIcon,
 } from "@hugeicons/core-free-icons";
 
 export default function SBGLeadership() {
-  const leadershipSquad = [
-    {
-      title: "Student Chapter Leadership",
-      sub: "Core Executive Committee",
-      category: "EXECUTIVE TEAM",
-      desc: "Organizing weekly AWS study circles, cloud architecture bootcamps, community hackathons, and regional inter-college builder alliances.",
-      responsibilities: ["Workshop Curation", "CDK Labs", "Student Mentorship"],
-      badge: "Student Leads",
-      accent: "#AD5CFF",
-    },
-    {
-      title: "Faculty & Department Advisors",
-      sub: "Department of CSE & AI, PIET",
-      category: "ACADEMIC ADVISORY",
-      desc: "Providing institutional governance, academic cloud credits integration, high-performance computing lab support, and university backing.",
-      responsibilities: ["Institutional Support", "Lab Infrastructure", "Curriculum Linkage"],
-      badge: "University Mentors",
-      accent: "#0EA5E9",
-    },
-    {
-      title: "AWS Community Heroes & Mentors",
-      sub: "Global AWS Community Network",
-      category: "INDUSTRY ADVISORS",
-      desc: "Industry cloud architects and AWS Heroes providing session mentorship, technical code reviews, keynote lectures, and career placement guidance.",
-      responsibilities: ["Architecture Reviews", "Keynote Talks", "Hiring Referrals"],
-      badge: "Industry Advisors",
-      accent: "#10B981",
-    },
-  ];
-
   return (
     <section id="team" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header */}
@@ -49,76 +21,114 @@ export default function SBGLeadership() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-2xl mb-14"
+        className="max-w-2xl mb-12 sm:mb-16"
       >
         <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
-          LEADERSHIP & MENTORSHIP
+          STUDENT LEADERSHIP &amp; VISION
         </span>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
-          Guided by Visionaries & Cloud Architects
+          Words from the Community Lead
         </h2>
         <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-          Driven by passionate student builders with mentorship from PIET faculty and industry AWS Community leaders.
+          Pioneering hands-on cloud education, Generative AI labs, and regional builder culture at PIET.
         </p>
       </motion.div>
 
-      {/* 3 Pillars Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {leadershipSquad.map((lead, index) => (
-          <motion.div
-            key={lead.title}
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -5 }}
-            className="rounded-3xl p-6 sm:p-8 bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm group"
-          >
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <span
-                  className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border uppercase"
-                  style={{
-                    backgroundColor: `${lead.accent}15`,
-                    borderColor: `${lead.accent}30`,
-                    color: lead.accent,
-                  }}
-                >
-                  {lead.badge}
-                </span>
-                <HugeiconsIcon icon={Award02Icon} className="h-4 w-4" style={{ color: lead.accent }} />
+      {/* Leader Spotlight Showcase Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="relative rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/10 p-6 sm:p-10 shadow-xl shadow-slate-200/50 dark:shadow-black/60 overflow-hidden"
+      >
+        {/* Ambient Radial Accent Glow */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#8E35EA]/10 dark:bg-[#AD5CFF]/10 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 items-center relative z-10">
+          {/* Left: Leader Portrait Frame */}
+          <div className="lg:col-span-4 flex flex-col items-center text-center">
+            <div className="relative group">
+              <div className="relative h-60 w-60 sm:h-64 sm:w-64 rounded-3xl overflow-hidden border-2 border-[#8E35EA]/30 dark:border-[#AD5CFF]/40 shadow-2xl bg-slate-900">
+                <Image
+                  src="/images/rehan-poonia.png"
+                  alt="Rehan Poonia — AWS Student Builder Group Leader | CSE @ PIET"
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  priority
+                />
               </div>
 
-              <h3 className="text-xl font-extrabold text-slate-950 dark:text-white mb-1 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors">
-                {lead.title}
-              </h3>
+              {/* Verified Lead Badge */}
+              <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-[#8E35EA] dark:bg-[#AD5CFF] text-white text-[11px] font-mono font-bold tracking-wider uppercase shadow-lg shadow-purple-500/30 flex items-center gap-1.5 whitespace-nowrap">
+                <HugeiconsIcon icon={SparklesIcon} className="h-3.5 w-3.5" />
+                <span>AWS SBG LEADER</span>
+              </div>
+            </div>
 
-              <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-3">
-                {lead.sub}
+            <div className="mt-6">
+              <h3 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+                Rehan Poonia
+              </h3>
+              <span className="text-xs font-mono font-semibold text-[#8E35EA] dark:text-[#BE7BFF] block mt-0.5">
+                AWS Student Builder Group Leader | CSE @ PIET
               </span>
 
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
-                {lead.desc}
+              {/* LinkedIn Button */}
+              <div className="flex items-center justify-center gap-2.5 mt-3">
+                <a
+                  href="https://www.linkedin.com/in/rehan-poonia-50b241383/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm active:scale-[0.98]"
+                >
+                  <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4" />
+                  <span>Connect on LinkedIn</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: Authentic Vision Message & Key Milestones */}
+          <div className="lg:col-span-8 flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-3 text-[#8E35EA] dark:text-[#AD5CFF]">
+                <HugeiconsIcon icon={QuoteDownIcon} className="h-6 w-6 opacity-80" />
+                <span className="text-xs font-mono font-bold uppercase tracking-wider">
+                  MESSAGE FROM THE LEADER
+                </span>
+              </div>
+
+              <blockquote className="text-base sm:text-lg text-slate-800 dark:text-slate-100 font-medium leading-relaxed italic mb-6">
+                &ldquo;Our vision with the AWS Student Builder Group at PIET is to replace passive learning with true engineering ownership. We empower students to build production-grade cloud architectures, explore Amazon Bedrock and Generative AI, and step into the global tech ecosystem with real, verified credentials. Hosting Haryana&apos;s first-ever AWS Student Community Day is our commitment to putting our regional developer community on the national tech map.&rdquo;
+              </blockquote>
+
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal mb-6">
+                Under Rehan&apos;s leadership, the AWS SBG PIET chapter hosts regular hands-on CloudShell bootcamps, architecture review circles, and connects student developers directly with AWS Community Heroes, industry architects, and tech hiring partners.
               </p>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 dark:border-white/[0.06] flex flex-col gap-2">
-              <span className="text-[10px] font-mono text-slate-500 font-bold uppercase">FOCUS AREAS:</span>
-              <div className="flex flex-wrap gap-1.5">
-                {lead.responsibilities.map((resp) => (
-                  <span
-                    key={resp}
-                    className="inline-flex items-center gap-1 text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-50 dark:bg-white/[0.03] text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-white/[0.05]"
-                  >
-                    <HugeiconsIcon icon={Tick02Icon} className="h-3 w-3 text-emerald-500 shrink-0" />
-                    <span>{resp}</span>
-                  </span>
-                ))}
+            {/* Core Leadership Milestones */}
+            <div className="pt-5 border-t border-slate-100 dark:border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="p-3 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
+                <span className="text-lg font-black text-slate-900 dark:text-white block font-mono">500+</span>
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">Active Student Builders</span>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
+                <span className="text-lg font-black text-[#8E35EA] dark:text-[#AD5CFF] block font-mono">SCD 2026</span>
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">Haryana&apos;s 1st Flagship Summit</span>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]">
+                <span className="text-lg font-black text-emerald-600 dark:text-emerald-400 block font-mono">100%</span>
+                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-semibold">Hands-on Sandbox Labs</span>
               </div>
             </div>
-          </motion.div>
-        ))}
-      </div>
+          </div>
+        </div>
+      </motion.div>
     </section>
   );
 }
+

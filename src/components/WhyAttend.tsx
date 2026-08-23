@@ -180,20 +180,9 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             />
 
             {/* Card Content Top */}
-            <div className="relative z-10">
-              {/* Minimal Category Header */}
-              <div className="flex items-center gap-2 mb-4">
-                <span
-                  className="h-2 w-2 rounded-full"
-                  style={{ backgroundColor: item.accent }}
-                />
-                <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#8E35EA] dark:text-[#AD5CFF]">
-                  {item.tag}
-                </span>
-              </div>
-
+            <div className="relative z-10 pt-1">
               {/* Title */}
-              <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-3 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors leading-snug">
+              <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-2.5 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors leading-snug">
                 {item.title}
               </h3>
 
@@ -285,52 +274,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
           </button>
         </div>
       </motion.div>
-
-      {/* Global AWS Student Community Days Benchmark Grid */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-2xl bg-white dark:bg-[#080D1E] border border-slate-200/90 dark:border-white/[0.08] p-6 sm:p-8 shadow-sm"
-      >
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-100 dark:border-white/[0.06]">
-          <div>
-            <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
-              GLOBAL COMMUNITY ECOSYSTEM
-            </span>
-            <h3 className="text-xl font-extrabold text-slate-950 dark:text-white">
-              Previous AWS Student Community Days
-            </h3>
-          </div>
-          <span className="text-xs font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-            <HugeiconsIcon icon={Globe02Icon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF]" />
-            Global Student Builder Network
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {PREVIOUS_SCDS.map((scd) => (
-            <div
-              key={scd.name}
-              className="p-4 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 mb-1.5">
-                  <span className="font-semibold text-[#8E35EA] dark:text-[#BE7BFF]">{scd.organizer}</span>
-                  <span>{scd.date}</span>
-                </div>
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white mb-2">
-                  {scd.name}
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                  {scd.highlights}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }
+

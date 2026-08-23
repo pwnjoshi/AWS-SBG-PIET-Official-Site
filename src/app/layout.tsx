@@ -22,9 +22,13 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AWS Student Community Day Panipat 2026 | Largest Student Cloud Event in Haryana",
+  metadataBase: new URL("https://aws-sbg-piet.co.in"),
+  title: {
+    default: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
+    template: "%s | AWS SBG PIET",
+  },
   description:
-    "Join 500+ student builders, AWS Heroes, and cloud architects on 11 September 2026 at PIET Campus, Panipat. Haryana's first-ever AWS Student Community Day.",
+    "Official AWS Student Community Day in Haryana. Join 500+ builders on 11 Sept 2026 at PIET Panipat for keynotes, 6 cloud tracks, and KIRO Buildathon.",
   keywords: [
     "AWS Student Community Day",
     "AWS SCD Panipat 2026",
@@ -33,27 +37,40 @@ export const metadata: Metadata = {
     "Cloud Computing Haryana",
     "Generative AI on AWS",
     "DevOps",
-    "AWS Community",
+    "AWS Community Day India",
     "Student Cloud Conference",
   ],
   authors: [{ name: "AWS Student Builder Group PIET" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "AWS Student Community Day Panipat 2026 — 11 Sept 2026",
+    title: "AWS Student Community Day Panipat 2026 | AWS SBG PIET",
     description:
-      "Haryana's first-ever AWS Student Community Day. 6 tracks, KIRO Buildathon, Ideathon, AWS Heroes, Credly Badges & Builder Passes.",
-    url: "https://www.commudle.com/communities/aws-student-builder-group-piet/events/aws-student-community-day-panipat",
+      "Haryana's premier AWS Student Community Day. 6 tracks, KIRO Buildathon, AWS Heroes, Credly Badges & Builder Passes on 11 Sept 2026.",
+    url: "https://aws-sbg-piet.co.in",
     siteName: "AWS Student Community Day Panipat 2026",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/images/piet-campus.png",
+        width: 1200,
+        height: 630,
+        alt: "AWS Student Community Day Panipat 2026 at PIET Campus",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "AWS Student Community Day Panipat 2026",
     description: "Powering the next generation of cloud innovators. 11 Sept 2026 at PIET Panipat.",
+    images: ["/images/piet-campus.png"],
   },
 };
 
 import TawkChat from "@/components/TawkChat";
+import JsonLd from "@/components/JsonLd";
 
 export default function RootLayout({
   children,
@@ -67,6 +84,7 @@ export default function RootLayout({
       className={`${jakarta.variable} ${inter.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
       <head>
+        <JsonLd />
         <script
           dangerouslySetInnerHTML={{
             __html: `
