@@ -104,10 +104,6 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
             <div>
               {/* Refined Premium Keynote Pill */}
               <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 text-[#BE7BFF] text-[10.5px] font-mono font-bold tracking-widest uppercase border border-[#AD5CFF]/40 mb-2.5 shadow-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#AD5CFF]"></span>
-                </span>
                 <HugeiconsIcon icon={Mic01Icon} className="h-3.5 w-3.5 text-[#AD5CFF]" />
                 <span>{keynoteSpeaker.badge}</span>
               </div>

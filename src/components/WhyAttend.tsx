@@ -214,7 +214,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-[#070B1A] dark:to-[#0B1024] border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm overflow-hidden mb-16"
+        className="relative rounded-2xl bg-gradient-to-br from-slate-50 to-white dark:from-[#070B1A] dark:to-[#0B1024] border border-slate-200 dark:border-white/10 p-7 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm overflow-hidden mb-2 sm:mb-4"
       >
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-[#AD5CFF]/[0.06] dark:bg-[#AD5CFF]/[0.08] blur-[80px] rounded-full pointer-events-none" />

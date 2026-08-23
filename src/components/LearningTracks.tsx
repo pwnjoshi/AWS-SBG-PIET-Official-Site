@@ -18,7 +18,7 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
   const selectedTrack = TRACKS.find((t) => t.id === selectedTrackId) || TRACKS[1];
 
   return (
-    <section id="tracks" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10 overflow-hidden sm:overflow-visible">
+    <section id="tracks" className="relative pt-6 sm:pt-10 pb-14 sm:pb-20 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10 overflow-hidden sm:overflow-visible">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}

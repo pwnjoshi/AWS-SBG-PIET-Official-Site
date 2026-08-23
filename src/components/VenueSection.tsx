@@ -59,11 +59,22 @@ export default function VenueSection() {
           PIET Campus, Panipat
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
-          {EVENT_DETAILS.venueFull}
+          <strong>70 Milestone, Grand Trunk Road (NH-44), Samalkha, Panipat, Haryana 132102</strong>
         </p>
-        <div className="mt-3.5 inline-flex items-center gap-2 p-2.5 sm:px-3.5 sm:py-2 rounded-xl bg-purple-500/10 dark:bg-[#AD5CFF]/10 border border-purple-500/25 dark:border-[#AD5CFF]/25 text-xs text-[#8E35EA] dark:text-[#BE7BFF] font-medium leading-snug">
-          <HugeiconsIcon icon={Tick02Icon} className="h-4 w-4 text-emerald-500 shrink-0" />
-          <span>{EVENT_DETAILS.venueNotice}</span>
+        <div className="mt-3.5 flex flex-wrap items-center gap-2.5">
+          <a
+            href={EVENT_DETAILS.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] text-white text-xs font-bold transition-all shadow-md shadow-purple-500/20 active:scale-95"
+          >
+            <span>Get Google Maps Directions</span>
+            <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
+          </a>
+          <div className="inline-flex items-center gap-2 p-2 sm:px-3 sm:py-1.5 rounded-xl bg-purple-500/10 dark:bg-[#AD5CFF]/10 border border-purple-500/25 dark:border-[#AD5CFF]/25 text-xs text-[#8E35EA] dark:text-[#BE7BFF] font-medium">
+            <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-emerald-500 shrink-0" />
+            <span>Direct Highway Entry • NH-44</span>
+          </div>
         </div>
       </motion.div>
 
