@@ -95,7 +95,7 @@ export default function CFPModal({ isOpen, onClose }: CFPModalProps) {
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">Proposal Received!</h3>
 
             <p className="text-xs text-slate-600 dark:text-slate-300 max-w-sm leading-relaxed">
-              Thank you, <span className="text-slate-900 dark:text-white font-semibold">{formData.name}</span>. The review committee will review your proposal for &ldquo;{formData.title}&rdquo; and follow up at <span className="text-[#8E35EA] dark:text-[#BE7BFF]">{formData.email}</span>.
+              Thank you, <span className="text-slate-900 dark:text-white font-semibold">{formData.name}</span>. The review committee will review your proposal for &ldquo;{formData.title}&rdquo; and follow up with you from <span className="text-[#8E35EA] dark:text-[#BE7BFF] font-semibold">{EVENT_DETAILS.email}</span>.
             </p>
 
             <button
