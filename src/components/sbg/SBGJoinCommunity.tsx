@@ -85,46 +85,46 @@ export default function SBGJoinCommunity() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5">
         {channels.map((ch, index) => (
           <motion.a
             key={ch.name}
             href={ch.href}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: index * 0.06 }}
+            transition={{ duration: 0.4, delay: index * 0.05 }}
             whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="p-6 rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm group"
+            className="p-3.5 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm group"
           >
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2.5 sm:mb-4">
                 <div
-                  className="h-10 w-10 rounded-2xl flex items-center justify-center"
+                  className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl sm:rounded-2xl flex items-center justify-center"
                   style={{ backgroundColor: `${ch.accent}15`, color: ch.accent }}
                 >
-                  <HugeiconsIcon icon={ch.icon} className="h-5 w-5" />
+                  <HugeiconsIcon icon={ch.icon} className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
                 <HugeiconsIcon
                   icon={ArrowUpRight01Icon}
-                  className="h-4 w-4 text-slate-400 group-hover:text-[#AD5CFF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-slate-400 group-hover:text-[#AD5CFF] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
                 />
               </div>
 
-              <h3 className="text-base font-extrabold text-slate-950 dark:text-white mb-1">
+              <h3 className="text-xs sm:text-base font-extrabold text-slate-950 dark:text-white mb-0.5 sm:mb-1 leading-snug">
                 {ch.name}
               </h3>
-              <span className="text-xs font-mono text-[#8E35EA] dark:text-[#BE7BFF] block mb-2">
+              <span className="text-[10px] sm:text-xs font-mono text-[#8E35EA] dark:text-[#BE7BFF] block mb-1.5 sm:mb-2 truncate">
                 {ch.handle}
               </span>
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              <p className="text-[10px] sm:text-xs text-slate-600 dark:text-slate-300 leading-snug sm:leading-relaxed line-clamp-2 sm:line-clamp-none">
                 {ch.desc}
               </p>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/[0.06] text-xs font-bold text-[#8E35EA] dark:text-[#AD5CFF]">
+            <div className="pt-2.5 sm:pt-4 mt-2 sm:mt-4 border-t border-slate-100 dark:border-white/[0.06] text-[10px] sm:text-xs font-bold text-[#8E35EA] dark:text-[#AD5CFF]">
               Join Channel →
             </div>
           </motion.a>

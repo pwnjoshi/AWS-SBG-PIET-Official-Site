@@ -82,50 +82,50 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
         ))}
       </div>
 
-      {/* Sponsor Tiers Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
+      {/* Sponsor Tiers Grid — 2 columns on mobile */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5 mb-12">
         {SPONSOR_TIERS.map((tier, idx) => (
           <motion.div
             key={tier.name}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: idx * 0.08 }}
-            whileHover={{ y: -6, transition: { duration: 0.25 } }}
-            className={`rounded-2xl p-6 flex flex-col justify-between border transition-all duration-300 shadow-sm ${
+            transition={{ duration: 0.4, delay: idx * 0.06 }}
+            whileHover={{ y: -4, transition: { duration: 0.2 } }}
+            className={`rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 flex flex-col justify-between border transition-all duration-300 shadow-sm ${
               tier.highlight
-                ? "bg-gradient-to-b from-purple-900/20 via-purple-900/10 to-transparent dark:from-[#18113E] dark:via-[#0F0B28] dark:to-[#090E1E] border-[#AD5CFF] shadow-xl shadow-purple-500/10 dark:shadow-[#AD5CFF]/15 ring-1 ring-[#AD5CFF]"
+                ? "bg-gradient-to-b from-purple-900/20 via-purple-900/10 to-transparent dark:from-[#18113E] dark:via-[#0F0B28] dark:to-[#090E1E] border-[#AD5CFF] shadow-lg shadow-purple-500/10 dark:shadow-[#AD5CFF]/15 ring-1 ring-[#AD5CFF]"
                 : "bg-white dark:bg-[#090E1E] border-slate-200/90 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/20"
             }`}
           >
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-1.5 sm:mb-2">
                 <span
-                  className={`text-[9px] font-mono font-extrabold uppercase px-2 py-0.5 rounded-full border ${
+                  className={`text-[8px] sm:text-[9px] font-mono font-extrabold uppercase px-2 py-0.5 rounded-full border ${
                     tier.highlight
                       ? "bg-[#AD5CFF] text-white border-[#AD5CFF]"
                       : "bg-slate-100 dark:bg-white/[0.05] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/10"
                   }`}
                 >
-                  {tier.tag || (tier.highlight ? "FEATURED TIER" : "AVAILABLE TIER")}
+                  {tier.tag || (tier.highlight ? "FEATURED" : "AVAILABLE")}
                 </span>
               </div>
 
-              <h4 className="text-lg font-black text-slate-950 dark:text-white uppercase tracking-tight mt-1">
+              <h4 className="text-xs sm:text-base font-black text-slate-950 dark:text-white uppercase tracking-tight mt-0.5 sm:mt-1">
                 {tier.name}
               </h4>
 
-              <div className="text-2xl font-black text-[#8E35EA] dark:text-[#AD5CFF] font-mono my-2.5">
+              <div className="text-base sm:text-2xl font-black text-[#8E35EA] dark:text-[#AD5CFF] font-mono my-1.5 sm:my-2.5">
                 {tier.price}
               </div>
 
-              <div className="h-[1px] w-full bg-slate-100 dark:bg-white/[0.08] my-3" />
+              <div className="h-[1px] w-full bg-slate-100 dark:bg-white/[0.08] my-2 sm:my-3" />
 
-              <ul className="space-y-2.5 mb-6">
-                {tier.perks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 font-medium leading-snug">
-                    <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold text-sm leading-none shrink-0">›</span>
-                    <span>{perk}</span>
+              <ul className="space-y-1.5 sm:space-y-2.5 mb-4 sm:mb-6">
+                {tier.perks.slice(0, 4).map((perk) => (
+                  <li key={perk} className="flex items-start gap-1 sm:gap-2 text-[10px] sm:text-xs text-slate-700 dark:text-slate-300 font-medium leading-snug">
+                    <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold text-xs sm:text-sm leading-none shrink-0">›</span>
+                    <span className="line-clamp-2 sm:line-clamp-none">{perk}</span>
                   </li>
                 ))}
               </ul>
@@ -133,13 +133,13 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
 
             <button
               onClick={onOpenSponsorModal}
-              className={`w-full py-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] cursor-pointer ${
+              className={`w-full py-2 sm:py-3 rounded-xl font-bold text-[10px] sm:text-xs transition-all flex items-center justify-center gap-1 shadow-sm active:scale-[0.98] cursor-pointer ${
                 tier.highlight
                   ? "bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white shadow-[#AD5CFF]/30"
                   : "bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] text-slate-900 dark:text-white border border-slate-200/80 dark:border-white/10"
               }`}
             >
-              <span>{tier.buttonText || `SELECT ${tier.name.toUpperCase()} →`}</span>
+              <span>Select →</span>
             </button>
           </motion.div>
         ))}

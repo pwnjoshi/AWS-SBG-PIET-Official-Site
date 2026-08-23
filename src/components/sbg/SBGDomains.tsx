@@ -83,26 +83,26 @@ export default function SBGDomains() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6">
         {domains.map((d, index) => (
           <motion.div
             key={d.name}
-            initial={{ opacity: 0, y: 25 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: index * 0.08 }}
-            className="rounded-3xl p-4 sm:p-7 bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm hover:shadow-lg"
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            className="rounded-2xl sm:rounded-3xl p-3.5 sm:p-7 bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm hover:shadow-lg"
           >
             <div>
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2.5 sm:mb-4">
                 <div
-                  className="h-10 w-10 rounded-2xl flex items-center justify-center"
+                  className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl sm:rounded-2xl flex items-center justify-center"
                   style={{ backgroundColor: `${d.color}20`, color: d.color }}
                 >
-                  <HugeiconsIcon icon={d.icon} className="h-5 w-5" />
+                  <HugeiconsIcon icon={d.icon} className="h-4 w-4 sm:h-5 sm:w-5" />
                 </div>
                 <span
-                  className="text-[9px] font-mono font-bold px-2.5 py-0.5 rounded-full border uppercase"
+                  className="text-[8px] sm:text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border uppercase"
                   style={{
                     backgroundColor: `${d.color}15`,
                     borderColor: `${d.color}35`,
@@ -113,20 +113,20 @@ export default function SBGDomains() {
                 </span>
               </div>
 
-              <h3 className="text-base font-extrabold text-slate-950 dark:text-white mb-2 leading-snug">
+              <h3 className="text-xs sm:text-base font-extrabold text-slate-950 dark:text-white mb-1.5 sm:mb-2 leading-snug">
                 {d.name}
               </h3>
 
-              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
+              <p className="text-[10px] sm:text-xs text-slate-600 dark:text-slate-300 leading-snug sm:leading-relaxed mb-3 sm:mb-6 font-normal line-clamp-3 sm:line-clamp-none">
                 {d.desc}
               </p>
             </div>
 
-            <div className="pt-4 border-t border-slate-100 dark:border-white/[0.06] flex flex-wrap gap-1.5">
+            <div className="pt-2 sm:pt-4 border-t border-slate-100 dark:border-white/[0.06] flex flex-wrap gap-1">
               {d.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-600 dark:text-slate-400"
+                  className="text-[8.5px] sm:text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-slate-100 dark:bg-white/[0.04] text-slate-600 dark:text-slate-400"
                 >
                   {skill}
                 </span>

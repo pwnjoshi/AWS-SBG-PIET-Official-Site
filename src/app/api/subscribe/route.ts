@@ -13,8 +13,28 @@ export async function POST(req: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
+    const audienceId = "2ece5e59-e02e-410f-9cbd-c38ee3ae5cd2";
     const organizerEmail = process.env.SPONSOR_RECEIVER_EMAIL || "joshipawan2021@gmail.com";
     const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <onboarding@resend.dev>";
+
+    // 1. Add Subscriber to Resend Contacts Audience (SUMMIT ALERTS)
+    try {
+      const contactRes = await fetch(`https://api.resend.com/audiences/${audienceId}/contacts`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          email: email.trim().toLowerCase(),
+          unsubscribed: false,
+        }),
+      });
+      const contactData = await contactRes.json();
+      console.log("Resend Contact added:", contactData);
+    } catch (err) {
+      console.error("Resend audience contact add error:", err);
+    }
 
     // HTML for Student Confirmation Email
     const studentWelcomeHtml = `
@@ -46,16 +66,15 @@ export async function POST(req: Request) {
             </a>
           </div>
 
-          <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); pt: 16px;">
+          <p style="font-size: 12px; color: #94a3b8; text-align: center; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px;">
             Date: <strong>Friday, 11 September 2026</strong> • Venue: <strong>PIET Panipat, Haryana</strong>
           </p>
         </div>
       </div>
     `;
 
-    // Dispatch emails via Resend
+    // 2. Send Student Welcome Email & Organizer Notification
     if (resendApiKey) {
-      // 1. Send Student Confirmation
       try {
         await fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -74,7 +93,6 @@ export async function POST(req: Request) {
         console.error("Student confirmation dispatch error:", err);
       }
 
-      // 2. Notify Organizers
       try {
         await fetch("https://api.resend.com/emails", {
           method: "POST",
@@ -86,14 +104,12 @@ export async function POST(req: Request) {
             from: senderEmail,
             to: [organizerEmail],
             subject: `[New Subscriber] ${email} joined Summit Alerts`,
-            html: `<p>New student builder alert subscription: <strong>${email}</strong></p>`,
+            html: `<p>New student builder alert subscription: <strong>${email}</strong></p><p>Added to Resend Audience: <strong>SUMMIT ALERTS</strong></p>`,
           }),
         });
       } catch (err) {
         console.error("Organizer notification error:", err);
       }
-    } else {
-      console.log("No RESEND_API_KEY configured. Subscriber logged:", email);
     }
 
     return NextResponse.json({
