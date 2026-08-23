@@ -128,7 +128,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           className="pill-lightning inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono text-slate-700 dark:text-slate-300 shadow-sm mb-4 sm:mb-5 cursor-default"
         >
           <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold tracking-tight">AWS SCD 2026</span>
-          <span className="font-semibold text-slate-800 dark:text-slate-200">PIET Panipat</span>
+          <span className="font-semibold text-slate-800 dark:text-slate-200 pill-subtext">PIET Panipat</span>
         </motion.div>
 
         {/* Main Headline — max 2 lines on all screens */}

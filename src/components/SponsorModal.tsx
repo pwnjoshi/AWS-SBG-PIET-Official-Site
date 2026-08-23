@@ -15,20 +15,27 @@ import { SPONSOR_TIERS, EVENT_DETAILS } from "@/lib/data";
 interface SponsorModalProps {
   isOpen: boolean;
   onClose: () => void;
+  selectedTier?: string;
 }
 
-export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
+export default function SponsorModal({ isOpen, onClose, selectedTier }: SponsorModalProps) {
   const [formData, setFormData] = useState({
     companyName: "",
     contactPerson: "",
     email: "",
     phone: "",
-    tier: "Title Sponsor (₹1,50,000)",
+    tier: selectedTier || "Title Sponsor (₹1,50,000)",
     customGoals: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selectedTier) {
+      setFormData((prev) => ({ ...prev, tier: selectedTier }));
+    }
+  }, [selectedTier, isOpen]);
 
   useEffect(() => {
     if (isOpen) {

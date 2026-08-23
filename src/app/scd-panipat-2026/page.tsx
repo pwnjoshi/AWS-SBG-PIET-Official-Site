@@ -27,12 +27,18 @@ import SCDLoadingScreen from "@/components/SCDLoadingScreen";
 export default function SCDPanipatPage() {
   const [cfpModalOpen, setCfpModalOpen] = useState(false);
   const [sponsorModalOpen, setSponsorModalOpen] = useState(false);
+  const [selectedSponsorTier, setSelectedSponsorTier] = useState<string | undefined>(undefined);
   const [ticketModalOpen, setTicketModalOpen] = useState(false);
   const [selectedTicketTier, setSelectedTicketTier] = useState<string | undefined>(undefined);
 
   const handleOpenTickets = (tierId?: string) => {
     setSelectedTicketTier(tierId);
     setTicketModalOpen(true);
+  };
+
+  const handleOpenSponsorModal = (tierName?: string) => {
+    setSelectedSponsorTier(tierName || "Title Sponsor (₹1,50,000)");
+    setSponsorModalOpen(true);
   };
 
   return (
@@ -77,7 +83,7 @@ export default function SCDPanipatPage() {
             <TicketsSection onOpenTicketsModal={(tierId) => handleOpenTickets(tierId)} />
 
             {/* Sponsors Grid */}
-            <SponsorsSection onOpenSponsorModal={() => setSponsorModalOpen(true)} />
+            <SponsorsSection onOpenSponsorModal={handleOpenSponsorModal} />
 
             {/* Venue & PIET Campus Info */}
             <VenueSection />
@@ -107,6 +113,7 @@ export default function SCDPanipatPage() {
           <SponsorModal
             isOpen={sponsorModalOpen}
             onClose={() => setSponsorModalOpen(false)}
+            selectedTier={selectedSponsorTier}
           />
 
           <TicketModal

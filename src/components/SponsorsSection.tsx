@@ -9,7 +9,7 @@ import {
 import { SPONSOR_BENEFITS, SPONSOR_TIERS, EVENT_DETAILS } from "@/lib/data";
 
 interface SponsorsSectionProps {
-  onOpenSponsorModal: () => void;
+  onOpenSponsorModal: (tierName?: string) => void;
 }
 
 export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionProps) {
@@ -132,7 +132,7 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
             </div>
 
             <button
-              onClick={onOpenSponsorModal}
+              onClick={() => onOpenSponsorModal(`${tier.name} (${tier.price})`)}
               className={`w-full py-2 sm:py-3 rounded-xl font-bold text-[10px] sm:text-xs transition-all flex items-center justify-center gap-1 shadow-sm active:scale-[0.98] cursor-pointer ${
                 tier.highlight
                   ? "bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white shadow-[#AD5CFF]/30"
@@ -166,7 +166,7 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
         </div>
 
         <button
-          onClick={onOpenSponsorModal}
+          onClick={() => onOpenSponsorModal("Custom Hiring Partner")}
           className="px-5 py-2.5 rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-xs flex items-center gap-1.5 transition-all shrink-0 shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02] cursor-pointer"
         >
           <span>Request Sponsor Deck</span>
