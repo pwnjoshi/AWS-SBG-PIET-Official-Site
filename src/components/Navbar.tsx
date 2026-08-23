@@ -63,7 +63,6 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
         { name: "Home", href: "/" },
         { name: "About", href: "/#about" },
         { name: "Domains", href: "/#domains" },
-        { name: "Projects", href: "/#projects" },
         { name: "Leadership", href: "/#team" },
         { name: "Community", href: "/#community" },
       ];
