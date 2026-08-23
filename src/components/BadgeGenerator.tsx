@@ -745,7 +745,7 @@ export default function BadgeGenerator() {
               <span>Enter the VIP Swag Giveaway</span>
             </div>
             <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
-              Post your badge on LinkedIn with <strong>#AWSSCDPanipat</strong> and tag <strong>AWS SBG PIET</strong>. AWS Heroes & mentors will select 10 builders for exclusive <strong>VIP Swag Packs</strong>!
+              Post your badge on LinkedIn with <strong>#AWSSCDPanipat</strong> and tag <strong>AWS Student Builder Group at PIET</strong>. AWS Heroes & mentors will select 10 builders for exclusive <strong>VIP Swag Packs</strong>!
             </p>
           </div>
         </motion.div>
