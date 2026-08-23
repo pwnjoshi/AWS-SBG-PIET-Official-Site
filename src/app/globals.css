@@ -108,13 +108,21 @@ body {
   initial-value: 0deg;
 }
 
+:root {
+  --pill-bg: rgba(255, 255, 255, 0.95);
+}
+
+.dark {
+  --pill-bg: rgba(10, 14, 30, 0.92);
+}
+
 .pill-lightning {
   border: 1.5px solid transparent;
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
   background-image:
     /* pill background fill */
-    linear-gradient(var(--pill-bg, rgba(255,255,255,0.92)), var(--pill-bg, rgba(255,255,255,0.92))),
+    linear-gradient(var(--pill-bg), var(--pill-bg)),
     /* spinning conic lightning */
     conic-gradient(
       from var(--border-angle),

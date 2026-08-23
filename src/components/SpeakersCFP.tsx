@@ -20,9 +20,9 @@ interface SpeakersCFPProps {
 export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
   const keynoteSpeaker = {
     name: "Praful Bagai",
-    role: "AWS Community Leader & Senior Cloud Architect",
-    badge: "KEYNOTE SPEAKER",
-    linkedin: "https://www.linkedin.com/in/prafulbagai",
+    role: "Head of Developer Relations – India & South Asia at Amazon Web Services (AWS) | Speaker • Community Builder • Founder",
+    badge: "OPENING KEYNOTE SPEAKER",
+    linkedin: "https://www.linkedin.com/in/prafulbagai/",
     image: "/images/praful-bagai.jpg",
   };
 
@@ -38,17 +38,19 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
     },
     {
       name: "Chhavi Garg",
-      role: "Generative AI Specialist & Cloud Engineer",
+      role: "Founder @ BharatXR & @ Arexa | Snapchat AR Partner | XR & AI Specialist",
       track: "Track B • Generative AI & ML",
-      linkedin: "https://www.linkedin.com/in/chhavigg",
+      linkedin: "https://www.linkedin.com/in/chhavigg/",
+      image: "/images/chhavi-garg.png",
       initials: "CG",
       accent: "#C084FC",
     },
     {
       name: "Shivani Singh Vimal",
-      role: "DevOps & Cloud Security Engineer",
-      track: "Track C • DevOps & Security",
-      linkedin: "https://www.linkedin.com/in/shivani-singh-vimal-438449267",
+      role: "Founder, Altiora French Academy | French Language Trainer | DELF • TEF Exam Coach | Career Mentor",
+      track: "Track C • Career & Mentorship",
+      linkedin: "https://www.linkedin.com/in/shivani-singh-vimal-438449267/",
+      image: "/images/shivani-singh-vimal.png",
       initials: "SV",
       accent: "#10B981",
     },
@@ -81,49 +83,47 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-3xl bg-gradient-to-r from-purple-50/80 via-white to-purple-50/50 dark:from-[#0E0B25] dark:via-[#090D22] dark:to-[#070B1A] border border-[#AD5CFF]/35 p-5 sm:p-7 shadow-lg shadow-purple-500/10 mb-8 sm:mb-12 overflow-hidden"
+        className="relative rounded-3xl bg-slate-900 dark:bg-[#070B1A] border border-[#AD5CFF]/40 p-5 sm:p-7 shadow-xl shadow-purple-500/10 mb-8 sm:mb-12 overflow-hidden text-white"
       >
-        <div className="absolute top-0 right-0 w-72 h-72 bg-[#AD5CFF]/10 blur-[80px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#AD5CFF]/15 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
-          <div className="flex items-center gap-4 sm:gap-5">
-            {/* Keynote Photo Portrait */}
-            <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden shadow-md shadow-purple-500/25 border-2 border-white dark:border-white/10 shrink-0 bg-slate-100">
+        <div className="relative z-10 flex flex-col md:flex-row items-center md:items-center justify-between gap-6 sm:gap-8">
+          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-5 sm:gap-6 text-center sm:text-left w-full md:w-auto">
+            {/* Keynote Photo Portrait - Big & Prominent */}
+            <div className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-2xl overflow-hidden shadow-2xl shadow-purple-500/30 border-2 border-white/20 shrink-0 bg-slate-800">
               <Image
                 src={keynoteSpeaker.image}
                 alt={keynoteSpeaker.name}
                 fill
-                sizes="(max-width: 768px) 64px, 80px"
+                sizes="(max-width: 768px) 112px, 128px"
                 className="object-cover object-top"
                 priority
               />
             </div>
 
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#8E35EA]/15 text-[#8E35EA] dark:text-[#AD5CFF] text-[10px] font-mono font-bold tracking-wider uppercase border border-[#8E35EA]/30">
-                  <HugeiconsIcon icon={Mic01Icon} className="h-3 w-3" />
-                  {keynoteSpeaker.badge}
-                </span>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8E35EA]/30 text-[#BE7BFF] text-[10px] font-mono font-bold tracking-wider uppercase border border-[#8E35EA]/50 mb-2">
+                <HugeiconsIcon icon={Mic01Icon} className="h-3 w-3" />
+                <span>{keynoteSpeaker.badge}</span>
               </div>
 
-              <h3 className="text-lg sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                 {keynoteSpeaker.name}
               </h3>
-              <p className="text-xs sm:text-sm font-semibold text-[#8E35EA] dark:text-[#BE7BFF] mt-0.5">
+              <p className="text-xs sm:text-sm font-semibold text-purple-200/90 mt-1 max-w-lg">
                 {keynoteSpeaker.role}
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-white/[0.06]">
+          <div className="w-full sm:w-auto flex justify-center md:justify-end shrink-0">
             <a
               href={keynoteSpeaker.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 shrink-0"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 shrink-0"
             >
-              <HugeiconsIcon icon={Linkedin01Icon} className="h-3.5 w-3.5" />
+              <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4" />
               <span>Connect</span>
             </a>
           </div>
@@ -139,7 +139,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           {technicalSpeakers.map((speaker, idx) => (
             <motion.div
               key={speaker.name}
@@ -147,58 +147,69 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.08 }}
-              className="rounded-2xl sm:rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 p-5 sm:p-6 flex flex-col justify-between shadow-sm transition-all group hover:shadow-md"
+              className="rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 overflow-hidden flex flex-col justify-between shadow-sm transition-all group hover:shadow-xl"
             >
               <div>
-                <div className="flex items-center justify-between mb-3.5">
-                  <div
-                    className="relative h-11 w-11 rounded-xl overflow-hidden flex items-center justify-center font-mono font-black text-sm text-white shadow-sm shrink-0 bg-slate-100 dark:bg-white/[0.05] border border-slate-200/80 dark:border-white/10"
-                    style={{ backgroundColor: speaker.image ? undefined : speaker.accent }}
-                  >
-                    {speaker.image ? (
+                {/* Big Feature Profile Image Container */}
+                <div className="relative h-48 sm:h-52 w-full bg-slate-900 overflow-hidden flex items-center justify-center">
+                  {speaker.image ? (
+                    <>
                       <Image
                         src={speaker.image}
                         alt={speaker.name}
                         fill
-                        sizes="44px"
-                        className="object-cover object-top"
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
-                    ) : (
-                      speaker.initials
-                    )}
-                  </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
+                    </>
+                  ) : (
+                    <div
+                      className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden"
+                      style={{
+                        background: `radial-gradient(circle at 50% 40%, ${speaker.accent}35 0%, rgba(10,14,30,0.95) 75%)`,
+                      }}
+                    >
+                      <div
+                        className="h-20 w-20 rounded-2xl flex items-center justify-center font-mono font-black text-2xl text-white shadow-xl border border-white/20"
+                        style={{ backgroundColor: speaker.accent }}
+                      >
+                        {speaker.initials}
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
+                    </div>
+                  )}
 
-                  <span className="text-[10px] font-mono font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.05] border border-slate-200/70 dark:border-white/10 px-2.5 py-1 rounded-lg">
-                    {speaker.track}
-                  </span>
+                  {/* Track Badge Floating Top Right */}
+                  <div className="absolute top-3 right-3 z-10">
+                    <span className="text-[10px] font-mono font-bold text-white bg-slate-950/70 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full shadow-sm">
+                      {speaker.track}
+                    </span>
+                  </div>
                 </div>
 
-                <h4 className="text-base sm:text-lg font-black text-slate-950 dark:text-white group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-1">
-                  {speaker.name}
-                </h4>
-                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 leading-snug">
-                  {speaker.role}
-                </p>
+                {/* Content Area with Slight Dark Faded Background */}
+                <div className="p-5 sm:p-6 bg-slate-50/50 dark:bg-white/[0.02]">
+                  <h4 className="text-lg font-black text-slate-950 dark:text-white group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-1">
+                    {speaker.name}
+                  </h4>
+                  <p className="text-xs font-semibold text-slate-600 dark:text-slate-400 leading-snug">
+                    {speaker.role}
+                  </p>
+                </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
+              {/* Bottom Connect Button */}
+              <div className="p-4 sm:p-5 pt-0 bg-slate-50/50 dark:bg-white/[0.02]">
                 <a
                   href={speaker.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A66C2] hover:text-[#084e96] dark:hover:text-sky-400 transition-colors"
+                  className="w-full py-2.5 px-4 rounded-xl bg-slate-100 dark:bg-white/[0.06] hover:bg-[#0A66C2] dark:hover:bg-[#0A66C2] text-slate-800 dark:text-white hover:text-white dark:hover:text-white border border-slate-200/80 dark:border-white/10 text-xs font-bold transition-all flex items-center justify-center gap-2 group/btn shadow-sm active:scale-95"
                 >
-                  <HugeiconsIcon icon={Linkedin01Icon} className="h-3.5 w-3.5" />
+                  <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4 text-[#0A66C2] group-hover/btn:text-white transition-colors" />
                   <span>Connect</span>
-                </a>
-                <a
-                  href={speaker.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="h-7 w-7 rounded-lg bg-slate-50 dark:bg-white/[0.04] hover:bg-[#0A66C2]/10 dark:hover:bg-[#0A66C2]/20 flex items-center justify-center text-slate-400 hover:text-[#0A66C2] transition-colors"
-                  aria-label={`Connect with ${speaker.name}`}
-                >
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 opacity-60 group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all" />
                 </a>
               </div>
             </motion.div>
