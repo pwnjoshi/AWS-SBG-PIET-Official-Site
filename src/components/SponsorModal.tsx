@@ -115,7 +115,7 @@ export default function SponsorModal({ isOpen, onClose }: SponsorModalProps) {
               </div>
               <div className="flex justify-between">
                 <span className="text-slate-500 dark:text-slate-400">Sent To:</span>
-                <span className="font-semibold text-[#8E35EA] dark:text-[#BE7BFF]">{EVENT_DETAILS.email}</span>
+                <span className="font-semibold text-[#8E35EA] dark:text-[#BE7BFF]">info@awssbgpiet.in</span>
               </div>
             </div>
 
