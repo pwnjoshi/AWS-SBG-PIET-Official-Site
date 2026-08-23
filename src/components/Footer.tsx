@@ -97,7 +97,7 @@ export default function Footer() {
               Organized by <span className="text-slate-900 dark:text-white font-semibold">AWS Student Builder Group at PIET</span> under the global AWS Student Builder Group & Cloud Club initiatives.
             </p>
             <p className="text-[11px] text-slate-500 mt-1">
-              Venue: 70 Milestone, G.T. Road, Pattikalyana, Samalkha, Panipat, Haryana – 132102.
+              Venue: Panipat Institute of Engineering & Technology, NH-44, Samalkha, Panipat, Haryana 132102.
             </p>
           </div>
         </div>

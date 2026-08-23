@@ -29,16 +29,7 @@ export default function SBGFlagshipBanner() {
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Column: Event Pitch */}
-          <div className="lg:col-span-8 flex flex-col gap-4">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-bold text-[#BE7BFF] bg-[#AD5CFF]/20 px-3 py-1 rounded-full border border-[#AD5CFF]/40 uppercase tracking-wider">
-                <HugeiconsIcon icon={SparklesIcon} className="h-3 w-3" />
-                FLAGSHIP SUMMIT 2026
-              </span>
-              <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/15 px-2.5 py-0.5 rounded-full border border-emerald-500/25">
-                Official In-Person Event
-              </span>
-            </div>
+          <div className="lg:col-span-8 flex flex-col gap-3">
 
             <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
               AWS Student Community Day Panipat 2026

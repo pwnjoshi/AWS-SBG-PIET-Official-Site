@@ -35,22 +35,22 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
   ];
 
   return (
-    <section id="speakers" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="speakers" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl mb-12"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           SPEAKERS & CFP
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Learn from practitioners, or step up to the stage
         </h2>
-        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           Hear directly from global AWS community leaders. Have an architecture pattern, AI project, or open-source tool to showcase? Call for Proposals is open.
         </p>
       </motion.div>
@@ -61,7 +61,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, staggerChildren: 0.08 }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10"
       >
         {speakerRoles.map((role, idx) => (
           <motion.div

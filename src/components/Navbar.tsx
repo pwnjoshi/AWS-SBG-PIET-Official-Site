@@ -42,8 +42,14 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
 
   const isSCDPage = pathname?.includes("/scd-panipat-2026");
 
+  interface NavItem {
+    name: string;
+    href: string;
+    highlight?: boolean;
+  }
+
   // Dynamic Navigation Links based on route
-  const navLinks = isSCDPage
+  const navLinks: NavItem[] = isSCDPage
     ? [
         { name: "Overview", href: "/scd-panipat-2026#overview" },
         { name: "Tracks", href: "/scd-panipat-2026#tracks" },
@@ -60,7 +66,6 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
         { name: "Projects", href: "/#projects" },
         { name: "Leadership", href: "/#team" },
         { name: "Community", href: "/#community" },
-        { name: "SCD Summit 2026", href: "/scd-panipat-2026", highlight: true },
       ];
 
   return (
@@ -142,7 +147,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
               {onOpenTickets ? (
                 <button
                   onClick={onOpenTickets}
-                  className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#AD5CFF] hover:bg-[#BE7BFF] rounded-full transition-all flex items-center gap-1.5 shadow-sm shadow-[#AD5CFF]/30 cursor-pointer"
+                  className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
                 >
                   <span>Get Event Pass</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -152,7 +157,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
                   href={EVENT_DETAILS.commudleUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#AD5CFF] hover:bg-[#BE7BFF] rounded-full transition-all flex items-center gap-1.5 shadow-sm shadow-[#AD5CFF]/30 cursor-pointer"
+                  className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
                 >
                   <span>Register on Commudle</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -162,7 +167,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
           ) : (
             <Link
               href="/scd-panipat-2026"
-              className="group px-4 py-1.5 text-xs font-bold text-white bg-[#AD5CFF] hover:bg-[#BE7BFF] rounded-full transition-all flex items-center gap-1.5 shadow-sm shadow-[#AD5CFF]/30 cursor-pointer"
+              className="group px-4 py-1.5 text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
             >
               <span>Explore SCD Summit 2026</span>
               <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />

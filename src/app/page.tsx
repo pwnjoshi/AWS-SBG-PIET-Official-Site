@@ -7,6 +7,7 @@ import ParticleNetworkCanvas from "@/components/ParticleNetworkCanvas";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
+import MobileBottomDock from "@/components/MobileBottomDock";
 
 // SBG Homepage Specific Components
 import SBGHero from "@/components/sbg/SBGHero";
@@ -57,6 +58,9 @@ export default function SBGHomePage() {
 
           {/* Sticky Bottom Right Actions: Scroll To Top & Brevo Live Chat */}
           <FloatingActions />
+
+          {/* Native Mobile Bottom Navigation Dock */}
+          <MobileBottomDock />
 
           {/* Global Footer */}
           <Footer />

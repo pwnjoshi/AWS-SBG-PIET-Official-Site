@@ -16,22 +16,22 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto z-10">
+    <section id="faq" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-4xl mx-auto z-10">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl mb-12"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           FAQ
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Frequently Asked Questions
         </h2>
-        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           Information regarding tickets, student eligibility, hands-on lab prerequisites, and certificates.
         </p>
       </motion.div>

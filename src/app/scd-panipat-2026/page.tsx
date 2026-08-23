@@ -18,6 +18,7 @@ import FAQSection from "@/components/FAQSection";
 import CommunitySocials from "@/components/CommunitySocials";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
+import MobileBottomDock from "@/components/MobileBottomDock";
 import CFPModal from "@/components/CFPModal";
 import SponsorModal from "@/components/SponsorModal";
 import TicketModal from "@/components/TicketModal";
@@ -87,6 +88,9 @@ export default function SCDPanipatPage() {
 
           {/* Sticky Bottom Right Actions: Scroll To Top & Brevo Live Chat */}
           <FloatingActions />
+
+          {/* Native Mobile Bottom Navigation Dock */}
+          <MobileBottomDock onOpenTickets={() => handleOpenTickets("builder-pass")} />
 
           {/* Global Footer */}
           <Footer />

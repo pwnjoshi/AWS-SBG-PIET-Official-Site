@@ -83,8 +83,8 @@ export default function FloatingActions() {
   ];
 
   return (
-    <aside aria-label="Floating Actions" className="fixed bottom-6 right-5 sm:right-7 z-50 flex flex-col items-end gap-3 pointer-events-none">
-      {/* Brevo Quick Support Modal / Drawer */}
+    <aside aria-label="Floating Actions" className="hidden lg:flex fixed bottom-6 right-7 z-50 flex-col items-end gap-3 pointer-events-none">
+      {/* MailerLite Quick Support Modal / Drawer */}
       <AnimatePresence>
         {chatOpen && (
           <motion.div
@@ -99,8 +99,8 @@ export default function FloatingActions() {
               <div className="flex items-center gap-2.5">
                 <div className="relative h-9 w-9 rounded-2xl bg-gradient-to-tr from-[#8E35EA] to-[#AD5CFF] text-white flex items-center justify-center shadow-md">
                   <HugeiconsIcon icon={Chat01Icon} className="h-5 w-5" />
-                  {/* Live Pulse Dot */}
-                  <span className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-emerald-500 border-2 border-white dark:border-[#080D1E] rounded-full animate-pulse" />
+                  {/* Static Online Dot */}
+                  <span className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-emerald-500 border-2 border-white dark:border-[#080D1E] rounded-full" />
                 </div>
                 <div>
                   <h4 className="text-sm font-extrabold text-slate-950 dark:text-white leading-tight">
@@ -108,7 +108,7 @@ export default function FloatingActions() {
                   </h4>
                   <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 inline-block" />
-                    Online • Brevo Connected
+                    Online • MailerLite Connected
                   </span>
                 </div>
               </div>
@@ -205,25 +205,17 @@ export default function FloatingActions() {
 
       {/* Button Group (Live Chat + Scroll to Top) */}
       <div className="flex items-center gap-2.5 pointer-events-auto">
-        {/* Brevo Live Chat Launcher Button */}
+        {/* Live Chat Launcher Button — clean, minimal, no hover scale */}
         <motion.button
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.94 }}
+          whileTap={{ scale: 0.93 }}
           onClick={() => setChatOpen(!chatOpen)}
-          className="relative group p-3.5 sm:px-4 sm:py-3 rounded-full bg-slate-950 dark:bg-[#090E1E] text-white border-2 border-[#AD5CFF] shadow-xl shadow-purple-500/25 flex items-center gap-2 transition-all cursor-pointer overflow-hidden"
-          aria-label="Open Brevo Live Chat Support"
-          title="Open Brevo Live Chat Support"
+          className="relative p-3.5 rounded-full bg-slate-950 dark:bg-[#090E1E] text-white border border-[#AD5CFF]/60 shadow-lg flex items-center justify-center transition-all cursor-pointer"
+          aria-label="Open Live Chat Support"
+          title="Live Chat Support"
         >
-          {/* Live Online Ping Indicator */}
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-          </span>
-
-          <HugeiconsIcon icon={Chat01Icon} className="h-4 w-4 text-[#BE7BFF]" />
-          <span className="hidden sm:inline-block text-xs font-bold font-mono tracking-wide">
-            Support
-          </span>
+          {/* Static green online dot — no blink */}
+          <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full bg-emerald-500 border-2 border-slate-950 dark:border-[#090E1E]" />
+          <HugeiconsIcon icon={Chat01Icon} className="h-5 w-5 text-[#BE7BFF]" />
         </motion.button>
 
         {/* Scroll-To-Top Button */}

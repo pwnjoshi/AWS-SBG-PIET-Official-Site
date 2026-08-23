@@ -96,28 +96,28 @@ export default function SBGAbout() {
   ];
 
   return (
-    <section id="about" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="about" className="relative py-16 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-3xl mb-14"
+        className="max-w-3xl mb-8 sm:mb-14"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           ABOUT THE CHAPTER
         </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Pioneering hands-on cloud culture at PIET Panipat
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
           The <strong>AWS Student Builder Group (SBG) at Panipat Institute of Engineering & Technology</strong> is an autonomous, student-led technical chapter recognized under the global AWS Student Builder Group & Cloud Club initiatives. We empower 500+ student developers across Haryana and NCR with real production cloud skills.
         </p>
       </motion.div>
 
       {/* Bento Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
         {pillars.map((item, index) => (
           <motion.div
             key={item.title}
@@ -126,7 +126,7 @@ export default function SBGAbout() {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
             whileHover={{ y: -6 }}
-            className={`group relative rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/60 overflow-hidden`}
+            className={`group relative rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-4 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/60 overflow-hidden`}
           >
             {/* Background Glow */}
             <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${item.glowColor}`} />

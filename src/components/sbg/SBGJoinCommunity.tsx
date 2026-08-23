@@ -17,19 +17,27 @@ export default function SBGJoinCommunity() {
   const channels = [
     {
       name: "Commudle Official Chapter",
-      handle: "aws-student-builder-group-piet",
+      handle: "Indian dev community",
       desc: "Join our official chapter to RSVP for all workshops, buildathons, and summits.",
       href: EVENT_DETAILS.commudleUrl,
       icon: Globe02Icon,
       accent: "#AD5CFF",
     },
     {
-      name: "WhatsApp Community Group",
-      handle: "AWS SBG PIET Community",
+      name: "Join WhatsApp",
+      handle: "Get quick updates",
       desc: "Instant announcements, daily cloud tips, study groups, and direct discussions.",
-      href: "https://chat.whatsapp.com",
+      href: EVENT_DETAILS.whatsappUrl,
       icon: UserGroupIcon,
       accent: "#25D366",
+    },
+    {
+      name: "Meetup Events",
+      handle: "Register for events",
+      desc: "Regional tech meetups, hackathons, and cross-college developer gatherings.",
+      href: EVENT_DETAILS.meetupUrl,
+      icon: SparklesIcon,
+      accent: "#F59E0B",
     },
     {
       name: "LinkedIn Page",
@@ -54,14 +62,6 @@ export default function SBGJoinCommunity() {
       href: `mailto:${EVENT_DETAILS.email}`,
       icon: Mail01Icon,
       accent: "#8E35EA",
-    },
-    {
-      name: "Student Meetup Circle",
-      handle: "AWS Panipat Community",
-      desc: "Regional tech meetups, hackathons, and cross-college developer gatherings.",
-      href: "https://meetup.com",
-      icon: SparklesIcon,
-      accent: "#F59E0B",
     },
   ];
 

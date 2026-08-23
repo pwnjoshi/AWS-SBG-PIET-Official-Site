@@ -93,3 +93,44 @@ body {
 .glow-purple-subtle {
   box-shadow: 0 0 20px rgba(173, 92, 255, 0.2);
 }
+
+/* ============================================================
+   Lightning Spinning Border for Hero Event Pill
+   ============================================================ */
+@keyframes border-spin {
+  0%   { --border-angle: 0deg; }
+  100% { --border-angle: 360deg; }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.pill-lightning {
+  border: 1.5px solid transparent;
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+  background-image:
+    /* pill background fill */
+    linear-gradient(var(--pill-bg, rgba(255,255,255,0.92)), var(--pill-bg, rgba(255,255,255,0.92))),
+    /* spinning conic lightning */
+    conic-gradient(
+      from var(--border-angle),
+      #FF9900 0deg,
+      #FF9900 5deg,
+      #8E35EA 60deg,
+      #AD5CFF 120deg,
+      #ffffff18 180deg,
+      #8E35EA 240deg,
+      #FF9900 300deg,
+      #FF9900 355deg,
+      #FF9900 360deg
+    );
+  animation: border-spin 3s linear infinite;
+}
+
+.dark .pill-lightning {
+  --pill-bg: rgba(8, 13, 30, 0.92);
+}

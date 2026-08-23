@@ -6,12 +6,14 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   ArrowUpRight01Icon,
-  ArrowRight01Icon,
-  ArrowLeft01Icon,
   VolumeHighIcon,
   VolumeMute01Icon,
+  Calendar03Icon,
+  Location01Icon,
+  Ticket01Icon,
 } from "@hugeicons/core-free-icons";
-import { STATS, TRACKS, EVENT_DETAILS } from "@/lib/data";
+import { TRACKS } from "@/lib/data";
+import { useSoundtrack } from "@/context/SoundtrackContext";
 
 interface HeroProps {
   onOpenCFP: () => void;
@@ -20,9 +22,7 @@ interface HeroProps {
 
 export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
-  const [oscillatorNodes, setOscillatorNodes] = useState<OscillatorNode[]>([]);
+  const { isPlaying: isPlayingAudio, toggleSoundtrack } = useSoundtrack();
 
   // Parallax scroll hooks
   const { scrollYProgress } = useScroll({
@@ -66,70 +66,16 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setActiveSlide((prev) => (prev + 1) % TRACKS.length);
-    }, 4500);
-    return () => clearInterval(slideTimer);
-  }, []);
 
-  const toggleAmbientSound = () => {
-    if (isPlayingAudio) {
-      oscillatorNodes.forEach((node) => {
-        try {
-          node.stop();
-          node.disconnect();
-        } catch {
-          // ignore
-        }
-      });
-      setOscillatorNodes([]);
-      setIsPlayingAudio(false);
-    } else {
-      try {
-        const AudioCtx =
-          window.AudioContext ||
-          (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        const ctx = new AudioCtx();
-
-        const osc1 = ctx.createOscillator();
-        const osc2 = ctx.createOscillator();
-        const gain = ctx.createGain();
-
-        osc1.type = "sine";
-        osc1.frequency.setValueAtTime(146.83, ctx.currentTime);
-
-        osc2.type = "triangle";
-        osc2.frequency.setValueAtTime(220.0, ctx.currentTime);
-
-        gain.gain.setValueAtTime(0.025, ctx.currentTime);
-
-        osc1.connect(gain);
-        osc2.connect(gain);
-        gain.connect(ctx.destination);
-
-        osc1.start();
-        osc2.start();
-
-        setOscillatorNodes([osc1, osc2]);
-        setIsPlayingAudio(true);
-      } catch (err) {
-        console.error("Audio synth error:", err);
-      }
-    }
-  };
-
-  const currentTrack = TRACKS[activeSlide];
 
   return (
     <section
       id="overview"
       ref={containerRef}
-      className="relative min-h-[92vh] w-full flex flex-col justify-between pt-28 pb-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-[92vh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-8 sm:pb-10 px-3 sm:px-6 lg:px-8 overflow-hidden"
     >
-      {/* Full-Height PIET Campus Video Background extending behind header with Fallback Poster */}
+      {/* PIET Campus Video Background */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
-        {/* Campus Video Background with Parallax and Fallback Poster Image */}
         <motion.div
           style={{ y: campusY, scale: campusScale }}
           className="absolute inset-0 w-full h-full transform will-change-transform opacity-30 sm:opacity-40 dark:opacity-22 dark:sm:opacity-28 filter grayscale contrast-105 brightness-95 dark:contrast-125 dark:mix-blend-luminosity transition-opacity duration-500 overflow-hidden"
@@ -143,7 +89,6 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
             className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
           >
             <source src="/videos/piet.mp4" type="video/mp4" />
-            {/* Fallback image if video is not supported */}
             <img
               src="/images/piet-campus.png"
               alt="PIET Panipat Campus"
@@ -152,210 +97,241 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           </video>
         </motion.div>
 
-        {/* Seamless atmospheric masks for optimal typography and header transparency */}
+        {/* Atmospheric overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#F8FAFC]/75 via-[#F8FAFC]/50 to-[#F8FAFC] dark:from-[#05070E]/80 dark:via-[#05070E]/70 dark:to-[#05070E]" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#F8FAFC] dark:from-[#05070E] to-transparent" />
-
-        {/* Subtle focal glow at campus horizon in #AD5CFF */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[700px] h-[200px] bg-[#AD5CFF]/[0.06] dark:bg-[#AD5CFF]/[0.07] blur-[120px] rounded-full" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#F8FAFC] dark:from-[#05070E] to-transparent" />
       </div>
 
-      {/* Monumental Depth Background Typography with Parallax Drift */}
+      {/* Monumental Background Typography */}
       <motion.div
         style={{ y: panipatY }}
         className="absolute inset-x-0 top-16 sm:top-20 flex justify-center pointer-events-none select-none z-0 will-change-transform"
       >
-        <span className="text-[18vw] font-black tracking-widest text-slate-900/[0.04] dark:text-white/[0.03] leading-none uppercase">
+        <span className="text-[18vw] font-black tracking-widest text-slate-900/[0.03] dark:text-white/[0.02] leading-none uppercase">
           PANIPAT
         </span>
       </motion.div>
 
-      {/* Hero Content with Smooth Entrance and Scroll Parallax Fade */}
+      {/* Center Hero Content */}
       <motion.div
         style={{ opacity: heroOpacity, y: heroContentY }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center mt-4 sm:mt-8 will-change-transform"
+        className="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center mt-2 sm:mt-6 will-change-transform"
       >
-        {/* Animated Border Lightning Shimmer Event Pill Badge */}
+        {/* Animated Lightning Border Event Pill */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative inline-flex p-[1.5px] rounded-full overflow-hidden shadow-md shadow-[#AD5CFF]/15 group mb-5 sm:mb-6 cursor-default"
+          className="pill-lightning inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs font-mono text-slate-700 dark:text-slate-300 shadow-sm mb-4 sm:mb-5 cursor-default"
         >
-          {/* Rotating Conic Electric Violet Lightning Beam */}
-          <div className="absolute -inset-[150%] animate-[spin_3.5s_linear_infinite] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0%,transparent_70%,#AD5CFF_85%,#FFFFFF_94%,#BE7BFF_100%)] opacity-90" />
-
-          {/* Inner Pill Content */}
-          <div className="relative inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/95 dark:bg-[#080D1E]/95 backdrop-blur-xl text-[10px] sm:text-xs font-mono text-slate-700 dark:text-slate-300">
-            <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold">AWS SCD 2026</span>
-            <span className="text-slate-400 dark:text-slate-600">/</span>
-            <span>PIET Panipat</span>
-            <span className="text-slate-400 dark:text-slate-600">/</span>
-            <span className="text-slate-500 dark:text-slate-400">11 Sept</span>
-          </div>
+          <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold tracking-tight">AWS SCD 2026</span>
+          <span className="font-semibold text-slate-800 dark:text-slate-200">PIET Panipat</span>
         </motion.div>
 
+        {/* Main Headline — max 2 lines on all screens */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-3xl sm:text-5xl md:text-7xl font-black tracking-tight text-slate-950 dark:text-white max-w-4xl leading-[1.15] mb-4 sm:mb-6 drop-shadow-sm px-1"
+          className="text-[28px] sm:text-5xl md:text-6xl font-black tracking-tight text-slate-950 dark:text-white max-w-3xl leading-[1.1] mb-3 sm:mb-5 px-1"
         >
-          Powering the Next Generation of{" "}
-          <span className="text-[#8E35EA] dark:text-[#AD5CFF]">
-            Cloud Innovators
-          </span>
+          Haryana&apos;s First{" "}
+          <span className="text-[#8E35EA] dark:text-[#AD5CFF]">AWS Student Community Day</span>
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-6 sm:mb-8 px-2"
+          className="text-xs sm:text-base md:text-lg text-slate-600 dark:text-slate-300 max-w-2xl font-normal leading-relaxed mb-6 sm:mb-8 px-2"
         >
-          Haryana’s first-ever AWS Student Community Day organized by AWS Student Builder Group at PIET. 500+ builders, 6 technical tracks, hands-on AWS labs, KIRO Buildathon, and direct mentorship from AWS Heroes and community leaders.
+          Haryana&apos;s first-ever AWS Student Community Day organized by AWS Student Builder Group at PIET. 500+ builders, 6 technical tracks, hands-on AWS labs, KIRO Buildathon, and direct mentorship from AWS Heroes.
         </motion.p>
 
-        {/* Action Buttons: Full-width on mobile */}
+        {/* Action Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-8 sm:mb-10 px-2"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto mb-6 sm:mb-8 px-2"
         >
           <button
             onClick={onOpenTickets}
-            className="w-full sm:w-auto group px-6 py-3.5 rounded-2xl sm:rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#AD5CFF]/25 active:scale-[0.98] cursor-pointer"
+            className="w-full sm:w-auto group px-7 py-3 rounded-full bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] text-white font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-sm active:scale-[0.97] cursor-pointer"
           >
-            <span>Register on Commudle</span>
+            <span>Register Now</span>
             <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </button>
 
           <a
             href="#agenda"
-            className="w-full sm:w-auto px-5 py-3.5 rounded-2xl sm:rounded-full bg-white dark:bg-white/[0.06] hover:bg-slate-100 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-medium text-sm transition-all shadow-sm active:scale-[0.98] flex items-center justify-center cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3 rounded-full bg-white dark:bg-white/[0.04] hover:bg-slate-100 dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/10 text-slate-800 dark:text-white font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-[0.97] flex items-center justify-center gap-1.5 cursor-pointer"
           >
-            View Schedule
+            <HugeiconsIcon icon={Calendar03Icon} className="h-4 w-4 text-[#8E35EA] dark:text-[#AD5CFF]" />
+            <span>View Schedule</span>
           </a>
         </motion.div>
 
-        {/* Minimalist Countdown */}
+        {/* Mobile Countdown + Chips */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-1.5 sm:gap-3 mb-6"
+          className="lg:hidden flex flex-col items-center gap-3 mb-2 select-none w-full"
         >
-          {[
-            { val: timeLeft.days, label: "Days" },
-            { val: timeLeft.hours, label: "Hours" },
-            { val: timeLeft.minutes, label: "Mins" },
-            { val: timeLeft.seconds, label: "Secs" },
-          ].map((unit, idx) => (
-            <div key={unit.label} className="flex items-center gap-1.5 sm:gap-3">
-              <div className="flex flex-col items-center justify-center min-w-[50px] sm:min-w-[64px] h-[52px] sm:h-[60px] rounded-2xl sm:rounded-xl bg-white/90 dark:bg-[#080D1E]/80 border border-slate-200 dark:border-white/[0.08] backdrop-blur-md shadow-sm">
-                <span className="text-base sm:text-xl font-bold text-slate-900 dark:text-white font-mono">
-                  {String(unit.val).padStart(2, "0")}
-                </span>
-                <span className="text-[8px] sm:text-[9px] font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                  {unit.label}
-                </span>
-              </div>
-              {idx < 3 && <span className="text-slate-400 dark:text-slate-600 font-mono text-xs sm:text-sm">:</span>}
-            </div>
-          ))}
-        </motion.div>
-      </motion.div>
-
-      {/* Bottom Hero Bar: Stats & Mini Track Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-20 max-w-6xl mx-auto w-full mt-auto pt-8 border-t border-slate-200 dark:border-white/[0.08]"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          {/* Stats */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {STATS.map((stat) => (
-              <div key={stat.label} className="flex flex-col">
-                <span className="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white tracking-tight">
-                  {stat.value}
-                </span>
-                <span className="text-xs font-semibold text-slate-700 dark:text-slate-300 mt-0.5">
-                  {stat.label}
-                </span>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
-                  {stat.desc}
-                </span>
+          {/* Countdown row */}
+          <div className="flex items-center justify-center gap-1.5">
+            {[
+              { val: timeLeft.days, label: "Days" },
+              { val: timeLeft.hours, label: "Hrs" },
+              { val: timeLeft.minutes, label: "Min" },
+              { val: timeLeft.seconds, label: "Sec" },
+            ].map((unit, idx) => (
+              <div key={unit.label} className="flex items-center gap-1.5">
+                <div className="flex flex-col items-center justify-center w-[50px] h-[50px] rounded-2xl bg-white/95 dark:bg-[#080D1E]/90 border border-slate-200 dark:border-white/[0.08] shadow-sm">
+                  <span className="text-sm font-black text-slate-900 dark:text-white font-mono leading-none">
+                    {String(unit.val).padStart(2, "0")}
+                  </span>
+                  <span className="text-[7px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-0.5">
+                    {unit.label}
+                  </span>
+                </div>
+                {idx < 3 && <span className="text-slate-300 dark:text-slate-600 font-mono text-sm font-bold leading-none mb-3">:</span>}
               </div>
             ))}
           </div>
 
-          {/* Mini Track Widget */}
-          <div className="lg:col-span-4 flex justify-end">
-            <div className="w-full max-w-sm rounded-xl bg-white/90 dark:bg-[#090E1E]/90 backdrop-blur-xl border border-slate-200 dark:border-white/10 p-3.5 shadow-xl shadow-slate-200/50 dark:shadow-black/60">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Track Preview
-                </span>
+          {/* Info chips */}
+          <div className="flex items-center justify-center gap-2">
+            <span className="flex items-center gap-1 bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 px-3 py-1 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/[0.06]">
+              <HugeiconsIcon icon={Location01Icon} className="h-3 w-3 text-[#8E35EA] dark:text-[#AD5CFF]" />
+              PIET Panipat
+            </span>
+            <span className="flex items-center gap-1 bg-[#8E35EA]/10 dark:bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] px-3 py-1 rounded-full text-[11px] font-bold border border-[#8E35EA]/20 dark:border-[#AD5CFF]/30">
+              <HugeiconsIcon icon={Ticket01Icon} className="h-3 w-3" />
+              From ₹399
+            </span>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom Hero Bar (Visible ONLY on Desktop/PC screens lg+) */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="hidden lg:block relative z-20 max-w-6xl mx-auto w-full mt-auto pt-8 border-t border-slate-200 dark:border-white/[0.08]"
+      >
+        <div className="grid grid-cols-12 gap-8 items-center">
+          {/* Left: 3 Monumental Summit Metrics */}
+          <div className="col-span-7 grid grid-cols-3 gap-6">
+            <div className="flex flex-col">
+              <span className="text-3xl xl:text-4xl font-black text-slate-950 dark:text-white tracking-tight">
+                500+
+              </span>
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">
+                Builders & Students
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                Regional SBG Community
+              </span>
+            </div>
+
+            <div className="flex flex-col border-x border-slate-200/80 dark:border-white/[0.08] px-6">
+              <span className="text-3xl xl:text-4xl font-black text-[#8E35EA] dark:text-[#AD5CFF] tracking-tight">
+                6 Tracks
+              </span>
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">
+                Cloud Domains
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                GenAI, DevOps, Labs
+              </span>
+            </div>
+
+            <div className="flex flex-col">
+              <span className="text-3xl xl:text-4xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight">
+                100%
+              </span>
+              <span className="text-sm font-bold text-slate-800 dark:text-slate-200 mt-0.5">
+                Hands-on Focus
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+                Live Labs & Buildathon
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Creative Live Summit Access & Countdown Glass HUD Card */}
+          <div className="col-span-5">
+            <div className="rounded-3xl bg-white/95 dark:bg-[#090E1E]/95 border border-slate-200/90 dark:border-white/10 p-5 shadow-sm">
+              {/* HUD Header */}
+              <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100 dark:border-white/[0.06]">
                 <div className="flex items-center gap-2">
-                  <button
-                    onClick={toggleAmbientSound}
-                    className="p-1 rounded text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
-                    title={isPlayingAudio ? "Mute Ambiance" : "Play Ambiance"}
-                  >
-                    {isPlayingAudio ? (
-                      <HugeiconsIcon icon={VolumeHighIcon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF]" />
-                    ) : (
-                      <HugeiconsIcon icon={VolumeMute01Icon} className="h-3.5 w-3.5" />
-                    )}
-                  </button>
-                  <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">
-                    {currentTrack.number}/06
+                  <span className="h-2 w-2 rounded-full bg-[#8E35EA] dark:bg-[#AD5CFF]" />
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                    SUMMIT COUNTDOWN • 11 SEPT 2026
                   </span>
                 </div>
-              </div>
 
-              <div className="rounded-lg bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] p-3">
-                <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-bold text-slate-900 dark:text-white">
-                    {currentTrack.title}
-                  </span>
-                </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
-                  {currentTrack.tagline}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between mt-2.5 pt-2 border-t border-slate-200 dark:border-white/[0.06]">
-                <a
-                  href="#tracks"
-                  className="text-[11px] font-medium text-[#8E35EA] dark:text-[#AD5CFF] hover:underline flex items-center gap-1"
+                <button
+                  onClick={toggleSoundtrack}
+                  className="p-1.5 rounded-lg text-slate-500 hover:text-[#8E35EA] dark:hover:text-[#AD5CFF] bg-slate-100 dark:bg-white/[0.04] transition-colors cursor-pointer flex items-center gap-1 text-[10px] font-mono"
+                  title={isPlayingAudio ? "Mute Background Ambiance" : "Play Background Indian Raag Ambiance"}
                 >
-                  View All Tracks <HugeiconsIcon icon={ArrowRight01Icon} className="h-3 w-3" />
-                </a>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() =>
-                      setActiveSlide((prev) => (prev === 0 ? TRACKS.length - 1 : prev - 1))
-                    }
-                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer"
+                  {isPlayingAudio ? (
+                    <>
+                      <HugeiconsIcon icon={VolumeHighIcon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF]" />
+                      <span className="text-[#8E35EA] dark:text-[#AD5CFF]">Audio On</span>
+                    </>
+                  ) : (
+                    <>
+                      <HugeiconsIcon icon={VolumeMute01Icon} className="h-3.5 w-3.5" />
+                      <span>Ambiance</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Desktop Live Countdown Digits */}
+              <div className="grid grid-cols-4 gap-2 mb-3 text-center">
+                {[
+                  { val: timeLeft.days, label: "Days" },
+                  { val: timeLeft.hours, label: "Hours" },
+                  { val: timeLeft.minutes, label: "Mins" },
+                  { val: timeLeft.seconds, label: "Secs" },
+                ].map((unit) => (
+                  <div
+                    key={unit.label}
+                    className="p-2 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06]"
                   >
-                    <HugeiconsIcon icon={ArrowLeft01Icon} className="h-3 w-3" />
-                  </button>
-                  <button
-                    onClick={() =>
-                      setActiveSlide((prev) => (prev + 1) % TRACKS.length)
-                    }
-                    className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer"
-                  >
-                    <HugeiconsIcon icon={ArrowRight01Icon} className="h-3 w-3" />
-                  </button>
-                </div>
+                    <span className="text-lg font-black font-mono text-slate-900 dark:text-white block leading-none">
+                      {String(unit.val).padStart(2, "0")}
+                    </span>
+                    <span className="text-[8px] font-mono font-bold uppercase text-slate-400 dark:text-slate-500 mt-1 block">
+                      {unit.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Venue & Pass Quick Info Chip */}
+              <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-white/[0.06] text-[11px] text-slate-600 dark:text-slate-400">
+                <span className="flex items-center gap-1 font-semibold">
+                  <HugeiconsIcon icon={Location01Icon} className="h-3 w-3 text-[#8E35EA] dark:text-[#AD5CFF]" />
+                  PIET Panipat (Samalkha)
+                </span>
+                <button
+                  onClick={onOpenTickets}
+                  className="font-bold text-[#8E35EA] dark:text-[#BE7BFF] hover:underline cursor-pointer flex items-center gap-0.5"
+                >
+                  <span>Passes from ₹399</span>
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-2.5 w-2.5" />
+                </button>
               </div>
             </div>
           </div>

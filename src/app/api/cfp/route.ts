@@ -12,9 +12,10 @@ export async function POST(req: Request) {
       );
     }
 
+    const mailerliteApiKey = process.env.MAILERLITE_API_KEY;
     const brevoApiKey = process.env.BREVO_API_KEY;
-    const receiverEmail = process.env.BREVO_RECEIVER_EMAIL || "aws-sbg@piet.co.in";
-    const senderEmail = process.env.BREVO_SENDER_EMAIL || "aws-sbg@piet.co.in";
+    const receiverEmail = process.env.CFP_RECEIVER_EMAIL || process.env.BREVO_RECEIVER_EMAIL || "aws-sbg@piet.co.in";
+    const senderEmail = process.env.CFP_SENDER_EMAIL || process.env.BREVO_SENDER_EMAIL || "aws-sbg@piet.co.in";
     const senderName = "AWS SBG PIET CFP Portal";
 
     const cfpDetailsHtml = `
@@ -57,6 +58,37 @@ export async function POST(req: Request) {
       </div>
     `;
 
+    // 1. MailerLite Integration: Subscribe speaker lead to MailerLite
+    if (mailerliteApiKey) {
+      try {
+        const mlResponse = await fetch("https://connect.mailerlite.com/api/subscribers", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: `Bearer ${mailerliteApiKey}`,
+          },
+          body: JSON.stringify({
+            email,
+            fields: {
+              name,
+              company: roleCompany || "",
+              notes: `[CFP Proposal] Track: ${track || "General"} | Title: ${title}`,
+            },
+            status: "active",
+          }),
+        });
+
+        if (!mlResponse.ok) {
+          const mlError = await mlResponse.json().catch(() => ({}));
+          console.error("MailerLite CFP Error:", mlError);
+        }
+      } catch (err) {
+        console.error("MailerLite CFP dispatch failed:", err);
+      }
+    }
+
+    // 2. Brevo Email Integration fallback
     if (brevoApiKey) {
       const response = await fetch("https://api.brevo.com/v3/smtp/email", {
         method: "POST",
@@ -78,8 +110,10 @@ export async function POST(req: Request) {
         const errorData = await response.json().catch(() => ({}));
         console.error("Brevo CFP Error:", errorData);
       }
-    } else {
-      console.log("No BREVO_API_KEY configured. CFP Proposal logged:", {
+    }
+
+    if (!mailerliteApiKey && !brevoApiKey) {
+      console.log("No MAILERLITE_API_KEY or BREVO_API_KEY configured. CFP Proposal logged:", {
         name,
         email,
         roleCompany,

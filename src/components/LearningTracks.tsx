@@ -38,36 +38,34 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
         </p>
       </motion.div>
 
-      {/* Track Selector Tabs */}
+      {/* Track Selector Tabs - Mobile horizontal scrollable pill bar */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 mb-8"
+        className="flex sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-2 overflow-x-auto scrollbar-none pb-2 mb-6 -mx-4 px-4 sm:mx-0 sm:px-0"
       >
         {TRACKS.map((track) => {
           const isSelected = track.id === selectedTrackId;
 
           return (
-            <motion.button
+            <button
               key={track.id}
               onClick={() => setSelectedTrackId(track.id)}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className={`rounded-xl p-3.5 text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer ${
+              className={`min-w-[130px] sm:min-w-0 rounded-2xl p-3 sm:p-3.5 text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer shrink-0 sm:shrink ${
                 isSelected
-                  ? "bg-purple-50/80 dark:bg-[#12102A] border-[#AD5CFF] shadow-lg shadow-purple-500/10 dark:shadow-[#AD5CFF]/15"
-                  : "bg-white dark:bg-[#090E1E] border-slate-200 dark:border-white/[0.06] hover:border-slate-300 dark:hover:border-white/15 shadow-sm"
+                  ? "bg-[#AD5CFF] text-white border-[#AD5CFF] shadow-lg shadow-[#AD5CFF]/20"
+                  : "bg-white dark:bg-[#090E1E] border-slate-200 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/15 text-slate-900 dark:text-white"
               }`}
             >
-              <span className="font-mono text-xs font-bold text-[#8E35EA] dark:text-[#AD5CFF] mb-2 block">
-                {track.number}
+              <span className={`font-mono text-[10px] sm:text-xs font-bold mb-1 block ${isSelected ? "text-white/90" : "text-[#8E35EA] dark:text-[#AD5CFF]"}`}>
+                TRACK {track.number}
               </span>
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-snug">
+              <h4 className="text-xs font-bold leading-snug line-clamp-1">
                 {track.title}
               </h4>
-            </motion.button>
+            </button>
           );
         })}
       </motion.div>
@@ -78,7 +76,7 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200 dark:border-white/10 p-6 sm:p-8 shadow-sm"
+        className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200 dark:border-white/10 p-5 sm:p-8 shadow-sm"
       >
         <AnimatePresence mode="wait">
           <motion.div

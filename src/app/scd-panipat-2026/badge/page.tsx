@@ -8,6 +8,7 @@ import ParticleNetworkCanvas from "@/components/ParticleNetworkCanvas";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
+import MobileBottomDock from "@/components/MobileBottomDock";
 import BadgeGenerator from "@/components/BadgeGenerator";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { ArrowLeft01Icon, ArrowUpRight01Icon } from "@hugeicons/core-free-icons";
@@ -50,6 +51,9 @@ export default function BadgeStudioPage() {
 
           {/* Sticky Bottom Right Actions: Scroll To Top & Brevo Live Chat */}
           <FloatingActions />
+
+          {/* Native Mobile Bottom Navigation Dock */}
+          <MobileBottomDock />
 
           <Footer />
         </div>

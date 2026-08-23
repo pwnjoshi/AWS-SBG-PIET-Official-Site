@@ -70,11 +70,14 @@ export default function CFPModal({ isOpen, onClose }: CFPModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-150">
-      <div className="relative w-full max-w-xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-[#080D1E] border border-slate-200 dark:border-white/15 p-6 sm:p-8 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-xl max-h-[92vh] sm:max-h-[90vh] flex flex-col rounded-t-[32px] sm:rounded-3xl bg-white dark:bg-[#080D1E] border-t sm:border border-slate-200 dark:border-white/15 p-5 sm:p-8 shadow-2xl overflow-y-auto animate-in slide-in-from-bottom-6 sm:slide-in-from-bottom-0 duration-200">
+        {/* Mobile Pull Handle Indicator */}
+        <div className="w-12 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 mx-auto -mt-1 mb-3 sm:hidden shrink-0" />
+
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.12] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-full bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.12] text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
         >
           <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" />
         </button>

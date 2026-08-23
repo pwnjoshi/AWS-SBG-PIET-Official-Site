@@ -64,26 +64,26 @@ export default function SBGDomains() {
   ];
 
   return (
-    <section id="domains" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="domains" className="relative py-16 sm:py-20 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6 }}
-        className="max-w-2xl mb-12"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           TECHNICAL DIVISIONS
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Club Domains & Specializations
         </h2>
-        <p className="mt-2 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           Members choose specialized tracks to build real production-grade cloud portfolios.
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6">
         {domains.map((d, index) => (
           <motion.div
             key={d.name}
@@ -91,7 +91,7 @@ export default function SBGDomains() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
-            className="rounded-3xl p-6 sm:p-7 bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm hover:shadow-lg"
+            className="rounded-3xl p-4 sm:p-7 bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 transition-all flex flex-col justify-between shadow-sm hover:shadow-lg"
           >
             <div>
               <div className="flex items-center justify-between mb-4">

@@ -14,28 +14,28 @@ interface SponsorsSectionProps {
 
 export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionProps) {
   return (
-    <section id="sponsors" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="sponsors" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl mb-12"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           PARTNERSHIPS & HIRING
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Partner with Haryana’s largest cloud builder community
         </h2>
-        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           Position your tech brand in front of 500+ ambitious student engineers and recruit pre-screened cloud and AI developers.
         </p>
       </motion.div>
 
       {/* Metrics Row with Stagger */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 mb-8 sm:mb-12">
         {[
           { label: "Community Reach", val: "6+", sub: "Regional SBGs & Partners" },
           { label: "Summit Attendees", val: "500+", sub: "Student Builders & Devs" },
@@ -82,8 +82,8 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
         ))}
       </div>
 
-      {/* Sponsor Tiers */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      {/* Sponsor Tiers Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
         {SPONSOR_TIERS.map((tier, idx) => (
           <motion.div
             key={tier.name}
@@ -92,29 +92,39 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, delay: idx * 0.08 }}
             whileHover={{ y: -6, transition: { duration: 0.25 } }}
-            className={`rounded-xl p-5 flex flex-col justify-between border transition-colors shadow-sm ${
+            className={`rounded-2xl p-6 flex flex-col justify-between border transition-all duration-300 shadow-sm ${
               tier.highlight
-                ? "bg-purple-50/40 dark:bg-[#100E2C] border-[#AD5CFF] shadow-lg shadow-purple-500/5 dark:shadow-[#AD5CFF]/10"
-                : "bg-white dark:bg-[#090E1E] border-slate-200/80 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/15"
+                ? "bg-gradient-to-b from-purple-900/20 via-purple-900/10 to-transparent dark:from-[#18113E] dark:via-[#0F0B28] dark:to-[#090E1E] border-[#AD5CFF] shadow-xl shadow-purple-500/10 dark:shadow-[#AD5CFF]/15 ring-1 ring-[#AD5CFF]"
+                : "bg-white dark:bg-[#090E1E] border-slate-200/90 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/20"
             }`}
           >
             <div>
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-sm font-bold text-slate-900 dark:text-white">{tier.name}</h4>
-                {tier.highlight && (
-                  <span className="text-[8px] font-mono font-bold px-1.5 py-0.5 rounded bg-[#AD5CFF] text-white uppercase">
-                    Title
-                  </span>
-                )}
+                <span
+                  className={`text-[9px] font-mono font-extrabold uppercase px-2 py-0.5 rounded-full border ${
+                    tier.highlight
+                      ? "bg-[#AD5CFF] text-white border-[#AD5CFF]"
+                      : "bg-slate-100 dark:bg-white/[0.05] text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/10"
+                  }`}
+                >
+                  {tier.tag || (tier.highlight ? "FEATURED TIER" : "AVAILABLE TIER")}
+                </span>
               </div>
-              <div className="text-xl font-extrabold text-[#8E35EA] dark:text-[#BE7BFF] mb-4">
+
+              <h4 className="text-lg font-black text-slate-950 dark:text-white uppercase tracking-tight mt-1">
+                {tier.name}
+              </h4>
+
+              <div className="text-2xl font-black text-[#8E35EA] dark:text-[#AD5CFF] font-mono my-2.5">
                 {tier.price}
               </div>
 
-              <ul className="space-y-2 mb-6">
+              <div className="h-[1px] w-full bg-slate-100 dark:bg-white/[0.08] my-3" />
+
+              <ul className="space-y-2.5 mb-6">
                 {tier.perks.map((perk) => (
-                  <li key={perk} className="flex items-start gap-1.5 text-xs text-slate-700 dark:text-slate-300">
-                    <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                  <li key={perk} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300 font-medium leading-snug">
+                    <span className="text-[#8E35EA] dark:text-[#AD5CFF] font-bold text-sm leading-none shrink-0">›</span>
                     <span>{perk}</span>
                   </li>
                 ))}
@@ -123,10 +133,13 @@ export default function SponsorsSection({ onOpenSponsorModal }: SponsorsSectionP
 
             <button
               onClick={onOpenSponsorModal}
-              className="w-full py-2 rounded-lg bg-slate-100 hover:bg-[#AD5CFF] hover:text-white dark:bg-white/[0.06] dark:hover:bg-[#AD5CFF] dark:hover:text-white text-slate-900 dark:text-white text-xs font-bold transition-all border border-slate-200 dark:border-white/10 flex items-center justify-center gap-1 hover:scale-[1.02] cursor-pointer"
+              className={`w-full py-3 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98] cursor-pointer ${
+                tier.highlight
+                  ? "bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white shadow-[#AD5CFF]/30"
+                  : "bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] text-slate-900 dark:text-white border border-slate-200/80 dark:border-white/10"
+              }`}
             >
-              <span>Inquire for {tier.name}</span>
-              <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3" />
+              <span>{tier.buttonText || `SELECT ${tier.name.toUpperCase()} →`}</span>
             </button>
           </motion.div>
         ))}

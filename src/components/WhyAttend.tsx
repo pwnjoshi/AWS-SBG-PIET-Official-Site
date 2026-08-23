@@ -113,7 +113,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
   };
 
   return (
-    <section id="overview" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="why-attend" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
@@ -139,7 +139,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mb-12 sm:mb-16"
       >
         {valueProps.map((item) => (
           <motion.div
@@ -147,7 +147,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             variants={itemVariants}
             whileHover={{ y: -6 }}
             transition={{ duration: 0.25 }}
-            className={`group relative rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-6 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/60 overflow-hidden`}
+            className={`group relative rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-4 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/60 overflow-hidden`}
           >
             {/* Ambient Background Glow Effect */}
             <div
@@ -217,10 +217,8 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         {/* Subtle Ambient Radial Glow */}
         <div className="absolute top-0 right-0 w-80 h-80 bg-[#AD5CFF]/[0.06] dark:bg-[#AD5CFF]/[0.08] blur-[80px] rounded-full pointer-events-none" />
 
+
         <div className="relative z-10 max-w-xl">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
-            CREDENTIAL VERIFICATION
-          </span>
           <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 dark:text-white">
             Official Credly Digital Badge & Certificate
           </h3>

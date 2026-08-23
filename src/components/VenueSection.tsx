@@ -43,24 +43,28 @@ export default function VenueSection() {
   };
 
   return (
-    <section id="venue" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="venue" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl mb-12"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           VENUE & CAMPUS
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
-          Panipat Institute of Engineering & Technology (PIET)
+        <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
+          PIET Campus, Panipat
         </h2>
-        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium leading-relaxed">
           {EVENT_DETAILS.venueFull}
         </p>
+        <div className="mt-3.5 inline-flex items-center gap-2 p-2.5 sm:px-3.5 sm:py-2 rounded-xl bg-purple-500/10 dark:bg-[#AD5CFF]/10 border border-purple-500/25 dark:border-[#AD5CFF]/25 text-xs text-[#8E35EA] dark:text-[#BE7BFF] font-medium leading-snug">
+          <HugeiconsIcon icon={Tick02Icon} className="h-4 w-4 text-emerald-500 shrink-0" />
+          <span>{EVENT_DETAILS.venueNotice}</span>
+        </div>
       </motion.div>
 
       {/* Campus Panoramic Photo Banner with Scroll Parallax */}
@@ -87,11 +91,11 @@ export default function VenueSection() {
               OFFICIAL HOST CAMPUS
             </span>
             <h3 className="text-lg sm:text-xl font-extrabold text-white">
-              PIET Main Academic & Central Auditorium Block
+              Panipat Institute of Engineering & Technology (PIET)
             </h3>
           </div>
           <span className="text-xs font-mono text-slate-200 bg-black/60 px-3 py-1 rounded-lg border border-white/10 backdrop-blur-md self-start sm:self-auto">
-            70 MILESTONE, GT ROAD, SAMALKHA
+            NH-44, SAMALKHA, PANIPAT
           </span>
         </div>
       </motion.div>
@@ -182,7 +186,7 @@ export default function VenueSection() {
 
         {/* Right Map */}
         <div className="lg:col-span-6">
-          <div className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/80 dark:border-white/[0.08] overflow-hidden h-[400px] flex flex-col shadow-sm">
+          <div className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/80 dark:border-white/[0.08] overflow-hidden h-[290px] sm:h-[400px] flex flex-col shadow-sm">
             <div className="px-4 py-2.5 bg-slate-50 dark:bg-slate-900/60 border-b border-slate-200 dark:border-white/[0.06] flex items-center justify-between">
               <span className="text-xs font-mono text-slate-600 dark:text-slate-300">
                 PIET Panipat • 70 Milestone Samalkha

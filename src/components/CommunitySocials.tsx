@@ -45,8 +45,8 @@ export default function CommunitySocials() {
               Connect with 500+ student peers, get immediate updates on speaker announcements, workshop repositories, and regional cloud hackathons.
             </p>
 
-            {/* Social Channels */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2">
+            {/* Social Channels (Strictly bounded with truncate to prevent mobile overflow) */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5 pt-2 w-full">
               {SOCIAL_LINKS.map((channel) => {
                 return (
                   <motion.a
@@ -54,19 +54,19 @@ export default function CommunitySocials() {
                     href={channel.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -3, scale: 1.02 }}
+                    whileHover={{ y: -2, scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
-                    className="p-3 rounded-xl bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/[0.06] hover:border-[#AD5CFF]/40 dark:hover:border-[#AD5CFF]/30 transition-colors flex items-center justify-between group shadow-sm"
+                    className="p-2.5 sm:p-3 rounded-xl bg-white dark:bg-white/[0.03] hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/[0.06] hover:border-[#8E35EA]/40 dark:hover:border-[#AD5CFF]/30 transition-colors flex items-center justify-between group shadow-sm w-full overflow-hidden"
                   >
-                    <div>
-                      <span className="text-xs font-bold text-slate-900 dark:text-white block">
+                    <div className="min-w-0 flex-1 overflow-hidden pr-1.5">
+                      <span className="text-xs font-bold text-slate-900 dark:text-white block truncate leading-tight">
                         {channel.name}
                       </span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate block">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 truncate block mt-0.5 leading-tight">
                         {channel.handle}
                       </span>
                     </div>
-                    <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors" />
+                    <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 text-slate-400 dark:text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors shrink-0" />
                   </motion.a>
                 );
               })}
@@ -75,7 +75,7 @@ export default function CommunitySocials() {
 
           {/* Right Column: Newsletter */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <div className="rounded-xl bg-white dark:bg-[#04060E] border border-slate-200 dark:border-white/[0.08] p-5 shadow-sm">
+            <div className="rounded-2xl bg-white dark:bg-[#04060E] border border-slate-200 dark:border-white/[0.08] p-5 sm:p-6 shadow-sm">
               <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block mb-1">
                 SUMMIT ALERTS
               </span>
@@ -88,7 +88,7 @@ export default function CommunitySocials() {
               </p>
 
               {isSubscribed ? (
-                <div className="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300 text-xs flex items-center gap-2">
+                <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-300 text-xs flex items-center gap-2">
                   <HugeiconsIcon icon={Tick02Icon} className="h-4 w-4 shrink-0" />
                   <span>You are on the attendee notification list.</span>
                 </div>
@@ -100,11 +100,11 @@ export default function CommunitySocials() {
                     onChange={(e) => setSubscribedEmail(e.target.value)}
                     placeholder="Enter your student email"
                     required
-                    className="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-[#080D1E] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#AD5CFF] focus:outline-none"
+                    className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#080D1E] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#8E35EA] dark:focus:border-[#AD5CFF] focus:outline-none transition-colors"
                   />
                   <button
                     type="submit"
-                    className="w-full py-2.5 rounded-lg bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white text-xs font-bold transition-all shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02] cursor-pointer"
+                    className="w-full py-2.5 rounded-xl bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] text-white text-xs font-bold transition-all shadow-sm active:scale-[0.98] cursor-pointer"
                   >
                     Subscribe for Updates
                   </button>
