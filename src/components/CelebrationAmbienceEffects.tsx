@@ -308,16 +308,16 @@ export default function CelebrationAmbienceEffects() {
 
       {/* Atmospheric Celebratory Beam & Aurora Waves Layer */}
       <div
-        className="fixed inset-0 pointer-events-none z-[4] select-none mix-blend-screen transition-all duration-1000"
+        className="fixed inset-0 pointer-events-none z-[4] select-none mix-blend-screen transition-all duration-1000 opacity-50"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.35) 0%, rgba(255, 153, 0, 0.2) 45%, rgba(14, 165, 233, 0.14) 75%, transparent 90%)",
+            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.18) 0%, rgba(255, 153, 0, 0.10) 45%, rgba(14, 165, 233, 0.06) 75%, transparent 90%)",
         }}
         aria-hidden="true"
       />
 
       {/* Floating Celebratory Animated Stardust Badges */}
-      <div className="fixed top-20 right-6 sm:right-10 z-[50] pointer-events-none select-none hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/85 backdrop-blur-xl border border-[#AD5CFF]/70 text-white shadow-2xl shadow-purple-500/50 animate-bounce">
+      <div className="fixed top-20 right-6 sm:right-10 z-[50] pointer-events-none select-none hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/85 backdrop-blur-xl border border-[#AD5CFF]/60 text-white shadow-2xl shadow-purple-500/40 animate-bounce">
         <span className="text-sm">🎵</span>
         <span className="text-xs font-mono font-bold bg-gradient-to-r from-[#FF9900] via-[#AD5CFF] to-[#38BDF8] bg-clip-text text-transparent">
           Celebration Ambience Active
