@@ -119,7 +119,7 @@ export default function BadgeGenerator() {
       }
 
       canvas.width = 1200;
-      canvas.height = 1500;
+      canvas.height = 1600;
 
       // Helper for rounded rectangles
       const drawRoundedRect = (
@@ -146,210 +146,203 @@ export default function BadgeGenerator() {
         if (stroke) ctx.stroke();
       };
 
-      // 1. Clean Obsidian Badge Body
+      // 1. Sleek Deep Obsidian Badge Body
       ctx.fillStyle = "#0A0D1E";
-      ctx.fillRect(0, 0, 1200, 1500);
+      ctx.fillRect(0, 0, 1200, 1600);
 
-      // 2. Subtle Geometric Grid & Tech Circuit Pattern
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.025)";
-      ctx.lineWidth = 1;
-      for (let x = 0; x < 1200; x += 50) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, 1500);
-        ctx.stroke();
-      }
-      for (let y = 0; y < 1500; y += 50) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(1200, y);
-        ctx.stroke();
-      }
+      // 2. Outer Card Border
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
+      ctx.lineWidth = 4;
+      drawRoundedRect(40, 40, 1120, 1520, 56, false, true);
 
-      // 2.1 Monumental Hindi Devanagari "पानीपत" Watermark in Background
+      // 3. Background Watermark: Rotated Hindi Devanagari "पानीपत" + Subtle Circles
       ctx.save();
-      ctx.font = "900 180px 'Noto Sans Devanagari', 'Mangal', 'Nirmala UI', system-ui, sans-serif";
-      ctx.fillStyle = "rgba(255, 255, 255, 0.032)";
+      ctx.translate(600, 720);
+      ctx.rotate((-12 * Math.PI) / 180);
+      ctx.font = "900 240px 'Noto Sans Devanagari', 'Mangal', 'Nirmala UI', system-ui, sans-serif";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.035)";
       ctx.textAlign = "center";
-      ctx.fillText("पानीपत", 600, 520);
+      ctx.fillText("पानीपत", 0, 0);
+
+      ctx.font = "bold 20px monospace";
+      ctx.fillStyle = "rgba(173, 92, 255, 0.07)";
+      ctx.fillText("AWS STUDENT COMMUNITY DAY • PANIPAT", 0, 50);
       ctx.restore();
 
-      // 2.2 AWS Cloud Architecture Circuit Lines (Subtle decorative lines)
+      // Subtle Decorative Tech Rings in Background
       ctx.save();
-      ctx.strokeStyle = "rgba(255, 153, 0, 0.08)";
+      ctx.strokeStyle = "rgba(255, 153, 0, 0.06)";
       ctx.lineWidth = 2;
-      ctx.setLineDash([8, 8]);
+      ctx.setLineDash([10, 10]);
       ctx.beginPath();
-      ctx.arc(600, 500, 320, 0, Math.PI * 2);
+      ctx.arc(600, 720, 360, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.strokeStyle = "rgba(173, 92, 255, 0.08)";
+      ctx.strokeStyle = "rgba(142, 53, 234, 0.06)";
       ctx.beginPath();
-      ctx.arc(600, 500, 380, 0, Math.PI * 2);
+      ctx.arc(600, 720, 460, 0, Math.PI * 2);
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.restore();
 
-      // 3. Card Outer Border
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.15)";
-      ctx.lineWidth = 4;
-      drawRoundedRect(50, 50, 1100, 1400, 48, false, true);
-
-      // 4. Lanyard Clip Slot Cutout (Top)
-      ctx.fillStyle = "#05070E";
+      // 4. Lanyard Clip Slot Cutout (Top Pill)
+      ctx.fillStyle = "#030611";
       ctx.strokeStyle = "rgba(255, 255, 255, 0.25)";
       ctx.lineWidth = 2;
-      drawRoundedRect(500, 75, 200, 24, 12, true, true);
+      drawRoundedRect(500, 80, 200, 24, 12, true, true);
 
-      // 5. Header Section
-      ctx.fillStyle = "#111736";
-      ctx.strokeStyle = "rgba(142, 53, 234, 0.4)";
+      // 5. Header Branding Box
+      ctx.fillStyle = "rgba(17, 23, 54, 0.9)";
+      ctx.strokeStyle = "rgba(142, 53, 234, 0.35)";
       ctx.lineWidth = 2;
-      drawRoundedRect(100, 130, 1000, 120, 28, true, true);
+      drawRoundedRect(100, 140, 1000, 130, 32, true, true);
 
-      // Header Branding
-      ctx.font = "900 28px system-ui, -apple-system, sans-serif";
+      // Header Left: AWS COMMUNITY DAY / PANIPAT 2026 • HARYANA
+      ctx.textAlign = "left";
+      ctx.font = "900 30px system-ui, -apple-system, sans-serif";
       ctx.fillStyle = "#FFFFFF";
-      ctx.textAlign = "left";
-      ctx.fillText("AWS COMMUNITY DAY", 140, 185);
+      ctx.fillText("AWS COMMUNITY DAY", 140, 195);
 
-      ctx.font = "700 20px monospace";
+      ctx.font = "700 22px monospace";
       ctx.fillStyle = "#AD5CFF";
-      ctx.fillText("PANIPAT 2026 • HARYANA", 140, 218);
+      ctx.fillText("PANIPAT 2026 • HARYANA", 140, 235);
 
-      // Header Right Accent
+      // Header Right: AWS SBG PIET / 11 SEPT 2026
       ctx.textAlign = "right";
-      ctx.font = "700 18px monospace";
+      ctx.font = "700 24px monospace";
       ctx.fillStyle = "#FF9900";
-      ctx.fillText("AWS STUDENT BUILDER GROUP", 1060, 185);
+      ctx.fillText("AWS SBG PIET", 1060, 195);
 
-      ctx.font = "600 16px monospace";
+      ctx.font = "600 20px monospace";
       ctx.fillStyle = "#94A3B8";
-      ctx.fillText("PIET CAMPUS • 11 SEPT", 1060, 218);
+      ctx.fillText("11 SEPT 2026", 1060, 235);
       ctx.textAlign = "left";
 
-      // 6. Accent Separator Ribbon (AWS Orange & Purple)
-      const ribbonGrad = ctx.createLinearGradient(100, 270, 1100, 270);
+      // 6. Accent Gradient Ribbon Line
+      const ribbonGrad = ctx.createLinearGradient(100, 305, 1100, 305);
       ribbonGrad.addColorStop(0, "#FF9900");
       ribbonGrad.addColorStop(0.5, "#8E35EA");
       ribbonGrad.addColorStop(1, "#AD5CFF");
       ctx.fillStyle = ribbonGrad;
-      ctx.fillRect(100, 270, 1000, 4);
+      drawRoundedRect(100, 305, 1000, 6, 3, true, false);
 
-      // 7. Attendee Avatar Portrait
+      // 7. Attendee Avatar Portrait Frame
       const img = new window.Image();
       img.crossOrigin = "anonymous";
       img.src = avatarUrl;
       img.onload = () => {
         // Portrait Frame Box
         ctx.fillStyle = "#151B3D";
-        ctx.strokeStyle = "rgba(173, 92, 255, 0.4)";
-        ctx.lineWidth = 3;
-        drawRoundedRect(420, 320, 360, 360, 36, true, true);
+        ctx.strokeStyle = "rgba(173, 92, 255, 0.5)";
+        ctx.lineWidth = 4;
+        drawRoundedRect(420, 360, 360, 360, 44, true, true);
 
         // Clip image inside rounded rect
         ctx.save();
         ctx.beginPath();
-        ctx.moveTo(430 + 30, 330);
-        ctx.lineTo(430 + 340 - 30, 330);
-        ctx.quadraticCurveTo(430 + 340, 330, 430 + 340, 330 + 30);
-        ctx.lineTo(430 + 340, 330 + 340 - 30);
-        ctx.quadraticCurveTo(430 + 340, 330 + 340, 430 + 340 - 30, 330 + 340);
-        ctx.lineTo(430 + 30, 330 + 340);
-        ctx.quadraticCurveTo(430, 330 + 340, 430, 330 + 340 - 30);
-        ctx.lineTo(430, 330 + 30);
-        ctx.quadraticCurveTo(430, 330, 430 + 30, 330);
+        const ax = 432, ay = 372, aw = 336, ah = 336, ar = 36;
+        ctx.moveTo(ax + ar, ay);
+        ctx.lineTo(ax + aw - ar, ay);
+        ctx.quadraticCurveTo(ax + aw, ay, ax + aw, ay + ar);
+        ctx.lineTo(ax + aw, ay + ah - ar);
+        ctx.quadraticCurveTo(ax + aw, ay + ah, ax + aw - ar, ay + ah);
+        ctx.lineTo(ax + ar, ay + ah);
+        ctx.quadraticCurveTo(ax, ay + ah, ax, ay + ah - ar);
+        ctx.lineTo(ax, ay + ar);
+        ctx.quadraticCurveTo(ax, ay, ax + ar, ay);
         ctx.closePath();
         ctx.clip();
-        ctx.drawImage(img, 430, 330, 340, 340);
+        ctx.drawImage(img, ax, ay, aw, ah);
         ctx.restore();
 
         // 8. Attendee Name (Bold, Clear, Centered)
-        ctx.font = "900 56px system-ui, -apple-system, sans-serif";
+        ctx.font = "900 62px system-ui, -apple-system, sans-serif";
         ctx.fillStyle = "#FFFFFF";
         ctx.textAlign = "center";
-        ctx.fillText(name || "Student Builder", 600, 760);
+        ctx.fillText(name || "Student Builder", 600, 800);
 
-        // 9. College / Organization
-        ctx.font = "700 28px system-ui, -apple-system, sans-serif";
+        // 9. College / Institution Name
+        ctx.font = "600 30px system-ui, -apple-system, sans-serif";
         ctx.fillStyle = "#94A3B8";
-        ctx.fillText(college || "PIET Panipat", 600, 805);
+        ctx.fillText(college || "PIET Panipat", 600, 850);
 
         // 10. Role Credential Pill with Specific Track Symbol
-        ctx.fillStyle = "#1E1A4A";
-        ctx.strokeStyle = "#8E35EA";
-        ctx.lineWidth = 2;
-        drawRoundedRect(320, 845, 560, 60, 30, true, true);
+        ctx.fillStyle = "rgba(142, 53, 234, 0.2)";
+        ctx.strokeStyle = "rgba(142, 53, 234, 0.5)";
+        ctx.lineWidth = 2.5;
+        drawRoundedRect(300, 895, 600, 68, 34, true, true);
 
-        ctx.font = "bold 22px monospace";
+        ctx.font = "bold 24px monospace";
         ctx.fillStyle = "#BE7BFF";
-        ctx.fillText(`${currentTrack.symbol}  ${currentTrack.tag}`, 600, 882);
+        ctx.fillText(`${currentTrack.symbol}  ${currentTrack.tag}`, 600, 938);
 
-        // 11. Conference Credential Grid (2 Columns)
+        // 11. Conference Credential Grid (2 Columns, matching preview exactly)
         ctx.fillStyle = "#0F142E";
         ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
         ctx.lineWidth = 2;
-        drawRoundedRect(100, 940, 1000, 240, 28, true, true);
+        drawRoundedRect(100, 1010, 1000, 260, 32, true, true);
 
-        // Left Column
-        ctx.textAlign = "left";
-        ctx.font = "700 16px monospace";
-        ctx.fillStyle = "#64748B";
-        ctx.fillText("EVENT", 140, 990);
-        ctx.font = "800 22px system-ui, -apple-system, sans-serif";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("AWS Student Community Day 2026", 140, 1022);
-
-        ctx.font = "700 16px monospace";
-        ctx.fillStyle = "#64748B";
-        ctx.fillText("DATE & TIME", 140, 1080);
-        ctx.font = "800 22px system-ui, -apple-system, sans-serif";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("Friday, 11 September 2026 • 9:00 AM", 140, 1112);
-
-        // Right Column
-        ctx.font = "700 16px monospace";
-        ctx.fillStyle = "#64748B";
-        ctx.fillText("VENUE", 660, 990);
-        ctx.font = "800 22px system-ui, -apple-system, sans-serif";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillText("PIET Panipat (Samalkha, NCR)", 660, 1022);
-
-        ctx.font = "700 16px monospace";
-        ctx.fillStyle = "#64748B";
-        ctx.fillText("ACCESS LEVEL", 660, 1080);
-        ctx.font = "800 22px system-ui, -apple-system, sans-serif";
-        ctx.fillStyle = "#10B981";
-        ctx.fillText("All-Access Delegate Credential", 660, 1112);
-
-        // 12. Footer Barcode & Security Strip
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
-        ctx.lineWidth = 2;
+        // Grid Horizontal Inner Divider
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.06)";
+        ctx.lineWidth = 1.5;
         ctx.beginPath();
-        ctx.moveTo(100, 1220);
-        ctx.lineTo(1100, 1220);
+        ctx.moveTo(130, 1140);
+        ctx.lineTo(1070, 1140);
         ctx.stroke();
 
-        // Barcode graphic
-        ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
-        const barcodeX = 140;
-        const barcodeY = 1260;
-        const bars = [4, 2, 6, 3, 5, 2, 4, 8, 3, 2, 5, 3, 7, 4, 5, 2, 4, 6, 2, 4, 3, 5, 2, 6, 4, 2, 5, 3, 6, 2, 4, 7];
-        let currX = barcodeX;
-        bars.forEach((w) => {
-          ctx.fillRect(currX, barcodeY, w, 65);
-          currX += w + 5;
+        // Row 1 - Left: EVENT -> AWS SCD 2026
+        ctx.textAlign = "left";
+        ctx.font = "bold 16px monospace";
+        ctx.fillStyle = "#64748B";
+        ctx.fillText("EVENT", 140, 1060);
+
+        ctx.font = "800 28px system-ui, -apple-system, sans-serif";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("AWS SCD 2026", 140, 1102);
+
+        // Row 1 - Right: VENUE -> PIET Panipat
+        ctx.font = "bold 16px monospace";
+        ctx.fillStyle = "#64748B";
+        ctx.fillText("VENUE", 660, 1060);
+
+        ctx.font = "800 28px system-ui, -apple-system, sans-serif";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("PIET Panipat", 660, 1102);
+
+        // Row 2 - Left: DATE -> 11 Sept 2026
+        ctx.font = "bold 16px monospace";
+        ctx.fillStyle = "#64748B";
+        ctx.fillText("DATE", 140, 1185);
+
+        ctx.font = "800 28px system-ui, -apple-system, sans-serif";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("11 Sept 2026", 140, 1228);
+
+        // Row 2 - Right: ACCESS -> All-Access Pass (Emerald Green)
+        ctx.font = "bold 16px monospace";
+        ctx.fillStyle = "#64748B";
+        ctx.fillText("ACCESS", 660, 1185);
+
+        ctx.font = "800 28px system-ui, -apple-system, sans-serif";
+        ctx.fillStyle = "#34D399";
+        ctx.fillText("All-Access Pass", 660, 1228);
+
+        // 12. Footer Barcode & Security Strip
+        const soundwaveBars = [3, 1, 4, 2, 5, 2, 3, 6, 2, 4, 1, 5, 2, 4, 3, 5];
+        const barStartX = 120;
+        const barCenterY = 1380;
+
+        soundwaveBars.forEach((h, i) => {
+          const barH = h * 6 + 18;
+          ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+          drawRoundedRect(barStartX + i * 14, barCenterY - barH / 2, 5, barH, 2.5, true, false);
         });
 
-        // Right Footer Notes
+        // Right Footer Text: PANIPAT-NCR-2026 (matching preview exactly)
         ctx.textAlign = "right";
-        ctx.font = "bold 20px monospace";
+        ctx.font = "bold 22px monospace";
         ctx.fillStyle = "#AD5CFF";
-        ctx.fillText("AWS SBG AT PIET", 1060, 1290);
-
-        ctx.font = "16px monospace";
-        ctx.fillStyle = "#64748B";
-        ctx.fillText("commudle.com/events/aws-scd-panipat", 1060, 1320);
+        ctx.fillText("PANIPAT-NCR-2026", 1060, 1388);
 
         canvas.toBlob((blob) => {
           if (blob) {
