@@ -43,9 +43,6 @@ export default function SBGHomePage() {
             {/* About the Chapter & University Credentials */}
             <SBGAbout />
 
-            {/* Flagship Student Projects & Architectures */}
-            <SBGProjects />
-
             {/* Technical Domains & Focus Areas */}
             <SBGDomains />
 

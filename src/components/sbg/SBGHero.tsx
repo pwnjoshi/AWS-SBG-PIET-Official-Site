@@ -101,72 +101,59 @@ export default function SBGHero() {
 
       </div>
 
-      {/* Bottom Hero 4-Metric Bar */}
+      {/* Bottom Hero 4-Metric Unified Minimal Glass Bar */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.5 }}
-        className="w-full max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-slate-200/90 dark:border-white/[0.08]"
+        className="w-full max-w-5xl mx-auto rounded-3xl bg-white/80 dark:bg-[#080D1E]/80 backdrop-blur-xl border border-slate-200/90 dark:border-white/[0.08] shadow-lg shadow-slate-200/40 dark:shadow-black/40 overflow-hidden"
       >
-        {stats.map((stat, i) => (
-          <div
-            key={stat.label}
-            className="group relative rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.07] overflow-hidden shadow-sm hover:shadow-md hover:border-[#AD5CFF]/40 dark:hover:border-[#AD5CFF]/30 transition-all duration-300"
-          >
-            {/* Accent top bar */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-slate-100 dark:divide-white/[0.06]">
+          {stats.map((stat, i) => (
             <div
-              className="h-[3px] w-full"
-              style={{
-                background: i === 0
-                  ? "linear-gradient(90deg,#8E35EA,#AD5CFF)"
-                  : i === 1
-                  ? "linear-gradient(90deg,#0EA5E9,#38BDF8)"
-                  : i === 2
-                  ? "linear-gradient(90deg,#10B981,#34D399)"
-                  : "linear-gradient(90deg,#FF9900,#FFBA49)",
-              }}
-            />
-
-            <div className="p-4 sm:p-5 flex flex-col gap-2">
-              {/* Icon pill */}
-              <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                style={{
-                  background: i === 0
-                    ? "rgba(142,53,234,0.1)"
-                    : i === 1
-                    ? "rgba(14,165,233,0.1)"
-                    : i === 2
-                    ? "rgba(16,185,129,0.1)"
-                    : "rgba(255,153,0,0.1)",
-                }}
-              >
-                <HugeiconsIcon
-                  icon={stat.icon}
-                  className="h-4 w-4"
+              key={stat.label}
+              className="group p-5 sm:p-6 flex flex-col justify-between hover:bg-slate-50/60 dark:hover:bg-white/[0.02] transition-colors"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-[10px] font-mono font-bold tracking-widest text-[#8E35EA] dark:text-[#AD5CFF]">
+                  0{i + 1}
+                </span>
+                <div
+                  className="w-7 h-7 rounded-lg flex items-center justify-center shrink-0"
                   style={{
-                    color: i === 0 ? "#AD5CFF" : i === 1 ? "#0EA5E9" : i === 2 ? "#10B981" : "#FF9900",
+                    background: i === 0
+                      ? "rgba(142,53,234,0.1)"
+                      : i === 1
+                      ? "rgba(14,165,233,0.1)"
+                      : i === 2
+                      ? "rgba(16,185,129,0.1)"
+                      : "rgba(255,153,0,0.1)",
                   }}
-                />
+                >
+                  <HugeiconsIcon
+                    icon={stat.icon}
+                    className="h-3.5 w-3.5"
+                    style={{
+                      color: i === 0 ? "#AD5CFF" : i === 1 ? "#0EA5E9" : i === 2 ? "#10B981" : "#FF9900",
+                    }}
+                  />
+                </div>
               </div>
 
-              {/* Value */}
-              <span className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white font-mono tracking-tight leading-none">
-                {stat.value}
-              </span>
-
-              {/* Label & desc */}
-              <div className="flex flex-col gap-0.5">
-                <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-100 leading-tight">
+              <div>
+                <span className="text-3xl sm:text-4xl font-black text-slate-950 dark:text-white font-mono tracking-tight leading-none group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors block mb-1.5">
+                  {stat.value}
+                </span>
+                <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 block leading-snug">
                   {stat.label}
                 </span>
-                <span className="text-[10px] text-slate-400 dark:text-slate-500 font-mono">
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono block mt-0.5">
                   {stat.desc}
                 </span>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </motion.div>
     </section>
   );

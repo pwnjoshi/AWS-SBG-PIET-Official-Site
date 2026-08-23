@@ -148,13 +148,13 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         </motion.div>
       </div>
 
-      {/* Bento Grid */}
+      {/* Bento Grid — 2 columns on mobile, 3 columns on desktop */}
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16"
+        className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-6 mb-12 sm:mb-16"
       >
         {valueProps.map((item) => (
           <motion.div
@@ -162,11 +162,11 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             variants={itemVariants}
             whileHover={{ y: -6 }}
             transition={{ duration: 0.25 }}
-            className={`group relative rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 dark:hover:shadow-black/60 overflow-hidden min-h-[260px]`}
+            className={`group relative rounded-2xl sm:rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-3.5 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 dark:hover:shadow-black/60 overflow-hidden min-h-[170px] sm:min-h-[250px]`}
           >
             {/* Engraved Background Typography Watermark */}
-            <div className="absolute top-2 right-4 pointer-events-none select-none overflow-hidden z-0">
-              <span className="text-5xl sm:text-6xl font-black uppercase tracking-tighter text-slate-100 dark:text-white/[0.03] group-hover:text-slate-200/90 dark:group-hover:text-white/[0.06] transition-all duration-300 transform group-hover:translate-x-1 block leading-none">
+            <div className="absolute top-1 sm:top-2 right-2 sm:right-4 pointer-events-none select-none overflow-hidden z-0">
+              <span className="text-2xl sm:text-6xl font-black uppercase tracking-tighter text-slate-100 dark:text-white/[0.03] group-hover:text-slate-200/90 dark:group-hover:text-white/[0.06] transition-all duration-300 transform group-hover:translate-x-1 block leading-none">
                 {item.tag}
               </span>
             </div>
@@ -180,26 +180,27 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             />
 
             {/* Card Content Top */}
-            <div className="relative z-10 pt-1">
+            <div className="relative z-10 pt-0.5">
               {/* Title */}
-              <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-2.5 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors leading-snug">
+              <h3 className="text-xs sm:text-lg font-extrabold text-slate-950 dark:text-white tracking-tight mb-1 sm:mb-2 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors leading-snug">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
+              <p className="text-[10px] sm:text-xs text-slate-600 dark:text-slate-300 leading-snug sm:leading-relaxed font-normal line-clamp-3 sm:line-clamp-none">
                 {item.desc}
               </p>
             </div>
 
             {/* Card Footer: Engraved Number in Bottom Right */}
-            <div className="relative z-10 pt-6 mt-4 flex items-end justify-between border-t border-slate-100 dark:border-white/[0.04]">
-              <div className="flex items-center gap-1.5 text-[11px] font-mono font-semibold text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
-                <span className="h-1 w-4 rounded-full bg-slate-200 dark:bg-white/10 group-hover:bg-[#AD5CFF] transition-colors" />
-                <span>AWS SCD 2026</span>
+            <div className="relative z-10 pt-2.5 sm:pt-4 mt-2 flex items-end justify-between border-t border-slate-100 dark:border-white/[0.04]">
+              <div className="flex items-center gap-1 text-[9px] sm:text-[11px] font-mono font-semibold text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                <span className="h-1 w-2.5 sm:w-4 rounded-full bg-slate-200 dark:bg-white/10 group-hover:bg-[#AD5CFF] transition-colors" />
+                <span className="hidden sm:inline">AWS SCD 2026</span>
+                <span className="sm:hidden">SCD</span>
               </div>
 
-              <span className="text-4xl sm:text-5xl font-mono font-black tracking-tighter text-slate-200 dark:text-white/10 group-hover:text-[#8E35EA]/35 dark:group-hover:text-[#AD5CFF]/40 transition-colors leading-none select-none">
+              <span className="text-2xl sm:text-4xl font-mono font-black tracking-tighter text-slate-200 dark:text-white/10 group-hover:text-[#8E35EA]/35 dark:group-hover:text-[#AD5CFF]/40 transition-colors leading-none select-none">
                 {item.num}
               </span>
             </div>

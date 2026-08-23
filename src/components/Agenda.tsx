@@ -284,7 +284,7 @@ export default function Agenda() {
                     </div>
 
                     {/* Middle: Session Title */}
-                    <h3 className="text-sm sm:text-base font-extrabold text-slate-950 dark:text-white tracking-tight leading-snug group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-2">
+                    <h3 className="text-[15px] sm:text-base font-bold text-slate-900 dark:text-white tracking-tight leading-snug group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-2">
                       {item.title}
                     </h3>
 
