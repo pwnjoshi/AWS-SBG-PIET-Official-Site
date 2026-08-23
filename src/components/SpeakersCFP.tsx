@@ -11,6 +11,8 @@ import {
   Layers01Icon,
 } from "@hugeicons/core-free-icons";
 
+import Image from "next/image";
+
 interface SpeakersCFPProps {
   onOpenCFP: () => void;
 }
@@ -18,43 +20,35 @@ interface SpeakersCFPProps {
 export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
   const keynoteSpeaker = {
     name: "Praful Bagai",
-    role: "AWS Community Leader & Cloud Architect",
-    topic: "Next-Gen Cloud Innovations & Enterprise Generative AI",
-    badge: "FEATURED KEYNOTE",
+    role: "AWS Community Leader & Senior Cloud Architect",
+    badge: "KEYNOTE SPEAKER",
     linkedin: "https://www.linkedin.com/in/prafulbagai",
-    desc: "Renowned AWS Community Leader and cloud strategist delivering the summit's opening visionary keynote on scalable cloud infrastructure, Bedrock agentic pipelines, and the future of cloud computing.",
-    initials: "PB",
-    accent: "#AD5CFF",
+    image: "/images/praful-bagai.jpg",
   };
 
   const technicalSpeakers = [
     {
       name: "Amit Kumar",
-      role: "Solutions Architect & Cloud Specialist",
-      topic: "Enterprise AWS Architectures & Serverless Scalability",
+      role: "Senior Solutions Architect @ Amazon Web Services | Hybrid Cloud Specialist",
       track: "Track A • Cloud Architecture",
-      linkedin: "https://www.linkedin.com/in/amitkyvmw",
-      desc: "Deep-dive session covering resilient multi-region architectures, serverless event-driven patterns, and cost-optimized AWS implementations.",
+      linkedin: "https://www.linkedin.com/in/amitkyvmw/",
+      image: "/images/amit-kumar.png",
       initials: "AK",
       accent: "#0EA5E9",
     },
     {
       name: "Chhavi Garg",
       role: "Generative AI Specialist & Cloud Engineer",
-      topic: "Building Production GenAI Apps with Amazon Bedrock",
       track: "Track B • Generative AI & ML",
       linkedin: "https://www.linkedin.com/in/chhavigg",
-      desc: "Hands-on exploration of Amazon Bedrock foundation models, Retrieval-Augmented Generation (RAG), vector embeddings, and autonomous agent workflows.",
       initials: "CG",
       accent: "#C084FC",
     },
     {
       name: "Shivani Singh Vimal",
       role: "DevOps & Cloud Security Engineer",
-      topic: "Zero-Trust Cloud Security & Automated CI/CD on AWS",
       track: "Track C • DevOps & Security",
       linkedin: "https://www.linkedin.com/in/shivani-singh-vimal-438449267",
-      desc: "Comprehensive guide to IAM least privilege, automated Infrastructure as Code pipelines with AWS CDK, and automated compliance auditing.",
       initials: "SV",
       accent: "#10B981",
     },
@@ -68,74 +62,71 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl mb-10 sm:mb-14"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
         <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
-          KEYNOTES &amp; TECHNICAL SESSIONS
+          KEYNOTE &amp; TECHNICAL SESSIONS
         </span>
         <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
           Featured Speakers &amp; Industry Leaders
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          Learn directly from global AWS community architects, Generative AI specialists, and engineering practitioners on 11 Sept 2026.
+          Learn directly from distinguished AWS community architects and engineering practitioners on 11 Sept 2026.
         </p>
       </motion.div>
 
       {/* Main Keynote Spotlight Card — Praful Bagai */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-3xl bg-gradient-to-br from-purple-50/70 via-white to-purple-50/30 dark:from-[#0B0F2A] dark:via-[#090D22] dark:to-[#060818] border-2 border-[#AD5CFF]/40 p-6 sm:p-9 shadow-xl shadow-purple-500/10 mb-8 sm:mb-12 overflow-hidden"
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative rounded-3xl bg-gradient-to-r from-purple-50/80 via-white to-purple-50/50 dark:from-[#0E0B25] dark:via-[#090D22] dark:to-[#070B1A] border border-[#AD5CFF]/35 p-5 sm:p-7 shadow-lg shadow-purple-500/10 mb-8 sm:mb-12 overflow-hidden"
       >
-        <div className="absolute top-0 right-0 w-80 h-80 bg-[#AD5CFF]/10 blur-[90px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-[#AD5CFF]/10 blur-[80px] rounded-full pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8">
-          <div className="flex items-start sm:items-center gap-4 sm:gap-6">
-            {/* Keynote Avatar Badge */}
-            <div className="h-16 w-16 sm:h-20 sm:w-20 rounded-2xl bg-gradient-to-tr from-[#8E35EA] to-[#AD5CFF] text-white flex items-center justify-center font-black text-xl sm:text-2xl shadow-lg shadow-purple-500/30 shrink-0 font-mono">
-              {keynoteSpeaker.initials}
+        <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 sm:gap-6">
+          <div className="flex items-center gap-4 sm:gap-5">
+            {/* Keynote Photo Portrait */}
+            <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-2xl overflow-hidden shadow-md shadow-purple-500/25 border-2 border-white dark:border-white/10 shrink-0 bg-slate-100">
+              <Image
+                src={keynoteSpeaker.image}
+                alt={keynoteSpeaker.name}
+                fill
+                sizes="(max-width: 768px) 64px, 80px"
+                className="object-cover object-top"
+                priority
+              />
             </div>
 
             <div>
-              <div className="flex items-center gap-2 mb-1.5">
+              <div className="flex items-center gap-2 mb-1">
                 <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#8E35EA]/15 text-[#8E35EA] dark:text-[#AD5CFF] text-[10px] font-mono font-bold tracking-wider uppercase border border-[#8E35EA]/30">
                   <HugeiconsIcon icon={Mic01Icon} className="h-3 w-3" />
                   {keynoteSpeaker.badge}
                 </span>
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
+              <h3 className="text-lg sm:text-2xl font-black text-slate-950 dark:text-white tracking-tight">
                 {keynoteSpeaker.name}
               </h3>
-              <span className="text-xs sm:text-sm font-semibold text-[#8E35EA] dark:text-[#BE7BFF] block mt-0.5">
+              <p className="text-xs sm:text-sm font-semibold text-[#8E35EA] dark:text-[#BE7BFF] mt-0.5">
                 {keynoteSpeaker.role}
-              </span>
+              </p>
             </div>
           </div>
 
-          <a
-            href={keynoteSpeaker.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm active:scale-95 shrink-0"
-          >
-            <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4" />
-            <span>Connect on LinkedIn</span>
-          </a>
-        </div>
-
-        <div className="relative z-10 mt-6 pt-5 border-t border-purple-100 dark:border-white/[0.08]">
-          <span className="text-[11px] font-mono font-bold uppercase text-slate-400 dark:text-slate-500 block mb-1">
-            KEYNOTE TOPIC
-          </span>
-          <h4 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white mb-2">
-            {keynoteSpeaker.topic}
-          </h4>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal max-w-4xl">
-            {keynoteSpeaker.desc}
-          </p>
+          <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-100 dark:border-white/[0.06]">
+            <a
+              href={keynoteSpeaker.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-4 py-2 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 shrink-0"
+            >
+              <HugeiconsIcon icon={Linkedin01Icon} className="h-3.5 w-3.5" />
+              <span>Connect</span>
+            </a>
+          </div>
         </div>
       </motion.div>
 
@@ -161,10 +152,20 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
               <div>
                 <div className="flex items-center justify-between mb-3.5">
                   <div
-                    className="h-11 w-11 rounded-xl flex items-center justify-center font-mono font-black text-sm text-white shadow-sm shrink-0"
-                    style={{ backgroundColor: speaker.accent }}
+                    className="relative h-11 w-11 rounded-xl overflow-hidden flex items-center justify-center font-mono font-black text-sm text-white shadow-sm shrink-0 bg-slate-100 dark:bg-white/[0.05] border border-slate-200/80 dark:border-white/10"
+                    style={{ backgroundColor: speaker.image ? undefined : speaker.accent }}
                   >
-                    {speaker.initials}
+                    {speaker.image ? (
+                      <Image
+                        src={speaker.image}
+                        alt={speaker.name}
+                        fill
+                        sizes="44px"
+                        className="object-cover object-top"
+                      />
+                    ) : (
+                      speaker.initials
+                    )}
                   </div>
 
                   <span className="text-[10px] font-mono font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.05] border border-slate-200/70 dark:border-white/10 px-2.5 py-1 rounded-lg">
