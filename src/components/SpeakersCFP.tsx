@@ -148,48 +148,35 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-6">
           {technicalSpeakers.map((speaker, idx) => (
             <motion.div
               key={speaker.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/40 p-5 sm:p-6 flex flex-col justify-between shadow-sm transition-all group"
+              transition={{ duration: 0.4, delay: idx * 0.08 }}
+              className="rounded-2xl sm:rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 p-5 sm:p-6 flex flex-col justify-between shadow-sm transition-all group hover:shadow-md"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3.5">
                   <div
-                    className="h-12 w-12 rounded-xl flex items-center justify-center font-mono font-black text-sm text-white shadow-md"
+                    className="h-11 w-11 rounded-xl flex items-center justify-center font-mono font-black text-sm text-white shadow-sm shrink-0"
                     style={{ backgroundColor: speaker.accent }}
                   >
                     {speaker.initials}
                   </div>
 
-                  <span className="text-[10px] font-mono font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-white/[0.05] px-2.5 py-1 rounded-md">
+                  <span className="text-[10px] font-mono font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-white/[0.05] border border-slate-200/70 dark:border-white/10 px-2.5 py-1 rounded-lg">
                     {speaker.track}
                   </span>
                 </div>
 
-                <h4 className="text-base sm:text-lg font-bold text-slate-950 dark:text-white group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-0.5">
+                <h4 className="text-base sm:text-lg font-black text-slate-950 dark:text-white group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-1">
                   {speaker.name}
                 </h4>
-                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 block mb-3">
+                <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 leading-snug">
                   {speaker.role}
-                </span>
-
-                <div className="p-3 rounded-2xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/70 dark:border-white/[0.05] mb-4">
-                  <span className="text-[10px] font-mono font-bold uppercase text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
-                    SESSION TOPIC
-                  </span>
-                  <span className="text-xs font-bold text-slate-900 dark:text-white block leading-snug">
-                    {speaker.topic}
-                  </span>
-                </div>
-
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
-                  {speaker.desc}
                 </p>
               </div>
 
@@ -198,12 +185,20 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
                   href={speaker.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A66C2] hover:underline"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A66C2] hover:text-[#084e96] dark:hover:text-sky-400 transition-colors"
                 >
                   <HugeiconsIcon icon={Linkedin01Icon} className="h-3.5 w-3.5" />
-                  <span>LinkedIn Profile</span>
+                  <span>Connect</span>
                 </a>
-                <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 text-slate-400" />
+                <a
+                  href={speaker.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-7 w-7 rounded-lg bg-slate-50 dark:bg-white/[0.04] hover:bg-[#0A66C2]/10 dark:hover:bg-[#0A66C2]/20 flex items-center justify-center text-slate-400 hover:text-[#0A66C2] transition-colors"
+                  aria-label={`Connect with ${speaker.name}`}
+                >
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
+                </a>
               </div>
             </motion.div>
           ))}
