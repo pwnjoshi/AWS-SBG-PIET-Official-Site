@@ -74,23 +74,22 @@ export default function ContactPage() {
   };
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-white">
-        <Navbar />
+    <div className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-white">
+      <Navbar />
 
-        <main className="flex-1 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
-              DIRECT INQUIRIES
-            </span>
-            <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white mb-4">
-              Get in Touch with AWS SBG PIET
-            </h1>
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
-              Have questions regarding AWS Student Community Day 2026 passes, sponsorships, speaking proposals, or student builder chapters? Send us a message or chat live.
-            </p>
-          </div>
+      <main className="flex-1 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+            DIRECT INQUIRIES
+          </span>
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-950 dark:text-white mb-4">
+            Get in Touch with AWS SBG PIET
+          </h1>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
+            Have questions regarding AWS Student Community Day 2026 passes, sponsorships, speaking proposals, or student builder chapters? Send us a message or chat live.
+          </p>
+        </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Side: Contact Channels */}
@@ -301,7 +300,6 @@ export default function ContactPage() {
 
         <Footer />
       </div>
-    </ThemeProvider>
   );
 }
 

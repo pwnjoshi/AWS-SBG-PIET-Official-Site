@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Cancel01Icon,
@@ -19,13 +19,28 @@ interface TicketModalProps {
 export default function TicketModal({ isOpen, onClose, selectedTierId }: TicketModalProps) {
   const [activeTierId, setActiveTierId] = useState<string>(selectedTierId || "builder-pass");
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("modal-open");
+      try {
+        (window as unknown as { Tawk_API?: { hideWidget?: () => void } }).Tawk_API?.hideWidget?.();
+      } catch {}
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+      try {
+        (window as unknown as { Tawk_API?: { showWidget?: () => void } }).Tawk_API?.showWidget?.();
+      } catch {}
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const currentTier = TICKET_TIERS.find((t) => t.id === activeTierId) || TICKET_TIERS[0];
   const isBlackPass = currentTier.id === "black-pass";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       {/* Modal Dialog / Native Mobile Bottom Sheet */}
       <div className="relative w-full max-w-lg max-h-[92vh] sm:max-h-[90vh] flex flex-col rounded-t-[32px] sm:rounded-3xl bg-white dark:bg-[#080D1E] border-t sm:border border-slate-200 dark:border-white/15 shadow-2xl overflow-hidden animate-in slide-in-from-bottom-6 sm:slide-in-from-bottom-0 sm:zoom-in-95 duration-200">
         {/* Mobile Pull Handle Indicator */}

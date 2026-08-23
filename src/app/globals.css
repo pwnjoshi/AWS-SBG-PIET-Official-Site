@@ -236,3 +236,24 @@ iframe[title*="Chat with us"]:not([style*="height: 100%"]) {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* Ensure Tawk.to base chat bubble has a low z-index so all modals, navbar, and bottom sheets are above it */
+#tawk-chat-container,
+.tawk-min-container,
+div[id^="tawk-"],
+iframe[src*="tawk.to"],
+div.widget-visible {
+  z-index: 35 !important;
+}
+
+/* When any modal is open, completely suppress Tawk.to to prevent overlapping on mobile */
+body.modal-open #tawk-chat-container,
+body.modal-open .tawk-min-container,
+body.modal-open div[id^="tawk-"],
+body.modal-open iframe[src*="tawk.to"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+

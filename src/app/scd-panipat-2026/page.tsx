@@ -36,7 +36,7 @@ export default function SCDPanipatPage() {
   };
 
   return (
-    <ThemeProvider>
+    <>
       {/* Light Mode Terminal Auto-Correcting Loading Screen */}
       <SCDLoadingScreen />
 
@@ -54,49 +54,48 @@ export default function SCDPanipatPage() {
             onOpenTickets={() => handleOpenTickets("builder-pass")}
           />
 
-          {/* Main Content Layout */}
-          <main className="relative z-10 flex flex-col gap-8 sm:gap-16">
-            {/* Cinematic Monumental Hero Section with Ambient Video */}
+          {/* Main Hero & Panipat Battlefield Landscape */}
+          <main>
             <Hero
               onOpenCFP={() => setCfpModalOpen(true)}
               onOpenTickets={() => handleOpenTickets("builder-pass")}
             />
 
-            {/* Why Attend & Credly Badge Spotlight & Previous SCDs */}
+            {/* Why Attend Grid */}
             <WhyAttend onOpenTickets={() => handleOpenTickets("builder-pass")} />
 
-            {/* 6 Technical Learning Tracks with Visual Architecture Cards */}
+            {/* 6 Technical Learning Tracks */}
             <LearningTracks onOpenTickets={() => handleOpenTickets("builder-pass")} />
 
-            {/* Full-Day Schedule Timeline */}
+            {/* Agenda Timeline */}
             <Agenda />
 
-            {/* Speakers Lineup & Call for Proposals (CFP) */}
+            {/* Speakers Spotlight & CFP Banner */}
             <SpeakersCFP onOpenCFP={() => setCfpModalOpen(true)} />
 
-            {/* Passes & Viral Badge Generator */}
+            {/* Ticket Tier Cards */}
             <TicketsSection onOpenTicketsModal={(tierId) => handleOpenTickets(tierId)} />
 
-            {/* Sponsorship Tiers & ROI Deck */}
+            {/* Sponsors Grid */}
             <SponsorsSection onOpenSponsorModal={() => setSponsorModalOpen(true)} />
 
-            {/* PIET Panipat Venue, Transit & Photo Parallax */}
+            {/* Venue & PIET Campus Info */}
             <VenueSection />
 
-            {/* Frequently Asked Questions */}
+            {/* FAQ Accordion */}
             <FAQSection />
 
-            {/* Community Channels & Alert Subscriptions */}
+            {/* Community Socials Banner */}
             <CommunitySocials />
           </main>
 
-          {/* Sticky Bottom Right Actions: Scroll To Top & Brevo Live Chat */}
+          {/* Floating Actions & Mobile Bottom Dock */}
           <FloatingActions />
+          <MobileBottomDock
+            onOpenTickets={() => handleOpenTickets("builder-pass")}
+          />
 
-          {/* Native Mobile Bottom Navigation Dock */}
-          <MobileBottomDock onOpenTickets={() => handleOpenTickets("builder-pass")} />
-
-          {/* Global Footer */}
+          {/* Footer */}
           <Footer />
 
           {/* Interactive Modals */}
@@ -117,6 +116,6 @@ export default function SCDPanipatPage() {
           />
         </div>
       </SmoothScroll>
-    </ThemeProvider>
+    </>
   );
 }

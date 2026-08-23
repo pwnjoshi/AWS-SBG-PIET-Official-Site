@@ -84,6 +84,7 @@ export const metadata: Metadata = {
 import TawkChat from "@/components/TawkChat";
 import JsonLd from "@/components/JsonLd";
 import ScrollToTop from "@/components/ScrollToTop";
+import { ThemeProvider } from "@/context/ThemeContext";
 import { SoundtrackProvider } from "@/context/SoundtrackContext";
 import CelebrationAmbienceEffects from "@/components/CelebrationAmbienceEffects";
 
@@ -125,10 +126,12 @@ export default function RootLayout({
         className="min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 font-sans selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white antialiased transition-colors duration-300"
       >
         <ScrollToTop />
-        <SoundtrackProvider>
-          <CelebrationAmbienceEffects />
-          {children}
-        </SoundtrackProvider>
+        <ThemeProvider>
+          <SoundtrackProvider>
+            <CelebrationAmbienceEffects />
+            {children}
+          </SoundtrackProvider>
+        </ThemeProvider>
         <TawkChat />
       </body>
     </html>

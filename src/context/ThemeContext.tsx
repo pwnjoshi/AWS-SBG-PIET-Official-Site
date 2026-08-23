@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { SoundtrackProvider } from "./SoundtrackContext";
 
 type Theme = "light" | "dark";
 
@@ -51,9 +50,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-      <SoundtrackProvider>
-        {children}
-      </SoundtrackProvider>
+      {children}
     </ThemeContext.Provider>
   );
 }

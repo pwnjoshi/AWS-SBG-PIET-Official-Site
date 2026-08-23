@@ -61,7 +61,7 @@ export const EVENT_DETAILS = {
   whatsappUrl: "https://chat.whatsapp.com/EmUhEaFVULDGS1MittXxKt",
   meetupUrl: "https://www.meetup.com/aws-sbg-at-panipat-institute-of-engineering-and-tech",
   linkedinUrl: "https://www.linkedin.com/company/aws-student-builder-group-piet",
-  instagramUrl: "https://www.instagram.com/awssbg_piet",
+  instagramUrl: "https://www.instagram.com/aws.sbg.piet/",
 };
 
 export const STATS = [
@@ -522,6 +522,6 @@ export const SOCIAL_LINKS = [
   { name: "Meetup", handle: "Meetup Events", href: "https://www.meetup.com/aws-sbg-at-panipat-institute-of-engineering-and-tech", icon: "Users" },
   { name: "Commudle", handle: "Community Hub", href: "https://www.commudle.com/communities/aws-student-builder-group-piet", icon: "Globe" },
   { name: "LinkedIn", handle: "AWS SBG PIET", href: "https://www.linkedin.com/company/aws-student-builder-group-piet", icon: "Linkedin" },
-  { name: "Instagram", handle: "@awssbg_piet", href: "https://www.instagram.com/awssbg_piet", icon: "Instagram" },
+  { name: "Instagram", handle: "@aws.sbg.piet", href: "https://www.instagram.com/aws.sbg.piet/", icon: "Instagram" },
   { name: "Email", handle: "aws-sbg@piet.co.in", href: "mailto:aws-sbg@piet.co.in", icon: "Mail" },
 ];

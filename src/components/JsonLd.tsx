@@ -66,7 +66,7 @@ export default function JsonLd() {
     "logo": "https://awssbgpiet.in/images/sbg-logo.png",
     "sameAs": [
       "https://www.linkedin.com/company/aws-student-builder-group-piet",
-      "https://www.instagram.com/awssbg_piet",
+      "https://www.instagram.com/aws.sbg.piet/",
       "https://github.com/pwnjoshi/AWS-SBG-PIET-Official-Site",
       "https://www.commudle.com/communities/aws-student-builder-group-piet"
     ]

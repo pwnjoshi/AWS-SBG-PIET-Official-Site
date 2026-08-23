@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   Cancel01Icon,
@@ -30,6 +30,21 @@ export default function CFPModal({ isOpen, onClose }: CFPModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("modal-open");
+      try {
+        (window as unknown as { Tawk_API?: { hideWidget?: () => void } }).Tawk_API?.hideWidget?.();
+      } catch {}
+    }
+    return () => {
+      document.body.classList.remove("modal-open");
+      try {
+        (window as unknown as { Tawk_API?: { showWidget?: () => void } }).Tawk_API?.showWidget?.();
+      } catch {}
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -70,7 +85,7 @@ export default function CFPModal({ isOpen, onClose }: CFPModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center p-0 sm:p-4 bg-black/70 dark:bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       <div className="relative w-full max-w-xl max-h-[92vh] sm:max-h-[90vh] flex flex-col rounded-t-[32px] sm:rounded-3xl bg-white dark:bg-[#080D1E] border-t sm:border border-slate-200 dark:border-white/15 p-5 sm:p-8 shadow-2xl overflow-y-auto animate-in slide-in-from-bottom-6 sm:slide-in-from-bottom-0 duration-200">
         {/* Mobile Pull Handle Indicator */}
         <div className="w-12 h-1.5 rounded-full bg-slate-300 dark:bg-white/20 mx-auto -mt-1 mb-3 sm:hidden shrink-0" />

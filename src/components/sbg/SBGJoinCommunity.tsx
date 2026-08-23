@@ -49,7 +49,7 @@ export default function SBGJoinCommunity() {
     },
     {
       name: "Instagram",
-      handle: "@awssbg_piet",
+      handle: "@aws.sbg.piet",
       desc: "Campus event highlights, reels, behind-the-scenes, and builder stories.",
       href: EVENT_DETAILS.instagramUrl,
       icon: InstagramIcon,
