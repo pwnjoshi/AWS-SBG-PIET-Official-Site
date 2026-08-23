@@ -154,7 +154,7 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-60px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mb-12 sm:mb-16"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-12 sm:mb-16"
       >
         {valueProps.map((item) => (
           <motion.div
@@ -162,14 +162,16 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
             variants={itemVariants}
             whileHover={{ y: -6 }}
             transition={{ duration: 0.25 }}
-            className={`group relative rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-4 sm:p-7 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-slate-200/60 dark:hover:shadow-black/60 overflow-hidden`}
+            className={`group relative rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] ${item.borderColor} p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-purple-500/5 dark:hover:shadow-black/60 overflow-hidden min-h-[260px]`}
           >
-            {/* Ambient Background Glow Effect */}
-            <div
-              className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none ${item.glowColor}`}
-            />
+            {/* Engraved Background Typography Watermark */}
+            <div className="absolute top-2 right-4 pointer-events-none select-none overflow-hidden z-0">
+              <span className="text-5xl sm:text-6xl font-black uppercase tracking-tighter text-slate-100 dark:text-white/[0.03] group-hover:text-slate-200/90 dark:group-hover:text-white/[0.06] transition-all duration-300 transform group-hover:translate-x-1 block leading-none">
+                {item.tag}
+              </span>
+            </div>
 
-            {/* Top Accent Gradient Line */}
+            {/* Ambient Accent Glow Line */}
             <div
               className="absolute top-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
@@ -179,43 +181,38 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
 
             {/* Card Content Top */}
             <div className="relative z-10">
-              {/* Header: Tag, Indicator, & Index */}
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-2">
-                  <span
-                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold tracking-wide uppercase border ${item.badgeColor}`}
-                  >
-                    {item.tag}
-                  </span>
-                </div>
-
-                <span className="text-xl font-mono font-extrabold text-slate-300 dark:text-slate-700 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
-                  {item.num}
+              {/* Minimal Category Header */}
+              <div className="flex items-center gap-2 mb-4">
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{ backgroundColor: item.accent }}
+                />
+                <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-[#8E35EA] dark:text-[#AD5CFF]">
+                  {item.tag}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-2.5 group-hover:text-[#8E35EA] dark:group-hover:text-white transition-colors">
+              <h3 className="text-lg sm:text-xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-3 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors leading-snug">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6 font-normal">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal">
                 {item.desc}
               </p>
             </div>
 
-            {/* Card Footer: Micro-Pills */}
-            <div className="relative z-10 pt-4 border-t border-slate-100 dark:border-white/[0.06] flex flex-wrap gap-1.5">
-              {item.highlights.map((highlight) => (
-                <span
-                  key={highlight}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-50 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.05] text-[11px] font-medium text-slate-700 dark:text-slate-300"
-                >
-                  <HugeiconsIcon icon={Tick02Icon} className="h-3 w-3 text-emerald-500 shrink-0" />
-                  <span>{highlight}</span>
-                </span>
-              ))}
+            {/* Card Footer: Engraved Number in Bottom Right */}
+            <div className="relative z-10 pt-6 mt-4 flex items-end justify-between border-t border-slate-100 dark:border-white/[0.04]">
+              <div className="flex items-center gap-1.5 text-[11px] font-mono font-semibold text-slate-400 dark:text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                <span className="h-1 w-4 rounded-full bg-slate-200 dark:bg-white/10 group-hover:bg-[#AD5CFF] transition-colors" />
+                <span>AWS SCD 2026</span>
+              </div>
+
+              <span className="text-4xl sm:text-5xl font-mono font-black tracking-tighter text-slate-200 dark:text-white/10 group-hover:text-[#8E35EA]/35 dark:group-hover:text-[#AD5CFF]/40 transition-colors leading-none select-none">
+                {item.num}
+              </span>
             </div>
           </motion.div>
         ))}

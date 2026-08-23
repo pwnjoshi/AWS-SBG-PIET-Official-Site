@@ -10,12 +10,31 @@ import {
   Clock01Icon,
   Location01Icon,
   UserIcon,
+  ArrowDown01Icon,
+  ArrowUp01Icon,
 } from "@hugeicons/core-free-icons";
 import { AGENDA } from "@/lib/data";
 
 export default function Agenda() {
   const [activePhase, setActivePhase] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [expandedSessions, setExpandedSessions] = useState<Record<string, boolean>>({});
+
+  const toggleSession = (key: string) => {
+    setExpandedSessions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
+  const toggleAll = () => {
+    const allExpanded = filteredAgenda.every((item) => expandedSessions[item.time + item.title]);
+    const newState: Record<string, boolean> = {};
+    filteredAgenda.forEach((item) => {
+      newState[item.time + item.title] = !allExpanded;
+    });
+    setExpandedSessions(newState);
+  };
 
   // Clean time phases aligned with 9:00 AM – 5:00 PM schedule
   const phases = [
@@ -109,6 +128,8 @@ export default function Agenda() {
 
   const googleCalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=AWS+Student+Community+Day+Panipat+2026&dates=20260911T033000Z/20260911T113000Z&details=Haryana's+first-ever+AWS+Student+Community+Day.+Keynotes+by+Praful+Bagai%2C+Technical+Tracks+by+Amit+Kumar%2C+Chhavi+Garg+%26+Shivani+Singh+Vimal%2C+KIRO+Buildathon%2C+Ideathon%2C+and+Tech+Panel.&location=Panipat+Institute+of+Engineering+%26+Technology%2C+NH-44%2C+Samalkha%2C+Panipat%2C+Haryana+132102`;
 
+  const isAllExpanded = filteredAgenda.length > 0 && filteredAgenda.every((item) => expandedSessions[item.time + item.title]);
+
   return (
     <section id="agenda" className="relative py-14 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10 w-full overflow-hidden">
       {/* Section Header */}
@@ -119,84 +140,81 @@ export default function Agenda() {
         transition={{ duration: 0.6 }}
         className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-12 w-full"
       >
-        <div className="w-full sm:w-auto">
-          <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
-            EVENT TIMELINE
+        <div className="max-w-2xl">
+          <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
+            SUMMIT ITINERARY • 11 SEPT 2026
           </span>
           <h2 className="text-2xl sm:text-4xl font-black text-slate-950 dark:text-white tracking-tight leading-tight">
-            Summit Schedule
+            Schedule &amp; Session Timeline
           </h2>
-          <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-            Friday, 11 September 2026 • 9:00 AM – 5:00 PM • PIET Panipat
+          <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            Full 1-day itinerary spanning AWS keynotes, technical tracks, KIRO Buildathon, and networking expo.
           </p>
         </div>
 
-        {/* Action Controls: 2-Column Grid on Mobile (No overflow) */}
-        <div className="grid grid-cols-2 gap-2 w-full sm:w-auto sm:flex sm:items-center shrink-0">
+        {/* Action Buttons: Add to Cal & Expand All */}
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            onClick={toggleAll}
+            className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.1] text-slate-800 dark:text-slate-200 text-xs font-bold transition-all cursor-pointer"
+          >
+            {isAllExpanded ? "Collapse All" : "Expand All"}
+          </button>
+
           <a
             href={googleCalUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="py-2.5 px-3 rounded-xl sm:rounded-full bg-white dark:bg-white/[0.05] hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-bold text-slate-800 dark:text-slate-200 transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer text-center truncate"
+            className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-white/[0.06] hover:bg-slate-200 dark:hover:bg-white/[0.1] text-slate-800 dark:text-slate-200 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
           >
-            <HugeiconsIcon icon={Calendar03Icon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF] shrink-0" />
-            <span className="truncate">Google Cal</span>
+            <HugeiconsIcon icon={Calendar03Icon} className="h-3.5 w-3.5 text-[#8E35EA] dark:text-[#AD5CFF]" />
+            <span>Google Calendar</span>
           </a>
+
           <button
             onClick={handleDownloadICS}
-            className="py-2.5 px-3 rounded-xl sm:rounded-full bg-white dark:bg-white/[0.05] hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-bold text-slate-700 dark:text-slate-200 transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer text-center truncate"
+            type="button"
+            className="px-3.5 py-2 rounded-xl bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] text-white text-xs font-bold flex items-center gap-1.5 transition-all shadow-sm cursor-pointer"
           >
-            <HugeiconsIcon icon={Download01Icon} className="h-3.5 w-3.5 text-slate-500 dark:text-slate-400 shrink-0" />
-            <span className="truncate">Export .ICS</span>
+            <HugeiconsIcon icon={Download01Icon} className="h-3.5 w-3.5" />
+            <span>.ICS File</span>
           </button>
         </div>
       </motion.div>
 
-      {/* Interactive Phase Bar & Search Widget (Zero Overflow App Card) */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.5 }}
-        className="w-full rounded-2xl bg-white/90 dark:bg-[#080D1E]/90 backdrop-blur-xl border border-slate-200/90 dark:border-white/[0.08] p-2 mb-6 sm:mb-8 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2 overflow-hidden"
-      >
-        {/* Horizontal Segmented Phase Switcher */}
-        <div className="grid grid-cols-3 gap-1 p-0.5 sm:flex sm:items-center sm:gap-1.5 w-full sm:w-auto">
+      {/* Filter Tabs & Search Bar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 mb-6 sm:mb-8">
+        <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-slate-100 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.06] overflow-x-auto">
           {phases.map((phase) => (
             <button
               key={phase.id}
               onClick={() => setActivePhase(phase.id)}
-              className={`py-2 px-2.5 sm:px-3 sm:py-1.5 rounded-xl text-[11px] sm:text-xs font-bold transition-all text-center cursor-pointer active:scale-95 truncate ${
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer shrink-0 ${
                 activePhase === phase.id
-                  ? "bg-[#AD5CFF] text-white shadow-md shadow-[#AD5CFF]/30 font-extrabold"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.05]"
+                  ? "bg-[#8E35EA] dark:bg-[#AD5CFF] text-white shadow-sm"
+                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
-              <span className="sm:hidden">{phase.shortLabel}</span>
-              <span className="hidden sm:inline">{phase.label}</span>
+              {phase.shortLabel}
             </button>
           ))}
         </div>
 
-        {/* Real-time Session Search Box */}
-        <div className="relative w-full sm:w-64 shrink-0">
-          <HugeiconsIcon
-            icon={Search01Icon}
-            className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400 dark:text-slate-500"
-          />
+        <div className="relative flex-1 sm:max-w-xs">
+          <HugeiconsIcon icon={Search01Icon} className="absolute left-3.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-400 pointer-events-none" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Filter sessions..."
-            className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200 dark:border-white/[0.08] text-xs text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:border-[#AD5CFF] focus:outline-none transition-colors"
+            placeholder="Search sessions or speakers..."
+            className="w-full pl-9 pr-3.5 py-2 rounded-xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-[#8E35EA] dark:focus:border-[#AD5CFF] transition-colors"
           />
         </div>
-      </motion.div>
+      </div>
 
-      {/* Main Timeline List */}
-      <div className="relative w-full overflow-hidden">
-        {/* Vertical Connected Timeline Spine (Desktop Only) */}
+      {/* Timeline List */}
+      <div className="relative">
         <div className="hidden md:block absolute left-[150px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-[#AD5CFF]/40 via-slate-200 dark:via-white/10 to-transparent" />
 
         <AnimatePresence mode="wait">
@@ -225,11 +243,13 @@ export default function Agenda() {
               </div>
             ) : (
               filteredAgenda.map((item, index) => {
+                const sessionKey = item.time + item.title;
+                const isExpanded = !!expandedSessions[sessionKey];
                 const badgeStyle = getBadgeStyle(item.badge);
 
                 return (
                   <motion.div
-                    key={item.time + item.title}
+                    key={sessionKey}
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3, delay: index * 0.03 }}
@@ -249,14 +269,15 @@ export default function Agenda() {
                       </span>
                     </div>
 
-                    {/* Right Session App Card (Strictly width-bounded) */}
+                    {/* Right Session App Card (Expandable Accordion) */}
                     <div className="md:col-span-9 w-full">
                       <div
-                        className={`rounded-2xl p-4 sm:p-6 transition-all duration-200 border shadow-sm w-full overflow-hidden ${
+                        className={`rounded-2xl p-4 sm:p-5 transition-all duration-200 border shadow-sm w-full overflow-hidden cursor-pointer ${
                           item.highlight
-                            ? "bg-purple-50/50 dark:bg-[#0C0F28] border-[#AD5CFF]/40 shadow-md shadow-purple-500/5 dark:shadow-[#AD5CFF]/10"
+                            ? "bg-purple-50/40 dark:bg-[#0C0F28] border-[#AD5CFF]/40 shadow-md shadow-purple-500/5 dark:shadow-[#AD5CFF]/10"
                             : "bg-white dark:bg-[#090E1E] border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/30"
                         }`}
+                        onClick={() => toggleSession(sessionKey)}
                       >
                         {/* Mobile App Time Bar & Category Header */}
                         <div className="flex items-center justify-between gap-1.5 mb-2 pb-2 border-b border-slate-100 dark:border-white/[0.06] w-full">
@@ -266,23 +287,33 @@ export default function Agenda() {
                             <span>{item.time}</span>
                           </div>
 
-                          {/* Category Badge */}
-                          {item.badge && (
-                            <span
-                              className={`text-[8px] sm:text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border uppercase truncate max-w-[130px] sm:max-w-none ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.text}`}
-                            >
-                              {item.badge}
-                            </span>
-                          )}
+                          <div className="flex items-center gap-2">
+                            {/* Category Badge */}
+                            {item.badge && (
+                              <span
+                                className={`text-[8px] sm:text-[9px] font-mono font-bold px-2 py-0.5 rounded-full border uppercase truncate max-w-[130px] sm:max-w-none ${badgeStyle.bg} ${badgeStyle.border} ${badgeStyle.text}`}
+                              >
+                                {item.badge}
+                              </span>
+                            )}
+
+                            {/* Accordion Chevron Icon */}
+                            <div className="p-1 rounded-full bg-slate-100 dark:bg-white/[0.06] text-slate-500 dark:text-slate-400">
+                              <HugeiconsIcon
+                                icon={isExpanded ? ArrowUp01Icon : ArrowDown01Icon}
+                                className="h-3 w-3 transition-transform"
+                              />
+                            </div>
+                          </div>
                         </div>
 
                         {/* Session Title */}
-                        <h3 className="text-sm sm:text-lg font-extrabold text-slate-950 dark:text-white tracking-tight leading-snug my-1 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors break-words">
+                        <h3 className="text-sm sm:text-base font-extrabold text-slate-950 dark:text-white tracking-tight leading-snug my-1 group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors break-words">
                           {item.title}
                         </h3>
 
                         {/* Speaker & Venue Tags */}
-                        <div className="flex flex-wrap items-center gap-1.5 mt-2 mb-2 w-full">
+                        <div className="flex flex-wrap items-center gap-1.5 mt-2 w-full">
                           {item.speaker && (
                             <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-[#AD5CFF]/10 text-[#8E35EA] dark:text-[#BE7BFF] text-[10px] sm:text-[11px] font-bold shrink-0">
                               <HugeiconsIcon icon={UserIcon} className="h-3 w-3 shrink-0" />
@@ -300,10 +331,22 @@ export default function Agenda() {
                           </span>
                         </div>
 
-                        {/* Details Paragraph */}
-                        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-normal break-words">
-                          {item.details}
-                        </p>
+                        {/* Animated Expandable Details Section */}
+                        <AnimatePresence>
+                          {isExpanded && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                              className="overflow-hidden pt-3 mt-3 border-t border-slate-100 dark:border-white/[0.06]"
+                            >
+                              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-normal break-words">
+                                {item.details}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     </div>
                   </motion.div>
