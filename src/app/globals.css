@@ -134,3 +134,14 @@ body {
 .dark .pill-lightning {
   --pill-bg: rgba(8, 13, 30, 0.92);
 }
+
+/* Hide floating live chat bubble on mobile to keep bottom dock clean */
+@media (max-width: 768px) {
+  #tawk-default-container,
+  .tawk-min-container,
+  .tawk-button,
+  iframe[title*="chat" i] {
+    display: none !important;
+  }
+}
+

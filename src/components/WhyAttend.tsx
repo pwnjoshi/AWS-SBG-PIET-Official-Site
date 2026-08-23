@@ -114,8 +114,8 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
 
   return (
     <section id="why-attend" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
-      {/* Section Header with Panipat Hindi Watermark on the right */}
-      <div className="relative flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 overflow-hidden">
+      {/* Section Header with Panipat Hindi Typography on the right */}
+      <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-6 mb-14">
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -134,25 +134,17 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
           </p>
         </motion.div>
 
-        {/* Right Creative Panipat in Hindi Typography & AWS Motif */}
+        {/* Right Clean Panipat in Hindi Monumental Typography */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.92, x: 20 }}
-          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden md:flex flex-col items-end justify-center select-none shrink-0"
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="hidden md:flex items-center justify-end select-none pointer-events-none shrink-0"
         >
-          <div className="relative flex flex-col items-end">
-            <span className="text-6xl lg:text-7xl font-black tracking-tight bg-gradient-to-r from-slate-300 via-[#AD5CFF]/60 to-[#FF9900]/60 dark:from-slate-700 dark:via-[#AD5CFF]/50 dark:to-[#FF9900]/50 bg-clip-text text-transparent leading-none">
-              पानीपत
-            </span>
-            <div className="flex items-center gap-1.5 mt-1.5 px-3 py-1 rounded-full bg-[#AD5CFF]/10 dark:bg-[#AD5CFF]/15 border border-[#AD5CFF]/20 dark:border-[#AD5CFF]/30 backdrop-blur-sm">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FF9900]" />
-              <span className="text-[10px] font-mono font-bold tracking-wider text-[#8E35EA] dark:text-[#BE7BFF] uppercase">
-                AWS STUDENT COMMUNITY DAY 2026
-              </span>
-            </div>
-          </div>
+          <span className="text-7xl lg:text-8xl font-black tracking-tight text-slate-200/90 dark:text-white/[0.08] leading-none select-none">
+            पानीपत
+          </span>
         </motion.div>
       </div>
 

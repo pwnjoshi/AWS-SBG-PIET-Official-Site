@@ -10,6 +10,20 @@ export default function TawkChat() {
       dangerouslySetInnerHTML={{
         __html: `
           var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+          Tawk_API.onLoad = function() {
+            if (window.innerWidth < 768 && typeof Tawk_API.hideWidget === 'function') {
+              Tawk_API.hideWidget();
+            }
+          };
+          window.addEventListener('resize', function() {
+            if (typeof Tawk_API.hideWidget === 'function' && typeof Tawk_API.showWidget === 'function') {
+              if (window.innerWidth < 768) {
+                Tawk_API.hideWidget();
+              } else {
+                Tawk_API.showWidget();
+              }
+            }
+          });
           (function(){
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
@@ -23,3 +37,4 @@ export default function TawkChat() {
     />
   );
 }
+
