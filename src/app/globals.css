@@ -131,17 +131,25 @@ body {
   animation: border-spin 3s linear infinite;
 }
 
-.dark .pill-lightning {
-  --pill-bg: rgba(8, 13, 30, 0.92);
-}
-
-/* Hide floating live chat bubble on mobile to keep bottom dock clean */
+/* Bulletproof hide for Tawk.to widget on mobile phones */
 @media (max-width: 768px) {
   #tawk-default-container,
   .tawk-min-container,
   .tawk-button,
-  iframe[title*="chat" i] {
+  .tawk-custom-color,
+  div[class*="tawk-"],
+  div[id*="tawk-"],
+  iframe[title*="chat" i],
+  iframe[src*="tawk.to" i] {
     display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    bottom: -9999px !important;
+    z-index: -9999 !important;
   }
 }
 

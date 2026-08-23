@@ -18,33 +18,33 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
   const selectedTrack = TRACKS.find((t) => t.id === selectedTrackId) || TRACKS[1];
 
   return (
-    <section id="tracks" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10">
+    <section id="tracks" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 max-w-6xl mx-auto z-10 overflow-hidden sm:overflow-visible">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-2xl mb-12"
+        className="max-w-2xl mb-8 sm:mb-12"
       >
-        <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-2">
+        <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest text-[#8E35EA] dark:text-[#AD5CFF] block mb-1.5">
           TECHNICAL TRACKS
         </span>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
           6 specialized tracks for every cloud builder
         </h2>
-        <p className="mt-3 text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p className="mt-2 text-xs sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
           Select a track below to explore curriculum, hands-on build goals, and architectural deep-dives.
         </p>
       </motion.div>
 
-      {/* Track Selector Tabs - Mobile horizontal scrollable pill bar */}
+      {/* Track Selector Tabs - Mobile First Responsive Grid */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className="flex sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-2 overflow-x-auto scrollbar-none pb-2 mb-6 -mx-4 px-4 sm:mx-0 sm:px-0"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 mb-6 w-full"
       >
         {TRACKS.map((track) => {
           const isSelected = track.id === selectedTrackId;
@@ -52,17 +52,18 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
           return (
             <button
               key={track.id}
+              type="button"
               onClick={() => setSelectedTrackId(track.id)}
-              className={`min-w-[130px] sm:min-w-0 rounded-2xl p-3 sm:p-3.5 text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer shrink-0 sm:shrink ${
+              className={`w-full rounded-2xl p-2.5 sm:p-3.5 text-left transition-all duration-200 border flex flex-col justify-between cursor-pointer active:scale-[0.98] ${
                 isSelected
-                  ? "bg-[#AD5CFF] text-white border-[#AD5CFF] shadow-lg shadow-[#AD5CFF]/20"
-                  : "bg-white dark:bg-[#090E1E] border-slate-200 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/15 text-slate-900 dark:text-white"
+                  ? "bg-[#8E35EA] dark:bg-[#AD5CFF] text-white border-[#8E35EA] dark:border-[#AD5CFF] shadow-md shadow-purple-500/20"
+                  : "bg-white dark:bg-[#090E1E] border-slate-200/90 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/15 text-slate-900 dark:text-white"
               }`}
             >
-              <span className={`font-mono text-[10px] sm:text-xs font-bold mb-1 block ${isSelected ? "text-white/90" : "text-[#8E35EA] dark:text-[#AD5CFF]"}`}>
+              <span className={`font-mono text-[9px] sm:text-xs font-bold mb-0.5 sm:mb-1 block ${isSelected ? "text-white/90" : "text-[#8E35EA] dark:text-[#AD5CFF]"}`}>
                 TRACK {track.number}
               </span>
-              <h4 className="text-xs font-bold leading-snug line-clamp-1">
+              <h4 className="text-[11px] sm:text-xs font-bold leading-snug line-clamp-2">
                 {track.title}
               </h4>
             </button>
@@ -76,7 +77,7 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-2xl bg-white dark:bg-[#090E1E] border border-slate-200 dark:border-white/10 p-5 sm:p-8 shadow-sm"
+        className="rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/10 p-4 sm:p-8 shadow-sm overflow-hidden"
       >
         <AnimatePresence mode="wait">
           <motion.div
@@ -85,32 +86,32 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center"
           >
             {/* Left Column: Track Details */}
-            <div className="lg:col-span-7 flex flex-col gap-5">
+            <div className="lg:col-span-7 flex flex-col gap-4 sm:gap-5">
               <div>
-                <span className="text-xs font-mono font-semibold text-[#8E35EA] dark:text-[#BE7BFF] bg-[#AD5CFF]/15 border border-[#AD5CFF]/30 px-2.5 py-1 rounded inline-block mb-3">
+                <span className="text-[10px] sm:text-xs font-mono font-semibold text-[#8E35EA] dark:text-[#BE7BFF] bg-[#AD5CFF]/15 border border-[#AD5CFF]/30 px-2.5 py-0.5 sm:py-1 rounded-full inline-block mb-2 sm:mb-3">
                   Track {selectedTrack.number} • Hands-on Workshop
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white">
+                <h3 className="text-xl sm:text-3xl font-extrabold text-slate-950 dark:text-white break-words">
                   {selectedTrack.title}
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
                   {selectedTrack.tagline}
                 </p>
               </div>
 
               {/* Curriculum Checklist */}
               <div className="space-y-2">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
-                  Curriculum & Build Goals:
+                <span className="text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 block mb-1">
+                  Curriculum &amp; Build Goals:
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {selectedTrack.topics.map((topic) => (
                     <div
                       key={topic}
-                      className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.05]"
+                      className="flex items-start gap-2 p-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.05]"
                     >
                       <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
                       <span className="text-xs text-slate-700 dark:text-slate-300 leading-snug">{topic}</span>
@@ -121,11 +122,11 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
 
               {/* Skills Badges */}
               <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                <span className="text-xs font-mono text-slate-500 dark:text-slate-400 mr-1">Skills:</span>
+                <span className="text-[10px] sm:text-xs font-mono text-slate-500 dark:text-slate-400 mr-1">Skills:</span>
                 {selectedTrack.skillsGained.map((skill) => (
                   <span
                     key={skill}
-                    className="text-[11px] font-mono font-medium px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.05] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]"
+                    className="text-[10px] sm:text-[11px] font-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 dark:bg-white/[0.05] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]"
                   >
                     {skill}
                   </span>
@@ -135,10 +136,10 @@ export default function LearningTracks({ onOpenTickets }: LearningTracksProps) {
               <div className="pt-2">
                 <button
                   onClick={onOpenTickets}
-                  className="px-5 py-2.5 rounded-full bg-[#AD5CFF] hover:bg-[#BE7BFF] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-[#AD5CFF]/25 hover:scale-[1.02] cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-purple-500/20 active:scale-95 cursor-pointer"
                 >
                   <span>Register for Track {selectedTrack.number}</span>
-                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3" />
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
                 </button>
               </div>
             </div>
