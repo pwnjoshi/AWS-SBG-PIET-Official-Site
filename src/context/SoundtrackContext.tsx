@@ -46,22 +46,30 @@ export function SoundtrackProvider({ children }: { children: React.ReactNode }) 
   }, []);
 
   const play = () => {
-    if (audioRef.current) {
-      audioRef.current
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch((err) => {
-          console.warn("Audio autoplay blocked or failed:", err);
-        });
+    setIsPlaying(true);
+    try {
+      if (!audioRef.current) {
+        const audio = new Audio("/audio/rise_awssbg_geu.mp3");
+        audio.loop = true;
+        audio.volume = 0.5;
+        audioRef.current = audio;
+      }
+      audioRef.current.play().catch((err) => {
+        console.warn("Audio playback note:", err);
+      });
+    } catch (e) {
+      console.warn("Audio error:", e);
     }
   };
 
   const pause = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      setIsPlaying(false);
+    setIsPlaying(false);
+    try {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    } catch (e) {
+      console.warn("Audio pause error:", e);
     }
   };
 
