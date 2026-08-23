@@ -14,8 +14,8 @@ export async function POST(req: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
-    const receiverEmail = process.env.SPONSOR_RECEIVER_EMAIL || "info@awssbgpiet.in";
-    const senderEmail = process.env.RESEND_FROM_EMAIL || "AWS SBG PIET <site@awssbgpiet.in>";
+    const receiverEmail = "info@awssbgpiet.in";
+    const senderEmail = "AWS SBG PIET <site@awssbgpiet.in>";
     const generalAudienceId = "7abce8e8-acf6-4f09-9700-a4cf979adf03";
 
     // 1. Add Sponsor to Resend Contacts Audience
