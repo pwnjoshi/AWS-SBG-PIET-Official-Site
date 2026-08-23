@@ -246,13 +246,13 @@ export default function WhyAttend({ onOpenTickets }: WhyAttendProps) {
         {/* Static Credly Badge Display */}
         <div className="relative z-10 shrink-0 flex flex-col items-center">
           <div className="w-56 rounded-2xl bg-white dark:bg-[#0B1024] border border-[#AD5CFF]/35 p-5 flex flex-col items-center text-center shadow-xl shadow-[#AD5CFF]/10 backdrop-blur-sm">
-            <div className="relative h-24 w-24 mb-2 drop-shadow-md">
+            <div className="relative h-24 w-24 mb-2.5 rounded-2xl p-1.5 border border-slate-200/90 dark:border-white/15 bg-slate-50/80 dark:bg-white/[0.04] shadow-sm flex items-center justify-center overflow-hidden">
               <Image
                 src="/images/credly-badge.png"
                 alt="AWS Student Community Day Participant Credly Badge"
-                width={96}
-                height={96}
-                className="object-contain"
+                width={84}
+                height={84}
+                className="object-contain rounded-xl drop-shadow-sm"
               />
             </div>
             <span className="text-[9px] font-mono font-bold text-[#8E35EA] dark:text-[#AD5CFF] uppercase tracking-wider">
