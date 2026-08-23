@@ -24,6 +24,7 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
+  const [compact, setCompact] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const { isPlaying, toggleSoundtrack } = useSoundtrack();
@@ -32,8 +33,9 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      setCompact(window.scrollY > 80);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -70,9 +72,11 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
       ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-2.5 sm:px-4 py-2.5 sm:py-3.5 transition-all duration-300">
+    <header className={`fixed top-0 left-0 right-0 z-50 flex justify-center px-2.5 sm:px-4 transition-all duration-300 ease-in-out ${compact ? "py-1 sm:py-1.5" : "py-2.5 sm:py-3.5"}`}>
       <div
-        className={`w-full max-w-7xl rounded-full px-3.5 sm:px-5 py-2 transition-all duration-300 flex items-center justify-between ${
+        className={`w-full max-w-7xl rounded-full transition-all duration-300 ease-in-out flex items-center justify-between ${
+          compact ? "px-3 sm:px-4 py-1" : "px-3.5 sm:px-5 py-2"
+        } ${
           scrolled
             ? "bg-white/90 dark:bg-[#060814]/90 backdrop-blur-xl border border-slate-200 dark:border-white/[0.1] shadow-xl shadow-slate-200/50 dark:shadow-black/80"
             : "bg-white/80 dark:bg-[#080D1E]/75 backdrop-blur-lg border border-slate-200/80 dark:border-white/[0.08]"
@@ -80,7 +84,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
       >
         {/* Brand Logo & Name */}
         <Link href="/" className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-          <div className="relative h-7 w-7 sm:h-8 sm:w-8 rounded-lg bg-[#AD5CFF]/15 dark:bg-[#AD5CFF]/20 border border-[#AD5CFF]/30 p-1 flex items-center justify-center overflow-hidden">
+          <div className={`relative rounded-lg bg-[#AD5CFF]/15 dark:bg-[#AD5CFF]/20 border border-[#AD5CFF]/30 p-1 flex items-center justify-center overflow-hidden transition-all duration-300 ${compact ? "h-6 w-6 sm:h-7 sm:w-7" : "h-7 w-7 sm:h-8 sm:w-8"}`}>
             <Image
               src="/images/sbg-logo.png"
               alt="AWS Student Builder Group Logo"
@@ -92,22 +96,22 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
           </div>
 
           <div className="flex flex-col">
-            <span className="text-xs sm:text-sm font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight">
+            <span className={`font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight transition-all duration-300 ${compact ? "text-[11px] sm:text-xs" : "text-xs sm:text-sm"}`}>
               AWS SBG PIET
             </span>
-            <span className="text-[8px] sm:text-[9px] font-semibold text-slate-500 dark:text-slate-400 tracking-wide uppercase">
+            <span className={`font-semibold text-slate-500 dark:text-slate-400 tracking-wide uppercase overflow-hidden transition-all duration-300 ${compact ? "max-h-0 opacity-0 mt-0" : "max-h-4 opacity-100 text-[8px] sm:text-[9px]"}`}>
               Student Community
             </span>
           </div>
         </Link>
 
         {/* Center Navigation Links (Desktop) */}
-        <nav className="hidden lg:flex items-center gap-1 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] rounded-full px-2.5 py-0.5">
+        <nav className={`hidden lg:flex items-center gap-0.5 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.06] rounded-full transition-all duration-300 ${compact ? "px-1.5 py-0" : "px-2.5 py-0.5"}`}>
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={`px-3 py-1 text-xs font-medium rounded-full transition-all flex items-center gap-1 ${
+              className={`rounded-full transition-all duration-300 flex items-center gap-1 font-medium ${compact ? "px-2.5 py-0.5 text-[11px]" : "px-3 py-1 text-xs"} ${
                 link.highlight
                   ? "bg-[#AD5CFF] text-white font-bold shadow-sm shadow-[#AD5CFF]/30"
                   : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white dark:hover:bg-white/[0.06]"
@@ -124,14 +128,14 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 transition-all cursor-pointer"
+            className={`rounded-full text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 transition-all duration-300 cursor-pointer ${compact ? "p-1.5" : "p-2"}`}
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
             title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? (
-              <HugeiconsIcon icon={Sun01Icon} className="h-4 w-4 text-amber-400" />
+              <HugeiconsIcon icon={Sun01Icon} className={`transition-all duration-300 text-amber-400 ${compact ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
             ) : (
-              <HugeiconsIcon icon={Moon02Icon} className="h-4 w-4 text-[#8E35EA]" />
+              <HugeiconsIcon icon={Moon02Icon} className={`transition-all duration-300 text-[#8E35EA] ${compact ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
             )}
           </button>
 
@@ -140,7 +144,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
               {onOpenCFP && (
                 <button
                   onClick={onOpenCFP}
-                  className="px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-full transition-all cursor-pointer"
+                  className={`text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-full transition-all duration-300 cursor-pointer ${compact ? "px-2.5 py-1" : "px-3 py-1.5"}`}
                 >
                   Submit CFP
                 </button>
@@ -148,7 +152,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
               {onOpenTickets ? (
                 <button
                   onClick={onOpenTickets}
-                  className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+                  className={`group text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all duration-300 flex items-center gap-1.5 shadow-sm cursor-pointer ${compact ? "px-3 py-1" : "px-3.5 py-1.5"}`}
                 >
                   <span>Get Event Pass</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -158,7 +162,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
                   href={EVENT_DETAILS.commudleUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group px-3.5 py-1.5 text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+                  className={`group text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all duration-300 flex items-center gap-1.5 shadow-sm cursor-pointer ${compact ? "px-3 py-1" : "px-3.5 py-1.5"}`}
                 >
                   <span>Register on Commudle</span>
                   <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -168,7 +172,7 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
           ) : (
             <Link
               href="/scd-panipat-2026"
-              className="group px-4 py-1.5 text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all flex items-center gap-1.5 shadow-sm cursor-pointer"
+              className={`group text-xs font-bold text-white bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] rounded-full transition-all duration-300 flex items-center gap-1.5 shadow-sm cursor-pointer ${compact ? "px-3 py-1" : "px-4 py-1.5"}`}
             >
               <span>Explore SCD Summit 2026</span>
               <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3 w-3 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -180,25 +184,25 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
         <div className="lg:hidden flex items-center gap-1.5">
           <button
             onClick={toggleTheme}
-            className="p-2 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10"
+            className={`text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 transition-all duration-300 ${compact ? "p-1.5" : "p-2"}`}
             aria-label="Toggle theme"
           >
             {theme === "dark" ? (
-              <HugeiconsIcon icon={Sun01Icon} className="h-4 w-4 text-amber-400" />
+              <HugeiconsIcon icon={Sun01Icon} className={`transition-all duration-300 text-amber-400 ${compact ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
             ) : (
-              <HugeiconsIcon icon={Moon02Icon} className="h-4 w-4 text-[#8E35EA]" />
+              <HugeiconsIcon icon={Moon02Icon} className={`transition-all duration-300 text-[#8E35EA] ${compact ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
             )}
           </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 cursor-pointer"
+            className={`text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white rounded-full bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 cursor-pointer transition-all duration-300 ${compact ? "p-1.5" : "p-2"}`}
             aria-label="Toggle mobile menu"
           >
             {mobileMenuOpen ? (
-              <HugeiconsIcon icon={Cancel01Icon} className="h-4 w-4" />
+              <HugeiconsIcon icon={Cancel01Icon} className={`transition-all duration-300 ${compact ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
             ) : (
-              <HugeiconsIcon icon={Menu01Icon} className="h-4 w-4" />
+              <HugeiconsIcon icon={Menu01Icon} className={`transition-all duration-300 ${compact ? "h-3.5 w-3.5" : "h-4 w-4"}`} />
             )}
           </button>
         </div>

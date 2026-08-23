@@ -32,7 +32,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
       role: "Senior Solutions Architect @ Amazon Web Services | Hybrid Cloud Specialist",
       track: "Track A • Cloud Architecture",
       linkedin: "https://www.linkedin.com/in/amitkyvmw/",
-      image: "/images/amit-kumar.png",
+      image: "/images/amit-kumar.jpg",
       initials: "AK",
       accent: "#0EA5E9",
     },
