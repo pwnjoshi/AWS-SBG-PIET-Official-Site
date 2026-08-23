@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import confetti from "canvas-confetti";
 import { useSoundtrack } from "@/context/SoundtrackContext";
 
@@ -15,7 +15,7 @@ interface Particle {
   decay: number;
   rotation: number;
   rotSpeed: number;
-  type: "star" | "note" | "circle";
+  type: "star" | "note" | "spark" | "confetti";
   symbol?: string;
 }
 
@@ -24,7 +24,8 @@ export default function CelebrationAmbienceEffects() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animFrameIdRef = useRef<number | null>(null);
-  const lastMousePosRef = useRef<{ x: number; y: number } | null>(null);
+  const mousePosRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
+  const [cursorVisible, setCursorVisible] = useState(false);
 
   const colors = [
     "#FF9900", // AWS Orange
@@ -32,29 +33,49 @@ export default function CelebrationAmbienceEffects() {
     "#AD5CFF", // Violet
     "#BE7BFF", // Purple
     "#38BDF8", // Sky Cyan
-    "#F43F5E", // Rose Coral
+    "#F43F5E", // Coral Pink
+    "#22C55E", // Emerald Green
     "#FFFFFF", // Sparkle White
   ];
 
-  const symbols = ["♪", "♫", "✦", "★", "✨", "◆"];
+  const symbols = ["♪", "♫", "✦", "★", "✨", "◆", "♬"];
 
   useEffect(() => {
     if (isPlaying) {
       document.documentElement.classList.add("ambience-mode-active");
+      document.body.classList.add("ambience-mode-active");
 
-      // Launch Celebratory Confetti Burst on Activation
+      // Grand Opening Confetti Blast
       try {
         confetti({
-          particleCount: 90,
-          spread: 120,
-          origin: { y: 0.55 },
+          particleCount: 100,
+          spread: 140,
+          origin: { y: 0.5 },
           colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF", "#38BDF8", "#FFFFFF"],
         });
-      } catch {
-        // ignore
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 60,
+            angle: 60,
+            spread: 80,
+            origin: { x: 0, y: 0.7 },
+            colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF"],
+          });
+          confetti({
+            particleCount: 60,
+            angle: 120,
+            spread: 80,
+            origin: { x: 1, y: 0.7 },
+            colors: ["#FF9900", "#FFB84D", "#AD5CFF", "#BE7BFF"],
+          });
+        }, 300);
+      } catch (e) {
+        console.warn("Confetti blast note:", e);
       }
     } else {
       document.documentElement.classList.remove("ambience-mode-active");
+      document.body.classList.remove("ambience-mode-active");
       particlesRef.current = [];
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
@@ -74,50 +95,53 @@ export default function CelebrationAmbienceEffects() {
     if (!ctx) return;
 
     const handleResize = () => {
+      if (!canvas) return;
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    const spawnParticle = (x: number, y: number, count = 2, burst = false) => {
+    const spawnParticles = (x: number, y: number, count = 3, burst = false) => {
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = burst ? Math.random() * 4.5 + 2 : Math.random() * 1.8 + 0.4;
-        const isSymbol = Math.random() > 0.6;
+        const speed = burst ? Math.random() * 5 + 2 : Math.random() * 2 + 0.5;
+        const isNote = Math.random() > 0.65;
+        const isConfetti = !isNote && Math.random() > 0.5;
+
         particlesRef.current.push({
-          x: x + (Math.random() - 0.5) * 12,
-          y: y + (Math.random() - 0.5) * 12,
+          x: x + (Math.random() - 0.5) * 16,
+          y: y + (Math.random() - 0.5) * 16,
           vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - (burst ? 0.6 : 0.9), // upward float
-          size: isSymbol ? Math.random() * 7 + 10 : Math.random() * 3.5 + (burst ? 2.5 : 1),
+          vy: Math.sin(angle) * speed - (burst ? 0.8 : 1.2), // float upward
+          size: isNote ? Math.random() * 8 + 12 : isConfetti ? Math.random() * 6 + 6 : Math.random() * 4 + 2,
           color: colors[Math.floor(Math.random() * colors.length)],
           alpha: 1,
-          decay: burst ? Math.random() * 0.018 + 0.012 : Math.random() * 0.022 + 0.016,
-          rotation: Math.random() * Math.PI,
-          rotSpeed: (Math.random() - 0.5) * 0.08,
-          type: isSymbol ? "note" : Math.random() > 0.4 ? "star" : "circle",
+          decay: burst ? Math.random() * 0.016 + 0.012 : Math.random() * 0.02 + 0.015,
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.12,
+          type: isNote ? "note" : isConfetti ? "confetti" : "star",
           symbol: symbols[Math.floor(Math.random() * symbols.length)],
         });
       }
-      if (particlesRef.current.length > 220) {
-        particlesRef.current = particlesRef.current.slice(-220);
+      if (particlesRef.current.length > 250) {
+        particlesRef.current = particlesRef.current.slice(-250);
       }
     };
 
     const handleMouseMove = (e: MouseEvent) => {
-      const { clientX: x, clientY: y } = e;
-      spawnParticle(x, y, 2, false);
-      lastMousePosRef.current = { x, y };
+      mousePosRef.current = { x: e.clientX, y: e.clientY };
+      setCursorVisible(true);
+      spawnParticles(e.clientX, e.clientY, 2, false);
     };
 
     const handleClick = (e: MouseEvent) => {
-      spawnParticle(e.clientX, e.clientY, 18, true);
+      spawnParticles(e.clientX, e.clientY, 24, true);
     };
 
     const handleScroll = () => {
-      if (lastMousePosRef.current) {
-        spawnParticle(lastMousePosRef.current.x, lastMousePosRef.current.y, 2, false);
+      if (mousePosRef.current.x > 0) {
+        spawnParticles(mousePosRef.current.x, mousePosRef.current.y, 2, false);
       }
     };
 
@@ -125,20 +149,44 @@ export default function CelebrationAmbienceEffects() {
     window.addEventListener("click", handleClick, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
 
-    // Ambient floating celebratory stardust & notes periodically drift up
     let timer = 0;
 
     const render = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       timer++;
-      if (timer % 10 === 0) {
-        spawnParticle(
+      // Continuous celebratory drifting embers from bottom
+      if (timer % 8 === 0) {
+        spawnParticles(
           Math.random() * canvas.width,
-          canvas.height - Math.random() * 60,
+          canvas.height - Math.random() * 80,
           1,
           false
         );
+      }
+
+      // Draw custom glowing cursor sparkler if mouse is inside window
+      if (mousePosRef.current.x > 0 && mousePosRef.current.y > 0) {
+        const mx = mousePosRef.current.x;
+        const my = mousePosRef.current.y;
+
+        ctx.save();
+        ctx.shadowColor = "#AD5CFF";
+        ctx.shadowBlur = 15;
+        ctx.fillStyle = "#AD5CFF";
+        ctx.beginPath();
+        ctx.arc(mx, my, 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Outer rotating glowing star ring
+        ctx.strokeStyle = "#FF9900";
+        ctx.lineWidth = 1.5;
+        ctx.shadowColor = "#FF9900";
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(mx, my, 12 + Math.sin(timer * 0.1) * 3, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
       }
 
       for (let i = particlesRef.current.length - 1; i >= 0; i--) {
@@ -154,7 +202,7 @@ export default function CelebrationAmbienceEffects() {
         }
 
         ctx.save();
-        ctx.globalAlpha = p.alpha;
+        ctx.globalAlpha = Math.max(0, p.alpha);
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rotation);
 
@@ -162,12 +210,17 @@ export default function CelebrationAmbienceEffects() {
           ctx.font = `bold ${Math.round(p.size)}px sans-serif`;
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 10;
           ctx.fillText(p.symbol, -p.size / 2, p.size / 2);
-        } else if (p.type === "star") {
+        } else if (p.type === "confetti") {
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 6;
+          ctx.shadowBlur = 8;
+          ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+        } else {
+          ctx.fillStyle = p.color;
+          ctx.shadowColor = p.color;
+          ctx.shadowBlur = 8;
           ctx.beginPath();
           const r = p.size;
           for (let j = 0; j < 4; j++) {
@@ -178,13 +231,6 @@ export default function CelebrationAmbienceEffects() {
             );
           }
           ctx.closePath();
-          ctx.fill();
-        } else {
-          ctx.fillStyle = p.color;
-          ctx.shadowColor = p.color;
-          ctx.shadowBlur = 5;
-          ctx.beginPath();
-          ctx.arc(0, 0, p.size, 0, Math.PI * 2);
           ctx.fill();
         }
 
@@ -198,6 +244,7 @@ export default function CelebrationAmbienceEffects() {
 
     return () => {
       document.documentElement.classList.remove("ambience-mode-active");
+      document.body.classList.remove("ambience-mode-active");
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
@@ -206,26 +253,24 @@ export default function CelebrationAmbienceEffects() {
     };
   }, [isPlaying]);
 
-  if (!isPlaying) return null;
-
   return (
-    <>
-      {/* Fullscreen Interactive Canvas for Cursor Sparks & Notes */}
+    <div className={`transition-opacity duration-700 pointer-events-none ${isPlaying ? "opacity-100" : "opacity-0"}`}>
+      {/* Fullscreen Interactive Canvas for Cursor Sparks, Notes, and Confetti */}
       <canvas
         ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-[9999] select-none"
+        className="fixed inset-0 pointer-events-none z-[99999] select-none"
         aria-hidden="true"
       />
 
-      {/* Atmospheric Celebratory Beam & Aura Layer */}
+      {/* Atmospheric Celebratory Beam & Aurora Waves Layer */}
       <div
-        className="fixed inset-0 pointer-events-none z-[4] select-none opacity-50 mix-blend-screen transition-all duration-700 pointer-events-none"
+        className="fixed inset-0 pointer-events-none z-[3] select-none mix-blend-screen transition-all duration-1000"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.22) 0%, rgba(255, 153, 0, 0.12) 40%, rgba(14, 165, 233, 0.08) 65%, transparent 80%)",
+            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.28) 0%, rgba(255, 153, 0, 0.16) 45%, rgba(14, 165, 233, 0.1) 75%, transparent 90%)",
         }}
         aria-hidden="true"
       />
-    </>
+    </div>
   );
 }

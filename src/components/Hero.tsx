@@ -72,7 +72,7 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
     <section
       id="overview"
       ref={containerRef}
-      className="relative min-h-0 lg:min-h-[88vh] w-full flex flex-col justify-between pt-24 sm:pt-28 pb-4 sm:pb-8 px-3 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative min-h-0 lg:min-h-[90vh] w-full flex flex-col justify-between pt-32 sm:pt-36 pb-12 sm:pb-16 px-3 sm:px-6 lg:px-8 overflow-hidden"
     >
       {/* PIET Campus Video Background */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
@@ -181,22 +181,22 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:hidden flex flex-col items-center gap-3 mb-2 select-none w-full"
+          className="lg:hidden flex flex-col items-center gap-4 mt-2 mb-8 select-none w-full"
         >
           {/* Countdown row */}
-          <div className="flex items-center justify-center gap-1.5">
+          <div className="flex items-center justify-center gap-2">
             {[
               { val: timeLeft.days, label: "Days" },
               { val: timeLeft.hours, label: "Hrs" },
               { val: timeLeft.minutes, label: "Min" },
               { val: timeLeft.seconds, label: "Sec" },
             ].map((unit, idx) => (
-              <div key={unit.label} className="flex items-center gap-1.5">
-                <div className="flex flex-col items-center justify-center w-[50px] h-[50px] rounded-2xl bg-white/95 dark:bg-[#080D1E]/90 border border-slate-200 dark:border-white/[0.08] shadow-sm">
-                  <span className="text-sm font-black text-slate-900 dark:text-white font-mono leading-none">
+              <div key={unit.label} className="flex items-center gap-2">
+                <div className="flex flex-col items-center justify-center w-[52px] h-[52px] rounded-2xl bg-white/95 dark:bg-[#080D1E]/90 border border-slate-200 dark:border-white/[0.08] shadow-sm">
+                  <span className="text-base font-black text-slate-900 dark:text-white font-mono leading-none">
                     {String(unit.val).padStart(2, "0")}
                   </span>
-                  <span className="text-[7px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-0.5">
+                  <span className="text-[7.5px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider mt-1">
                     {unit.label}
                   </span>
                 </div>
@@ -206,10 +206,10 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
           </div>
 
           {/* Mobile Ambience Mode & Event Chips */}
-          <div className="flex flex-wrap items-center justify-center gap-2 px-2 mt-1">
+          <div className="flex flex-wrap items-center justify-center gap-2 px-2">
             <button
               onClick={toggleSoundtrack}
-              className={`px-3 py-1.5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-mono font-bold active:scale-95 shadow-sm ${
+              className={`px-3.5 py-1.5 rounded-full transition-all cursor-pointer flex items-center gap-1.5 text-[11px] font-mono font-bold active:scale-95 shadow-sm ${
                 isPlayingAudio
                   ? "bg-gradient-to-r from-purple-500/25 via-orange-500/25 to-indigo-500/25 border border-[#AD5CFF]/60 text-[#8E35EA] dark:text-[#BE7BFF] shadow-purple-500/20"
                   : "bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10"
@@ -232,11 +232,11 @@ export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
               )}
             </button>
 
-            <span className="flex items-center gap-1 bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 px-3 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/[0.06]">
+            <span className="flex items-center gap-1 bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 px-3.5 py-1.5 rounded-full text-[11px] font-medium border border-slate-200 dark:border-white/[0.06]">
               <HugeiconsIcon icon={Location01Icon} className="h-3 w-3 text-[#8E35EA] dark:text-[#AD5CFF]" />
               PIET Panipat
             </span>
-            <span className="flex items-center gap-1 bg-[#8E35EA]/10 dark:bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] px-3 py-1.5 rounded-full text-[11px] font-bold border border-[#8E35EA]/20 dark:border-[#AD5CFF]/30">
+            <span className="flex items-center gap-1 bg-[#8E35EA]/10 dark:bg-[#AD5CFF]/15 text-[#8E35EA] dark:text-[#BE7BFF] px-3.5 py-1.5 rounded-full text-[11px] font-bold border border-[#8E35EA]/20 dark:border-[#AD5CFF]/30">
               <HugeiconsIcon icon={Ticket01Icon} className="h-3 w-3" />
               From ₹399
             </span>
