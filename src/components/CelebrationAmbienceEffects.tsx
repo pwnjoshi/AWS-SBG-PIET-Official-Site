@@ -308,10 +308,10 @@ export default function CelebrationAmbienceEffects() {
 
       {/* Atmospheric Celebratory Beam & Aurora Waves Layer */}
       <div
-        className="fixed inset-0 pointer-events-none z-[4] select-none mix-blend-screen transition-all duration-1000 opacity-50"
+        className="fixed inset-0 pointer-events-none z-[4] select-none mix-blend-screen transition-all duration-1000 opacity-75"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.18) 0%, rgba(255, 153, 0, 0.10) 45%, rgba(14, 165, 233, 0.06) 75%, transparent 90%)",
+            "radial-gradient(ellipse at 50% 0%, rgba(173, 92, 255, 0.25) 0%, rgba(255, 153, 0, 0.14) 45%, rgba(14, 165, 233, 0.08) 75%, transparent 90%)",
         }}
         aria-hidden="true"
       />

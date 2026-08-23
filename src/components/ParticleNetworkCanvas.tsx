@@ -42,18 +42,18 @@ export default function ParticleNetworkCanvas() {
     const noteSymbols = ["♪", "♫", "✦", "★", "♬"];
 
     const particles: Particle[] = [];
-    const particleCount = isPlaying ? 36 : 24;
+    const particleCount = isPlaying ? 48 : 28;
 
     for (let i = 0; i < particleCount; i++) {
-      const isNote = isPlaying && Math.random() > 0.7;
+      const isNote = isPlaying && Math.random() > 0.65;
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * (isPlaying ? 0.9 : 0.4),
-        vy: (Math.random() - 0.5) * (isPlaying ? 0.9 : 0.4) - (isPlaying ? 0.15 : 0),
-        radius: isNote ? Math.random() * 3 + 8 : Math.random() * 2 + (isPlaying ? 1.2 : 1),
+        vx: (Math.random() - 0.5) * (isPlaying ? 1.1 : 0.4),
+        vy: (Math.random() - 0.5) * (isPlaying ? 1.1 : 0.4) - (isPlaying ? 0.2 : 0),
+        radius: isNote ? Math.random() * 4 + 9 : Math.random() * 2.2 + (isPlaying ? 1.4 : 1),
         color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: Math.random() * 0.4 + 0.2,
+        alpha: Math.random() * 0.5 + 0.35,
         symbol: isNote ? noteSymbols[Math.floor(Math.random() * noteSymbols.length)] : undefined,
       });
     }
@@ -66,12 +66,12 @@ export default function ParticleNetworkCanvas() {
 
       const isDark = document.documentElement.classList.contains("dark");
 
-      // Soft Subtle Celebratory Ambient Focal Glow
+      // Balanced Celebratory Ambient Focal Glow
       const glowColor = isPlaying
-        ? "rgba(173, 92, 255, 0.08)"
+        ? "rgba(173, 92, 255, 0.12)"
         : isDark
-        ? "rgba(173, 92, 255, 0.03)"
-        : "rgba(173, 92, 255, 0.05)";
+        ? "rgba(173, 92, 255, 0.04)"
+        : "rgba(173, 92, 255, 0.06)";
 
       const radialGradient = ctx.createRadialGradient(
         width * 0.5,
@@ -84,8 +84,8 @@ export default function ParticleNetworkCanvas() {
 
       radialGradient.addColorStop(0, glowColor);
       if (isPlaying) {
-        radialGradient.addColorStop(0.4, "rgba(255, 153, 0, 0.04)");
-        radialGradient.addColorStop(0.7, "rgba(56, 189, 248, 0.02)");
+        radialGradient.addColorStop(0.4, "rgba(255, 153, 0, 0.06)");
+        radialGradient.addColorStop(0.7, "rgba(56, 189, 248, 0.03)");
       } else {
         radialGradient.addColorStop(0.5, isDark ? "rgba(142, 53, 234, 0.015)" : "rgba(142, 53, 234, 0.03)");
       }
@@ -131,8 +131,8 @@ export default function ParticleNetworkCanvas() {
           ctx.font = `bold ${Math.round(p.radius)}px sans-serif`;
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 6;
-          ctx.globalAlpha = p.alpha * 0.65;
+          ctx.shadowBlur = 8;
+          ctx.globalAlpha = p.alpha * 0.85;
           ctx.fillText(p.symbol, p.x, p.y);
           ctx.restore();
         } else {
@@ -141,8 +141,8 @@ export default function ParticleNetworkCanvas() {
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
           ctx.fillStyle = isPlaying ? p.color : isDark ? "rgba(255,255,255,0.4)" : "rgba(142, 53, 234, 0.3)";
           ctx.shadowColor = isPlaying ? p.color : "#AD5CFF";
-          ctx.shadowBlur = isPlaying ? 6 : 3;
-          ctx.globalAlpha = p.alpha * 0.7;
+          ctx.shadowBlur = isPlaying ? 8 : 3;
+          ctx.globalAlpha = p.alpha * 0.85;
           ctx.fill();
           ctx.restore();
         }
@@ -155,14 +155,14 @@ export default function ParticleNetworkCanvas() {
             const dy = p.y - p2.y;
             const dist = Math.sqrt(dx * dx + dy * dy);
 
-            if (dist < 110) {
+            if (dist < 120) {
               ctx.save();
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
               ctx.strokeStyle = p.color;
-              ctx.globalAlpha = (1 - dist / 110) * 0.16;
-              ctx.lineWidth = 1;
+              ctx.globalAlpha = (1 - dist / 120) * 0.25;
+              ctx.lineWidth = 1.1;
               ctx.stroke();
               ctx.restore();
             }
@@ -184,7 +184,7 @@ export default function ParticleNetworkCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed inset-0 pointer-events-none z-0 transition-opacity duration-700 ${isPlaying ? "opacity-60" : "opacity-80"}`}
+      className={`fixed inset-0 pointer-events-none z-0 transition-opacity duration-700 ${isPlaying ? "opacity-90" : "opacity-80"}`}
     />
   );
 }
