@@ -207,15 +207,15 @@ export default function BadgeGenerator() {
       ctx.fillStyle = "#AD5CFF";
       ctx.fillText("PANIPAT 2026 • HARYANA", 140, 235);
 
-      // Header Right: AWS SBG PIET / 11 SEPT 2026
+      // Header Right: AWS SBG PIET / ✦ I'M ATTENDING
       ctx.textAlign = "right";
       ctx.font = "700 24px monospace";
       ctx.fillStyle = "#FF9900";
       ctx.fillText("AWS SBG PIET", 1060, 195);
 
-      ctx.font = "600 20px monospace";
-      ctx.fillStyle = "#94A3B8";
-      ctx.fillText("11 SEPT 2026", 1060, 235);
+      ctx.font = "bold 20px monospace";
+      ctx.fillStyle = "#34D399";
+      ctx.fillText("✦ I'M ATTENDING", 1060, 235);
       ctx.textAlign = "left";
 
       // 6. Accent Gradient Ribbon Line
@@ -658,8 +658,8 @@ export default function BadgeGenerator() {
                 <span className="text-[10px] font-mono font-bold text-[#FF9900] block">
                   AWS SBG PIET
                 </span>
-                <span className="text-[9px] font-mono text-slate-400">
-                  11 SEPT 2026
+                <span className="text-[9px] font-mono font-bold text-emerald-400">
+                  ✦ I&apos;M ATTENDING
                 </span>
               </div>
             </div>

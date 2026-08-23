@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import { useSoundtrack } from "@/context/SoundtrackContext";
 
@@ -24,8 +24,6 @@ export default function CelebrationAmbienceEffects() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particlesRef = useRef<Particle[]>([]);
   const animFrameIdRef = useRef<number | null>(null);
-  const cursorPointerRef = useRef<HTMLDivElement | null>(null);
-  const cursorRingRef = useRef<HTMLDivElement | null>(null);
   const mousePosRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
   const smoothMouseRef = useRef<{ x: number; y: number }>({ x: -100, y: -100 });
   const isHoveringInteractiveRef = useRef<boolean>(false);
@@ -84,8 +82,6 @@ export default function CelebrationAmbienceEffects() {
       document.body.classList.remove("ambience-mode-active");
       particlesRef.current = [];
       trailRef.current = [];
-      if (cursorPointerRef.current) cursorPointerRef.current.style.opacity = "0";
-      if (cursorRingRef.current) cursorRingRef.current.style.opacity = "0";
       if (animFrameIdRef.current) {
         cancelAnimationFrame(animFrameIdRef.current);
         animFrameIdRef.current = null;
@@ -114,27 +110,27 @@ export default function CelebrationAmbienceEffects() {
     const spawnParticles = (x: number, y: number, count = 3, burst = false) => {
       for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = burst ? Math.random() * 5.5 + 2.5 : Math.random() * 2.2 + 0.6;
-        const isNote = Math.random() > 0.6;
+        const speed = burst ? Math.random() * 6 + 2.5 : Math.random() * 2.5 + 0.8;
+        const isNote = Math.random() > 0.55;
         const isConfetti = !isNote && Math.random() > 0.5;
 
         particlesRef.current.push({
-          x: x + (Math.random() - 0.5) * 18,
-          y: y + (Math.random() - 0.5) * 18,
+          x: x + (Math.random() - 0.5) * 16,
+          y: y + (Math.random() - 0.5) * 16,
           vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - (burst ? 1.0 : 1.4), // upward float
-          size: isNote ? Math.random() * 9 + 13 : isConfetti ? Math.random() * 7 + 6 : Math.random() * 4.5 + 2,
+          vy: Math.sin(angle) * speed - (burst ? 1.2 : 1.6), // upward float
+          size: isNote ? Math.random() * 10 + 14 : isConfetti ? Math.random() * 8 + 6 : Math.random() * 5 + 3,
           color: colors[Math.floor(Math.random() * colors.length)],
           alpha: 1,
-          decay: burst ? Math.random() * 0.015 + 0.01 : Math.random() * 0.018 + 0.012,
+          decay: burst ? Math.random() * 0.014 + 0.008 : Math.random() * 0.016 + 0.01,
           rotation: Math.random() * Math.PI * 2,
-          rotSpeed: (Math.random() - 0.5) * 0.14,
+          rotSpeed: (Math.random() - 0.5) * 0.15,
           type: isNote ? "note" : isConfetti ? "confetti" : "star",
           symbol: symbols[Math.floor(Math.random() * symbols.length)],
         });
       }
-      if (particlesRef.current.length > 280) {
-        particlesRef.current = particlesRef.current.slice(-280);
+      if (particlesRef.current.length > 300) {
+        particlesRef.current = particlesRef.current.slice(-300);
       }
     };
 
@@ -145,20 +141,14 @@ export default function CelebrationAmbienceEffects() {
       const isInteractive = !!target?.closest('button, a, input, [role="button"], .interactive-hover');
       isHoveringInteractiveRef.current = isInteractive;
 
-      // Update Custom Pointer DOM directly (0 latency, 0 React re-renders)
-      if (cursorPointerRef.current) {
-        cursorPointerRef.current.style.opacity = "1";
-        cursorPointerRef.current.style.transform = `translate3d(${e.clientX - 3}px, ${e.clientY - 3}px, 0)`;
-      }
-
       trailRef.current.push({ x: e.clientX, y: e.clientY, alpha: 1 });
-      if (trailRef.current.length > 16) trailRef.current.shift();
+      if (trailRef.current.length > 18) trailRef.current.shift();
 
-      spawnParticles(e.clientX, e.clientY, isInteractive ? 3 : 2, false);
+      spawnParticles(e.clientX, e.clientY, isInteractive ? 4 : 2, false);
     };
 
     const handleClick = (e: MouseEvent) => {
-      spawnParticles(e.clientX, e.clientY, 32, true);
+      spawnParticles(e.clientX, e.clientY, 36, true);
     };
 
     const handleScroll = () => {
@@ -167,11 +157,11 @@ export default function CelebrationAmbienceEffects() {
       lastScrollYRef.current = currentScrollY;
 
       // Spawn celebratory particles across the viewport on scroll (desktop and mobile)
-      const count = Math.min(6, Math.max(3, Math.floor(scrollDiff / 15)));
+      const count = Math.min(8, Math.max(3, Math.floor(scrollDiff / 12)));
       for (let k = 0; k < count; k++) {
         spawnParticles(
           Math.random() * window.innerWidth,
-          window.innerHeight - Math.random() * 140,
+          window.innerHeight - Math.random() * 150,
           1,
           false
         );
@@ -185,15 +175,16 @@ export default function CelebrationAmbienceEffects() {
         smoothMouseRef.current = { x: t.clientX, y: t.clientY };
 
         trailRef.current.push({ x: t.clientX, y: t.clientY, alpha: 1 });
-        if (trailRef.current.length > 16) trailRef.current.shift();
+        if (trailRef.current.length > 18) trailRef.current.shift();
 
-        spawnParticles(t.clientX, t.clientY, 4, false);
+        spawnParticles(t.clientX, t.clientY, 5, false);
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
     window.addEventListener("click", handleClick, { passive: true });
     window.addEventListener("scroll", handleScroll, { passive: true });
+    document.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("touchstart", handleTouch, { passive: true });
     window.addEventListener("touchmove", handleTouch, { passive: true });
 
@@ -203,11 +194,11 @@ export default function CelebrationAmbienceEffects() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       timer++;
-      // Continuous celebratory drifting embers & notes from bottom
-      if (timer % 7 === 0) {
+      // Continuous celebratory drifting festival lanterns & notes from bottom
+      if (timer % 6 === 0) {
         spawnParticles(
           Math.random() * canvas.width,
-          canvas.height - Math.random() * 80,
+          canvas.height - Math.random() * 90,
           1,
           false
         );
@@ -218,30 +209,30 @@ export default function CelebrationAmbienceEffects() {
         for (let i = 1; i < trailRef.current.length; i++) {
           const pt1 = trailRef.current[i - 1];
           const pt2 = trailRef.current[i];
-          pt1.alpha *= 0.92;
+          pt1.alpha *= 0.94;
 
           ctx.save();
           ctx.beginPath();
           ctx.moveTo(pt1.x, pt1.y);
           ctx.lineTo(pt2.x, pt2.y);
           ctx.strokeStyle = i % 2 === 0 ? "#AD5CFF" : "#FF9900";
-          ctx.lineWidth = (i / trailRef.current.length) * 4;
-          ctx.shadowColor = "#AD5CFF";
-          ctx.shadowBlur = 10;
-          ctx.globalAlpha = pt1.alpha * (i / trailRef.current.length) * 0.7;
+          ctx.lineWidth = (i / trailRef.current.length) * 5;
+          ctx.shadowColor = i % 2 === 0 ? "#AD5CFF" : "#FF9900";
+          ctx.shadowBlur = 12;
+          ctx.globalAlpha = pt1.alpha * (i / trailRef.current.length) * 0.85;
           ctx.lineCap = "round";
           ctx.stroke();
           ctx.restore();
         }
       }
 
-      // Smooth interpolation for magic cursor wand follower ring
+      // Smooth interpolation for magic cursor wand follower
       if (mousePosRef.current.x > 0 && mousePosRef.current.y > 0) {
         if (smoothMouseRef.current.x < 0) {
           smoothMouseRef.current = { ...mousePosRef.current };
         } else {
-          smoothMouseRef.current.x += (mousePosRef.current.x - smoothMouseRef.current.x) * 0.4;
-          smoothMouseRef.current.y += (mousePosRef.current.y - smoothMouseRef.current.y) * 0.4;
+          smoothMouseRef.current.x += (mousePosRef.current.x - smoothMouseRef.current.x) * 0.45;
+          smoothMouseRef.current.y += (mousePosRef.current.y - smoothMouseRef.current.y) * 0.45;
         }
 
         const mx = smoothMouseRef.current.x;
@@ -251,32 +242,32 @@ export default function CelebrationAmbienceEffects() {
         ctx.save();
         // Inner core star spark
         ctx.shadowColor = isHoveringNow ? "#FF9900" : "#AD5CFF";
-        ctx.shadowBlur = isHoveringNow ? 20 : 14;
+        ctx.shadowBlur = isHoveringNow ? 22 : 15;
         ctx.fillStyle = isHoveringNow ? "#FF9900" : "#AD5CFF";
         ctx.beginPath();
-        ctx.arc(mx, my, isHoveringNow ? 6 : 4.5, 0, Math.PI * 2);
+        ctx.arc(mx, my, isHoveringNow ? 6.5 : 4.5, 0, Math.PI * 2);
         ctx.fill();
 
         // Outer rotating planetary celebration ring
         ctx.strokeStyle = isHoveringNow ? "#AD5CFF" : "#FF9900";
-        ctx.lineWidth = isHoveringNow ? 2 : 1.5;
+        ctx.lineWidth = isHoveringNow ? 2.2 : 1.6;
         ctx.shadowColor = isHoveringNow ? "#AD5CFF" : "#FF9900";
-        ctx.shadowBlur = isHoveringNow ? 15 : 10;
+        ctx.shadowBlur = 16;
         ctx.beginPath();
-        const ringRadius = (isHoveringNow ? 18 : 13) + Math.sin(timer * 0.12) * 3;
+        const ringRadius = (isHoveringNow ? 20 : 14) + Math.sin(timer * 0.14) * 3;
         ctx.arc(mx, my, ringRadius, 0, Math.PI * 2);
         ctx.stroke();
 
-        // 4 small orbit dots around the wand
+        // 4 orbiting radiant planetary dots around the wand
         for (let k = 0; k < 4; k++) {
-          const orbitAngle = timer * 0.06 + (k * Math.PI) / 2;
+          const orbitAngle = timer * 0.07 + (k * Math.PI) / 2;
           const ox = mx + Math.cos(orbitAngle) * ringRadius;
           const oy = my + Math.sin(orbitAngle) * ringRadius;
           ctx.fillStyle = isHoveringNow ? "#FFFFFF" : "#38BDF8";
           ctx.shadowColor = "#FFFFFF";
-          ctx.shadowBlur = 6;
+          ctx.shadowBlur = 8;
           ctx.beginPath();
-          ctx.arc(ox, oy, 1.8, 0, Math.PI * 2);
+          ctx.arc(ox, oy, 2.2, 0, Math.PI * 2);
           ctx.fill();
         }
 
@@ -304,7 +295,7 @@ export default function CelebrationAmbienceEffects() {
           ctx.font = `bold ${Math.round(p.size)}px sans-serif`;
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 12;
+          ctx.shadowBlur = 14;
           ctx.fillText(p.symbol, -p.size / 2, p.size / 2);
         } else if (p.type === "confetti") {
           ctx.fillStyle = p.color;
@@ -314,7 +305,7 @@ export default function CelebrationAmbienceEffects() {
         } else {
           ctx.fillStyle = p.color;
           ctx.shadowColor = p.color;
-          ctx.shadowBlur = 10;
+          ctx.shadowBlur = 12;
           ctx.beginPath();
           const r = p.size;
           for (let j = 0; j < 4; j++) {
@@ -343,6 +334,7 @@ export default function CelebrationAmbienceEffects() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("scroll", handleScroll);
       window.removeEventListener("touchstart", handleTouch);
       window.removeEventListener("touchmove", handleTouch);
       if (animFrameIdRef.current) cancelAnimationFrame(animFrameIdRef.current);
@@ -351,47 +343,12 @@ export default function CelebrationAmbienceEffects() {
 
   return (
     <div className={`transition-opacity duration-700 pointer-events-none ${isPlaying ? "opacity-100" : "opacity-0"}`}>
-      {/* Fullscreen Interactive Canvas for Cursor Sparks, Notes, and Confetti */}
+      {/* Fullscreen Interactive Canvas for Cursor Sparks, Wand Ring, Ribbon Trails, and Confetti */}
       <canvas
         ref={canvasRef}
         className="fixed inset-0 pointer-events-none z-[99999] select-none"
         aria-hidden="true"
       />
-
-      {/* Real-time Celebratory Magic Pointer (Desktop only, follows mouse at 0 delay) */}
-      <div
-        ref={cursorPointerRef}
-        className="fixed top-0 left-0 pointer-events-none z-[999999] select-none hidden md:block opacity-0 will-change-transform"
-      >
-        {/* Glowing Diamond Star Tip */}
-        <div className="relative">
-          <svg
-            width="26"
-            height="26"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="transition-transform duration-150"
-            style={{
-              filter: "drop-shadow(0 0 8px #AD5CFF) drop-shadow(0 0 3px #FFFFFF)",
-            }}
-          >
-            <path
-              d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"
-              fill="url(#wand-grad)"
-              stroke="#FFFFFF"
-              strokeWidth="1.5"
-              strokeLinejoin="round"
-            />
-            <defs>
-              <linearGradient id="wand-grad" x1="3" y1="3" x2="20" y2="20" gradientUnits="userSpaceOnUse">
-                <stop stopColor="#FF9900" />
-                <stop offset="0.5" stopColor="#AD5CFF" />
-                <stop offset="1" stopColor="#38BDF8" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-      </div>
 
       {/* Atmospheric Celebratory Beam & Aurora Waves Layer */}
       <div
@@ -403,7 +360,7 @@ export default function CelebrationAmbienceEffects() {
         aria-hidden="true"
       />
 
-      {/* Floating Celebratory Animated Stardust Badges */}
+      {/* Floating Celebratory Animated Stardust Badge */}
       <div className="fixed top-20 right-6 sm:right-10 z-[50] pointer-events-none select-none hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/85 backdrop-blur-xl border border-[#AD5CFF]/60 text-white shadow-2xl shadow-purple-500/40 animate-bounce">
         <span className="text-sm">🎵</span>
         <span className="text-xs font-mono font-bold bg-gradient-to-r from-[#FF9900] via-[#AD5CFF] to-[#38BDF8] bg-clip-text text-transparent">
