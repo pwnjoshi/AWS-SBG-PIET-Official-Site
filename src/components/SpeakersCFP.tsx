@@ -83,34 +83,39 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-3xl bg-slate-900 dark:bg-[#070B1A] border border-[#AD5CFF]/40 p-5 sm:p-7 shadow-xl shadow-purple-500/10 mb-8 sm:mb-12 overflow-hidden text-white"
+        className="relative rounded-3xl bg-slate-900 dark:bg-[#070B1A] border border-[#AD5CFF]/40 p-6 sm:p-8 shadow-xl shadow-purple-500/10 mb-10 sm:mb-14 overflow-hidden text-white"
       >
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#AD5CFF]/15 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="relative z-10 flex flex-col md:flex-row items-center md:items-center justify-between gap-6 sm:gap-8">
-          <div className="flex flex-col sm:flex-row items-center sm:items-center gap-5 sm:gap-6 text-center sm:text-left w-full md:w-auto">
-            {/* Keynote Photo Portrait - Big & Prominent */}
-            <div className="relative h-28 w-28 sm:h-32 sm:w-32 rounded-2xl overflow-hidden shadow-2xl shadow-purple-500/30 border-2 border-white/20 shrink-0 bg-slate-800">
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8">
+          <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-7 text-center sm:text-left w-full md:w-auto">
+            {/* Keynote Photo Portrait - Large & Commanding */}
+            <div className="relative h-36 w-36 sm:h-44 sm:w-44 rounded-3xl overflow-hidden shadow-2xl shadow-purple-500/30 border-2 border-white/25 shrink-0 bg-slate-800">
               <Image
                 src={keynoteSpeaker.image}
                 alt={keynoteSpeaker.name}
                 fill
-                sizes="(max-width: 768px) 112px, 128px"
-                className="object-cover object-top"
+                sizes="(max-width: 768px) 144px, 176px"
+                className="object-cover object-center"
                 priority
               />
             </div>
 
             <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#8E35EA]/30 text-[#BE7BFF] text-[10px] font-mono font-bold tracking-wider uppercase border border-[#8E35EA]/50 mb-2">
-                <HugeiconsIcon icon={Mic01Icon} className="h-3 w-3" />
+              {/* Refined Premium Keynote Pill */}
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-purple-500/20 to-indigo-500/20 text-[#BE7BFF] text-[10.5px] font-mono font-bold tracking-widest uppercase border border-[#AD5CFF]/40 mb-2.5 shadow-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#AD5CFF]"></span>
+                </span>
+                <HugeiconsIcon icon={Mic01Icon} className="h-3.5 w-3.5 text-[#AD5CFF]" />
                 <span>{keynoteSpeaker.badge}</span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
                 {keynoteSpeaker.name}
               </h3>
-              <p className="text-xs sm:text-sm font-semibold text-purple-200/90 mt-1 max-w-lg">
+              <p className="text-xs sm:text-sm font-semibold text-purple-200/90 mt-1 max-w-xl leading-relaxed">
                 {keynoteSpeaker.role}
               </p>
             </div>
@@ -121,7 +126,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
               href={keynoteSpeaker.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 shrink-0"
+              className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-[#0A66C2] hover:bg-[#084e96] text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-95 shrink-0"
             >
               <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4" />
               <span>Connect</span>
@@ -135,7 +140,7 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
         <div className="flex items-center gap-2 mb-6">
           <HugeiconsIcon icon={Layers01Icon} className="h-4 w-4 text-[#8E35EA] dark:text-[#AD5CFF]" />
           <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-            Technical Track Leaders
+            Technical Session Leaders
           </h3>
         </div>
 
@@ -150,19 +155,16 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
               className="rounded-3xl bg-white dark:bg-[#090E1E] border border-slate-200/90 dark:border-white/[0.08] hover:border-[#AD5CFF]/50 overflow-hidden flex flex-col justify-between shadow-sm transition-all group hover:shadow-xl"
             >
               <div>
-                {/* Big Feature Profile Image Container */}
-                <div className="relative h-48 sm:h-52 w-full bg-slate-900 overflow-hidden flex items-center justify-center">
+                {/* Full Uncropped Portrait Photo Container */}
+                <div className="relative aspect-[4/4.5] w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
                   {speaker.image ? (
-                    <>
-                      <Image
-                        src={speaker.image}
-                        alt={speaker.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, 33vw"
-                        className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent" />
-                    </>
+                    <Image
+                      src={speaker.image}
+                      alt={speaker.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="object-cover object-center group-hover:scale-102 transition-transform duration-500"
+                    />
                   ) : (
                     <div
                       className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden"
@@ -176,19 +178,11 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
                       >
                         {speaker.initials}
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
                     </div>
                   )}
-
-                  {/* Track Badge Floating Top Right */}
-                  <div className="absolute top-3 right-3 z-10">
-                    <span className="text-[10px] font-mono font-bold text-white bg-slate-950/70 backdrop-blur-md border border-white/20 px-2.5 py-1 rounded-full shadow-sm">
-                      {speaker.track}
-                    </span>
-                  </div>
                 </div>
 
-                {/* Content Area with Slight Dark Faded Background */}
+                {/* Content Area */}
                 <div className="p-5 sm:p-6 bg-slate-50/50 dark:bg-white/[0.02]">
                   <h4 className="text-lg font-black text-slate-950 dark:text-white group-hover:text-[#8E35EA] dark:group-hover:text-[#BE7BFF] transition-colors mb-1">
                     {speaker.name}
