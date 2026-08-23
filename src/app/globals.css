@@ -188,8 +188,21 @@ body {
   box-shadow: 0 0 20px rgba(173, 92, 255, 0.5) !important;
 }
 
-/* Celebratory Glowing Magic Wand Cursor (Active ONLY when Ambience Mode is ON, desktop with mouse) */
+/* ============================================================
+   Custom Site Mouse Cursor (Desktop with pointer)
+   ============================================================ */
 @media (hover: hover) and (pointer: fine) {
+  /* Default Site Cursor (Standard Mode) */
+  html, body, div, p, span, h1, h2, h3, h4, h5, h6, section, main, header, footer {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 3L9.5 21L12.5 12.5L21 9.5L3 3Z' fill='%23090D1A' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round'/%3E%3Ccircle cx='12.5' cy='12.5' r='1.5' fill='%238E35EA'/%3E%3C/svg%3E") 3 3, auto;
+  }
+
+  /* Default Interactive Hover Cursor (Buttons, Links, Inputs) */
+  a, button, [role="button"], input, select, textarea, .cursor-pointer, .interactive-hover {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M3 3L9.5 21L12.5 12.5L21 9.5L3 3Z' fill='%238E35EA' stroke='%23FFFFFF' stroke-width='1.5' stroke-linejoin='round'/%3E%3Ccircle cx='12.5' cy='12.5' r='1.8' fill='%23FF9900'/%3E%3C/svg%3E") 3 3, pointer !important;
+  }
+
+  /* Celebratory Magic Wand Cursor (Active ONLY when Ambience Mode is ON) */
   .ambience-mode-active,
   .ambience-mode-active * {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='wg' x1='2' y1='2' x2='22' y2='22' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FF9900'/%3E%3Cstop offset='0.5' stop-color='%23AD5CFF'/%3E%3Cstop offset='1' stop-color='%2338BDF8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M3 3L11 25L14.5 14.5L25 11L3 3Z' fill='url(%23wg)' stroke='%23FFFFFF' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='14.5' cy='14.5' r='2' fill='%23FFFFFF'/%3E%3C/svg%3E") 3 3, auto !important;
