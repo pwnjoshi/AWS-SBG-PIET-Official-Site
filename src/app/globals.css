@@ -131,4 +131,15 @@ body {
   animation: border-spin 3s linear infinite;
 }
 
+/* Tawk.to Live Chat Mobile Polish */
+@media (max-width: 768px) {
+  #tawk-default-container,
+  .tawk-min-container {
+    bottom: 16px !important;
+    right: 16px !important;
+    z-index: 99999 !important;
+  }
+}
+
+
 
