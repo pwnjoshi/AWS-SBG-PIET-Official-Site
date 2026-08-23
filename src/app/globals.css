@@ -217,5 +217,15 @@ body {
   }
 }
 
-
-
+/* Suppress Tawk.to attention grabbers, bubble prompts, and proactive popup cards */
+#tawk-bubble-container,
+div[class*="tawk-bubble"],
+div[class*="tawk-card"],
+div[id*="tawk-bubble"],
+iframe[title*="chat notification"],
+iframe[title*="Chat with us"]:not([style*="height: 100%"]) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
