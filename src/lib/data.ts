@@ -62,6 +62,8 @@ export const EVENT_DETAILS = {
   meetupUrl: "https://www.meetup.com/aws-sbg-at-panipat-institute-of-engineering-and-tech",
   linkedinUrl: "https://www.linkedin.com/company/aws-student-builder-group-piet",
   instagramUrl: "https://www.instagram.com/aws.sbg.piet/",
+  ideathonFormUrl: "https://forms.gle/8vd2ZwhnyLbnwPyA6",
+  competitionGuidelinesPdf: "/docs/AWS-SCD-Panipat-2026-Competition-Guidelines.pdf",
 };
 
 export const STATS = [

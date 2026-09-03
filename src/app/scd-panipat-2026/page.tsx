@@ -23,6 +23,7 @@ import CFPModal from "@/components/CFPModal";
 import SponsorModal from "@/components/SponsorModal";
 import TicketModal from "@/components/TicketModal";
 import SCDLoadingScreen from "@/components/SCDLoadingScreen";
+import CompetitionsSection from "@/components/CompetitionsSection";
 
 export default function SCDPanipatPage() {
   const [cfpModalOpen, setCfpModalOpen] = useState(false);
@@ -75,6 +76,9 @@ export default function SCDPanipatPage() {
 
             {/* Agenda Timeline */}
             <Agenda />
+
+            {/* Ideathon & Buildathon Competitions */}
+            <CompetitionsSection />
 
             {/* Speakers Spotlight & CFP Banner */}
             <SpeakersCFP onOpenCFP={() => setCfpModalOpen(true)} />
