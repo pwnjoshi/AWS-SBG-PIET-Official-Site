@@ -176,7 +176,7 @@ export default function CompetitionsSection() {
               ))}
             </ul>
             <a
-              href={EVENT_DETAILS.commudleEventUrl}
+              href={EVENT_DETAILS.ideathonFormUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs transition-all shadow-sm active:scale-95"
