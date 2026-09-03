@@ -1,4 +1,4 @@
-"use client";
+ï»¿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -10,7 +10,7 @@ import {
   ArrowUpRight01Icon,
   Tick02Icon,
   ArrowDown01Icon,
-  Trophy01Icon,
+  TrophyIcon,
 } from "@hugeicons/core-free-icons";
 import { EVENT_DETAILS } from "@/lib/data";
 
@@ -21,7 +21,7 @@ const RULES = [
     points: [
       "Open to all college/university students with a valid student ID.",
       "Participate individually or in teams of up to 4 members.",
-      "Register for only one competition — Ideathon & Buildathon run simultaneously.",
+      "Register for only one competition - Ideathon & Buildathon run simultaneously.",
       "Participants must be physically present at the event.",
     ],
   },
@@ -41,7 +41,7 @@ const RULES = [
     points: [
       "Choose your own problem statement addressing a genuine need.",
       "Prepare your core idea and supporting material before the event.",
-      "Pitch: Problem -> Importance -> Solution -> Approach -> Feasibility -> Impact.",
+      "Pitch: Problem > Importance > Solution > Approach > Feasibility > Impact.",
       "AWS integration is encouraged but not mandatory.",
     ],
   },
@@ -52,7 +52,7 @@ const RULES = [
       "Problem statement is provided by organizers at the start.",
       "Official build time is 60 minutes.",
       "AI tools (Kiro, Claude Code, Cursor, Copilot) are permitted and encouraged.",
-      "Install and test all dev tools beforehand — build time is for building.",
+      "Install and test all dev tools beforehand - build time is for building.",
     ],
   },
 ];
@@ -83,6 +83,7 @@ export default function CompetitionsSection() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
         <div className="lg:col-span-7 flex flex-col gap-5">
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -91,7 +92,7 @@ export default function CompetitionsSection() {
             className="flex items-center gap-3 p-4 rounded-2xl bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/30"
           >
             <div className="p-2.5 rounded-xl bg-amber-400/20 dark:bg-amber-400/10 shrink-0">
-              <HugeiconsIcon icon={Trophy01Icon} className="h-5 w-5 text-amber-500" />
+              <HugeiconsIcon icon={TrophyIcon} className="h-5 w-5 text-amber-500" />
             </div>
             <div>
               <p className="text-sm font-black text-amber-600 dark:text-amber-400">Total Prize Pool: Rs. 30,000</p>
@@ -99,7 +100,6 @@ export default function CompetitionsSection() {
             </div>
           </motion.div>
 
-          {/* Ideathon Card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export default function CompetitionsSection() {
                 </div>
                 <div>
                   <h3 className="text-base font-black text-slate-900 dark:text-white">Ideathon</h3>
-                  <p className="text-[11px] font-mono text-violet-500 dark:text-violet-400 font-bold">Solo / Team (max 4) · Own problem statement</p>
+                  <p className="text-[11px] font-mono text-violet-500 dark:text-violet-400 font-bold">Solo / Team (max 4) - Own problem statement</p>
                 </div>
               </div>
               <span className="shrink-0 text-[10px] font-mono font-bold text-violet-600 dark:text-violet-400 bg-violet-500/10 border border-violet-500/20 px-2.5 py-0.5 rounded-full">
@@ -125,7 +125,7 @@ export default function CompetitionsSection() {
               Identify a real problem, develop a solution concept, and pitch it to a jury of AWS mentors. Strong ideas with feasibility and impact will win.
             </p>
             <ul className="space-y-1.5 mb-5">
-              {["Choose your own problem statement", "Prepare idea & materials before the event", "7-point pitch: Problem to Impact to AWS integration", "Prototype not mandatory — strong concept wins"].map((pt) => (
+              {["Choose your own problem statement", "Prepare idea and materials before the event", "7-point pitch: Problem to Impact to AWS integration", "Prototype not mandatory - strong concept wins"].map((pt) => (
                 <li key={pt} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-400">
                   <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-violet-500 shrink-0 mt-0.5" />
                   <span>{pt}</span>
@@ -136,14 +136,13 @@ export default function CompetitionsSection() {
               href={EVENT_DETAILS.ideathonFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500 hover:bg-violet-600 text-white font-bold text-xs transition-all shadow-sm shadow-violet-500/25 active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500 hover:bg-violet-600 text-white font-bold text-xs transition-all shadow-sm active:scale-95"
             >
               <span>Register for Ideathon</span>
               <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
             </a>
           </motion.div>
 
-          {/* Buildathon Card */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -158,7 +157,7 @@ export default function CompetitionsSection() {
                 </div>
                 <div>
                   <h3 className="text-base font-black text-slate-900 dark:text-white">KIRO Buildathon</h3>
-                  <p className="text-[11px] font-mono text-amber-500 dark:text-amber-400 font-bold">Solo / Team (max 4) · Organizer-provided problem</p>
+                  <p className="text-[11px] font-mono text-amber-500 dark:text-amber-400 font-bold">Solo / Team (max 4) - Organizer-provided problem</p>
                 </div>
               </div>
               <span className="shrink-0 text-[10px] font-mono font-bold text-amber-600 dark:text-amber-400 bg-amber-500/10 border border-amber-500/20 px-2.5 py-0.5 rounded-full">
@@ -169,7 +168,7 @@ export default function CompetitionsSection() {
               Build a functional MVP in 60 minutes from an organizer-provided problem statement. AI tools like Kiro, Claude Code, and Cursor are encouraged.
             </p>
             <ul className="space-y-1.5 mb-5">
-              {["Problem statement revealed at event start", "60-minute official build window", "AI tools permitted & encouraged (Kiro, Cursor, Claude)", "Install all dev tools & set up environment beforehand"].map((pt) => (
+              {["Problem statement revealed at event start", "60-minute official build window", "AI tools permitted and encouraged (Kiro, Cursor, Claude)", "Install all dev tools and set up environment beforehand"].map((pt) => (
                 <li key={pt} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-400">
                   <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-amber-500 shrink-0 mt-0.5" />
                   <span>{pt}</span>
@@ -180,7 +179,7 @@ export default function CompetitionsSection() {
               href={EVENT_DETAILS.commudleEventUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs transition-all shadow-sm shadow-amber-500/25 active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs transition-all shadow-sm active:scale-95"
             >
               <span>Register for Buildathon</span>
               <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
@@ -188,7 +187,6 @@ export default function CompetitionsSection() {
           </motion.div>
         </div>
 
-        {/* Rules Sidebar */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -261,7 +259,7 @@ export default function CompetitionsSection() {
               <span>Download Full Guidelines PDF</span>
             </a>
             <p className="text-[10px] text-slate-400 dark:text-slate-500 text-center mt-2 font-mono">
-              PANIPAT, HARYANA · COMPETITION REGISTRATION &amp; EVENT GUIDELINES
+              PANIPAT, HARYANA - COMPETITION REGISTRATION &amp; EVENT GUIDELINES
             </p>
           </div>
         </motion.div>
