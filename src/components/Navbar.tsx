@@ -59,9 +59,9 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
         { name: "Tracks", href: "/scd-panipat-2026#tracks" },
         { name: "Schedule", href: "/scd-panipat-2026#agenda" },
         { name: "Speakers", href: "/scd-panipat-2026#speakers" },
-        { name: "Competitions", href: "/scd-panipat-2026#competitions" },
+        { name: "Compete", href: "/scd-panipat-2026#competitions" },
         { name: "Passes", href: "/scd-panipat-2026#tickets" },
-        { name: "Badge Maker", href: "/scd-panipat-2026/badge" },
+        { name: "Badge", href: "/scd-panipat-2026/badge" },
         { name: "Sponsors", href: "/scd-panipat-2026#sponsors" },
         { name: "Venue", href: "/scd-panipat-2026#venue" },
       ]
