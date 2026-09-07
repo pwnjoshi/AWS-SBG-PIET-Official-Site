@@ -52,6 +52,15 @@ export default function SpeakersCFP({ onOpenCFP: _onOpenCFP }: SpeakersCFPProps)
       initials: "SV",
       accent: "#10B981",
     },
+    {
+      name: "Prof. Amit Dubey",
+      role: "Author & Cyber Security Evangelist | TEDx Speaker | British Chevening Fellow | Quantum Researcher | Distinguished Alumnus — IIT Kharagpur",
+      track: "Special Session • Cyber Security",
+      linkedin: "https://www.linkedin.com/in/amitdubey77/",
+      image: "/images/amit-dubey.jpg",
+      initials: "AD",
+      accent: "#F43F5E",
+    },
   ];
 
   return (
@@ -138,7 +147,7 @@ export default function SpeakersCFP({ onOpenCFP: _onOpenCFP }: SpeakersCFPProps)
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {technicalSpeakers.map((speaker, idx) => (
             <motion.div
               key={speaker.name}
