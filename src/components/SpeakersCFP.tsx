@@ -3,9 +3,7 @@
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  ArrowUpRight01Icon,
   Linkedin01Icon,
-  SparklesIcon,
   UserIcon,
   Mic01Icon,
   Layers01Icon,
@@ -14,10 +12,10 @@ import {
 import Image from "next/image";
 
 interface SpeakersCFPProps {
-  onOpenCFP: () => void;
+  onOpenCFP?: () => void;
 }
 
-export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
+export default function SpeakersCFP({ onOpenCFP: _onOpenCFP }: SpeakersCFPProps) {
   const keynoteSpeaker = {
     name: "Praful Bagai",
     role: "Head of Developer Relations – India & South Asia at Amazon Web Services (AWS) | Speaker • Community Builder • Founder",
@@ -206,44 +204,6 @@ export default function SpeakersCFP({ onOpenCFP }: SpeakersCFPProps) {
           ))}
         </div>
       </div>
-
-      {/* CFP Submission Card */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-3xl bg-slate-50 dark:bg-[#070B1A] border border-slate-200 dark:border-white/10 p-6 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm"
-      >
-        <div className="max-w-xl">
-          <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF] block mb-1">
-            CALL FOR PROPOSALS
-          </span>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-slate-950 dark:text-white">
-            Submit a talk or workshop proposal
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
-            Have an architecture pattern, AI project, or open-source tool to showcase? Call for Proposals is open for student builders and community speakers.
-          </p>
-        </div>
-
-        <div className="shrink-0 flex flex-col sm:flex-row items-center gap-3">
-          <button
-            onClick={onOpenCFP}
-            className="px-5 py-2.5 rounded-full bg-[#8E35EA] dark:bg-[#AD5CFF] hover:bg-[#7828C8] text-white font-bold text-xs flex items-center gap-1.5 transition-all shadow-md shadow-purple-500/25 active:scale-95 cursor-pointer"
-          >
-            <span>Submit Your Talk</span>
-            <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
-          </button>
-
-          <a
-            href="mailto:aws-sbg@piet.co.in"
-            className="px-4 py-2.5 rounded-full bg-white dark:bg-white/[0.05] hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all shadow-sm"
-          >
-            Speaker Questions
-          </a>
-        </div>
-      </motion.div>
     </section>
   );
 }
