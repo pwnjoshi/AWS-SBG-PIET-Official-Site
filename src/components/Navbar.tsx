@@ -18,11 +18,10 @@ import { useSoundtrack } from "@/context/SoundtrackContext";
 import { EVENT_DETAILS } from "@/lib/data";
 
 interface NavbarProps {
-  onOpenCFP?: () => void;
   onOpenTickets?: () => void;
 }
 
-export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
+export default function Navbar({ onOpenTickets }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [compact, setCompact] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -143,14 +142,6 @@ export default function Navbar({ onOpenCFP, onOpenTickets }: NavbarProps) {
 
           {isSCDPage ? (
             <>
-              {onOpenCFP && (
-                <button
-                  onClick={onOpenCFP}
-                  className="px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[0.06] border border-slate-200 dark:border-white/10 rounded-full transition-all cursor-pointer"
-                >
-                  Submit CFP
-                </button>
-              )}
               {onOpenTickets ? (
                 <button
                   onClick={onOpenTickets}

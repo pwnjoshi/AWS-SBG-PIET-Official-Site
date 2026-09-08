@@ -29,7 +29,7 @@ export default function SBGHomePage() {
         <ParticleNetworkCanvas />
 
         {/* Floating Pill Navigation Bar */}
-        <Navbar onOpenCFP={() => {}} onOpenTickets={() => {}} />
+        <Navbar onOpenTickets={() => {}} />
 
         {/* Main Homepage Layout */}
         <main className="relative z-10 flex flex-col gap-12 sm:gap-20">

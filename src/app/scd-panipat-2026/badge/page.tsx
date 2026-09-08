@@ -21,7 +21,7 @@ export default function BadgeStudioPage() {
       <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
         <ScrollProgressBar />
         <ParticleNetworkCanvas />
-        <Navbar onOpenCFP={() => {}} onOpenTickets={() => {}} />
+        <Navbar onOpenTickets={() => {}} />
 
         <main className="relative z-10 pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto flex flex-col gap-8">
           {/* Breadcrumb / Back Link with entrance animation */}

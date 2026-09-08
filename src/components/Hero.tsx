@@ -16,11 +16,10 @@ import { TRACKS } from "@/lib/data";
 import { useSoundtrack } from "@/context/SoundtrackContext";
 
 interface HeroProps {
-  onOpenCFP: () => void;
   onOpenTickets: () => void;
 }
 
-export default function Hero({ onOpenCFP, onOpenTickets }: HeroProps) {
+export default function Hero({ onOpenTickets }: HeroProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { isPlaying: isPlayingAudio, toggleSoundtrack } = useSoundtrack();
 

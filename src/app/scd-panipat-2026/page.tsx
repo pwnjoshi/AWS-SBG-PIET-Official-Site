@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -19,14 +19,12 @@ import CommunitySocials from "@/components/CommunitySocials";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
 import MobileBottomDock from "@/components/MobileBottomDock";
-import CFPModal from "@/components/CFPModal";
 import SponsorModal from "@/components/SponsorModal";
 import TicketModal from "@/components/TicketModal";
 import SCDLoadingScreen from "@/components/SCDLoadingScreen";
 import CompetitionsSection from "@/components/CompetitionsSection";
 
 export default function SCDPanipatPage() {
-  const [cfpModalOpen, setCfpModalOpen] = useState(false);
   const [sponsorModalOpen, setSponsorModalOpen] = useState(false);
   const [selectedSponsorTier, setSelectedSponsorTier] = useState<string | undefined>(undefined);
   const [ticketModalOpen, setTicketModalOpen] = useState(false);
@@ -38,88 +36,49 @@ export default function SCDPanipatPage() {
   };
 
   const handleOpenSponsorModal = (tierName?: string) => {
-    setSelectedSponsorTier(tierName || "Title Sponsor (₹1,50,000)");
+    setSelectedSponsorTier(tierName || "Title Sponsor (Rs. 1,50,000)");
     setSponsorModalOpen(true);
   };
 
   return (
     <>
-      {/* Light Mode Terminal Auto-Correcting Loading Screen */}
       <SCDLoadingScreen />
 
       <SmoothScroll>
         <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
-          {/* Top Violet Scroll Progress Indicator */}
           <ScrollProgressBar />
-
-          {/* Background Interactive Ambient Canvas */}
           <ParticleNetworkCanvas />
 
-          {/* Floating Pill Navigation Bar */}
           <Navbar
-            onOpenCFP={() => setCfpModalOpen(true)}
             onOpenTickets={() => handleOpenTickets("builder-pass")}
           />
 
-          {/* Main Hero & Panipat Battlefield Landscape */}
           <main>
             <Hero
-              onOpenCFP={() => setCfpModalOpen(true)}
               onOpenTickets={() => handleOpenTickets("builder-pass")}
             />
 
-            {/* Why Attend Grid */}
             <WhyAttend onOpenTickets={() => handleOpenTickets("builder-pass")} />
-
-            {/* 6 Technical Learning Tracks */}
             <LearningTracks onOpenTickets={() => handleOpenTickets("builder-pass")} />
-
-            {/* Agenda Timeline */}
             <Agenda />
-
-            {/* Ideathon & Buildathon Competitions */}
             <CompetitionsSection />
-
-            {/* Speakers Spotlight & CFP Banner */}
-            <SpeakersCFP onOpenCFP={() => setCfpModalOpen(true)} />
-
-            {/* Ticket Tier Cards */}
+            <SpeakersCFP />
             <TicketsSection onOpenTicketsModal={(tierId) => handleOpenTickets(tierId)} />
-
-            {/* Sponsors Grid */}
             <SponsorsSection onOpenSponsorModal={handleOpenSponsorModal} />
-
-            {/* Venue & PIET Campus Info */}
             <VenueSection />
-
-            {/* FAQ Accordion */}
             <FAQSection />
-
-            {/* Community Socials Banner */}
             <CommunitySocials />
           </main>
 
-          {/* Floating Actions & Mobile Bottom Dock */}
           <FloatingActions />
-          <MobileBottomDock
-            onOpenTickets={() => handleOpenTickets("builder-pass")}
-          />
-
-          {/* Footer */}
+          <MobileBottomDock onOpenTickets={() => handleOpenTickets("builder-pass")} />
           <Footer />
-
-          {/* Interactive Modals */}
-          <CFPModal
-            isOpen={cfpModalOpen}
-            onClose={() => setCfpModalOpen(false)}
-          />
 
           <SponsorModal
             isOpen={sponsorModalOpen}
             onClose={() => setSponsorModalOpen(false)}
             selectedTier={selectedSponsorTier}
           />
-
           <TicketModal
             isOpen={ticketModalOpen}
             onClose={() => setTicketModalOpen(false)}
