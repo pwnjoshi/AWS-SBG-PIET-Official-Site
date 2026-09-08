@@ -18,7 +18,6 @@ import {
   FlashIcon,
   UserGroupIcon,
   ArrowDown01Icon,
-  Location01Icon,
 } from "@hugeicons/core-free-icons";
 import confetti from "canvas-confetti";
 import { EVENT_DETAILS } from "@/lib/data";
@@ -55,7 +54,7 @@ export default function BadgeGenerator() {
           setAvatarUrl(event.target.result as string);
           setIsCustomAvatar(true);
           try {
-            confetti({ particleCount: 35, spread: 45, origin: { y: 0.6 }, colors: ["#FF9900", "#8E35EA", "#FFFFFF"] });
+            confetti({ particleCount: 35, spread: 45, origin: { y: 0.6 }, colors: ["#00E5FF", "#76FF03", "#FFFFFF"] });
           } catch { /* ignore */ }
         }
       };
@@ -63,7 +62,7 @@ export default function BadgeGenerator() {
     }
   };
 
-  /* ── Canvas Export: Authentic Haryana Panipat Summit Edition ───── */
+  /* ── Canvas Export: Authentic Tech Summit Card (IMC Reference Style) ── */
   const generateBadgeBlob = (): Promise<{ blob: Blob; dataUrl: string } | null> => {
     return new Promise((resolve) => {
       const canvas = canvasRef.current;
@@ -71,204 +70,182 @@ export default function BadgeGenerator() {
       const ctx = canvas.getContext("2d");
       if (!ctx)   { resolve(null); return; }
 
-      const W = 1080, H = 1480;
+      const W = 1080, H = 1520;
       canvas.width  = W;
       canvas.height = H;
 
-      // ── 1. Deep Midnight Navy & Royal Saffron Gradient Background ──
-      const bg = ctx.createLinearGradient(0, 0, W, H);
-      bg.addColorStop(0,   "#090E24");
-      bg.addColorStop(0.4, "#060A1D");
-      bg.addColorStop(0.8, "#040714");
-      bg.addColorStop(1,   "#02040B");
+      // ── 1. Vibrant Royal Blue Gradient Background ──
+      const bg = ctx.createLinearGradient(0, 0, 0, H);
+      bg.addColorStop(0,   "#0B3A94");
+      bg.addColorStop(0.35,"#08276D");
+      bg.addColorStop(0.7, "#061A4F");
+      bg.addColorStop(1,   "#030F33");
       ctx.fillStyle = bg;
       ctx.fillRect(0, 0, W, H);
 
-      // Warm Saffron/Amber Solar Glow from Top-Center (Haryana Valor Accent)
-      const topSun = ctx.createRadialGradient(W / 2, 0, 10, W / 2, 0, 650);
-      topSun.addColorStop(0,   "rgba(255, 153, 0, 0.28)");
-      topSun.addColorStop(0.5, "rgba(245, 158, 11, 0.12)");
-      topSun.addColorStop(1,   "rgba(0, 0, 0, 0)");
-      ctx.fillStyle = topSun;
+      // Top Cyan Light Ambient Glow
+      const glow = ctx.createRadialGradient(W / 2, 220, 0, W / 2, 220, 550);
+      glow.addColorStop(0, "rgba(0, 210, 255, 0.22)");
+      glow.addColorStop(1, "rgba(0, 0, 0, 0)");
+      ctx.fillStyle = glow;
       ctx.fillRect(0, 0, W, H);
 
-      // Ambient Violet / Cyan Accent at Bottom Right
-      const bottomViolet = ctx.createRadialGradient(W, H, 50, W, H, 600);
-      bottomViolet.addColorStop(0, "rgba(142, 53, 234, 0.22)");
-      bottomViolet.addColorStop(1, "rgba(0, 0, 0, 0)");
-      ctx.fillStyle = bottomViolet;
-      ctx.fillRect(0, 0, W, H);
-
-      // ── 2. Cultural Watermark: Devanagari "पानीपत" & "हरियाणा" ────
-      ctx.save();
-      ctx.textAlign = "center";
-      ctx.font = "900 160px system-ui, sans-serif";
-      ctx.fillStyle = "rgba(255, 255, 255, 0.022)";
-      ctx.fillText("पानीपत", W / 2, 420);
-
-      ctx.font = "bold 70px system-ui, sans-serif";
-      ctx.fillStyle = "rgba(255, 153, 0, 0.025)";
-      ctx.fillText("हरियाणा", W / 2, 1140);
-      ctx.restore();
-
-      // Delicate Heritage Geometric Border Frame
-      ctx.strokeStyle = "rgba(255, 153, 0, 0.15)";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(36, 36, W - 72, H - 72);
-
-      // Outer thin border
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
-      ctx.lineWidth = 1;
-      ctx.strokeRect(48, 48, W - 96, H - 96);
-
-      // ── 3. Top Branding: Haryana's 1st AWS Summit ─────────────────
-      ctx.textAlign = "center";
-
-      // Top Tag
-      ctx.font = "bold 20px monospace";
-      ctx.fillStyle = "#FF9900";
-      ctx.fillText("✦  HARYANA'S FIRST AWS STUDENT COMMUNITY DAY  ✦", W / 2, 110);
-
-      // Event Main Title
-      ctx.font = "900 50px system-ui, sans-serif";
-      ctx.fillStyle = "#FFFFFF";
-      ctx.fillText("AWS STUDENT COMMUNITY DAY", W / 2, 175);
-
-      // Subtitle & Venue
-      ctx.font = "bold 32px system-ui, sans-serif";
-      ctx.fillStyle = "#F59E0B";
-      ctx.fillText("PANIPAT 2026", W / 2, 222);
-
-      ctx.font = "500 22px system-ui, sans-serif";
-      ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
-      ctx.fillText("PIET Panipat  •  Friday, 11 September 2026", W / 2, 262);
-
-      // Golden Filigree Separator
-      const sep = ctx.createLinearGradient(160, 0, W - 160, 0);
-      sep.addColorStop(0, "rgba(255, 153, 0, 0)");
-      sep.addColorStop(0.5, "rgba(255, 153, 0, 0.6)");
-      sep.addColorStop(1, "rgba(255, 153, 0, 0)");
-      ctx.strokeStyle = sep;
-      ctx.lineWidth = 1.5;
-      ctx.beginPath(); ctx.moveTo(160, 290); ctx.lineTo(W - 160, 290); ctx.stroke();
-
-      // Attendee Delegate Pill
-      const attPillW = 280, attPillH = 46, attPillX = (W - attPillW) / 2, attPillY = 312;
-      ctx.fillStyle = "rgba(255, 153, 0, 0.12)";
-      ctx.strokeStyle = "rgba(255, 153, 0, 0.4)";
-      ctx.lineWidth = 1.5;
+      // Outer Border Pill
+      ctx.strokeStyle = "rgba(0, 210, 255, 0.35)";
+      ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(attPillX, attPillY, attPillW, attPillH, 23);
-      ctx.fill(); ctx.stroke();
+      ctx.roundRect(28, 28, W - 56, H - 56, 40);
+      ctx.stroke();
 
-      ctx.font = "bold 19px monospace";
-      ctx.fillStyle = "#FFB020";
-      ctx.fillText("ATTENDEE DELEGATE", W / 2, attPillY + 30);
+      // ── 2. Top Header & Event Date ──
+      ctx.textAlign = "center";
 
-      // ── 4. Avatar Portrait with Saffron-Gold Royal Glow ───────────
+      // Top Community Brand
+      ctx.font = "bold 22px monospace";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+      ctx.fillText("AWS SBG PIET  •  COMMUNITY DAY", W / 2, 100);
+
+      // Main Summit Date (Hero Date like IMC Reference)
+      ctx.font = "900 52px system-ui, sans-serif";
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillText("11 SEPTEMBER 2026", W / 2, 168);
+
+      // Subtitle
+      ctx.font = "600 24px system-ui, sans-serif";
+      ctx.fillStyle = "rgba(0, 229, 255, 0.9)";
+      ctx.fillText("AWS Student Community Day • PIET Panipat", W / 2, 212);
+
+      ctx.font = "500 18px monospace";
+      ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+      ctx.fillText("PANIPAT, HARYANA • INDIA", W / 2, 244);
+
+      // ── 3. Hexagon Photo Frame with Speech Pin Tail ──
       const img = new window.Image();
       img.crossOrigin = "anonymous";
       img.src = avatarUrl;
       img.onload = () => {
-        const cx = W / 2, cy = 570, r = 180;
+        const cx = W / 2, cy = 560;
+        const hw = 210; // half width
+        const hh = 230; // half height
 
-        // Radiant Saffron Aura
-        const aura = ctx.createRadialGradient(cx, cy, r - 20, cx, cy, r + 55);
-        aura.addColorStop(0,   "rgba(255, 153, 0, 0.45)");
-        aura.addColorStop(0.6, "rgba(245, 158, 11, 0.2)");
-        aura.addColorStop(1,   "rgba(0, 0, 0, 0)");
-        ctx.fillStyle = aura;
-        ctx.beginPath(); ctx.arc(cx, cy, r + 55, 0, Math.PI * 2); ctx.fill();
+        // Helper path function for the hexagon with speech pin
+        const buildHexPath = () => {
+          ctx.beginPath();
+          ctx.moveTo(cx, cy - hh); // top vertex
+          ctx.lineTo(cx + hw, cy - hh * 0.5); // top-right
+          ctx.lineTo(cx + hw, cy + hh * 0.48); // bottom-right
+          ctx.lineTo(cx, cy + hh); // bottom vertex
+          ctx.lineTo(cx, cy + hh + 28); // speech bubble pin point!
+          ctx.lineTo(cx - 32, cy + hh * 0.9); // pin return
+          ctx.lineTo(cx - hw, cy + hh * 0.48); // bottom-left
+          ctx.lineTo(cx - hw, cy - hh * 0.5); // top-left
+          ctx.closePath();
+        };
 
-        // Outer Gold Ring
-        ctx.strokeStyle = "rgba(255, 153, 0, 0.85)";
-        ctx.lineWidth = 6;
-        ctx.beginPath(); ctx.arc(cx, cy, r + 8, 0, Math.PI * 2); ctx.stroke();
-
-        // Inner White Accent Ring
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
-        ctx.lineWidth = 2;
-        ctx.beginPath(); ctx.arc(cx, cy, r + 1, 0, Math.PI * 2); ctx.stroke();
-
-        // Photo circle clip
+        // Outer Glow for Hexagon
         ctx.save();
-        ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
-        ctx.drawImage(img, cx - r, cy - r, r * 2, r * 2);
+        ctx.shadowColor = "rgba(0, 229, 255, 0.55)";
+        ctx.shadowBlur = 35;
+        const borderGrad = ctx.createLinearGradient(cx - hw, cy - hh, cx + hw, cy + hh);
+        borderGrad.addColorStop(0, "#00E5FF"); // Cyan
+        borderGrad.addColorStop(1, "#76FF03"); // Neon Lime Green
+        ctx.strokeStyle = borderGrad;
+        ctx.lineWidth = 8;
+        ctx.lineJoin = "round";
+        buildHexPath();
+        ctx.stroke();
         ctx.restore();
 
-        // ── 5. Attendee Name & College ─────────────────────────────
+        // Dark background inside hexagon
+        ctx.save();
+        buildHexPath();
+        ctx.fillStyle = "#020B24";
+        ctx.fill();
+
+        // Clip Image Inside Hexagon
+        ctx.clip();
+        ctx.drawImage(img, cx - hw, cy - hh, hw * 2, hh * 2 + 20);
+        ctx.restore();
+
+        // ── 4. Attendee Name in Electric Lime / Golden Yellow ──
         ctx.textAlign = "center";
-        ctx.font = "900 64px system-ui, sans-serif";
-        ctx.fillStyle = "#F5B942"; // Royal Amber Gold
-        ctx.fillText(name || "Student Builder", W / 2, 830);
+        ctx.font = "900 62px system-ui, sans-serif";
+        ctx.fillStyle = "#C6FF00"; // Electric Lime Yellow from IMC Reference
+        ctx.fillText(name || "Aarav Sharma", W / 2, 885);
 
-        ctx.font = "600 30px system-ui, sans-serif";
-        ctx.fillStyle = "rgba(255, 255, 255, 0.82)";
-        ctx.fillText(college || "PIET Panipat", W / 2, 880);
+        // ── 5. Role & Institution (White text like IMC reference) ──
+        ctx.font = "bold 28px system-ui, sans-serif";
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillText("Attendee  •  " + (college || "PIET Panipat"), W / 2, 938);
 
-        // ── 6. Skill & Attribute Tags (Requested by User) ──────────
-        const tags = [currentTrack.tag, "AWS Community", "I'm Attending ✦"];
-        const pillH = 58, pillR = 29, gap = 16;
-        const pillWidths = tags.map(t => {
-          ctx.font = "bold 20px system-ui, sans-serif";
-          return ctx.measureText(t).width + 56;
-        });
-        const totalW = pillWidths.reduce((a, b) => a + b, 0) + gap * (tags.length - 1);
-        let px = (W - totalW) / 2;
-        const py = 935;
+        ctx.font = "500 20px system-ui, sans-serif";
+        ctx.fillStyle = "rgba(255, 255, 255, 0.65)";
+        ctx.fillText("AWS Student Builder Group • Haryana Chapter", W / 2, 974);
 
-        tags.forEach((tag, i) => {
-          const pw = pillWidths[i];
-          // Pill background with Kesari/Gold subtle tint
-          ctx.fillStyle = i === 0 ? "rgba(255, 153, 0, 0.12)" : "rgba(255, 255, 255, 0.07)";
-          ctx.strokeStyle = i === 0 ? "rgba(255, 153, 0, 0.45)" : "rgba(255, 255, 255, 0.2)";
-          ctx.lineWidth = 1.5;
+        // ── 6. Three Clean Pill Tags (2 on top row, 1 centered below) ──
+        const pillH = 58, pillR = 29;
+
+        // Row 1: Track Pill + AWS Community Pill
+        const row1Pills = [currentTrack.tag, "AWS Community"];
+        ctx.font = "bold 22px system-ui, sans-serif";
+        const w1 = ctx.measureText(row1Pills[0]).width + 60;
+        const w2 = ctx.measureText(row1Pills[1]).width + 60;
+        const row1Gap = 18;
+        const row1Total = w1 + w2 + row1Gap;
+        let r1X = (W - row1Total) / 2;
+        const r1Y = 1040;
+
+        [w1, w2].forEach((pw, i) => {
+          // Dark Translucent Pill with Cyan Border
+          ctx.fillStyle = "rgba(3, 16, 52, 0.85)";
+          ctx.strokeStyle = "rgba(0, 210, 255, 0.45)";
+          ctx.lineWidth = 1.8;
           ctx.beginPath();
-          ctx.roundRect(px, py, pw, pillH, pillR);
-          ctx.fill(); ctx.stroke();
+          ctx.roundRect(r1X, r1Y, pw, pillH, pillR);
+          ctx.fill();
+          ctx.stroke();
 
           // Pill text
-          ctx.font = "bold 20px system-ui, sans-serif";
-          ctx.fillStyle = i === 0 ? "#FFB020" : "#FFFFFF";
-          ctx.fillText(tag, px + pw / 2, py + pillH / 2 + 7);
-          px += pw + gap;
+          ctx.fillStyle = "#FFFFFF";
+          ctx.fillText(row1Pills[i], r1X + pw / 2, r1Y + pillH / 2 + 8);
+          r1X += pw + row1Gap;
         });
 
-        // ── 7. Panipat Heritage & Barcode Footer Ribbon ────────────
-        const footerY = 1040;
-        const footerSep = ctx.createLinearGradient(120, 0, W - 120, 0);
-        footerSep.addColorStop(0, "rgba(255, 255, 255, 0)");
-        footerSep.addColorStop(0.5, "rgba(255, 255, 255, 0.18)");
-        footerSep.addColorStop(1, "rgba(255, 255, 255, 0)");
-        ctx.strokeStyle = footerSep;
+        // Row 2: "I'm Attending ✦" Pill (Centered)
+        const row2Pill = "I'm Attending ✦";
+        const w3 = ctx.measureText(row2Pill).width + 64;
+        const r2X = (W - w3) / 2;
+        const r2Y = r1Y + pillH + 16;
+
+        ctx.fillStyle = "rgba(3, 16, 52, 0.85)";
+        ctx.strokeStyle = "rgba(118, 255, 3, 0.55)";
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.roundRect(r2X, r2Y, w3, pillH, pillR);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = "#76FF03";
+        ctx.fillText(row2Pill, r2X + w3 / 2, r2Y + pillH / 2 + 8);
+
+        // ── 7. Clean Minimal Footer ──
+        const footerY = 1270;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.12)";
         ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(120, footerY); ctx.lineTo(W - 120, footerY); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(140, footerY);
+        ctx.lineTo(W - 140, footerY);
+        ctx.stroke();
 
-        // Barcode lines
-        const barY = 1080;
-        const bars = [4, 2, 6, 3, 7, 2, 5, 3, 7, 2, 4, 6, 3, 5, 2, 6, 4, 3, 7, 2, 5, 3, 6, 2, 4, 6, 3, 5, 2, 7];
-        const barStartX = (W - (bars.length * 9)) / 2;
-        bars.forEach((h, i) => {
-          ctx.fillStyle = "rgba(255, 255, 255, 0.55)";
-          ctx.fillRect(barStartX + (i * 9), barY, 4, h * 4.5 + 18);
-        });
+        ctx.font = "bold 22px monospace";
+        ctx.fillStyle = "#00E5FF";
+        ctx.fillText("awssbgpiet.in", W / 2 - 160, footerY + 50);
 
-        // Verification Serial & Heritage Note
-        ctx.font = "600 18px monospace";
         ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-        ctx.fillText("CREDENTIAL: HR-PIET-2026-DELEGATE", W / 2, 1170);
+        ctx.fillText("•", W / 2, footerY + 50);
 
-        // Official Links
-        ctx.font = "bold 24px monospace";
-        ctx.fillStyle = "#FF9900";
-        ctx.fillText("awssbgpiet.in", W / 2 - 180, 1230);
-
-        ctx.fillStyle = "#AD5CFF";
-        ctx.fillText("#AWSSCDPanipat", W / 2 + 180, 1230);
-
-        ctx.font = "500 18px system-ui, sans-serif";
-        ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
-        ctx.fillText("From Panipat to a Brighter Tomorrow  •  AWS Student Builder Group PIET", W / 2, 1280);
+        ctx.fillStyle = "#76FF03";
+        ctx.fillText("#AWSSCDPanipat", W / 2 + 160, footerY + 50);
 
         canvas.toBlob((blob) => {
           if (blob) resolve({ blob, dataUrl: canvas.toDataURL("image/png") });
@@ -279,7 +256,7 @@ export default function BadgeGenerator() {
   };
 
   const getCustomShareText = () =>
-    `🚀 I'm attending Haryana's first-ever AWS Student Community Day organized by AWS Student Builder Group at PIET on 11th September 2026!\n\n👤 Attendee: ${name || "Student Builder"}\n🏛️ Campus: ${college || "PIET Panipat"}\n🎯 Focus: ${currentTrack.label}\n\nPost your badge on LinkedIn with #AWSSCDPanipat and tag AWS Student Builder Group at PIET. AWS Heroes & mentors will select 10 builders for exclusive VIP Swag Packs!\n\nReserve your pass: ${EVENT_DETAILS.commudleUrl}\n\n#AWSSCDPanipat #AWSSBGPIET #AWSCommunity #CloudBuilders #Haryana`;
+    `🚀 I'm attending Haryana's first-ever AWS Student Community Day organized by AWS Student Builder Group at PIET on 11th September 2026!\n\n👤 Attendee: ${name || "Student Builder"}\n🏛️ Campus: ${college || "PIET Panipat"}\n🎯 Focus: ${currentTrack.label}\n\nPost your badge on LinkedIn with #AWSSCDPanipat and tag AWS Student Builder Group at PIET. AWS Heroes & mentors will select 10 builders for exclusive VIP Swag Packs!\n\nReserve your pass: ${EVENT_DETAILS.commudleUrl}\n\n#AWSSCDPanipat #AWSSBGPIET #AWSCommunity #CloudBuilders`;
 
   const handleCopyPostText = () => {
     navigator.clipboard.writeText(getCustomShareText());
@@ -295,7 +272,7 @@ export default function BadgeGenerator() {
     link.href = result.dataUrl;
     link.click();
     try {
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 }, colors: ["#FF9900", "#8E35EA", "#10B981", "#FFFFFF"] });
+      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 }, colors: ["#00E5FF", "#76FF03", "#FF9900", "#FFFFFF"] });
     } catch { /* ignore */ }
   };
 
@@ -317,14 +294,14 @@ export default function BadgeGenerator() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="text-center max-w-2xl mx-auto mb-8 sm:mb-10 px-2"
       >
-        <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#FF9900] block mb-1.5">
-          HARYANA SUMMIT 2026 • OFFICIAL ATTENDEE BADGE
+        <span className="text-[11px] font-mono font-bold uppercase tracking-widest text-[#00E5FF] block mb-1.5">
+          OFFICIAL ATTENDEE STUDIO
         </span>
         <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight leading-tight">
-          Create Your Panipat Summit Badge
+          Create Your Official Summit Delegate Pass
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          Celebrate Haryana&apos;s biggest cloud milestone. Personalize your badge, download in HD, and share on LinkedIn to win VIP Swag!
+          Personalize your credential card, download in HD, and share on LinkedIn to connect with 500+ builders across Delhi-NCR &amp; Haryana.
         </p>
       </motion.div>
 
@@ -340,17 +317,17 @@ export default function BadgeGenerator() {
         >
           <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-slate-100 dark:border-white/[0.06]">
             <h3 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">Customize Pass</h3>
-            <span className="text-[10px] font-mono font-bold text-[#FF9900] bg-[#FF9900]/10 px-2.5 py-0.5 rounded-full border border-[#FF9900]/20">
-              HARYANA EDITION
+            <span className="text-[10px] font-mono font-bold text-[#00E5FF] bg-[#00E5FF]/10 px-2.5 py-0.5 rounded-full border border-[#00E5FF]/30">
+              SUMMIT PASS
             </span>
           </div>
 
           <div className="space-y-4">
-            {/* Photo */}
+            {/* Photo Upload */}
             <div>
               <label className="text-[11px] font-mono text-slate-700 dark:text-slate-300 block mb-1.5 font-bold">ATTENDEE PHOTO</label>
               <div className="flex items-center gap-3.5 p-3 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.06]">
-                <div className="relative h-14 w-14 rounded-full overflow-hidden border-2 border-[#FF9900] shrink-0 bg-slate-900 shadow-md">
+                <div className="relative h-14 w-14 rounded-2xl overflow-hidden border-2 border-[#00E5FF] shrink-0 bg-slate-900 shadow-md">
                   <Image src={avatarUrl} alt="Avatar" fill className="object-cover" unoptimized={avatarUrl.startsWith("data:")} />
                 </div>
                 <div className="flex flex-col gap-1 min-w-0 flex-1">
@@ -358,7 +335,7 @@ export default function BadgeGenerator() {
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="w-fit px-3.5 py-1.5 rounded-xl bg-[#FF9900] hover:bg-[#E58A00] text-slate-950 text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
+                    className="w-fit px-3.5 py-1.5 rounded-xl bg-[#00E5FF] hover:bg-[#00B4D8] text-slate-950 text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
                   >
                     <HugeiconsIcon icon={Camera01Icon} className="h-3.5 w-3.5" />
                     <span>Upload Photo</span>
@@ -378,7 +355,7 @@ export default function BadgeGenerator() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Aarav Sharma"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:border-[#FF9900] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:border-[#00E5FF] focus:outline-none transition-colors"
               />
             </div>
 
@@ -390,11 +367,11 @@ export default function BadgeGenerator() {
                 value={college}
                 onChange={(e) => setCollege(e.target.value)}
                 placeholder="e.g. PIET Panipat"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:border-[#FF9900] focus:outline-none transition-colors"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-white/[0.02] border border-slate-300 dark:border-white/10 text-slate-900 dark:text-white text-xs focus:border-[#00E5FF] focus:outline-none transition-colors"
               />
             </div>
 
-            {/* Track Selector */}
+            {/* Track Focus Selector */}
             <div className="relative">
               <label className="text-[11px] font-mono text-slate-700 dark:text-slate-300 block mb-1.5 font-bold">SUMMIT TRACK FOCUS</label>
               <button
@@ -402,20 +379,20 @@ export default function BadgeGenerator() {
                 onClick={() => setIsTrackOpen(!isTrackOpen)}
                 className={`w-full p-2.5 rounded-xl border flex items-center justify-between transition-all cursor-pointer ${
                   isTrackOpen
-                    ? "bg-white dark:bg-[#0E1430] border-[#FF9900]"
+                    ? "bg-white dark:bg-[#0E1430] border-[#00E5FF]"
                     : "bg-slate-50 dark:bg-white/[0.02] border-slate-300 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/20"
                 }`}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <div className="p-1.5 rounded-lg bg-[#FF9900] text-slate-950 shrink-0">
+                  <div className="p-1.5 rounded-lg bg-[#00E5FF] text-slate-950 shrink-0">
                     <HugeiconsIcon icon={currentTrack.icon} className="h-3.5 w-3.5" />
                   </div>
                   <div className="flex flex-col text-left min-w-0">
                     <span className="text-xs font-bold text-slate-900 dark:text-white truncate">{currentTrack.label}</span>
-                    <span className="text-[10px] font-mono text-[#FF9900] truncate">{currentTrack.tag}</span>
+                    <span className="text-[10px] font-mono text-[#00E5FF] truncate">{currentTrack.tag}</span>
                   </div>
                 </div>
-                <div className={`p-1 text-slate-500 transition-transform duration-200 ${isTrackOpen ? "rotate-180 text-[#FF9900]" : ""}`}>
+                <div className={`p-1 text-slate-500 transition-transform duration-200 ${isTrackOpen ? "rotate-180 text-[#00E5FF]" : ""}`}>
                   <HugeiconsIcon icon={ArrowDown01Icon} className="h-4 w-4" />
                 </div>
               </button>
@@ -430,17 +407,17 @@ export default function BadgeGenerator() {
                         type="button"
                         onClick={() => { setSelectedTrackId(track.id); setIsTrackOpen(false); }}
                         className={`w-full p-2 rounded-xl text-left flex items-center justify-between transition-all cursor-pointer ${
-                          sel ? "bg-[#FF9900]/15 text-[#FF9900] font-bold"
+                          sel ? "bg-[#00E5FF]/15 text-[#00E5FF] font-bold"
                               : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[0.06]"
                         }`}
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div className={`p-1.5 rounded-lg shrink-0 ${sel ? "bg-[#FF9900] text-slate-950" : "bg-slate-200/80 dark:bg-white/[0.06] text-slate-600 dark:text-slate-400"}`}>
+                          <div className={`p-1.5 rounded-lg shrink-0 ${sel ? "bg-[#00E5FF] text-slate-950" : "bg-slate-200/80 dark:bg-white/[0.06] text-slate-600 dark:text-slate-400"}`}>
                             <HugeiconsIcon icon={track.icon} className="h-3.5 w-3.5" />
                           </div>
                           <span className="text-xs truncate">{track.label}</span>
                         </div>
-                        {sel && <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-[#FF9900] shrink-0" />}
+                        {sel && <HugeiconsIcon icon={Tick02Icon} className="h-3.5 w-3.5 text-[#00E5FF] shrink-0" />}
                       </button>
                     );
                   })}
@@ -453,10 +430,10 @@ export default function BadgeGenerator() {
               <button
                 type="button"
                 onClick={handleDownloadBadge}
-                className="flex-1 py-3 rounded-xl bg-[#FF9900] hover:bg-[#E58A00] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer"
+                className="flex-1 py-3 rounded-xl bg-gradient-to-r from-[#00E5FF] to-[#76FF03] hover:opacity-95 text-slate-950 font-extrabold text-xs flex items-center justify-center gap-2 transition-all shadow-md active:scale-95 cursor-pointer"
               >
-                <HugeiconsIcon icon={Download01Icon} className="h-4 w-4" />
-                <span>Download Badge (HD)</span>
+                <HugeiconsIcon icon={Download01Icon} className="h-4 w-4 text-slate-950" />
+                <span>Download Pass (HD PNG)</span>
               </button>
               <button
                 type="button"
@@ -481,132 +458,142 @@ export default function BadgeGenerator() {
           </div>
         </motion.div>
 
-        {/* ── Right: Live Haryana / Panipat Heritage Preview ── */}
+        {/* ── Right: Authentic Modern Reference Style Live Preview ── */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94, y: 30 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
           className="lg:col-span-7 flex flex-col items-center justify-center"
         >
-          {/* Badge Card: Authentic Haryana Panipat Summit Pass */}
+          {/* Card Container with IMC Reference proportions & styling */}
           <div
-            className="w-full max-w-sm rounded-[36px] relative overflow-hidden shadow-2xl text-white border border-[#FF9900]/25"
+            className="w-full max-w-[340px] sm:max-w-[370px] rounded-[36px] relative overflow-hidden shadow-2xl text-white border-2 border-[#00D2FF]/40"
             style={{
-              background: "linear-gradient(155deg, #090E24 0%, #060A1D 45%, #03050F 100%)",
+              background: "linear-gradient(175deg, #0B3A94 0%, #08276D 38%, #061A4F 72%, #030F33 100%)",
             }}
           >
-            {/* Top Saffron Solar Flare & Ambient Lighting */}
+            {/* Top Light Ambient Sweep */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: "radial-gradient(circle at 50% 0%, rgba(255, 153, 0, 0.25) 0%, transparent 60%)",
+                background: "radial-gradient(circle at 50% 18%, rgba(0, 229, 255, 0.25) 0%, transparent 65%)",
               }}
             />
 
-            {/* Cultural Watermark: Devanagari "पानीपत" */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-              <span className="text-[100px] font-black text-white/[0.025] transform -rotate-12 tracking-wider">
-                पानीपत
-              </span>
-            </div>
+            <div className="relative z-10 flex flex-col items-center px-6 pt-7 pb-7">
 
-            {/* Heritage Geometric Inner Border Line */}
-            <div className="absolute inset-2.5 rounded-[28px] border border-white/[0.06] pointer-events-none z-0" />
-
-            <div className="relative z-10 flex flex-col items-center px-6 pt-7 pb-6">
-
-              {/* Top Community Crest & Summit Tagline */}
-              <div className="flex items-center gap-2 mb-1">
-                <div className="relative h-7 w-7 rounded-lg overflow-hidden bg-white/10 border border-[#FF9900]/30 p-1 flex items-center justify-center">
-                  <Image src="/images/sbg-logo.png" alt="AWS SBG PIET" fill className="object-contain p-0.5" />
+              {/* 1. Header Logos & Community Name */}
+              <div className="flex items-center justify-center gap-2 mb-1.5">
+                <div className="relative h-6 w-6 rounded-md overflow-hidden bg-white/10 p-0.5 flex items-center justify-center border border-white/20">
+                  <Image src="/images/sbg-logo.png" alt="AWS SBG" fill className="object-contain p-0.5" />
                 </div>
-                <span className="text-xs font-mono font-black tracking-widest text-[#FF9900]">
-                  AWS SBG PIET
-                </span>
-                <span className="text-[9px] font-mono text-white/40 uppercase">
-                  • PANIPAT
+                <span className="text-[11px] font-mono font-bold tracking-wider text-white/90 uppercase">
+                  AWS SBG PIET  •  PANIPAT
                 </span>
               </div>
 
-              {/* Event Title */}
-              <p className="text-[11px] font-mono font-bold tracking-widest uppercase text-white/80 mt-1">
+              {/* 2. Prominent Event Date */}
+              <p className="text-xl sm:text-2xl font-black tracking-tight text-white leading-none mt-1">
+                11 SEPTEMBER 2026
+              </p>
+              <p className="text-[10px] font-semibold text-[#00E5FF] mt-1 tracking-wide">
                 AWS Student Community Day • PIET Panipat
               </p>
 
-              {/* Gold Filigree Line */}
-              <div className="w-full h-px bg-gradient-to-r from-transparent via-[#FF9900]/40 to-transparent my-2" />
+              {/* 3. Centerpiece: Hexagon Avatar Frame with Cyan-to-Lime Neon Glow */}
+              <div className="mt-5 mb-4 relative flex items-center justify-center">
+                <svg className="w-48 h-56 sm:w-52 sm:h-60 filter drop-shadow-[0_0_18px_rgba(0,229,255,0.45)]" viewBox="0 0 200 230">
+                  <defs>
+                    <linearGradient id="previewHexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#00E5FF" />
+                      <stop offset="100%" stopColor="#76FF03" />
+                    </linearGradient>
+                    <clipPath id="previewHexClip">
+                      <path d="M 100 8 L 188 56 L 188 152 L 100 200 L 100 220 L 84 192 L 12 152 L 12 56 Z" />
+                    </clipPath>
+                  </defs>
 
-              {/* Attendee Ribbon */}
-              <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#FF9900]/15 border border-[#FF9900]/35 text-[#FFB020] text-[10px] font-mono font-bold tracking-widest uppercase shadow-sm">
-                <span>✦ ATTENDEE ✦</span>
-              </div>
-
-              {/* Profile Avatar with Royal Saffron Aura */}
-              <div className="mt-4 mb-3 relative">
-                {/* Radiant Saffron Aura */}
-                <div
-                  className="absolute inset-0 rounded-full"
-                  style={{
-                    background: "radial-gradient(circle, rgba(255, 153, 0, 0.4) 55%, transparent 75%)",
-                    transform: "scale(1.22)",
-                  }}
-                />
-                {/* Double Gold Ring Border */}
-                <div className="relative h-32 w-32 sm:h-36 sm:w-36 rounded-full border-[3px] border-[#FF9900] shadow-[0_0_25px_rgba(255,153,0,0.4)] overflow-hidden bg-slate-900 ring-2 ring-white/30">
-                  <Image
-                    src={avatarUrl}
-                    alt="Attendee"
-                    fill
-                    className="object-cover"
-                    unoptimized={avatarUrl.startsWith("data:")}
+                  {/* Dark Fill */}
+                  <path
+                    d="M 100 8 L 188 56 L 188 152 L 100 200 L 100 220 L 84 192 L 12 152 L 12 56 Z"
+                    fill="#041235"
                   />
-                </div>
+
+                  {/* Avatar Image Clipped */}
+                  <image
+                    href={avatarUrl}
+                    x="10"
+                    y="6"
+                    width="180"
+                    height="198"
+                    preserveAspectRatio="xMidYMid slice"
+                    clipPath="url(#previewHexClip)"
+                  />
+
+                  {/* Glowing Neon Hexagon Stroke */}
+                  <path
+                    d="M 100 8 L 188 56 L 188 152 L 100 200 L 100 220 L 84 192 L 12 152 L 12 56 Z"
+                    fill="none"
+                    stroke="url(#previewHexGrad)"
+                    strokeWidth="5"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
 
-              {/* Name */}
-              <h4 className="text-xl sm:text-2xl font-black tracking-tight text-center leading-tight" style={{ color: "#F5B942" }}>
+              {/* 4. Attendee Name (Electric Lime-Yellow Accent from reference) */}
+              <h4 className="text-xl sm:text-2xl font-black tracking-tight text-center leading-tight" style={{ color: "#C6FF00" }}>
                 {name || "Aarav Sharma"}
               </h4>
 
-              {/* College / Institution */}
-              <div className="flex items-center gap-1 text-xs text-white/70 font-semibold mt-1 text-center">
-                <HugeiconsIcon icon={Location01Icon} className="h-3 w-3 text-[#FF9900]" />
-                <span>{college || "PIET Panipat"}</span>
+              {/* 5. Role / College Title */}
+              <p className="text-xs text-white font-bold mt-1 text-center">
+                Attendee  •  {college || "PIET Panipat"}
+              </p>
+              <p className="text-[10.5px] text-white/60 font-medium mt-0.5 text-center">
+                AWS Student Builder Group • Haryana Chapter
+              </p>
+
+              {/* 6. Pill Badges (IMC reference style: 2 pills top row, 1 pill bottom row) */}
+              <div className="w-full flex flex-col items-center gap-2 mt-4">
+                {/* Row 1 */}
+                <div className="flex flex-wrap justify-center gap-2">
+                  <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold text-white bg-[#031034]/85 border border-[#00D2FF]/45 shadow-sm">
+                    {currentTrack.tag}
+                  </span>
+                  <span className="px-3.5 py-1.5 rounded-full text-[11px] font-bold text-white bg-[#031034]/85 border border-[#00D2FF]/45 shadow-sm">
+                    AWS Community
+                  </span>
+                </div>
+
+                {/* Row 2 */}
+                <div>
+                  <span className="px-4 py-1.5 rounded-full text-[11px] font-bold text-[#76FF03] bg-[#031034]/85 border border-[#76FF03]/60 shadow-sm">
+                    I&apos;m Attending ✦
+                  </span>
+                </div>
               </div>
 
-              {/* Tag Pills: Student Cloud Builder • AWS Community • I'm Attending ✦ */}
-              <div className="flex flex-wrap gap-1.5 justify-center mt-4">
-                <span className="px-3 py-1 rounded-full text-[10.5px] font-bold text-[#FFB020] bg-[#FF9900]/15 border border-[#FF9900]/30 shadow-sm">
-                  {currentTrack.tag}
-                </span>
-                <span className="px-3 py-1 rounded-full text-[10.5px] font-semibold text-white bg-white/10 border border-white/20">
-                  AWS Community
-                </span>
-                <span className="px-3 py-1 rounded-full text-[10.5px] font-semibold text-emerald-300 bg-emerald-500/15 border border-emerald-500/30">
-                  I&apos;m Attending ✦
-                </span>
-              </div>
-
-              {/* Footer: awssbgpiet.in • #AWSSCDPanipat */}
-              <div className="mt-5 w-full pt-3 border-t border-white/10 flex items-center justify-between">
-                <span className="text-[10px] font-mono font-bold text-[#FF9900]">
+              {/* 7. Minimal Clean Footer Links */}
+              <div className="mt-5 w-full pt-3 border-t border-white/10 flex items-center justify-between text-[10px] font-mono">
+                <span className="text-[#00E5FF] font-bold">
                   awssbgpiet.in
                 </span>
-                <span className="text-[10px] font-mono font-bold text-[#AD5CFF]">
+                <span className="text-[#76FF03] font-bold">
                   #AWSSCDPanipat
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Social Proof Giveaway Callout */}
+          {/* Giveaway Notice */}
           <div className="mt-4 p-4 rounded-2xl bg-slate-50 dark:bg-white/[0.02] border border-slate-200 dark:border-white/[0.08] max-w-sm text-center">
-            <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#FF9900] mb-1">
+            <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#00E5FF] mb-1">
               <HugeiconsIcon icon={Share01Icon} className="h-3.5 w-3.5" />
               <span>Enter the VIP Swag Giveaway</span>
             </div>
             <p className="text-[11px] text-slate-600 dark:text-slate-400 leading-relaxed">
-              Post your badge on LinkedIn with <strong>#AWSSCDPanipat</strong> and tag <strong>AWS Student Builder Group at PIET</strong>. AWS Heroes &amp; mentors will select 10 builders for exclusive <strong>VIP Swag Packs</strong>!
+              Post your badge on LinkedIn with <strong>#AWSSCDPanipat</strong> and tag <strong>AWS Student Builder Group at PIET</strong> to win exclusive <strong>VIP Swag Packs</strong>!
             </p>
           </div>
         </motion.div>
