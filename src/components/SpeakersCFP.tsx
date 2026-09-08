@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
+  ArrowUpRight01Icon,
   Linkedin01Icon,
   UserIcon,
   Mic01Icon,
