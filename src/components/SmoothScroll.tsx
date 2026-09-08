@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
@@ -9,12 +9,17 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Check if user prefers reduced motion
+    // 1. Enforce manual scroll restoration so browser never restores stale scroll on navigation
+    if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
+    // 2. Initialize Lenis
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
@@ -32,7 +37,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     const rafId = requestAnimationFrame(raf);
 
-    // Scroll to element helper
+    // 3. Anchor / Hash scroll handler
     const scrollToHash = (hash: string, delay = 100) => {
       if (!hash || hash === "#") return;
       setTimeout(() => {
@@ -47,14 +52,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       }, delay);
     };
 
-    // Check hash on initial mount
+    // On initial mount, jump to top or target hash
     if (window.location.hash) {
-      scrollToHash(window.location.hash, 300);
+      scrollToHash(window.location.hash, 250);
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      lenis.scrollTo(0, { immediate: true });
     }
 
-    // Smooth anchor navigation handling
+    // 4. Intercept anchor clicks on same page
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement)?.closest("a");
       if (!target) return;
@@ -62,16 +68,13 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       const href = target.getAttribute("href");
       if (!href) return;
 
-      // Extract hash part
       const hashIndex = href.indexOf("#");
       if (hashIndex === -1) return;
 
       const urlPath = href.substring(0, hashIndex);
       const hash = href.substring(hashIndex);
-
       const currentPath = window.location.pathname;
 
-      // If it's a pure hash link (#tickets) OR same-page full link (/scd-panipat-2026#tickets)
       if (urlPath === "" || urlPath === currentPath || (currentPath.endsWith(urlPath) && urlPath !== "")) {
         const el = document.querySelector(hash);
         if (el) {
@@ -82,6 +85,18 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       }
     };
 
+    // 5. Handle popstate (Browser Back & Forward navigation)
+    const handlePopState = () => {
+      if (window.location.hash) {
+        scrollToHash(window.location.hash, 100);
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+        lenis.scrollTo(0, { immediate: true });
+      }
+    };
+
     const handleHashChange = () => {
       if (window.location.hash) {
         scrollToHash(window.location.hash, 100);
@@ -89,18 +104,20 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     };
 
     document.addEventListener("click", handleAnchorClick);
+    window.addEventListener("popstate", handlePopState);
     window.addEventListener("hashchange", handleHashChange);
 
     return () => {
       cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
+      window.removeEventListener("popstate", handlePopState);
       window.removeEventListener("hashchange", handleHashChange);
       lenis.destroy();
       lenisRef.current = null;
     };
   }, []);
 
-  // Whenever pathname changes, handle top scroll or hash jump
+  // 6. Whenever pathname changes (Route Navigation to any page)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -115,15 +132,30 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         } catch {
           // ignore
         }
-      }, 300);
-
+      }, 250);
       return () => clearTimeout(timer);
     } else {
-      // Clean page route transition -> scroll straight to the very top (Hero section)
+      // Immediate reset on route change
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
       if (lenisRef.current) {
         lenisRef.current.scrollTo(0, { immediate: true });
       }
+
+      // Secondary check after Next.js finishes DOM render
+      const timer = setTimeout(() => {
+        if (!window.location.hash) {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(0, { immediate: true });
+          }
+        }
+      }, 50);
+
+      return () => clearTimeout(timer);
     }
   }, [pathname]);
 

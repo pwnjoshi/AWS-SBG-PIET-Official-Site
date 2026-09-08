@@ -1,8 +1,7 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { ThemeProvider } from "@/context/ThemeContext";
-import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ParticleNetworkCanvas from "@/components/ParticleNetworkCanvas";
 import Navbar from "@/components/Navbar";
@@ -44,8 +43,7 @@ export default function SCDPanipatPage() {
     <>
       <SCDLoadingScreen />
 
-      <SmoothScroll>
-        <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
+      <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
           <ScrollProgressBar />
           <ParticleNetworkCanvas />
 
@@ -85,7 +83,6 @@ export default function SCDPanipatPage() {
             selectedTierId={selectedTicketTier}
           />
         </div>
-      </SmoothScroll>
     </>
   );
 }

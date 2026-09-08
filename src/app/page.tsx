@@ -1,7 +1,6 @@
 "use client";
 
 import { ThemeProvider } from "@/context/ThemeContext";
-import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
 import ParticleNetworkCanvas from "@/components/ParticleNetworkCanvas";
 import Navbar from "@/components/Navbar";
@@ -20,8 +19,7 @@ import SBGJoinCommunity from "@/components/sbg/SBGJoinCommunity";
 
 export default function SBGHomePage() {
   return (
-    <SmoothScroll>
-      <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
+    <div className="relative min-h-screen bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-slate-100 selection:bg-[#AD5CFF]/30 selection:text-slate-950 dark:selection:text-white overflow-x-hidden font-sans transition-colors duration-300">
         {/* Top Violet Scroll Progress Indicator */}
         <ScrollProgressBar />
 
@@ -61,6 +59,5 @@ export default function SBGHomePage() {
         {/* Global Footer */}
         <Footer />
       </div>
-    </SmoothScroll>
   );
 }
