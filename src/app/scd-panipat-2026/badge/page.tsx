@@ -52,7 +52,7 @@ export default function BadgeStudioPage() {
           <BadgeGenerator />
         </main>
 
-        {/* Sticky Bottom Right Actions: Scroll To Top & Brevo Live Chat */}
+        {/* Sticky Bottom Right Actions */}
         <FloatingActions />
 
         {/* Native Mobile Bottom Navigation Dock */}
