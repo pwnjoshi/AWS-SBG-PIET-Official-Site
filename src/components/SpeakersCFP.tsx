@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -78,6 +78,16 @@ export default function SpeakersCFP() {
       linkedin: "https://www.linkedin.com/in/shivani-singh-vimal-438449267/",
       image: "/images/shivani-singh-vimal.jpg",
       badgeColor: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    },
+    {
+      name: "Manvendra Singh",
+      track: "DevRel & Community",
+      trackTag: "Session Speaker",
+      company: "Rel-In-Dev & Ex-AWS SBGL",
+      role: "Developer Advocate 🥑 | Ex-SBGL @ AWS SBG JECRC | Ex-AWS SBCL | Building @ Rel-In-Dev | Technical Writer",
+      linkedin: "https://www.linkedin.com/in/manvendra-singh%F0%9F%A5%91-509836222/",
+      image: "/images/manvendra-singh.jpg",
+      badgeColor: "text-teal-600 dark:text-teal-400 bg-teal-500/10 border-teal-500/20",
     },
     {
       name: "Hardik Bandhiya",
@@ -216,7 +226,7 @@ export default function SpeakersCFP() {
             </h3>
           </div>
           <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-            5 Session Specialists
+            {technicalSpeakers.length} Session Specialists
           </span>
         </div>
 

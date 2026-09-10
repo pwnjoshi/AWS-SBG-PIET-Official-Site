@@ -33,7 +33,9 @@ export default function JsonLd() {
       { "@type": "Person", "name": "Praful Bagai", "jobTitle": "AWS Community Leader and Speaker" },
       { "@type": "Person", "name": "Amit Kumar", "jobTitle": "Solutions Architect" },
       { "@type": "Person", "name": "Chhavi Garg", "jobTitle": "GenAI Specialist" },
-      { "@type": "Person", "name": "Shivani Singh Vimal", "jobTitle": "Cloud Developer" }
+      { "@type": "Person", "name": "Shivani Singh Vimal", "jobTitle": "Cloud Developer" },
+      { "@type": "Person", "name": "Manvendra Singh", "jobTitle": "Developer Advocate" },
+      { "@type": "Person", "name": "Hardik Bandhiya", "jobTitle": "Open Source Chairperson & DevRel" }
     ],
     "offers": [
       {

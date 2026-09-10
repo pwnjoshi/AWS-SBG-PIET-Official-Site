@@ -80,7 +80,6 @@ export const metadata: Metadata = {
   },
 };
 
-import TawkChat from "@/components/TawkChat";
 import JsonLd from "@/components/JsonLd";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeProvider } from "@/context/ThemeContext";
@@ -132,7 +131,6 @@ export default function RootLayout({
             </SmoothScroll>
           </SoundtrackProvider>
         </ThemeProvider>
-        <TawkChat />
       </body>
     </html>
   );

@@ -151,16 +151,6 @@ body {
   animation: border-spin 3s linear infinite;
 }
 
-/* Tawk.to Live Chat Mobile Polish */
-@media (max-width: 768px) {
-  #tawk-default-container,
-  .tawk-min-container {
-    bottom: 16px !important;
-    right: 16px !important;
-    z-index: 99999 !important;
-  }
-}
-
 /* Celebratory Ambience Mode Global Visual Aura */
 .ambience-mode-active {
   --pill-bg: rgba(15, 10, 30, 0.95);
@@ -231,37 +221,3 @@ body {
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30' fill='none'%3E%3Cdefs%3E%3ClinearGradient id='hg' x1='2' y1='2' x2='24' y2='24' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23FFE600'/%3E%3Cstop offset='0.5' stop-color='%23FF9900'/%3E%3Cstop offset='1' stop-color='%23EC4899'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M3 3L12 27L16 16L27 12L3 3Z' fill='url(%23hg)' stroke='%23FFFFFF' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23FFFFFF'/%3E%3C/svg%3E") 3 3, pointer !important;
   }
 }
-
-/* Suppress Tawk.to attention grabbers, bubble prompts, and proactive popup cards */
-#tawk-bubble-container,
-div[class*="tawk-bubble"],
-div[class*="tawk-card"],
-div[id*="tawk-bubble"],
-iframe[title*="chat notification"],
-iframe[title*="Chat with us"]:not([style*="height: 100%"]) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Ensure Tawk.to base chat bubble has a low z-index so all modals, navbar, and bottom sheets are above it */
-#tawk-chat-container,
-.tawk-min-container,
-div[id^="tawk-"],
-iframe[src*="tawk.to"],
-div.widget-visible {
-  z-index: 35 !important;
-}
-
-/* When any modal is open, completely suppress Tawk.to to prevent overlapping on mobile */
-body.modal-open #tawk-chat-container,
-body.modal-open .tawk-min-container,
-body.modal-open div[id^="tawk-"],
-body.modal-open iframe[src*="tawk.to"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-

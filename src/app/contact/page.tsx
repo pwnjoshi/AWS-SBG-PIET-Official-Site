@@ -11,7 +11,6 @@ import {
   SparklesIcon,
   ArrowUpRight01Icon,
   Globe02Icon,
-  Chat01Icon,
 } from "@hugeicons/core-free-icons";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -62,17 +61,6 @@ export default function ContactPage() {
     }
   };
 
-  const handleOpenLiveChat = () => {
-    const tawk = (window as unknown as { Tawk_API?: { maximize?: () => void; toggle?: () => void } }).Tawk_API;
-    if (tawk) {
-      if (typeof tawk.maximize === "function") {
-        tawk.maximize();
-      } else if (typeof tawk.toggle === "function") {
-        tawk.toggle();
-      }
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-[#05070E] text-slate-900 dark:text-white">
       <Navbar />
@@ -87,7 +75,7 @@ export default function ContactPage() {
             Get in Touch with AWS SBG PIET
           </h1>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
-            Have questions regarding AWS Student Community Day 2026 passes, sponsorships, speaking proposals, or student builder chapters? Send us a message or chat live.
+            Have questions regarding AWS Student Community Day 2026 passes, sponsorships, speaking proposals, or student builder chapters? Send us a message or connect with our community.
           </p>
         </div>
 
@@ -140,31 +128,33 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Tawk.to Live Chat Card */}
+              {/* Community Support Card */}
               <div className="p-6 rounded-3xl bg-gradient-to-br from-[#8E35EA]/10 via-[#AD5CFF]/5 to-transparent border border-[#AD5CFF]/30 shadow-sm flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="h-2 w-2 rounded-full bg-emerald-500" />
                     <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-[#8E35EA] dark:text-[#AD5CFF]">
-                      INSTANT LIVE ASSISTANCE
+                      BUILDER COMMUNITY
                     </span>
                   </div>
                   <h4 className="text-base font-extrabold text-slate-950 dark:text-white mb-1">
-                    Need instant answers?
+                    Connect With Organizers &amp; Peers
                   </h4>
                   <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-                    Our community volunteers and organizers are active on live chat for real-time pass and venue queries.
+                    Join over 500+ student builders, organizers, and mentors in the official WhatsApp community for announcements and peer help.
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={handleOpenLiveChat}
+                <a
+                  href={EVENT_DETAILS.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full py-3 rounded-2xl bg-[#8E35EA] hover:bg-[#7828C8] dark:bg-[#AD5CFF] dark:hover:bg-[#9B4AE8] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-purple-500/20 active:scale-[0.98] cursor-pointer"
                 >
-                  <HugeiconsIcon icon={Chat01Icon} className="h-4 w-4" />
-                  <span>Start Live Chat Now</span>
-                </button>
+                  <HugeiconsIcon icon={Globe02Icon} className="h-4 w-4" />
+                  <span>Join WhatsApp Community</span>
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5" />
+                </a>
               </div>
             </div>
 

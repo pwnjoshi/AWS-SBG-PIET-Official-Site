@@ -34,15 +34,9 @@ export default function CFPModal({ isOpen, onClose }: CFPModalProps) {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("modal-open");
-      try {
-        (window as unknown as { Tawk_API?: { hideWidget?: () => void } }).Tawk_API?.hideWidget?.();
-      } catch {}
     }
     return () => {
       document.body.classList.remove("modal-open");
-      try {
-        (window as unknown as { Tawk_API?: { showWidget?: () => void } }).Tawk_API?.showWidget?.();
-      } catch {}
     };
   }, [isOpen]);
 
