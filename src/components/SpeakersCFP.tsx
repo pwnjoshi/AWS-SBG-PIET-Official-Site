@@ -7,19 +7,46 @@ import {
   Linkedin01Icon,
   Mic01Icon,
   SparklesIcon,
+  Layers01Icon,
 } from "@hugeicons/core-free-icons";
 import Image from "next/image";
 
 export default function SpeakersCFP() {
-  const keynoteSpeaker = {
-    name: "Praful Bagai",
-    badge: "OPENING KEYNOTE SPEAKER",
-    company: "Amazon Web Services (AWS)",
-    roleTitle: "Head of Developer Relations – India & South Asia",
-    meta: "Speaker • Community Builder • Founder",
-    linkedin: "https://www.linkedin.com/in/prafulbagai/",
-    image: "/images/praful-bagai.jpg",
-  };
+  const mainSpeakers = [
+    {
+      name: "Praful Bagai",
+      badge: "OPENING TECHNICAL KEYNOTE",
+      badgeColor: "bg-[#FF9900]/15 border-[#FF9900]/30 text-[#FF9900]",
+      roleTitle: "Head of Developer Relations – India & South Asia",
+      company: "Amazon Web Services (AWS)",
+      meta: ["Keynote Speaker", "Community Leader", "Founder"],
+      linkedin: "https://www.linkedin.com/in/prafulbagai/",
+      image: "/images/praful-bagai.jpg",
+      glowColor: "from-[#FF9900]/20 via-[#FF9900]/5",
+    },
+    {
+      name: "Lisa Bagley",
+      badge: "COMMUNITY KEYNOTE SPEAKER",
+      badgeColor: "bg-[#AD5CFF]/15 border-[#AD5CFF]/30 text-[#BE7BFF]",
+      roleTitle: "Lead – Content, Education & Research",
+      company: "AWS Community Groups",
+      meta: ["Global AWS Lead", "Education & Research", "Keynote"],
+      linkedin: "https://www.linkedin.com/in/lisa-bagley-0b16b47/",
+      image: "/images/lisa-bagley.jpg",
+      glowColor: "from-[#AD5CFF]/20 via-[#AD5CFF]/5",
+    },
+    {
+      name: "Prof. Amit Dubey",
+      badge: "SPECIAL KEYNOTE • CYBER & QUANTUM",
+      badgeColor: "bg-rose-500/15 border-rose-500/30 text-rose-400",
+      roleTitle: "Author & Cyber Security Evangelist",
+      company: "Member, Police Technology Mission",
+      meta: ["Cyber Security", "TEDx Speaker", "IIT KGP Alumnus"],
+      linkedin: "https://www.linkedin.com/in/amitdubey77/",
+      image: "/images/amit-dubey.jpg",
+      glowColor: "from-rose-500/20 via-rose-500/5",
+    },
+  ];
 
   const technicalSpeakers = [
     {
@@ -30,7 +57,6 @@ export default function SpeakersCFP() {
       role: "Senior Solutions Architect @ Amazon Web Services | Hybrid Cloud Specialist",
       linkedin: "https://www.linkedin.com/in/amitkyvmw/",
       image: "/images/amit-kumar.jpg",
-      accent: "#0284C7",
       badgeColor: "text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20",
     },
     {
@@ -41,7 +67,6 @@ export default function SpeakersCFP() {
       role: "Founder @ BharatXR & @ Arexa | Snapchat AR Partner | XR & AI Specialist",
       linkedin: "https://www.linkedin.com/in/chhavigg/",
       image: "/images/chhavi-garg.jpg",
-      accent: "#9333EA",
       badgeColor: "text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20",
     },
     {
@@ -52,19 +77,7 @@ export default function SpeakersCFP() {
       role: "Founder, Altiora French Academy | French Language Trainer | DELF • TEF Coach | Career Mentor",
       linkedin: "https://www.linkedin.com/in/shivani-singh-vimal-438449267/",
       image: "/images/shivani-singh-vimal.jpg",
-      accent: "#059669",
       badgeColor: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    },
-    {
-      name: "Prof. Amit Dubey",
-      track: "Cyber Security & Quantum",
-      trackTag: "Special Session",
-      company: "Police Technology Mission",
-      role: "Author & Cyber Security Evangelist | TEDx Speaker | Chevening Fellow | Quantum Researcher",
-      linkedin: "https://www.linkedin.com/in/amitdubey77/",
-      image: "/images/amit-dubey.jpg",
-      accent: "#E11D48",
-      badgeColor: "text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20",
     },
   ];
 
@@ -86,101 +99,103 @@ export default function SpeakersCFP() {
           Featured Speakers
         </h2>
         <p className="mt-3 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed">
-          Learn directly from distinguished AWS engineering leaders, enterprise architects, and innovative founders.
+          Learn directly from distinguished AWS engineering leaders, enterprise architects, and innovative founders on 11 Sept 2026.
         </p>
       </motion.div>
 
-      {/* ── Opening Keynote Speaker Hero Card (Praful Bagai) ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-[28px] sm:rounded-[32px] bg-gradient-to-br from-[#0C1226] via-[#090D1E] to-[#050711] border border-white/10 p-6 sm:p-8 lg:p-10 shadow-2xl mb-12 sm:mb-16 overflow-hidden text-white group"
-      >
-        {/* Ambient Subtle Background Glow */}
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-gradient-to-bl from-[#FF9900]/15 via-[#8E35EA]/15 to-transparent blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-[300px] h-[300px] bg-[#0A66C2]/10 blur-[90px] rounded-full pointer-events-none" />
-
-        <div className="relative z-10 flex flex-col md:flex-row items-center md:items-stretch justify-between gap-6 sm:gap-8 lg:gap-10">
-          {/* Left: Speaker Portrait */}
-          <div className="relative shrink-0 flex flex-col items-center sm:items-start">
-            <div className="relative h-44 w-44 sm:h-52 sm:w-52 md:h-56 md:w-56 rounded-2xl sm:rounded-3xl overflow-hidden ring-1 ring-white/20 shadow-2xl shadow-black/50 bg-slate-800">
-              <Image
-                src={keynoteSpeaker.image}
-                alt={keynoteSpeaker.name}
-                fill
-                sizes="(max-width: 768px) 208px, 224px"
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-            </div>
-          </div>
-
-          {/* Middle: Details & Bio */}
-          <div className="flex-1 flex flex-col justify-center text-center md:text-left min-w-0">
-            {/* Keynote Pill */}
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FF9900]/15 border border-[#FF9900]/30 text-[#FF9900] text-[10px] sm:text-[11px] font-mono font-bold tracking-widest uppercase mb-3 self-center md:self-start">
-              <HugeiconsIcon icon={Mic01Icon} className="h-3 w-3" />
-              <span>{keynoteSpeaker.badge}</span>
-            </div>
-
-            {/* Speaker Name */}
-            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-              {keynoteSpeaker.name}
-            </h3>
-
-            {/* Role & Org */}
-            <p className="text-sm sm:text-base font-semibold text-slate-200 mt-1.5 leading-snug">
-              {keynoteSpeaker.roleTitle}
-            </p>
-            <p className="text-xs sm:text-sm font-bold text-[#FF9900] mt-0.5">
-              {keynoteSpeaker.company}
-            </p>
-
-            {/* Meta Tags */}
-            <div className="mt-3.5 flex flex-wrap items-center justify-center md:justify-start gap-2">
-              <span className="text-[11px] font-mono text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2.5 py-0.5 rounded-lg">
-                Speaker
-              </span>
-              <span className="text-[11px] font-mono text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2.5 py-0.5 rounded-lg">
-                Community Builder
-              </span>
-              <span className="text-[11px] font-mono text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2.5 py-0.5 rounded-lg">
-                Founder
-              </span>
-            </div>
-          </div>
-
-          {/* Right: Connect Button */}
-          <div className="flex items-center justify-center md:justify-end shrink-0 w-full md:w-auto">
-            <a
-              href={keynoteSpeaker.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-3 rounded-xl sm:rounded-2xl bg-white/[0.06] hover:bg-[#0A66C2] text-white border border-white/15 hover:border-transparent text-xs sm:text-sm font-bold transition-all duration-200 flex items-center justify-center gap-2 shadow-lg hover:shadow-blue-500/25 active:scale-95 group/btn"
-            >
-              <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4 text-[#0A66C2] group-hover/btn:text-white transition-colors" />
-              <span>Connect on LinkedIn</span>
-              <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 opacity-60 group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all" />
-            </a>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* ── Technical Session Leaders Grid (4 Cards) ── */}
-      <div>
-        <div className="flex items-center justify-between mb-6">
+      {/* ── Main Stage Keynote Speakers (3 Spotlight Cards) ── */}
+      <div className="mb-14 sm:mb-20">
+        <div className="flex items-center gap-2 mb-6">
+          <HugeiconsIcon icon={Mic01Icon} className="h-4 w-4 text-[#FF9900]" />
           <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            Technical Session Leaders
+            Keynote &amp; Main Stage Speakers
           </h3>
-          <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
-            4 Industry Specialists
-          </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {mainSpeakers.map((speaker, idx) => (
+            <motion.div
+              key={speaker.name}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.55, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative rounded-[28px] bg-gradient-to-br from-[#0C1226] via-[#090D1E] to-[#050711] border border-white/10 p-6 sm:p-7 shadow-2xl overflow-hidden text-white flex flex-col justify-between group hover:border-white/20 transition-all duration-300"
+            >
+              {/* Ambient Glow */}
+              <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl ${speaker.glowColor} to-transparent blur-[80px] rounded-full pointer-events-none`} />
+
+              <div>
+                {/* Speaker Photo */}
+                <div className="relative aspect-[4/4.2] w-full rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-xl bg-slate-800 mb-5">
+                  <Image
+                    src={speaker.image}
+                    alt={speaker.name}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover object-top group-hover:scale-104 transition-transform duration-600 ease-out"
+                    priority={idx === 0}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+
+                  {/* Floating Keynote Pill */}
+                  <div className="absolute top-3 left-3">
+                    <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider backdrop-blur-md border ${speaker.badgeColor} shadow-sm`}>
+                      <HugeiconsIcon icon={Mic01Icon} className="h-3 w-3" />
+                      <span>{speaker.badge}</span>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Speaker Info */}
+                <h4 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-snug">
+                  {speaker.name}
+                </h4>
+                <p className="text-xs sm:text-sm font-semibold text-slate-300 mt-1 leading-snug">
+                  {speaker.roleTitle}
+                </p>
+                <p className="text-xs font-bold text-[#FF9900] mt-0.5">
+                  {speaker.company}
+                </p>
+
+                {/* Meta Tags */}
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {speaker.meta.map((tag) => (
+                    <span key={tag} className="text-[10.5px] font-mono text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2 py-0.5 rounded-md">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Connect Button */}
+              <div className="pt-5 mt-4 border-t border-white/10">
+                <a
+                  href={speaker.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-2.5 px-4 rounded-xl bg-white/[0.06] hover:bg-[#0A66C2] text-white border border-white/15 hover:border-transparent text-xs font-bold transition-all duration-200 flex items-center justify-center gap-2 shadow-sm group/btn active:scale-95"
+                >
+                  <HugeiconsIcon icon={Linkedin01Icon} className="h-4 w-4 text-[#0A66C2] group-hover/btn:text-white transition-colors" />
+                  <span>Connect on LinkedIn</span>
+                  <HugeiconsIcon icon={ArrowUpRight01Icon} className="h-3.5 w-3.5 opacity-60 group-hover/btn:opacity-100 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all" />
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Technical Session Leaders Grid (3 Track Cards) ── */}
+      <div>
+        <div className="flex items-center gap-2 mb-6">
+          <HugeiconsIcon icon={Layers01Icon} className="h-4 w-4 text-[#8E35EA] dark:text-[#AD5CFF]" />
+          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+            Technical Track Leaders
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {technicalSpeakers.map((speaker, idx) => (
             <motion.div
               key={speaker.name}
@@ -197,7 +212,7 @@ export default function SpeakersCFP() {
                     src={speaker.image}
                     alt={speaker.name}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover object-top group-hover:scale-104 transition-transform duration-500 ease-out"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
@@ -211,11 +226,11 @@ export default function SpeakersCFP() {
                 </div>
 
                 {/* Details Container */}
-                <div className="p-4 sm:p-5">
-                  <span className={`inline-block text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border mb-2 ${speaker.badgeColor}`}>
+                <div className="p-5">
+                  <span className={`inline-block text-[10.5px] font-mono font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-md border mb-2 ${speaker.badgeColor}`}>
                     {speaker.track}
                   </span>
-                  <h4 className="text-base font-extrabold text-slate-900 dark:text-white leading-snug group-hover:text-[#8E35EA] dark:group-hover:text-[#AD5CFF] transition-colors">
+                  <h4 className="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white leading-snug group-hover:text-[#8E35EA] dark:group-hover:text-[#AD5CFF] transition-colors">
                     {speaker.name}
                   </h4>
                   <p className="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed line-clamp-3">
@@ -225,12 +240,12 @@ export default function SpeakersCFP() {
               </div>
 
               {/* Card Footer Connect Button */}
-              <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0">
+              <div className="px-5 pb-5 pt-0">
                 <a
                   href={speaker.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-[#0A66C2] dark:bg-white/[0.04] dark:hover:bg-[#0A66C2] text-slate-700 dark:text-slate-300 hover:text-white dark:hover:text-white text-xs font-bold transition-all duration-150 flex items-center justify-center gap-1.5 group/btn active:scale-95"
+                  className="w-full py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-[#0A66C2] dark:bg-white/[0.04] dark:hover:bg-[#0A66C2] text-slate-700 dark:text-slate-300 hover:text-white dark:hover:text-white text-xs font-bold transition-all duration-150 flex items-center justify-center gap-1.5 group/btn active:scale-95"
                 >
                   <HugeiconsIcon icon={Linkedin01Icon} className="h-3.5 w-3.5 text-[#0A66C2] group-hover/btn:text-white transition-colors" />
                   <span>Connect</span>
