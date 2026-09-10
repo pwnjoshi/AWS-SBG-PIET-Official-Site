@@ -79,6 +79,26 @@ export default function SpeakersCFP() {
       image: "/images/shivani-singh-vimal.jpg",
       badgeColor: "text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
     },
+    {
+      name: "Hardik Bandhiya",
+      track: "Open Source & DevRel",
+      trackTag: "Session Speaker",
+      company: "NavraCoders & NavraGaming",
+      role: "Founder - NavraCoders | AWS Student Builder Groups Leader | DevRel 🥑 | Open Source Chairperson",
+      linkedin: "https://www.linkedin.com/in/bandhiya-hardik/",
+      image: "/images/hardik-bandhiya.jpg",
+      badgeColor: "text-amber-600 dark:text-amber-400 bg-amber-500/10 border-amber-500/20",
+    },
+    {
+      name: "Pawan Joshi",
+      track: "Cloud & AI Architecture",
+      trackTag: "Session Speaker",
+      company: "Tech Sangi",
+      role: "Co-Founder Tech Sangi | AWS SBGL | 1x AWS, 1x Google, 1x MS | AWS AI/ML Scholar | AWS New Voices 2026",
+      linkedin: "https://www.linkedin.com/in/pwnjoshi/",
+      image: "/images/pawan-joshi.png",
+      badgeColor: "text-indigo-600 dark:text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+    },
   ];
 
   return (
@@ -186,13 +206,18 @@ export default function SpeakersCFP() {
         </div>
       </div>
 
-      {/* ── Technical Session Leaders Grid (3 Track Cards) ── */}
+      {/* ── Technical & Community Session Leaders Grid (5 Cards) ── */}
       <div>
-        <div className="flex items-center gap-2 mb-6">
-          <HugeiconsIcon icon={Layers01Icon} className="h-4 w-4 text-[#8E35EA] dark:text-[#AD5CFF]" />
-          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
-            Technical Track Leaders
-          </h3>
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <HugeiconsIcon icon={Layers01Icon} className="h-4 w-4 text-[#8E35EA] dark:text-[#AD5CFF]" />
+            <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+              Technical &amp; Session Leaders
+            </h3>
+          </div>
+          <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+            5 Session Specialists
+          </span>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
